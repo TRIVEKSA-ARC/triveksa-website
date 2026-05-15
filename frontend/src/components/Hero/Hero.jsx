@@ -4,8 +4,8 @@ function Hero() {
   return (
     <>
       {/* ================= HERO SECTION ================= */}
-      {/* pt-20 and md:pt-32 added for top spacing; min-h adjusted to prevent vertical stretching */}
-      <section className="relative min-h-[92vh] overflow-hidden bg-transparent text-white flex items-center justify-center pt-24 md:pt-40 pb-16">
+      {/* Removed heavy top padding to allow 'items-center' to perfectly center the content vertically */}
+      <section className="relative min-h-screen overflow-hidden bg-transparent text-white flex items-center justify-center py-20">
         
         {/* SOFT OVERLAY REMOVED FOR MAX VISIBILITY */}
         <div className="absolute inset-0 bg-black/0 z-[1]" />
@@ -23,7 +23,7 @@ function Hero() {
           {/* MAIN HERO WRAP - BOX REMOVED, TRANSPARENT BG */}
           <div className="mx-auto w-full border border-white/5 bg-transparent px-4 py-6 sm:px-6 sm:py-10 md:px-8 md:py-12 lg:px-10 lg:py-14">
             
-            {/* TOP MINI LABEL - INCREASED SIZE FOR EYE-CATCHING EFFECT */}
+            {/* TOP MINI LABEL */}
             <motion.div
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
@@ -37,7 +37,7 @@ function Hero() {
               <span className="h-px w-12 md:w-20 bg-gradient-to-r from-transparent via-yellow-400 to-transparent" />
             </motion.div>
 
-            {/* MAIN NAME - FIXED SIZE & SPACING */}
+            {/* MAIN NAME */}
             <motion.h1
               initial={{ opacity: 0, y: 24, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -54,19 +54,7 @@ function Hero() {
               </span>
             </motion.h1>
 
-            {/* SUBTITLE - CLEANER TRACKING */}
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-              className="mt-6"
-            >
-              <p className="mx-auto max-w-4xl text-center text-[12px] sm:text-[13px] md:text-[15px] uppercase tracking-[0.18em] leading-[1.8] text-white/80">
-                Building modern digital experiences for brands
-              </p>
-            </motion.div>
-
-            {/* ROLES PANEL - REDUCED HEIGHT */}
+            {/* ROLES PANEL */}
             <motion.div
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
@@ -88,15 +76,15 @@ function Hero() {
               </p>
             </motion.div>
 
-            {/* MERGED CTA DESCRIPTION - SINGLE LINE FOR CLEANER LOOK */}
+            {/* UPDATED SINGLE LINE DESCRIPTION - STYLE MATCHED TO TOP LABEL */}
             <motion.div
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.42, duration: 0.8 }}
-              className="mt-8"
+              className="mt-8 flex items-center justify-center gap-3"
             >
-              <p className="mx-auto max-w-5xl text-center text-sm md:text-base text-white/60 tracking-wide font-light">
-                Turning ideas into fast, modern, and conversion-focused digital products for global brands.
+              <p className="mx-auto max-w-5xl text-center text-[10px] sm:text-[12px] md:text-[14px] uppercase tracking-[0.3em] text-white/90 font-medium">
+                Building Modern Digital Experiences & Conversion-Focused Products
               </p>
             </motion.div>
 
@@ -105,7 +93,7 @@ function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.48 }}
-              className="mt-6 flex justify-center"
+              className="mt-8 flex justify-center"
             >
               <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/25 bg-black/25 px-5 py-2.5 text-[10px] md:text-[11px] uppercase tracking-[0.28em] text-white/90 shadow-[0_0_24px_rgba(16,185,129,0.12)]">
                 <span className="relative flex h-2.5 w-2.5">
@@ -116,7 +104,7 @@ function Hero() {
               </div>
             </motion.div>
 
-            {/* CTA BUTTONS - COMPACT & CLEAN */}
+            {/* CTA BUTTONS */}
             <motion.div
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
