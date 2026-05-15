@@ -4,120 +4,119 @@ function Hero() {
   return (
     <>
       {/* ================= HERO SECTION ================= */}
-      <section className="relative min-h-[90vh] overflow-hidden text-white flex items-center justify-center">
+      <section className="relative min-h-[95vh] overflow-hidden bg-[#030303] text-white flex items-center justify-center">
         
-        {/* DARK CINEMATIC OVERLAY */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/80 z-[1]" />
-
-        {/* SOFT GOLD GLOW - REDUCED OPACITY */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.04),transparent_70%)] z-[1]" />
-
-        {/* CONTENT WRAPPER */}
-        <div className="relative z-10 w-full max-w-7xl px-6">
+        {/* CINEMATIC BACKGROUND ELEMENTS */}
+        <div className="absolute inset-0 z-0">
+          {/* Main Vignette */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(20,20,20,0),#030303)]" />
           
-          {/* MAIN GLASS CARD CONTAINER */}
-          <div className="mx-auto max-w-5xl rounded-[40px] border border-white/10 bg-black/20 backdrop-blur-[10px] px-6 py-16 shadow-[0_0_60px_rgba(0,0,0,0.45)] text-center">
+          {/* Animated Ambient Light */}
+          <motion.div 
+            animate={{ 
+              opacity: [0.03, 0.08, 0.03],
+              scale: [1, 1.1, 1] 
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-yellow-500/10 blur-[120px] rounded-full" 
+          />
+        </div>
 
-            {/* INTRO LINE */}
+        {/* CONTENT AREA */}
+        <div className="relative z-10 w-full max-w-7xl px-6">
+          <div className="mx-auto flex flex-col items-center">
+
+            {/* TOP LABEL */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="mb-4 flex items-center justify-center gap-4"
+              initial={{ opacity: 0, letterSpacing: "0.2em" }}
+              animate={{ opacity: 1, letterSpacing: "0.6em" }}
+              transition={{ duration: 1.5 }}
+              className="mb-8 overflow-hidden"
             >
-              <span className="h-[1px] w-10 md:w-12 bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.5)]" />
-              <p className="uppercase text-[12px] md:text-[16px] tracking-[0.5em] text-gray-300">
-                Hi, I am
-              </p>
-              <span className="h-[1px] w-10 md:w-12 bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.5)]" />
+              <span className="text-[10px] md:text-[12px] uppercase text-yellow-500/80 font-light">
+                Digital Architect & Visionary
+              </span>
             </motion.div>
 
-            {/* NAME (SMALLER & SOFTER GLOW) */}
-            <motion.h1
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className="relative overflow-hidden leading-[0.9]"
-            >
-              <span className="block text-center font-black uppercase tracking-tight text-[15vw] sm:text-[80px] md:text-[110px] lg:text-[140px]">
-                <span className="inline-block text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+            {/* MAIN TYPOGRAPHY HEADLINE */}
+            <div className="relative mb-10">
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                className="text-center font-extralight tracking-[-0.04em] leading-[0.85]"
+              >
+                <span className="block text-[16vw] sm:text-[100px] md:text-[140px] lg:text-[170px] text-white/90">
                   Vinod
                 </span>
-                {" "}
-                <span className="inline-block text-transparent bg-gradient-to-b from-yellow-100 via-yellow-300 to-amber-500 bg-clip-text drop-shadow-[0_0_12px_rgba(251,191,36,0.18)]">
+                <span className="block text-[16vw] sm:text-[100px] md:text-[140px] lg:text-[170px] font-black italic text-transparent bg-clip-text bg-gradient-to-r from-white via-yellow-200 to-yellow-500 drop-shadow-[0_0_30px_rgba(251,191,36,0.1)]">
                   Kumar
                 </span>
-              </span>
-            </motion.h1>
+              </motion.h1>
+              
+              {/* Decorative Accent Line */}
+              <motion.div 
+                initial={{ width: 0 }}
+                animate={{ width: "100px" }}
+                transition={{ delay: 1, duration: 1 }}
+                className="h-[1px] bg-yellow-500/50 mt-4 mx-auto"
+              />
+            </div>
 
-            {/* SUBTITLE (REDUCED WIDTH) */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-              className="mt-6 flex items-center justify-center gap-4"
-            >
-              <p className="max-w-xl mx-auto text-[10px] md:text-[13px] uppercase tracking-[0.4em] leading-relaxed text-gray-400">
-                Building modern digital experiences for brands, startups, and businesses
-              </p>
-            </motion.div>
-
-            {/* ROLES BAR (REDUCED WIDTH) */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="mx-auto mt-6 max-w-2xl rounded-full border border-white/5 bg-black/40 backdrop-blur-xl px-6 py-3 shadow-[0_0_30px_rgba(0,0,0,0.2)]"
-            >
-              <p className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[9px] md:text-[10px] uppercase tracking-[0.3em]">
-                <span className="bg-gradient-to-r from-amber-200 to-yellow-400 bg-clip-text text-transparent font-medium">
-                  Full Stack Developer
-                </span>
-                <span className="text-white/10">•</span>
-                <span className="bg-gradient-to-r from-sky-200 to-blue-400 bg-clip-text text-transparent font-medium">
-                  UI/UX Designer
-                </span>
-                <span className="text-white/10">•</span>
-                <span className="bg-gradient-to-r from-pink-200 to-rose-400 bg-clip-text text-transparent font-medium">
-                  Video Editor
-                </span>
-              </p>
-            </motion.div>
-
-            {/* AVAILABILITY BADGE */}
-            <motion.div
+            {/* DESCRIPTION */}
+            <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/5 bg-white/5 px-5 py-1.5 text-[9px] uppercase tracking-[0.3em] text-gray-300"
+              transition={{ delay: 0.5, duration: 1 }}
+              className="max-w-xl text-center text-[13px] md:text-[16px] font-light leading-relaxed text-gray-400 tracking-wide"
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
-              Available for Freelance
+              Crafting premium digital solutions through <span className="text-white">scalable code</span>, 
+              <br className="hidden md:block" /> intentional <span className="text-white">design</span>, and cinematic <span className="text-white">storytelling</span>.
+            </motion.p>
+
+            {/* ROLES CHIPS */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+              className="mt-12 flex flex-wrap justify-center gap-3"
+            >
+              {["Full Stack", "UI/UX", "Visual Arts"].map((role, i) => (
+                <div key={i} className="px-5 py-2 rounded-full border border-white/5 bg-white/[0.02] backdrop-blur-sm text-[10px] uppercase tracking-[0.2em] text-gray-400">
+                  {role}
+                </div>
+              ))}
             </motion.div>
 
-            {/* CTA BUTTONS (SMALLER & COMPACT) */}
+            {/* ACTION BUTTONS */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.8 }}
-              className="mt-6 flex flex-wrap justify-center gap-4"
+              transition={{ delay: 0.9, duration: 0.8 }}
+              className="mt-12 flex flex-col sm:flex-row items-center gap-8"
             >
               <a
                 href="#projects"
-                className="group relative overflow-hidden rounded-full border border-white/10 bg-black/30 backdrop-blur-xl px-8 py-3 text-[10px] uppercase tracking-[0.25em] text-white transition-all duration-500 hover:border-yellow-400/30 hover:bg-yellow-400/10 hover:shadow-[0_0_20px_rgba(251,191,36,0.15)]"
+                className="group relative flex items-center gap-4 text-[11px] uppercase tracking-[0.4em] text-white transition-all hover:text-yellow-400"
               >
-                Explore Work →
+                <span className="w-12 h-[1px] bg-white/20 group-hover:w-16 group-hover:bg-yellow-400 transition-all duration-500" />
+                View Collection
               </a>
 
               <a
                 href="#contact"
-                className="group relative overflow-hidden rounded-full border border-white/10 bg-black/30 backdrop-blur-xl px-8 py-3 text-[10px] uppercase tracking-[0.25em] text-white transition-all duration-500 hover:border-yellow-400/30 hover:bg-yellow-400/10 hover:shadow-[0_0_20px_rgba(251,191,36,0.15)]"
+                className="px-10 py-4 rounded-full bg-white text-black text-[11px] font-bold uppercase tracking-[0.2em] transition-all hover:bg-yellow-400 hover:scale-105 active:scale-95"
               >
-                Contact Me ✦
+                Get In Touch
               </a>
             </motion.div>
+
           </div>
         </div>
+
+        {/* SIDE DECORATIVE MESH */}
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-[radial-gradient(ellipse_at_top_right,rgba(251,191,36,0.05),transparent_50%)]" />
+        <div className="absolute bottom-0 left-0 w-1/3 h-full bg-[radial-gradient(ellipse_at_bottom_left,rgba(255,255,255,0.03),transparent_50%)]" />
 
       </section>
     </>
