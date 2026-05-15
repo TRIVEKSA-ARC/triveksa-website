@@ -30,7 +30,7 @@ function Hero() {
               className="mb-6 flex items-center justify-center gap-4"
             >
               <span className="h-px w-12 md:w-16 bg-gradient-to-r from-transparent via-yellow-400 to-transparent" />
-              <p className="text-[12px] md:text-[14px] uppercase tracking-[0.55em] text-white/80">
+              <p className="text-[16px] md:text-[14px] uppercase tracking-[0.55em] text-white/80">
                 Hi, I am
               </p>
               <span className="h-px w-12 md:w-16 bg-gradient-to-r from-transparent via-yellow-400 to-transparent" />
@@ -61,7 +61,7 @@ function Hero() {
               className="mt-6"
             >
               <p className="mx-auto max-w-4xl text-center text-[12px] sm:text-[13px] md:text-[15px] uppercase tracking-[0.34em] leading-[1.8] text-white/80">
-                Building modern digital experiences for brands, startups, and businesses
+                Building modern digital experiences for brands
               </p>
             </motion.div>
 
