@@ -4,10 +4,10 @@ function Hero() {
   return (
     <>
       {/* ================= HERO SECTION ================= */}
-      <section className="relative min-h-screen overflow-hidden bg-transparent text-white flex items-center justify-center pb-16">
+      <section className="relative min-h-[92vh] overflow-hidden bg-transparent text-white flex items-center justify-center pb-16">
         
-        {/* SOFT OVERLAY ONLY - KEEP BG VISIBLE */}
-        <div className="absolute inset-0 bg-black/2 z-[1]" />
+        {/* SOFT OVERLAY REMOVED FOR MAX VISIBILITY */}
+        <div className="absolute inset-0 bg-black/0 z-[1]" />
 
         {/* COLOR ACCENTS */}
         <div className="absolute inset-0 z-[2] overflow-hidden pointer-events-none">
@@ -19,8 +19,8 @@ function Hero() {
         {/* CONTENT WRAPPER */}
         <div className="relative z-10 w-full max-w-[1600px] px-6 sm:px-8 md:px-10">
           
-          {/* MAIN HERO WRAP */}
-          <div className="mx-auto w-full rounded-[36px] border border-white/10 bg-black/10 px-4 py-10 sm:px-8 sm:py-14 md:px-12 md:py-16 lg:px-16 lg:py-20">
+          {/* MAIN HERO WRAP - BOX REMOVED, TRANSPARENT BG */}
+          <div className="mx-auto w-full border border-white/5 bg-transparent px-4 py-6 sm:px-6 sm:py-10 md:px-8 md:py-12 lg:px-10 lg:py-14">
             
             {/* TOP MINI LABEL */}
             <motion.div
@@ -36,41 +36,41 @@ function Hero() {
               <span className="h-px w-12 md:w-16 bg-gradient-to-r from-transparent via-yellow-400 to-transparent" />
             </motion.div>
 
-            {/* MAIN NAME */}
+            {/* MAIN NAME - FIXED SIZE & SPACING */}
             <motion.h1
               initial={{ opacity: 0, y: 24, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 1, ease: "easeOut" }}
               className="text-center leading-[0.88]"
             >
-              <span className="block whitespace-nowrap font-black uppercase tracking-[-0.075em] text-[16vw] sm:text-[88px] md:text-[120px] lg:text-[160px] xl:text-[190px]">
-                <span className="text-white drop-shadow-[0_10px_30px_rgba(255,255,255,0.12)]">
+              <span className="block whitespace-nowrap font-black uppercase tracking-tight text-[15vw] sm:text-[70px] md:text-[95px] lg:text-[120px] xl:text-[145px]">
+                <span className="text-white mr-4 md:mr-6 drop-shadow-[0_2px_12px_rgba(255,255,255,0.12)]">
                   Vinod
                 </span>
-                <span className="bg-gradient-to-r from-[#fff7cc] via-[#fcd34d] to-[#f59e0b] bg-clip-text text-transparent drop-shadow-[0_10px_30px_rgba(245,158,11,0.18)]">
+                <span className="bg-gradient-to-r from-[#fff7cc] via-[#fcd34d] to-[#f59e0b] bg-clip-text text-transparent drop-shadow-[0_2px_12px_rgba(245,158,11,0.15)]">
                   Kumar
                 </span>
               </span>
             </motion.h1>
 
-            {/* SUBTITLE */}
+            {/* SUBTITLE - CLEANER TRACKING */}
             <motion.div
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
               className="mt-6"
             >
-              <p className="mx-auto max-w-4xl text-center text-[12px] sm:text-[13px] md:text-[15px] uppercase tracking-[0.34em] leading-[1.8] text-white/80">
+              <p className="mx-auto max-w-4xl text-center text-[12px] sm:text-[13px] md:text-[15px] uppercase tracking-[0.18em] leading-[1.8] text-white/80">
                 Building modern digital experiences for brands
               </p>
             </motion.div>
 
-            {/* ROLES PANEL */}
+            {/* ROLES PANEL - REDUCED HEIGHT */}
             <motion.div
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="mx-auto mt-8 max-w-4xl rounded-full border border-white/15 bg-black/20 px-5 py-4 md:px-8"
+              className="mx-auto mt-8 max-w-4xl rounded-full border border-white/15 bg-black/20 px-5 py-3 md:px-8"
             >
               <p className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[10px] sm:text-[11px] md:text-[12px] uppercase tracking-[0.28em]">
                 <span className="bg-gradient-to-r from-amber-100 via-yellow-300 to-amber-500 bg-clip-text text-transparent font-semibold">
@@ -115,7 +115,7 @@ function Hero() {
               </div>
             </motion.div>
 
-            {/* CTA BUTTONS */}
+            {/* CTA BUTTONS - COMPACT & CLEAN */}
             <motion.div
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
@@ -124,14 +124,14 @@ function Hero() {
             >
               <a
                 href="#projects"
-                className="group relative inline-flex min-w-[210px] items-center justify-center overflow-hidden rounded-full border border-yellow-300/40 bg-gradient-to-r from-amber-400 via-yellow-300 to-orange-400 px-9 py-4 text-[11px] md:text-[12px] font-semibold uppercase tracking-[0.26em] text-black shadow-[0_18px_40px_rgba(245,158,11,0.28)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(245,158,11,0.35)]"
+                className="group relative inline-flex min-w-[170px] items-center justify-center overflow-hidden rounded-full border border-yellow-300/40 bg-gradient-to-r from-amber-400 via-yellow-300 to-orange-400 px-7 py-3 text-[11px] md:text-[12px] font-semibold uppercase tracking-[0.26em] text-black shadow-[0_18px_40px_rgba(245,158,11,0.22)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(245,158,11,0.30)]"
               >
                 <span className="relative">Explore Work →</span>
               </a>
 
               <a
                 href="#contact"
-                className="group relative inline-flex min-w-[210px] items-center justify-center overflow-hidden rounded-full border border-cyan-300/25 bg-cyan-400/10 px-9 py-4 text-[11px] md:text-[12px] font-semibold uppercase tracking-[0.26em] text-white backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-cyan-300/45 hover:bg-cyan-400/18"
+                className="group relative inline-flex min-w-[170px] items-center justify-center overflow-hidden rounded-full border border-cyan-300/25 bg-cyan-400/10 px-7 py-3 text-[11px] md:text-[12px] font-semibold uppercase tracking-[0.26em] text-white backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-cyan-300/45 hover:bg-cyan-400/18"
               >
                 <span className="relative">Book a Project ✦</span>
               </a>
