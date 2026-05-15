@@ -9,13 +9,10 @@ const renderStyledText = (text, gradient = false) => {
     index % 2 === 1 ? (
       <motion.span
         key={index}
-        initial={{ opacity: 0.6, scale: 0.96 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
         className={
           gradient
-            ? "bg-gradient-to-r from-[#f8d36a] via-[#f7d774] to-[#d89b1d] bg-clip-text text-transparent font-bold drop-shadow-[0_0_15px_rgba(216,155,29,0.3)]"
-            : "text-white font-semibold"
+            ? "bg-gradient-to-r from-amber-200 via-amber-400 to-orange-500 bg-clip-text text-transparent font-black"
+            : "text-amber-400 font-bold"
         }
       >
         {part}
@@ -31,17 +28,20 @@ function About() {
 
   if (loading) {
     return (
-      <section className="py-32 text-center text-white/60 font-sans tracking-widest uppercase text-xs">
-        <div className="flex items-center justify-center gap-3">
-          <span className="h-2 w-2 rounded-full bg-amber-400 animate-pulse" />
-          Loading Identity...
-        </div>
-      </section>
+      <div className="h-screen flex items-center justify-center bg-black">
+        <motion.div 
+          animate={{ opacity: [0.4, 1, 0.4] }} 
+          transition={{ repeat: Infinity, duration: 1.5 }}
+          className="text-amber-500 tracking-[0.5em] text-xs font-black uppercase"
+        >
+          Initializing Identity...
+        </motion.div>
+      </div>
     );
   }
 
   const data = about || {
-    subtitle: "About Me",
+    subtitle: "System Core",
     paragraph1: "",
     paragraph2: "",
     paragraph3: "",
@@ -52,155 +52,113 @@ function About() {
   };
 
   return (
-    <section
-      id="about"
-      className="relative bg-transparent text-white py-32 px-6 overflow-hidden font-sans"
-    >
-      {/* AMBIENT BACKGROUND ELEMENTS */}
-      <div className="pointer-events-none absolute top-1/4 -left-24 h-[500px] w-[500px] rounded-full bg-amber-500/5 blur-[140px]" />
-      <div className="pointer-events-none absolute bottom-0 right-0 h-[400px] w-[400px] rounded-full bg-white/5 blur-[120px]" />
+    <section id="about" className="relative min-h-screen bg-black py-24 px-6 overflow-hidden">
       
-      {/* SUBTLE GRID OVERLAY (Matches Hero) */}
-      <div
-        className="absolute inset-0 z-0 opacity-[0.04] pointer-events-none"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)",
-          backgroundSize: "80px 80px",
-        }}
-      />
+      {/* BACKGROUND ARCHITECTURE */}
+      <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-amber-600/10 blur-[120px] rounded-full" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-600/5 blur-[120px] rounded-full" />
+      </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+      <div className="relative z-10 mx-auto max-w-7xl">
+        
+        {/* SECTION HEADER */}
+        <div className="mb-16">
+          <motion.div 
+            initial={{ width: 0 }}
+            whileInView={{ width: "80px" }}
+            className="h-[2px] bg-amber-500 mb-4"
+          />
+          <span className="text-amber-500 tracking-[0.6em] text-[10px] uppercase font-black">
+            {data.subtitle} // 01
+          </span>
+        </div>
 
-        {/* LEFT — CONTENT (Col 7) */}
-        <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          viewport={{ once: true }}
-          className="lg:col-span-7 order-2 lg:order-1"
-        >
-          {/* Subtitle / Label */}
-          <div className="mb-8 flex items-center gap-4">
-            <span className="h-px w-12 bg-gradient-to-r from-amber-400 to-transparent" />
-            <motion.p 
-               initial={{ opacity: 0, letterSpacing: "0.6em" }}
-               whileInView={{ opacity: 1, letterSpacing: "0.45em" }}
-               transition={{ duration: 0.8 }}
-               className="text-[11px] uppercase tracking-[0.45em] text-amber-400/90 font-black"
-            >
-              {data.subtitle}
-            </motion.p>
-          </div>
-
-          {/* MAIN TEXT BODY */}
-          <div className="space-y-8 relative">
-             {/* Large Decorative Mark */}
-            <span className="absolute -top-16 -left-10 text-[180px] text-white/[0.03] font-black select-none pointer-events-none">
-              VK
-            </span>
-
-            <div className="space-y-6 text-[16px] md:text-[19px] leading-[1.8] text-white/70 font-light relative z-10">
-              {[data.paragraph1, data.paragraph2, data.paragraph3].map(
-                (text, i) => (
-                  <motion.p
-                    key={i}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 + i * 0.15, duration: 0.7 }}
-                  >
-                    {renderStyledText(text)}
-                  </motion.p>
-                )
-              )}
-            </div>
-
-            {/* HIGHLIGHT TEXT - Premium Cinematic Typography */}
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="text-white font-black text-3xl md:text-5xl tracking-tight leading-tight pt-4"
-            >
-              {renderStyledText(data.highlightText, true)}
-            </motion.p>
-          </div>
-
-          {/* SERVICES - Professional Tags */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={{
-              visible: { transition: { staggerChildren: 0.1 } },
-            }}
-            className="mt-12 flex flex-wrap gap-3"
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          {/* LEFT: THE GLASS TEXT ENGINE */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="lg:col-span-7 space-y-8"
           >
-            {data.services.map((service) => (
-              <motion.span
-                key={service}
-                variants={{
-                  hidden: { opacity: 0, y: 10 },
-                  visible: { opacity: 1, y: 0 },
-                }}
-                whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
-                className="px-6 py-2.5 rounded-full bg-white/[0.03] border border-white/10 text-[10px] uppercase tracking-[0.25em] text-white/80 backdrop-blur-xl transition-all duration-300"
-              >
-                {service}
-              </motion.span>
-            ))}
-          </motion.div>
-        </motion.div>
+            <div className="relative p-8 md:p-12 rounded-[2rem] border border-white/10 bg-white/[0.02] backdrop-blur-3xl overflow-hidden">
+              {/* Scanning Light Effect */}
+              <motion.div 
+                animate={{ y: [-100, 600] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                className="absolute top-0 left-0 w-full h-[100px] bg-gradient-to-b from-transparent via-amber-500/5 to-transparent pointer-events-none"
+              />
 
-        {/* RIGHT — IMAGE (Col 5) */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, x: 40 }}
-          whileInView={{ opacity: 1, scale: 1, x: 0 }}
-          transition={{ duration: 1.2 }}
-          viewport={{ once: true }}
-          className="lg:col-span-5 flex justify-center lg:justify-end order-1 lg:order-2"
-        >
-          <div className="relative group">
-            {/* Elegant Background Frame */}
-            <div className="absolute -bottom-6 -right-6 w-full h-full border border-amber-500/20 rounded-[32px] transition-transform duration-500 group-hover:translate-x-2 group-hover:translate-y-2" />
-            
-            {/* Glass Container for Image */}
-            <div className="relative w-[280px] h-[380px] md:w-[380px] md:h-[480px] p-3 bg-white/[0.03] border border-white/10 rounded-[32px] backdrop-blur-sm overflow-hidden shadow-2xl">
-              <div className="w-full h-full overflow-hidden rounded-[24px] relative">
-                {data.image?.url ? (
-                  <img
-                    src={data.image.url}
-                    alt="Vinod Kumar"
-                    className="h-full w-full object-cover grayscale-[20%] contrast-[110%] transition-transform duration-700 group-hover:scale-110"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-neutral-900 flex items-center justify-center italic text-white/20">
-                    Image Pending
-                  </div>
-                )}
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
+              <div className="relative z-10 space-y-8">
+                <h2 className="text-4xl md:text-6xl font-black tracking-tighter leading-none text-white">
+                  {renderStyledText(data.highlightText, true)}
+                </h2>
+
+                <div className="h-[1px] w-full bg-gradient-to-r from-white/20 to-transparent" />
+
+                <div className="space-y-6 text-gray-400 text-lg md:text-xl font-light leading-relaxed max-w-2xl">
+                  {[data.paragraph1, data.paragraph2, data.paragraph3].map((text, i) => (
+                    <p key={i}>{renderStyledText(text)}</p>
+                  ))}
+                </div>
               </div>
-
-              {/* Location Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8 }}
-                className="absolute bottom-8 left-8 right-8 bg-black/60 border border-white/10 backdrop-blur-md py-3 px-6 rounded-2xl flex items-center gap-3 shadow-2xl"
-              >
-                <div className="h-2 w-2 rounded-full bg-amber-400 animate-pulse" />
-                <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-white/90">
-                  {data.location || "Available Globally"}
-                </span>
-              </motion.div>
             </div>
 
-            {/* Corner Accent */}
-            <div className="absolute -top-4 -right-4 w-16 h-16 border-t border-r border-amber-400/40 rounded-tr-3xl" />
-          </div>
-        </motion.div>
+            {/* SERVICES CHIPS */}
+            <div className="flex flex-wrap gap-3">
+              {data.services.map((s, i) => (
+                <span key={i} className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-[10px] uppercase tracking-widest text-gray-300 font-bold hover:border-amber-500/50 transition-colors">
+                  {s}
+                </span>
+              ))}
+            </div>
+          </motion.div>
 
+          {/* RIGHT: THE VISUAL TERMINAL */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            className="lg:col-span-5 relative flex justify-center"
+          >
+            <div className="relative group w-full max-w-[450px]">
+              
+              {/* Animated Border Frame */}
+              <div className="absolute inset-0 border border-amber-500/20 rounded-[2.5rem] -rotate-3 scale-105 group-hover:rotate-0 transition-transform duration-700" />
+              
+              <div className="relative aspect-[4/5] bg-[#0a0a0a] rounded-[2.5rem] border border-white/10 overflow-hidden shadow-2xl">
+                {data.image?.url && (
+                  <img 
+                    src={data.image.url} 
+                    className="w-full h-full object-cover opacity-80 grayscale-[30%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                    alt="VK Profile"
+                  />
+                )}
+                
+                {/* HUD Elements */}
+                <div className="absolute inset-0 p-8 flex flex-col justify-between pointer-events-none">
+                  <div className="flex justify-between items-start">
+                    <div className="p-2 border-t-2 border-l-2 border-amber-500 w-8 h-8" />
+                    <div className="text-[10px] text-amber-500/50 font-mono">ID_0923_ACTIVE</div>
+                  </div>
+                  
+                  {/* Status Card */}
+                  <div className="bg-black/80 backdrop-blur-xl border border-white/10 p-4 rounded-2xl flex items-center gap-4">
+                    <div className="relative h-10 w-10 flex items-center justify-center">
+                      <div className="absolute inset-0 bg-amber-500/20 animate-ping rounded-full" />
+                      <div className="h-3 w-3 bg-amber-500 rounded-full" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] text-gray-500 uppercase font-black tracking-widest">Current Node</p>
+                      <p className="text-xs text-white font-bold uppercase tracking-widest">{data.location || "Remote / HQ"}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+        </div>
       </div>
     </section>
   );
