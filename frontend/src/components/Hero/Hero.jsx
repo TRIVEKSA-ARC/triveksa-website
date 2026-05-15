@@ -125,7 +125,7 @@ function Hero() {
             </motion.div>
           </div>
 
-          {/* RIGHT SIDE - CAPABILITIES CARD (TRANSPARENCY RESTORED) */}
+          {/* RIGHT SIDE - CAPABILITIES CARD */}
           <div className="lg:col-span-5 flex items-center">
             <motion.div
               initial={{ opacity: 0, x: 28 }}
@@ -153,12 +153,13 @@ function Hero() {
 
               <div className="space-y-3">
                 {services.map((item, i) => (
-                  <motion.div
+                  <motion.a
+                    href="#projects"
                     key={item.id}
                     initial={{ opacity: 0, y: 18 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.45 + i * 0.12, duration: 0.6 }}
-                    className="group rounded-[22px] border border-white/10 bg-white/[0.03] backdrop-blur-md p-5 transition-all duration-300 hover:border-amber-300/40 hover:bg-white/[0.08]"
+                    className="group block rounded-[22px] border border-white/10 bg-white/[0.03] backdrop-blur-md p-5 transition-all duration-300 hover:border-amber-300/40 hover:bg-white/[0.08]"
                   >
                     <div className="flex items-start justify-between gap-4">
                       <div>
@@ -176,16 +177,16 @@ function Hero() {
                         </h4>
                       </div>
 
-                      <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/[0.05] text-white transition-all duration-300 group-hover:border-amber-400 group-hover:text-amber-400">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/[0.05] text-white transition-all duration-300 group-hover:border-amber-400 group-hover:text-amber-400 group-hover:rotate-[-45deg]">
                         →
                       </div>
                     </div>
-                  </motion.div>
+                  </motion.a>
                 ))}
               </div>
 
               {/* AGENCY NOTE */}
-              <div className="mt-4 rounded-[22px] border border-white/10 bg-black/[0.06]  p-5">
+              <div className="mt-4 rounded-[22px] border border-white/10 bg-black/[0.06] p-5">
                 <p className="text-[10px] uppercase tracking-[0.34em] text-white/50 font-bold">
                   Agency Note
                 </p>
