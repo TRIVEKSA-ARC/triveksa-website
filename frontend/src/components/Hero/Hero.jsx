@@ -4,8 +4,8 @@ function Hero() {
   return (
     <>
       {/* ================= HERO SECTION ================= */}
-      {/* Added pt-20 and md:pt-32 for better top spacing as seen in the image */}
-      <section className="relative min-h-[92vh] overflow-hidden bg-transparent text-white flex items-center justify-center pt-20 md:pt-32 pb-16">
+      {/* pt-20 and md:pt-32 added for top spacing; min-h adjusted to prevent vertical stretching */}
+      <section className="relative min-h-[92vh] overflow-hidden bg-transparent text-white flex items-center justify-center pt-24 md:pt-40 pb-16">
         
         {/* SOFT OVERLAY REMOVED FOR MAX VISIBILITY */}
         <div className="absolute inset-0 bg-black/0 z-[1]" />
@@ -23,18 +23,18 @@ function Hero() {
           {/* MAIN HERO WRAP - BOX REMOVED, TRANSPARENT BG */}
           <div className="mx-auto w-full border border-white/5 bg-transparent px-4 py-6 sm:px-6 sm:py-10 md:px-8 md:py-12 lg:px-10 lg:py-14">
             
-            {/* TOP MINI LABEL */}
+            {/* TOP MINI LABEL - INCREASED SIZE FOR EYE-CATCHING EFFECT */}
             <motion.div
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="mb-6 flex items-center justify-center gap-4"
             >
-              <span className="h-px w-12 md:w-16 bg-gradient-to-r from-transparent via-yellow-400 to-transparent" />
-              <p className="text-[12px] md:text-[18px] uppercase tracking-[0.55em] text-white/80">
+              <span className="h-px w-12 md:w-20 bg-gradient-to-r from-transparent via-yellow-400 to-transparent" />
+              <p className="text-[14px] md:text-[22px] font-medium uppercase tracking-[0.6em] text-white">
                 Hi, I am
               </p>
-              <span className="h-px w-12 md:w-16 bg-gradient-to-r from-transparent via-yellow-400 to-transparent" />
+              <span className="h-px w-12 md:w-20 bg-gradient-to-r from-transparent via-yellow-400 to-transparent" />
             </motion.div>
 
             {/* MAIN NAME - FIXED SIZE & SPACING */}
@@ -88,15 +88,15 @@ function Hero() {
               </p>
             </motion.div>
 
-            {/* CTA MESSAGE */}
+            {/* MERGED CTA DESCRIPTION - SINGLE LINE FOR CLEANER LOOK */}
             <motion.div
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.42, duration: 0.8 }}
               className="mt-8"
             >
-              <p className="mx-auto max-w-2xl text-center text-sm md:text-base text-white/70">
-                Helping brands and businesses turn ideas into fast, modern, and conversion-focused digital products.
+              <p className="mx-auto max-w-5xl text-center text-sm md:text-base text-white/60 tracking-wide font-light">
+                Turning ideas into fast, modern, and conversion-focused digital products for global brands.
               </p>
             </motion.div>
 
