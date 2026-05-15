@@ -4,7 +4,8 @@ function Hero() {
   return (
     <>
       {/* ================= HERO SECTION ================= */}
-      <section className="relative min-h-[92vh] overflow-hidden bg-transparent text-white flex items-center justify-center pb-16">
+      {/* Added pt-20 and md:pt-32 for better top spacing as seen in the image */}
+      <section className="relative min-h-[92vh] overflow-hidden bg-transparent text-white flex items-center justify-center pt-20 md:pt-32 pb-16">
         
         {/* SOFT OVERLAY REMOVED FOR MAX VISIBILITY */}
         <div className="absolute inset-0 bg-black/0 z-[1]" />
