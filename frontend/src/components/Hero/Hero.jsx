@@ -185,7 +185,7 @@ function Hero() {
               </div>
 
               {/* AGENCY NOTE */}
-              <div className="mt-4 rounded-[22px] border border-white/10 bg-white/[0.03]  p-5">
+              <div className="mt-4 rounded-[22px] border border-white/10 bg-black/[0.03]  p-5">
                 <p className="text-[10px] uppercase tracking-[0.34em] text-white/50 font-bold">
                   Agency Note
                 </p>
