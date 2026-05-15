@@ -131,7 +131,7 @@ function Hero() {
               initial={{ opacity: 0, x: 28 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.9, delay: 0.25 }}
-              className="w-full rounded-[28px] border border-white/10 bg-black/30  p-4 shadow-[0_25px_60px_rgba(0,0,0,0.3)] md:p-6"
+              className="w-full rounded-[28px] border border-white/10 bg-black p-4 shadow-[0_25px_60px_rgba(0,0,0,0.3)] md:p-6"
             >
               <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-4">
                 <div>
