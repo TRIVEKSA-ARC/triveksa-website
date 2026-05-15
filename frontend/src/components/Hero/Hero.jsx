@@ -1,147 +1,200 @@
 import { motion } from "framer-motion";
 
 function Hero() {
-  // Smooth scroll handler for buttons
-  const scrollToSection = (e, id) => {
-    e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const services = [
+    { id: "01", label: "Development", title: "Full Stack Solutions" },
+    { id: "02", label: "Design", title: "UI/UX Systems" },
+    { id: "03", label: "Content", title: "Video & Brand Visuals" },
+  ];
 
   return (
     <>
-      {/* ================= VK DIGITAL SOLUTIONS HERO ================= */}
-      <section className="relative min-h-screen w-full overflow-hidden bg-transparent text-white flex flex-col justify-between p-6 md:p-12 lg:p-16 font-sans">
+      {/* ================= AGENCY HERO ================= */}
+      <section className="relative min-h-screen w-full overflow-hidden bg-transparent text-white flex items-center font-sans">
         
-        {/* DYNAMIC BACKGROUND ELEMENTS */}
-        <div className="absolute inset-0 z-0">
-          {/* Subtle Grid with Radial Fade */}
-          <div 
-            className="absolute inset-0 opacity-[0.15]" 
-            style={{ 
-              backgroundImage: `linear-gradient(#ffffff1a 1px, transparent 1px), linear-gradient(90deg, #ffffff1a 1px, transparent 1px)`, 
-              backgroundSize: '80px 80px',
-              maskImage: 'radial-gradient(circle at center, black, transparent 80%)'
-            }} 
-          />
+        {/* SUBTLE GRID OVERLAY */}
+        <div
+          className="absolute inset-0 z-0 opacity-[0.08] pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)",
+            backgroundSize: "72px 72px",
+          }}
+        />
+
+        {/* SOFT AMBIENT LIGHTS */}
+        <div className="pointer-events-none absolute -top-24 right-[6%] h-[420px] w-[420px] rounded-full bg-amber-400/10 blur-[120px]" />
+        <div className="pointer-events-none absolute bottom-[-120px] left-[4%] h-[380px] w-[380px] rounded-full bg-neutral-300/10 blur-[130px]" />
+        <div className="pointer-events-none absolute top-[35%] left-[45%] h-[280px] w-[280px] rounded-full bg-yellow-200/5 blur-[100px]" />
+
+        <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-5 py-8 sm:px-8 md:px-10 lg:grid-cols-12 lg:gap-12 lg:px-12">
           
-          {/* Cinematic Glows */}
-          <div className="absolute top-[-20%] left-[-10%] h-[800px] w-[800px] rounded-full bg-blue-500/10 blur-[150px] animate-pulse" />
-          <div className="absolute bottom-[-20%] right-[-10%] h-[800px] w-[800px] rounded-full bg-amber-500/10 blur-[150px]" />
-        </div>
-
-        {/* --- TOP NAV BAR --- */}
-        <div className="relative z-10 w-full flex justify-between items-center">
-          <motion.div 
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex items-center gap-4"
-          >
-            <div className="h-8 w-8 bg-white flex items-center justify-center rounded-sm">
-              <span className="text-black font-black text-xs">VK</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-[10px] tracking-[0.5em] uppercase text-white/40 leading-none">VK Digital</span>
-              <span className="text-[12px] font-bold tracking-[0.1em] text-emerald-400">SOLUTIONS</span>
-            </div>
-          </motion.div>
-          
-          <div className="hidden md:flex items-center gap-8">
-             <div className="flex flex-col items-end">
-                <span className="text-[9px] uppercase tracking-[0.4em] text-white/30">Current Phase</span>
-                <span className="text-[11px] font-mono text-amber-200">PRODUCTION_READY</span>
-             </div>
-          </div>
-        </div>
-
-        {/* --- CENTER CONTENT --- */}
-        <div className="relative z-10 flex flex-col items-start justify-center flex-grow py-20">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-4 mb-6"
-          >
-            <span className="h-[1px] w-12 bg-amber-500" />
-            <span className="text-xs md:text-sm font-bold uppercase tracking-[0.8em] text-amber-500/90">
-              Est. 2026 / Agency
-            </span>
-          </motion.div>
-
-          <motion.h1 
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-[12vw] lg:text-[120px] xl:text-[160px] font-black leading-[0.8] tracking-tighter uppercase mb-8"
-          >
-            <span className="text-white drop-shadow-2xl">CRAFTING</span>
-            <br />
-            <span className="bg-gradient-to-r from-white via-white/80 to-amber-500 bg-clip-text text-transparent italic pr-8">
-              DIGITAL EDGE
-            </span>
-          </motion.h1>
-
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="max-w-xl text-lg md:text-2xl text-white/60 font-light leading-relaxed mb-12 border-l border-white/20 pl-8"
-          >
-            We don't just build websites. We engineer <span className="text-white font-medium">high-conversion ecosystems</span> through code and cinematic motion.
-          </motion.p>
-
-          {/* LUXURY CTA BUTTONS */}
-          <div className="flex flex-wrap gap-6">
-            <motion.a
-              onClick={(e) => scrollToSection(e, 'projects')}
-              href="#projects"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="relative px-10 py-5 bg-white text-black font-black uppercase text-[11px] tracking-[0.4em] rounded-sm transition-all overflow-hidden group"
+          {/* LEFT SIDE */}
+          <div className="lg:col-span-7 flex flex-col justify-center">
+            
+            {/* TOP LABEL */}
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              className="mb-6 flex items-center gap-4"
             >
-              <div className="absolute inset-0 bg-amber-400 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-              <span className="relative z-10 group-hover:text-black">Access Files</span>
-            </motion.a>
+              <span className="h-px w-12 bg-gradient-to-r from-amber-400 to-transparent" />
+              <p className="text-[11px] sm:text-[12px] uppercase tracking-[0.45em] text-white/60">
+                Hi, I am
+              </p>
+            </motion.div>
 
-            <motion.a
-              onClick={(e) => scrollToSection(e, 'contact')}
-              href="#contact"
-              whileHover={{ backgroundColor: "rgba(255,255,255,0.05)" }}
-              className="px-10 py-5 border border-white/20 backdrop-blur-md font-black uppercase text-[11px] tracking-[0.4em] rounded-sm transition-all flex items-center gap-4 group"
+            {/* NAME */}
+            <motion.h1
+              initial={{ opacity: 0, y: 26 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: "easeOut" }}
+              className="leading-[0.9] uppercase"
             >
-              <span>Connect</span>
-              <div className="h-1 w-1 rounded-full bg-amber-500 group-hover:w-4 transition-all" />
-            </motion.a>
-          </div>
-        </div>
+              <span className="block text-[15vw] sm:text-[88px] md:text-[110px] xl:text-[138px] font-black tracking-[-0.06em] text-white">
+                Vinod
+              </span>
+              <span className="block text-[15vw] sm:text-[88px] md:text-[110px] xl:text-[138px] font-black tracking-[-0.06em] bg-gradient-to-r from-[#fff4d6] via-[#f7d774] to-[#d89b1d] bg-clip-text text-transparent">
+                Kumar
+              </span>
+            </motion.h1>
 
-        {/* --- BOTTOM BAR --- */}
-        <div className="relative z-10 w-full flex flex-col md:flex-row justify-between items-end border-t border-white/5 pt-10">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-12 mb-8 md:mb-0">
-            {[
-              { label: "Logic", val: "Full-Stack" },
-              { label: "Visuals", val: "4K Motion" },
-              { label: "Growth", val: "SEO Engine" }
-            ].map((stat, i) => (
-              <div key={i} className="flex flex-col gap-1">
-                <span className="text-[9px] uppercase tracking-[0.3em] text-white/30">{stat.label}</span>
-                <span className="text-sm font-bold text-white/80">{stat.val}</span>
+            {/* AGENCY LINE */}
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.7 }}
+              className="mt-6"
+            >
+              <div className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 backdrop-blur-md">
+                <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.32em] text-white/70">
+                  VK Digital Solutions
+                </span>
               </div>
-            ))}
+            </motion.div>
+
+            {/* DESCRIPTION */}
+            <motion.p
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="mt-7 max-w-2xl text-[15px] leading-8 text-white/72 md:text-[17px]"
+            >
+              We build premium digital experiences for brands, startups, and modern businesses through strategic development, refined design systems, and high-converting visual storytelling.
+            </motion.p>
+
+            {/* ROLE STRIP */}
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.42, duration: 0.8 }}
+              className="mt-8 flex flex-wrap gap-3"
+            >
+              <span className="rounded-full border border-amber-300/20 bg-amber-300/10 px-4 py-2 text-[10px] uppercase tracking-[0.28em] text-amber-200">
+                Full Stack Development
+              </span>
+              <span className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-[10px] uppercase tracking-[0.28em] text-white/75">
+                UI/UX Design
+              </span>
+              <span className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-[10px] uppercase tracking-[0.28em] text-white/75">
+                Video Editing
+              </span>
+            </motion.div>
+
+            {/* CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.55, duration: 0.8 }}
+              className="mt-10 flex flex-wrap gap-4"
+            >
+              <a
+                href="#projects"
+                className="inline-flex items-center justify-center rounded-full border border-amber-300/30 bg-gradient-to-r from-[#f8d36a] to-[#d89b1d] px-8 py-3.5 text-[11px] font-bold uppercase tracking-[0.28em] text-black shadow-[0_12px_32px_rgba(216,155,29,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_40px_rgba(216,155,29,0.32)]"
+              >
+                View Projects
+              </a>
+
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/[0.03] px-8 py-3.5 text-[11px] font-bold uppercase tracking-[0.28em] text-white backdrop-blur-md transition-all duration-300 hover:border-white/30 hover:bg-white/[0.07]"
+              >
+                Contact Agency
+              </a>
+            </motion.div>
           </div>
 
-          {/* Scroll Indicator */}
-          <motion.div 
-            animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 2 }}
-            className="flex flex-col items-center gap-4"
-          >
-            <span className="text-[10px] uppercase tracking-[0.5em] text-white/20 rotate-90 mb-4 origin-center">Scroll</span>
-            <div className="h-12 w-[1px] bg-gradient-to-b from-amber-500 to-transparent" />
-          </motion.div>
-        </div>
+          {/* RIGHT SIDE */}
+          <div className="lg:col-span-5 flex items-center">
+            <motion.div
+              initial={{ opacity: 0, x: 28 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9, delay: 0.25 }}
+              className="w-full rounded-[28px] border border-white/10 bg-white/[0.04] p-4 backdrop-blur-2xl shadow-[0_25px_60px_rgba(0,0,0,0.28)] md:p-5"
+            >
+              <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-4">
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.35em] text-white/45">
+                    Agency Capabilities
+                  </p>
+                  <h3 className="mt-2 text-xl font-semibold text-white">
+                    Service Overview
+                  </h3>
+                </div>
 
+                <div className="flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1.5">
+                  <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="text-[10px] uppercase tracking-[0.22em] text-emerald-300">
+                    Available
+                  </span>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                {services.map((item, i) => (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, y: 18 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.45 + i * 0.12, duration: 0.6 }}
+                    className="group rounded-[22px] border border-white/10 bg-black/20 p-5 transition-all duration-300 hover:border-amber-300/20 hover:bg-white/[0.05]"
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <div className="mb-2 flex items-center gap-3">
+                          <span className="text-[10px] font-mono text-amber-300/70">
+                            {item.id}
+                          </span>
+                          <span className="text-[10px] uppercase tracking-[0.3em] text-white/45">
+                            {item.label}
+                          </span>
+                        </div>
+
+                        <h4 className="text-lg font-semibold tracking-tight text-white transition-colors duration-300 group-hover:text-amber-200">
+                          {item.title}
+                        </h4>
+                      </div>
+
+                      <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white/70 transition-all duration-300 group-hover:border-amber-300/30 group-hover:bg-amber-300/10 group-hover:text-amber-200">
+                        →
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="mt-4 rounded-[22px] border border-white/10 bg-gradient-to-r from-white/[0.04] to-white/[0.02] p-5">
+                <p className="text-[10px] uppercase tracking-[0.34em] text-white/40">
+                  Agency Note
+                </p>
+                <p className="mt-3 text-sm leading-7 text-white/68">
+                  We create professional brand-first digital systems that look elegant, feel modern, and perform with purpose.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </section>
     </>
   );
