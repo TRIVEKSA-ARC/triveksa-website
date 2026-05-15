@@ -52,7 +52,7 @@ function About() {
   };
 
   return (
-    <section id="about" className="relative min-h-screen bg-black py-24 px-6 overflow-hidden">
+    <section id="about" className="relative min-h-screen bg-transparent py-24 px-6 overflow-hidden">
       
       {/* BACKGROUND ARCHITECTURE */}
       <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
