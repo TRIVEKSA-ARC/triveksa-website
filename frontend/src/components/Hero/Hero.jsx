@@ -22,6 +22,20 @@ function Hero() {
           {/* MAIN HERO WRAP */}
           <div className="mx-auto w-full rounded-[36px] border border-white/10 bg-black/10 px-4 py-10 sm:px-8 sm:py-14 md:px-12 md:py-16 lg:px-16 lg:py-20">
             
+            {/* TOP MINI LABEL */}
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="mb-6 flex items-center justify-center gap-4"
+            >
+              <span className="h-px w-12 md:w-16 bg-gradient-to-r from-transparent via-yellow-400 to-transparent" />
+              <p className="text-[12px] md:text-[14px] uppercase tracking-[0.55em] text-white/80">
+                Hi, I am
+              </p>
+              <span className="h-px w-12 md:w-16 bg-gradient-to-r from-transparent via-yellow-400 to-transparent" />
+            </motion.div>
+
             {/* MAIN NAME */}
             <motion.h1
               initial={{ opacity: 0, y: 24, scale: 0.98 }}
