@@ -125,13 +125,13 @@ function Hero() {
             </motion.div>
           </div>
 
-          {/* RIGHT SIDE - CAPABILITIES CARD (FULLY TRANSPARENT BG) */}
+          {/* RIGHT SIDE - CAPABILITIES CARD (TRANSPARENCY RESTORED) */}
           <div className="lg:col-span-5 flex items-center">
             <motion.div
               initial={{ opacity: 0, x: 28 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.9, delay: 0.25 }}
-              className="w-full rounded-[28px] border border-white/10 bg-black/10 p-4 md:p-6"
+              className="w-full rounded-[28px] border border-white/10 bg-white/[0.05] backdrop-blur-xl p-4 shadow-[0_25px_60px_rgba(0,0,0,0.3)] md:p-6"
             >
               <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-4">
                 <div>
@@ -158,7 +158,7 @@ function Hero() {
                     initial={{ opacity: 0, y: 18 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.45 + i * 0.12, duration: 0.6 }}
-                    className="group rounded-[22px] border border-white/10 bg-transparent p-5 transition-all duration-300 hover:border-amber-300/40 hover:bg-white/[0.05]"
+                    className="group rounded-[22px] border border-white/10 bg-white/[0.03] backdrop-blur-md p-5 transition-all duration-300 hover:border-amber-300/40 hover:bg-white/[0.08]"
                   >
                     <div className="flex items-start justify-between gap-4">
                       <div>
@@ -185,7 +185,7 @@ function Hero() {
               </div>
 
               {/* AGENCY NOTE */}
-              <div className="mt-4 rounded-[22px] border border-white/10 bg-transparent p-5">
+              <div className="mt-4 rounded-[22px] border border-white/10 bg-white/[0.03]  p-5">
                 <p className="text-[10px] uppercase tracking-[0.34em] text-white/50 font-bold">
                   Agency Note
                 </p>
