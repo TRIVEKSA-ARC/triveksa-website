@@ -7,7 +7,7 @@ function Hero() {
       <section className="relative min-h-screen overflow-hidden bg-transparent text-white flex items-center justify-center pb-16">
         
         {/* SOFT OVERLAY ONLY - KEEP BG VISIBLE */}
-        <div className="absolute inset-0 bg-black/10 z-[1]" />
+        <div className="absolute inset-0 bg-black/2 z-[1]" />
 
         {/* COLOR ACCENTS */}
         <div className="absolute inset-0 z-[2] overflow-hidden pointer-events-none">
