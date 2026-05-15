@@ -16,10 +16,7 @@ function Hero() {
 
         {/* --- HEADER NAVIGATION --- */}
         <div className="relative z-10 w-full flex justify-between items-start border-b border-white/10 pb-6 backdrop-blur-[4px]">
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex flex-col gap-1">
-            <span className="text-[10px] tracking-[0.4em] uppercase text-white/50">System Protocol</span>
-            <span className="text-[12px] font-mono text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.5)]">v2.0.26_STABLE</span>
-          </motion.div>
+          
           
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex gap-8">
             <div className="hidden md:flex flex-col items-end gap-1">
@@ -137,10 +134,7 @@ function Hero() {
             </motion.a>
           </div>
 
-          {/* Copyright/Signature instead of the removed data center info */}
-          <div className="text-[10px] tracking-[0.5em] uppercase text-white/40 font-bold">
-            © 2026 VK.STUDIOS / ALL RIGHTS RESERVED
-          </div>
+          
         </div>
 
       </section>
