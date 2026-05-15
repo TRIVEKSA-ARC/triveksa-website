@@ -77,6 +77,7 @@ function About() {
             className="mb-8 flex items-center gap-4"
           >
             <span className="h-px w-12 bg-gradient-to-r from-amber-400 to-transparent" />
+
             <span className="text-[11px] md:text-[12px] font-semibold uppercase tracking-[0.42em] text-amber-300/90">
               {data.subtitle}
             </span>
@@ -96,7 +97,7 @@ function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15 + i * 0.12, duration: 0.7 }}
                 viewport={{ once: true }}
-                className="max-w-3xl text-[15px] md:text-[17px] leading-8 text-white/72 font-light"
+                className="max-w-3xl text-[15px] md:text-[17px] leading-8 text-white/92 font-light"
               >
                 {renderStyledText(text)}
               </motion.p>
@@ -171,12 +172,13 @@ function About() {
                     className="h-full w-full object-cover transition duration-700 hover:scale-[1.03]"
                   />
                 )}
+
                 <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
               </div>
 
               {/* TOP TAG */}
-              <div className="absolute left-7 top-7 rounded-full border border-white/10 bg-black/30 px-4 py-2 backdrop-blur-xl">
-                <span className="text-[10px] uppercase tracking-[0.32em] text-white/70">
+              <div className="absolute left-7 top-7 rounded-full border border-cyan-300/20 bg-cyan-400/10 px-4 py-2 backdrop-blur-xl shadow-[0_0_20px_rgba(34,211,238,0.12)]">
+                <span className="text-[10px] uppercase tracking-[0.32em] text-cyan-100">
                   Profile
                 </span>
               </div>
@@ -185,12 +187,13 @@ function About() {
               <motion.div
                 animate={{ y: [0, -2, 0] }}
                 transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                className="absolute bottom-7 left-7 right-7 rounded-[18px] border border-white/10 bg-black/35 px-5 py-4 backdrop-blur-xl"
+                className="absolute bottom-7 left-7 right-7 rounded-[18px] border border-amber-300/20 bg-black/25 px-5 py-4 backdrop-blur-xl shadow-[0_0_30px_rgba(251,191,36,0.12)]"
               >
-                <p className="text-[10px] uppercase tracking-[0.32em] text-white/45">
+                <p className="text-[10px] uppercase tracking-[0.32em] text-amber-200/70">
                   Location
                 </p>
-                <p className="mt-2 text-sm font-medium text-white/92">
+
+                <p className="mt-2 text-sm font-semibold text-white">
                   {data.location}
                 </p>
               </motion.div>
