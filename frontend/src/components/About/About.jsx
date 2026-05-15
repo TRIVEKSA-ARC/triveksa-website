@@ -9,13 +9,12 @@ const renderStyledText = (text, gradient = false) => {
     index % 2 === 1 ? (
       <motion.span
         key={index}
-        initial={{ opacity: 0.6, scale: 0.96 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        initial={{ opacity: 0.6 }}
+        whileInView={{ opacity: 1 }}
         className={
           gradient
-            ? "bg-gradient-to-r from-[#fff1c2] via-[#f5c96a] to-[#d89b1d] bg-clip-text text-transparent font-bold"
-            : "text-white font-semibold"
+            ? "bg-gradient-to-r from-[#fff1c2] via-[#f5c96a] to-[#d89b1d] bg-clip-text text-transparent font-black tracking-tight"
+            : "text-amber-400 font-bold"
         }
       >
         {part}
@@ -31,14 +30,20 @@ function About() {
 
   if (loading) {
     return (
-      <section className="py-32 text-center text-white/60">
-        Loading About...
+      <section className="h-[60vh] flex flex-col items-center justify-center bg-transparent">
+        <motion.div 
+          animate={{ scale: [0.95, 1, 0.95], opacity: [0.3, 0.6, 0.3] }}
+          transition={{ repeat: Infinity, duration: 2 }}
+          className="text-amber-500 tracking-[1em] text-[10px] font-black uppercase"
+        >
+          Synchronizing_Identity
+        </motion.div>
       </section>
     );
   }
 
   const data = about || {
-    subtitle: "About Me",
+    subtitle: "System Core",
     paragraph1: "",
     paragraph2: "",
     paragraph3: "",
@@ -49,157 +54,134 @@ function About() {
   };
 
   return (
-    <section
-      id="about"
-      className="relative overflow-hidden bg-transparent px-6 py-24 text-white md:px-8 lg:px-10"
-    >
-      {/* SUBTLE AMBIENT LIGHT */}
-      <div className="pointer-events-none absolute right-[-10%] top-10 h-[420px] w-[420px] rounded-full bg-amber-400/8 blur-[120px]" />
-      <div className="pointer-events-none absolute left-[-8%] bottom-0 h-[320px] w-[320px] rounded-full bg-white/5 blur-[110px]" />
+    <section id="about" className="relative overflow-hidden bg-transparent px-6 py-32 text-white md:px-12">
+      
+      {/* AMBIENT BACKGROUND ELEMENTS */}
+      <div className="pointer-events-none absolute left-0 top-0 h-full w-full overflow-hidden opacity-40">
+        <div className="absolute -left-20 top-20 h-96 w-96 rounded-full bg-amber-500/10 blur-[140px]" />
+        <div className="absolute -right-20 bottom-20 h-80 w-80 rounded-full bg-blue-500/5 blur-[120px]" />
+      </div>
 
-      {/* GRID */}
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-16 xl:gap-20 items-start">
-        
-        {/* LEFT — CONTENT */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          viewport={{ once: true }}
-          className="relative order-2 lg:order-1 lg:col-span-7"
-        >
-          {/* SUBTITLE */}
+      <div className="relative z-10 mx-auto max-w-7xl">
+        <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-12 lg:gap-24">
+          
+          {/* LEFT: CONTENT ARCHITECTURE */}
           <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-            className="mb-8 flex items-center gap-4"
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="order-2 lg:order-1 lg:col-span-7"
           >
-            <span className="h-px w-12 bg-gradient-to-r from-amber-400 to-transparent" />
-            <span className="text-[11px] md:text-[12px] font-semibold uppercase tracking-[0.42em] text-amber-300/90">
-              {data.subtitle}
-            </span>
-          </motion.div>
+            {/* SUBTITLE TERMINAL STYLE */}
+            <div className="mb-12 flex items-center gap-4">
+              <div className="flex gap-1">
+                <div className="h-1 w-1 bg-amber-500" />
+                <div className="h-1 w-1 bg-amber-500/40" />
+                <div className="h-1 w-1 bg-amber-500/10" />
+              </div>
+              <span className="text-[10px] font-black uppercase tracking-[0.8em] text-amber-500/80">
+                {data.subtitle} // DATA_NODE_01
+              </span>
+            </div>
 
-          {/* DECORATIVE QUOTE */}
-          <span className="pointer-events-none absolute -top-10 -left-2 select-none text-[100px] md:text-[140px] leading-none text-white/[0.04] font-serif">
-            “
-          </span>
-
-          {/* MAIN TEXT BLOCK */}
-          <div className="relative z-10 space-y-7">
-            {[data.paragraph1, data.paragraph2, data.paragraph3].map((text, i) => (
-              <motion.p
-                key={i}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.15 + i * 0.12, duration: 0.7 }}
-                viewport={{ once: true }}
-                className="max-w-3xl text-[15px] md:text-[17px] leading-8 text-white/72 font-light"
-              >
-                {renderStyledText(text)}
-              </motion.p>
-            ))}
-
-            {/* HIGHLIGHT TEXT */}
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-              viewport={{ once: true }}
-              className="max-w-3xl pt-2 text-[28px] leading-[1.2] md:text-[40px] font-bold tracking-[-0.03em] text-white"
-            >
+            {/* MAIN HEADLINE */}
+            <h2 className="mb-10 text-4xl font-black leading-[1.1] tracking-tighter md:text-6xl lg:text-7xl">
               {renderStyledText(data.highlightText, true)}
-            </motion.p>
-          </div>
+            </h2>
 
-          {/* SERVICES */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={{
-              visible: { transition: { staggerChildren: 0.08 } },
-            }}
-            className="mt-10 flex flex-wrap gap-3"
-          >
-            {data.services.map((service) => (
-              <motion.span
-                key={service}
-                variants={{
-                  hidden: { opacity: 0, y: 10 },
-                  visible: { opacity: 1, y: 0 },
-                }}
-                whileHover={{
-                  y: -2,
-                  scale: 1.03,
-                }}
-                className="rounded-full border border-white/10 bg-white/[0.04] px-5 py-2.5 text-[11px] uppercase tracking-[0.28em] text-white/78 backdrop-blur-xl transition hover:border-amber-300/25 hover:bg-amber-300/[0.06] hover:text-white"
-              >
-                {service}
-              </motion.span>
-            ))}
+            {/* BODY TEXT WITH REFINED TYPOGRAPHY */}
+            <div className="relative space-y-8 pl-8 before:absolute before:left-0 before:top-2 before:h-[90%] before:w-px before:bg-gradient-to-b before:from-amber-500/50 before:to-transparent">
+              {[data.paragraph1, data.paragraph2, data.paragraph3].map((text, i) => (
+                <motion.p
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 + i * 0.1 }}
+                  className="max-w-2xl text-[16px] font-light leading-relaxed text-white/60 md:text-[18px]"
+                >
+                  {renderStyledText(text)}
+                </motion.p>
+              ))}
+            </div>
+
+            {/* SERVICE TAGS - MINI CHIPS */}
+            <div className="mt-12 flex flex-wrap gap-2">
+              {data.services.map((service, i) => (
+                <motion.span
+                  key={i}
+                  whileHover={{ scale: 1.05, borderColor: "rgba(245, 158, 11, 0.5)" }}
+                  className="rounded-sm border border-white/10 bg-white/[0.02] px-4 py-1.5 text-[9px] font-black uppercase tracking-[0.3em] text-white/40 transition-all hover:text-white"
+                >
+                  {service}
+                </motion.span>
+              ))}
+            </div>
           </motion.div>
-        </motion.div>
 
-        {/* RIGHT — IMAGE */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 30 }}
-          whileInView={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.9 }}
-          viewport={{ once: true }}
-          className="relative order-1 lg:order-2 lg:col-span-5 flex justify-center lg:justify-end"
-        >
+          {/* RIGHT: THE VISUAL TERMINAL */}
           <motion.div
-            whileHover={{ y: -4 }}
-            transition={{ type: "spring", stiffness: 120 }}
-            className="relative w-full max-w-[420px]"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2 }}
+            className="relative order-1 lg:order-2 lg:col-span-5"
           >
-            {/* OUTER FRAME */}
-            <div className="absolute inset-0 translate-x-4 translate-y-4 rounded-[28px] border border-amber-300/25" />
-
-            {/* MAIN CARD */}
-            <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.04] p-3 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.28)]">
+            <div className="relative mx-auto w-full max-w-[440px]">
               
-              {/* IMAGE */}
-              <div className="relative h-[380px] w-full overflow-hidden rounded-[22px] bg-black/30 md:h-[500px]">
+              {/* DECORATIVE OUTER ELEMENTS */}
+              <div className="absolute -right-4 -top-4 h-24 w-24 border-r-2 border-t-2 border-amber-500/20 rounded-tr-[3rem]" />
+              <div className="absolute -bottom-4 -left-4 h-24 w-24 border-b-2 border-l-2 border-amber-500/20 rounded-bl-[3rem]" />
+
+              {/* MAIN IMAGE CONTAINER */}
+              <div className="group relative aspect-[4/5] overflow-hidden rounded-[3rem] border border-white/10 bg-[#0a0a0a] shadow-2xl backdrop-blur-3xl transition-all duration-700 hover:border-amber-500/30">
+                
+                {/* SCANNING EFFECT overlay */}
+                <motion.div 
+                  animate={{ top: ["-10%", "110%"] }}
+                  transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
+                  className="absolute left-0 z-10 h-[1px] w-full bg-gradient-to-r from-transparent via-amber-500/40 to-transparent shadow-[0_0_15px_#f59e0b]"
+                />
+
                 {data.image?.url && (
                   <img
                     src={data.image.url}
-                    alt="About Image"
-                    className="h-full w-full object-cover transition duration-700 hover:scale-[1.03]"
+                    alt="VK Profile"
+                    className="h-full w-full object-cover opacity-80 grayscale-[40%] transition-all duration-1000 group-hover:scale-110 group-hover:opacity-100 group-hover:grayscale-0"
                   />
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
+
+                {/* HUD INTERFACE ELEMENTS */}
+                <div className="absolute inset-0 flex flex-col justify-between p-8 pointer-events-none">
+                  <div className="flex justify-between items-start">
+                    <div className="text-[10px] font-mono text-amber-500/50">ID // {new Date().getFullYear()}</div>
+                    <div className="h-2 w-2 rounded-full bg-amber-500 animate-pulse shadow-[0_0_10px_#f59e0b]" />
+                  </div>
+
+                  <div className="space-y-4">
+                    {/* STATUS CHIP */}
+                    <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-black/60 px-4 py-2 backdrop-blur-xl">
+                      <div className="h-1.5 w-1.5 rounded-full bg-green-500" />
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/80">Available_for_Projects</span>
+                    </div>
+
+                    {/* LOCATION CARD */}
+                    <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-5 backdrop-blur-2xl transition-all group-hover:bg-amber-500/[0.05]">
+                      <p className="text-[9px] font-black uppercase tracking-[0.4em] text-white/30">Operational_Base</p>
+                      <p className="mt-1 text-sm font-bold tracking-widest text-white">{data.location || "REMOTE / HQ"}</p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              {/* TOP TAG */}
-              <div className="absolute left-7 top-7 rounded-full border border-white/10 bg-black/30 px-4 py-2 backdrop-blur-xl">
-                <span className="text-[10px] uppercase tracking-[0.32em] text-white/70">
-                  Profile
-                </span>
-              </div>
-
-              {/* LOCATION CARD */}
-              <motion.div
-                animate={{ y: [0, -2, 0] }}
-                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                className="absolute bottom-7 left-7 right-7 rounded-[18px] border border-white/10 bg-black/35 px-5 py-4 backdrop-blur-xl"
-              >
-                <p className="text-[10px] uppercase tracking-[0.32em] text-white/45">
-                  Location
-                </p>
-                <p className="mt-2 text-sm font-medium text-white/92">
-                  {data.location}
-                </p>
-              </motion.div>
+              {/* FLOATING GEOMETRY */}
+              <motion.div 
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="absolute -right-8 bottom-20 -z-10 h-32 w-32 rounded-full border border-dashed border-white/10" 
+              />
             </div>
-
-            {/* SMALL CORNER DETAIL */}
-            <div className="absolute -right-3 top-10 h-14 w-14 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-xl" />
           </motion.div>
-        </motion.div>
+
+        </div>
       </div>
     </section>
   );
