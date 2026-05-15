@@ -30,7 +30,7 @@ function Hero() {
               className="mb-6 flex items-center justify-center gap-4"
             >
               <span className="h-px w-12 md:w-16 bg-gradient-to-r from-transparent via-yellow-400 to-transparent" />
-              <p className="text-[46px] md:text-[14px] uppercase tracking-[0.55em] text-white/80">
+              <p className="text-[12px] md:text-[18px] uppercase tracking-[0.55em] text-white/80">
                 Hi, I am
               </p>
               <span className="h-px w-12 md:w-16 bg-gradient-to-r from-transparent via-yellow-400 to-transparent" />
