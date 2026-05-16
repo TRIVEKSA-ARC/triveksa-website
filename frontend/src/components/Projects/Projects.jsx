@@ -101,7 +101,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
 
               {/* TRANSPARENT TEXT BOX */}
               <div className="absolute inset-x-0 bottom-0 z-10 p-5 md:p-6">
-                <div className="rounded-[22px] border border-white/15 bg-white/[0.10] p-5 backdrop-blur-[16px] shadow-[0_10px_30px_rgba(0,0,0,0.18)] transition duration-500 group-hover:bg-white/[0.14]">
+                <div className="rounded-[22px] border border-white/15 bg-white/[0.10] p-5 backdrop-blur-[1px] shadow-[0_10px_30px_rgba(0,0,0,0.18)] transition duration-500 group-hover:bg-white/[0.14]">
                   <h4 className="text-[18px] md:text-[20px] font-semibold tracking-[-0.02em] text-white">
                     {item.title}
                   </h4>
