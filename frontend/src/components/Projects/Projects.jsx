@@ -16,7 +16,6 @@ const PROJECT_THEMES = {
     badgeBorder: "border-cyan-400/50",
     badgeTextColor: "text-cyan-200",
     badgeDot: "bg-cyan-400",
-    textPanel: "from-cyan-500/20 via-cyan-950/40 to-transparent",
     btnBg: "bg-cyan-500/10 hover:bg-cyan-400 text-cyan-400 hover:text-black border-cyan-400/30",
   },
   uiux: {
@@ -29,7 +28,6 @@ const PROJECT_THEMES = {
     badgeBorder: "border-purple-400/50",
     badgeTextColor: "text-purple-200",
     badgeDot: "bg-purple-400",
-    textPanel: "from-purple-500/20 via-purple-950/40 to-transparent",
     btnBg: "bg-purple-500/10 hover:bg-purple-400 text-purple-400 hover:text-black border-purple-400/30",
   },
   editing: {
@@ -42,7 +40,6 @@ const PROJECT_THEMES = {
     badgeBorder: "border-amber-400/50",
     badgeTextColor: "text-amber-200",
     badgeDot: "bg-amber-400",
-    textPanel: "from-orange-500/20 via-amber-950/40 to-transparent",
     btnBg: "bg-amber-500/10 hover:bg-amber-400 text-amber-400 hover:text-black border-amber-400/30",
   },
 };
@@ -93,7 +90,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
               whileHover={{ y: -6 }}
               transition={{ duration: 0.4 }}
               viewport={{ once: true }}
-              className={`snap-start shrink-0 w-95 h-95 relative rounded-3xl overflow-hidden bg-gradient-to-b from-white/[0.04] to-white/[0.01] border ${theme.borderBase} p-2.5 backdrop-blur-xl group will-change-transform transition-all duration-500 ${theme.borderHover} hover:shadow-[0_25px_60px_-15px_${theme.glow}]`}
+              className={`snap-start shrink-0 w-95 h-95 relative rounded-3xl overflow-hidden bg-transparent border ${theme.borderBase} p-2.5 backdrop-blur-xl group will-change-transform transition-all duration-500 ${theme.borderHover} hover:shadow-[0_30px_70px_rgba(0,0,0,0.6)]`}
             >
               {/* BACK NEON GLOW AURAS */}
               <div
@@ -103,7 +100,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
               {/* IMAGE BASE FRAME AND CONTENT WRAPPER */}
               <div className="relative h-full w-full overflow-hidden rounded-[1.25rem] bg-transparent">
                 
-                {/* PROJECT IMAGE RENDERING */}
+                {/* PROJECT IMAGE RENDERING (Completely clear, zero color distortion overlays) */}
                 <img
                   src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
                   alt={item.title}
@@ -121,16 +118,16 @@ const ProjectSection = ({ title, items = [], theme }) => {
                   </span>
                 </div>
 
-                {/* BRIGHT TEXT PANEL PANEL WITH COLORED VIBRANT NEON GLOW */}
-                <div className={`absolute inset-0 bg-gradient-to-t ${theme.textPanel} opacity-90 transition-all duration-500 z-10`} />
+                {/* CLEAN TRANSLUCENT TEXT SHADOW STRIP FOR READABILITY */}
+                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none z-10" />
 
                 {/* CONTENT LAYER */}
                 <div className="absolute inset-0 p-5 flex flex-col justify-end z-20">
-                  <h4 className="text-[14px] font-bold tracking-wide text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+                  <h4 className="text-[14px] font-bold tracking-wide text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
                     {item.title}
                   </h4>
 
-                  <p className="text-[11px] text-white/90 mt-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300 drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)] line-clamp-2">
+                  <p className="text-[11px] text-white/90 mt-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300 drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)] line-clamp-2">
                     {item.desc}
                   </p>
 
