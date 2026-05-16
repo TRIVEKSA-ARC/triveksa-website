@@ -70,57 +70,55 @@ const ProjectSection = ({ title, items = [], theme }) => {
               whileHover={{ y: -8 }}
               transition={{ duration: 0.4 }}
               viewport={{ once: true }}
-              className="group relative h-[420px] w-[320px] md:h-[460px] md:w-[360px] shrink-0 snap-start overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.04] backdrop-blur-xl shadow-[0_18px_50px_rgba(0,0,0,0.28)] will-change-transform"
+              className="group relative h-[420px] w-[320px] md:h-[460px] md:w-[360px] shrink-0 snap-start overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.04] shadow-[0_18px_50px_rgba(0,0,0,0.20)] backdrop-blur-xl will-change-transform"
             >
-              {/* OUTER ACCENT FRAME */}
+              {/* SOFT FRAME */}
               <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-white/8" />
 
-              {/* GLOW */}
-              <div
-                className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100"
-                style={{
-                  boxShadow: `inset 0 0 70px ${theme.glow}`,
-                }}
-              />
-
-              {/* IMAGE */}
+              {/* IMAGE - CLEAR & VISIBLE */}
               <div className="absolute inset-0">
                 <img
                   src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
                   alt={item.title}
-                  className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                  className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/5" />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-transparent" />
               </div>
+
+              {/* LIGHT HOVER GLOW ONLY */}
+              <div
+                className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100"
+                style={{
+                  boxShadow: `inset 0 0 60px ${theme.glow}`,
+                }}
+              />
 
               {/* TOP BADGE */}
               <div className="absolute left-5 top-5 z-10">
-                <span className="rounded-full border border-white/10 bg-black/30 px-4 py-2 text-[10px] uppercase tracking-[0.28em] text-white/70 backdrop-blur-xl">
+                <span className="rounded-full border border-white/15 bg-black/20 px-4 py-2 text-[10px] uppercase tracking-[0.28em] text-white/85 backdrop-blur-xl">
                   Featured Project
                 </span>
               </div>
 
-              {/* CONTENT */}
+              {/* TRANSPARENT TEXT BOX */}
               <div className="absolute inset-x-0 bottom-0 z-10 p-5 md:p-6">
-                <div className="rounded-[22px] border border-white/10 bg-black/30 p-5 backdrop-blur-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition duration-500 group-hover:border-white/15">
+                <div className="rounded-[22px] border border-white/15 bg-white/[0.10] p-5 backdrop-blur-[16px] shadow-[0_10px_30px_rgba(0,0,0,0.18)] transition duration-500 group-hover:bg-white/[0.14]">
                   <h4 className="text-[18px] md:text-[20px] font-semibold tracking-[-0.02em] text-white">
                     {item.title}
                   </h4>
 
-                  <p className="mt-3 line-clamp-3 text-[13px] leading-6 text-white/65 transition duration-500 group-hover:text-white/78">
+                  <p className="mt-3 line-clamp-3 text-[13px] leading-6 text-white/85">
                     {item.desc}
                   </p>
 
                   {/* ACTIONS */}
                   <div className="mt-5 flex items-center justify-between">
                     <span
-                      className={`inline-flex items-center gap-2 rounded-full border border-white/10 bg-gradient-to-r ${theme.color} px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-white shadow-[0_8px_20px_rgba(0,0,0,0.18)]`}
+                      className={`inline-flex items-center gap-2 rounded-full border border-white/10 bg-gradient-to-r ${theme.color} px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-white shadow-[0_8px_20px_rgba(0,0,0,0.16)]`}
                     >
                       View <Plus size={14} />
                     </span>
 
-                    <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.05] text-white/75 transition duration-300 group-hover:bg-white/[0.09] group-hover:text-white">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-black/20 text-white/85 backdrop-blur-xl transition duration-300 group-hover:bg-black/30 group-hover:text-white">
                       <ExternalLink size={18} />
                     </span>
                   </div>
