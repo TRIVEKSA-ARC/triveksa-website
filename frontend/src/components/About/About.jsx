@@ -58,7 +58,7 @@ function About() {
       <div className="pointer-events-none absolute left-[-8%] bottom-0 h-[320px] w-[320px] rounded-full bg-white/5 blur-[110px]" />
 
       {/* GRID */}
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-16 xl:gap-20 items-start">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-16 xl:gap-20 items-center">
         
         {/* LEFT — CONTENT */}
         <motion.div
@@ -146,63 +146,77 @@ function About() {
 
         {/* RIGHT — IMAGE */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 30 }}
+          initial={{ opacity: 0, scale: 0.98, y: 30 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.9 }}
+          transition={{ duration: 1, ease: [0.19, 1, 0.22, 1] }}
           viewport={{ once: true }}
           className="relative order-1 lg:order-2 lg:col-span-5 flex justify-center lg:justify-end"
         >
-          <motion.div
-            whileHover={{ y: -4 }}
-            transition={{ type: "spring", stiffness: 120 }}
-            className="relative w-full max-w-[420px]"
-          >
-            {/* OUTER FRAME */}
-            <div className="absolute inset-0 translate-x-4 translate-y-4 rounded-[28px] border border-amber-300/25" />
+          <div className="group relative w-full max-w-[400px]">
+            {/* GLOW BEHIND CARD */}
+            <div className="absolute inset-4 -z-10 bg-gradient-to-tr from-amber-500/10 to-transparent blur-3xl opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
 
-            {/* MAIN CARD */}
-            <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.04] p-3 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.28)]">
+            {/* MAIN IMAGE CONTAINER */}
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-white/10 bg-black/40 p-2.5 backdrop-blur-2xl transition-all duration-700 group-hover:border-amber-400/30 group-hover:shadow-[0_30px_100px_rgba(0,0,0,0.6)]">
               
-              {/* IMAGE */}
-              <div className="relative h-[380px] w-full overflow-hidden rounded-[22px] bg-black/30 md:h-[500px]">
+              {/* INNER FRAME IMAGE */}
+              <div className="relative h-full w-full overflow-hidden rounded-[1.25rem] bg-[#0d0d0d]">
                 {data.image?.url && (
                   <img
                     src={data.image.url}
-                    alt="About Image"
-                    className="h-full w-full object-cover transition duration-700 hover:scale-[1.03]"
+                    alt="VK Profile Visual"
+                    className="h-full w-full object-cover opacity-90 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105 group-hover:opacity-100"
                   />
                 )}
-
-                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
+                
+                {/* GRADIENT OVERLAY FOR TEXT READABILITY */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/20 transition-opacity duration-700 group-hover:from-black/95" />
               </div>
 
-              {/* TOP TAG */}
-              <div className="absolute left-7 top-7 rounded-full border border-cyan-300/20 bg-cyan-400/10 px-4 py-2 backdrop-blur-xl shadow-[0_0_20px_rgba(34,211,238,0.12)]">
-                <span className="text-[10px] uppercase tracking-[0.32em] text-cyan-100">
-                  Profile
+              {/* FLOATING TOP BADGE */}
+              <div className="absolute left-6 top-6 flex items-center gap-2 rounded-full border border-white/10 bg-black/40 px-3.5 py-1.5 backdrop-blur-md">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-75"></span>
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-amber-500"></span>
+                </span>
+                <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-amber-200/80">
+                  Core_Node
                 </span>
               </div>
 
-              {/* LOCATION CARD */}
-              <motion.div
-                animate={{ y: [0, -2, 0] }}
-                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                className="absolute bottom-7 left-7 right-7 rounded-[18px] border border-amber-300/20 bg-black/25 px-5 py-4 backdrop-blur-xl shadow-[0_0_30px_rgba(251,191,36,0.12)]"
-              >
-                <p className="text-[10px] uppercase tracking-[0.32em] text-amber-200/70">
-                  Location
-                </p>
+              {/* INTEGRATED BOTTOM METADATA OVERLAY */}
+              <div className="absolute bottom-6 left-6 right-6 flex flex-col gap-3">
+                <div className="h-px w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent" />
+                
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-[9px] font-medium uppercase tracking-[0.3em] text-white/40">
+                      Operational Base
+                    </p>
+                    <p className="mt-1 text-[13px] font-semibold tracking-wide text-white/90">
+                      {data.location || "INDIA"}
+                    </p>
+                  </div>
 
-                <p className="mt-2 text-sm font-semibold text-white">
-                  {data.location}
-                </p>
-              </motion.div>
+                  <div className="text-right">
+                    <p className="text-[9px] font-medium uppercase tracking-[0.3em] text-white/40">
+                      Status
+                    </p>
+                    <p className="mt-1 text-[13px] font-bold tracking-wide text-emerald-400">
+                      ACTIVE
+                    </p>
+                  </div>
+                </div>
+              </div>
+
             </div>
 
-            {/* SMALL CORNER DETAIL */}
-            <div className="absolute -right-3 top-10 h-14 w-14 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-xl" />
-          </motion.div>
+            {/* MINIMAL DESIGN ACCENTS FRAME OUTSIDE */}
+            <div className="absolute -left-3 -top-3 h-8 w-8 border-l border-t border-white/20 rounded-tl-xl transition-all duration-500 group-hover:-left-4 group-hover:-top-4 group-hover:border-amber-400/40" />
+            <div className="absolute -bottom-3 -right-3 h-8 w-8 border-b border-r border-white/20 rounded-br-xl transition-all duration-500 group-hover:-right-4 group-hover:-bottom-4 group-hover:border-amber-400/40" />
+          </div>
         </motion.div>
+
       </div>
     </section>
   );
