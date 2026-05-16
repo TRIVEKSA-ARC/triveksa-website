@@ -45,7 +45,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
         >
           <span className={`h-px w-12 bg-gradient-to-r ${theme.color}`} />
           <motion.h3
-            className={`text-[11px] md:text-[12px] font-semibold uppercase tracking-[0.42em] bg-linear-to-r ${theme.color} bg-clip-text text-transparent`}
+            className={`text-[11px] md:text-[12px] font-semibold uppercase tracking-[0.42em] bg-gradient-to-r ${theme.color} bg-clip-text text-transparent`}
           >
             {title}
           </motion.h3>
@@ -70,13 +70,13 @@ const ProjectSection = ({ title, items = [], theme }) => {
               whileHover={{ y: -8 }}
               transition={{ duration: 0.4 }}
               viewport={{ once: true }}
-              className="group relative h-[340px] w-[300px] md:h-[380px] md:w-[340px] shrink-0 snap-start overflow-hidden rounded-[24px] border border-white/10 bg-[#0A0A0C] shadow-[0_12px_40px_rgba(0,0,0,0.25)] backdrop-blur-xl will-change-transform flex flex-col"
+              className="group relative h-[320px] w-[320px] md:h-[350px] md:w-[380px] shrink-0 snap-start overflow-hidden rounded-[24px] border border-white/10 bg-[#0A0A0C] shadow-[0_12px_40px_rgba(0,0,0,0.25)] backdrop-blur-xl will-change-transform flex flex-col"
             >
               {/* SOFT FRAME */}
               <div className="pointer-events-none absolute inset-0 rounded-[24px] ring-1 ring-white/8 z-20" />
 
-              {/* IMAGE WRAPPER - MAKES ENTIRE IMAGE CONTENT VISIBLE */}
-              <div className="relative h-[50%] w-full bg-black/20 flex items-center justify-center p-2 overflow-hidden border-b border-white/5">
+              {/* IMAGE WRAPPER - SPACIOUS LANDSCAPE DISPLAY */}
+              <div className="relative h-[52%] w-full bg-black/20 flex items-center justify-center p-4 overflow-hidden border-b border-white/5">
                 <img
                   src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
                   alt={item.title}
@@ -84,29 +84,29 @@ const ProjectSection = ({ title, items = [], theme }) => {
                 />
                 
                 {/* TOP BADGE */}
-                <div className="absolute left-3 top-3 z-10">
-                  <span className="rounded-full border border-white/10 bg-black/50 px-2.5 py-1 text-[8px] uppercase tracking-[0.24em] text-white/90 backdrop-blur-md">
+                <div className="absolute left-4 top-4 z-10">
+                  <span className="rounded-full border border-white/10 bg-black/60 px-3 py-1.5 text-[8px] uppercase tracking-[0.24em] text-white/90 backdrop-blur-md">
                     Featured Project
                   </span>
                 </div>
               </div>
 
-              {/* DESCRIPTION BOX - SLEEK & PREMIUM PROPORTIONS */}
-              <div className="flex-1 w-full p-4 md:p-5 flex flex-col justify-between bg-white/[0.01] transition duration-500 group-hover:bg-white/[0.04]">
+              {/* DESCRIPTION BOX - CLEAN, UNCONGESTED TIMELINE LAYOUT */}
+              <div className="flex-1 w-full p-5 md:p-6 flex flex-col justify-between bg-white/[0.01] transition duration-500 group-hover:bg-white/[0.04]">
                 <div>
                   <h4 className="text-[16px] md:text-[18px] font-semibold tracking-[-0.01em] text-white line-clamp-1">
                     {item.title}
                   </h4>
 
-                  <p className="mt-1.5 line-clamp-2 text-[12px] leading-5 text-white/60 group-hover:text-white/80 transition duration-300">
+                  <p className="mt-2 line-clamp-2 text-[12px] leading-5 text-white/60 group-hover:text-white/80 transition duration-300">
                     {item.desc}
                   </p>
                 </div>
 
                 {/* ACTIONS */}
-                <div className="mt-3 flex items-center justify-between">
+                <div className="mt-4 flex items-center justify-between">
                   <span
-                    className={`inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-gradient-to-r ${theme.color} px-3.5 py-1.5 text-[9px] font-semibold uppercase tracking-[0.2em] text-white shadow-[0_6px_15px_rgba(0,0,0,0.12)]`}
+                    className={`inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-gradient-to-r ${theme.color} px-4 py-2 text-[9px] font-semibold uppercase tracking-[0.2em] text-white shadow-[0_6px_15px_rgba(0,0,0,0.12)]`}
                   >
                     View <Plus size={12} />
                   </span>
@@ -185,7 +185,7 @@ function Projects() {
 
             <motion.h2 className="text-[38px] md:text-[64px] font-bold tracking-[-0.04em] leading-none text-white">
               SELECTED{" "}
-              <span className="bg-linear-to-r from-[#fff1c2] via-[#f5c96a] to-[#d89b1d] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#fff1c2] via-[#f5c96a] to-[#d89b1d] bg-clip-text text-transparent">
                 WORK
               </span>
             </motion.h2>
