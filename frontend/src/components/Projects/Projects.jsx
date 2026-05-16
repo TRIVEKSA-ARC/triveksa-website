@@ -8,31 +8,34 @@ import { useProjects } from "../../context/ProjectContext";
 const PROJECT_THEMES = {
   web: {
     color: "from-cyan-400 to-blue-500",
-    glow: "rgba(6,182,212,0.35)",
-    borderHover: "group-hover:border-cyan-400/40",
+    glow: "rgba(6,182,212,0.45)",
+    borderBase: "border-cyan-400/30",
+    borderHover: "group-hover:border-cyan-400",
     badge: "Core_Node",
     badgeBg: "bg-cyan-950/50",
-    badgeBorder: "border-cyan-400/30",
+    badgeBorder: "border-cyan-400/50",
     badgeTextColor: "text-cyan-200",
     badgeDot: "bg-cyan-400",
   },
   uiux: {
     color: "from-purple-400 to-pink-500",
-    glow: "rgba(168,85,247,0.35)",
-    borderHover: "group-hover:border-purple-400/40",
+    glow: "rgba(168,85,247,0.45)",
+    borderBase: "border-purple-400/30",
+    borderHover: "group-hover:border-purple-400",
     badge: "UI_System",
     badgeBg: "bg-purple-950/50",
-    badgeBorder: "border-purple-400/30",
+    badgeBorder: "border-purple-400/50",
     badgeTextColor: "text-purple-200",
     badgeDot: "bg-purple-400",
   },
   editing: {
     color: "from-amber-400 to-orange-500",
-    glow: "rgba(245,158,11,0.35)",
-    borderHover: "group-hover:border-amber-400/40",
+    glow: "rgba(245,158,11,0.45)",
+    borderBase: "border-amber-400/30",
+    borderHover: "group-hover:border-amber-400",
     badge: "VFX_Render",
     badgeBg: "bg-amber-950/50",
-    badgeBorder: "border-amber-400/30",
+    badgeBorder: "border-amber-400/50",
     badgeTextColor: "text-amber-200",
     badgeDot: "bg-amber-400",
   },
@@ -49,7 +52,6 @@ const ProjectSection = ({ title, items = [], theme }) => {
     });
   };
 
-  // Guard clause: if no items available under category, don't break layout
   if (!items || items.length === 0) return null;
 
   return (
@@ -85,24 +87,24 @@ const ProjectSection = ({ title, items = [], theme }) => {
               whileHover={{ y: -6 }}
               transition={{ duration: 0.4 }}
               viewport={{ once: true }}
-              className="snap-start shrink-0 w-95 h-95 relative rounded-3xl overflow-hidden bg-transparent border border-white/20 p-2.5 backdrop-blur-xl group will-change-transform transition-all duration-700 hover:shadow-[0_30px_80px_rgba(0,0,0,0.5)]"
+              className={`snap-start shrink-0 w-95 h-95 relative rounded-3xl overflow-hidden bg-white/[0.01] border ${theme.borderBase} p-2.5 backdrop-blur-md group will-change-transform transition-all duration-500 ${theme.borderHover} hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)]`}
             >
-              {/* BACK AURAS LIGHT / GLOW */}
+              {/* BACK NEON GLOW AURAS */}
               <div
-                className={`absolute -inset-1 -z-10 bg-gradient-to-tr ${theme.color} rounded-3xl opacity-20 blur-xl transition duration-700 group-hover:opacity-40 group-hover:blur-2xl`}
+                className={`absolute -inset-1 -z-10 bg-gradient-to-tr ${theme.color} rounded-3xl opacity-20 blur-xl transition duration-700 group-hover:opacity-50 group-hover:blur-2xl`}
               />
 
               {/* IMAGE BASE FRAME AND CONTENT WRAPPER */}
-              <div className="relative h-full w-full overflow-hidden rounded-[1.25rem] bg-white/[0.02]">
+              <div className="relative h-full w-full overflow-hidden rounded-[1.25rem] bg-transparent">
                 
-                {/* PROJECT IMAGE RENDERING (Original clear colors, no tinted/black mask overlays) */}
+                {/* PROJECT IMAGE RENDERING */}
                 <img
                   src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
                   alt={item.title}
                   className="w-full h-full object-cover transition duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-[1.04]"
                 />
 
-                {/* DYNAMIC METADATA CONTRAST UNDERLAY (Zero dark shade over picture, localized only behind elements) */}
+                {/* LOCALIZED CAPTION TEXT CONTRAST UNDERLAY */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
 
                 {/* VIBRANT GLOWING FLOATING TOP BADGE */}
@@ -122,7 +124,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
                     {item.title}
                   </h4>
 
-                  <p className="text-[11px] text-white/80 mt-1 opacity-0 group-hover:opacity-100 transition-all duration-300 drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] line-clamp-2">
+                  <p className="text-[11px] text-white/90 mt-1 opacity-0 group-hover:opacity-100 transition-all duration-300 drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] line-clamp-2">
                     {item.desc}
                   </p>
 
@@ -136,7 +138,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
 
                     <ExternalLink
                       size={16}
-                      className="text-white/80 hover:text-white transition drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+                      className="text-white/90 hover:text-white transition drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
                     />
                   </div>
                 </div>
@@ -144,8 +146,8 @@ const ProjectSection = ({ title, items = [], theme }) => {
               </div>
 
               {/* NEON NESTED ACCENTS FRAMES OUTSIDE CARD */}
-              <div className={`absolute -left-3 -top-3 h-8 w-8 border-l-2 border-t-2 border-white/10 rounded-tl-xl transition-all duration-500 ${theme.borderHover}`} />
-              <div className={`absolute -bottom-3 -right-3 h-8 w-8 border-b-2 border-r-2 border-white/10 rounded-br-xl transition-all duration-500 ${theme.borderHover}`} />
+              <div className={`absolute -left-3 -top-3 h-8 w-8 border-l-2 border-t-2 ${theme.borderBase} rounded-tl-xl transition-all duration-500 ${theme.borderHover}`} />
+              <div className={`absolute -bottom-3 -right-3 h-8 w-8 border-b-2 border-r-2 ${theme.borderBase} rounded-br-xl transition-all duration-500 ${theme.borderHover}`} />
 
             </motion.a>
           ))}
