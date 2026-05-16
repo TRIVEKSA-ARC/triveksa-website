@@ -176,8 +176,8 @@ function Projects() {
             className="mx-auto max-w-3xl"
           >
             <div className="mb-6 flex items-center justify-center gap-4">
-              <span className="h-px w-12 bg-gradient-to-r from-transparent via-amber-400 to-transparent" />
-              <p className="text-[11px] md:text-[12px] uppercase tracking-[0.42em] text-white/55">
+              <span className="h-px w-14 bg-gradient-to-r from-transparent via-amber-400 to-transparent" />
+              <p className="text-[11px] md:text-[12px] uppercase tracking-[0.42em] text-white/90">
                 Curated Projects
               </p>
               <span className="h-px w-12 bg-gradient-to-r from-transparent via-amber-400 to-transparent" />
@@ -190,7 +190,7 @@ function Projects() {
               </span>
             </motion.h2>
 
-            <p className="mx-auto mt-5 max-w-2xl text-[13px] md:text-[14px] uppercase tracking-[0.28em] leading-7 text-white/45">
+            <p className="mx-auto mt-5 max-w-2xl text-[13px] md:text-[14px] uppercase tracking-[0.28em] leading-7 text-white/90">
               A refined collection of development, design, and editing projects crafted with detail and purpose
             </p>
           </motion.div>
