@@ -58,11 +58,11 @@ function Footer() {
         <div className="flex flex-col items-start space-y-5">
           <div className="flex items-center gap-3">
             <span className="h-px w-8 bg-gradient-to-r from-[#fff1c2] to-[#d89b1d]" />
-            <h3 className="text-[11px] font-semibold uppercase tracking-[0.4em] bg-gradient-to-r from-[#fff1c2] via-[#f5c96a] to-[#d89b1d] bg-clip-text text-transparent">
+            <h3 className="text-[13px] font-semibold uppercase tracking-[0.4em] bg-gradient-to-r from-[#fff1c2] via-[#f5c96a] to-[#d89b1d] bg-clip-text text-transparent">
               Let’s Connect
             </h3>
           </div>
-          <p className="text-white/55 text-[14px] leading-7 max-w-sm font-light">
+          <p className="text-white/80 text-[16px] leading-7 max-w-sm font-light">
             {message}
           </p>
         </div>
@@ -73,10 +73,10 @@ function Footer() {
             className="flex items-center gap-4 group cursor-pointer w-fit py-1"
             onClick={() => (window.location.href = `mailto:${email}`)}
           >
-            <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/5 bg-white/[0.02] text-[#f5c96a] transition duration-300 group-hover:bg-[#f5c96a]/10 group-hover:border-[#f5c96a]/20">
-              <Mail size={16} />
+            <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/5 bg-white/[0.02] text-[#f5c96a] transition duration-300 group-hover:bg-[#f5c96a]/10 group-hover:border-[#f5c96a]/20">
+              <Mail size={18} />
             </div>
-            <span className="text-[14px] tracking-wide text-white/70 group-hover:text-white transition duration-300">
+            <span className="text-[16px] tracking-wide text-white/85 group-hover:text-white transition duration-300">
               {email}
             </span>
           </div>
@@ -85,10 +85,10 @@ function Footer() {
             className="flex items-center gap-4 group cursor-pointer w-fit py-1"
             onClick={() => (window.location.href = `tel:${phone}`)}
           >
-            <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/5 bg-white/[0.02] text-[#f5c96a] transition duration-300 group-hover:bg-[#f5c96a]/10 group-hover:border-[#f5c96a]/20">
-              <Phone size={16} />
+            <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/5 bg-white/[0.02] text-[#f5c96a] transition duration-300 group-hover:bg-[#f5c96a]/10 group-hover:border-[#f5c96a]/20">
+              <Phone size={18} />
             </div>
-            <span className="text-[14px] tracking-wide text-white/70 group-hover:text-white transition duration-300">
+            <span className="text-[16px] tracking-wide text-white/85 group-hover:text-white transition duration-300">
               {phone}
             </span>
           </div>
@@ -98,7 +98,7 @@ function Footer() {
         <div className="flex flex-col items-start md:items-end justify-center gap-5">
           <div className="flex items-center gap-3 md:flex-row-reverse">
             <span className="h-px w-8 bg-gradient-to-r from-[#d89b1d] to-[#fff1c2]" />
-            <h3 className="text-[11px] font-semibold uppercase tracking-[0.4em] text-white/55">
+            <h3 className="text-[13px] font-semibold uppercase tracking-[0.4em] text-white/70">
               Follow Me
             </h3>
           </div>
@@ -114,9 +114,9 @@ function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   title={item.label}
-                  className="p-3 rounded-full border border-white/5 bg-white/[0.02] text-white/70 hover:text-white hover:bg-[#f5c96a]/10 hover:border-[#f5c96a]/30 hover:scale-105 transition-all duration-300 backdrop-blur-md"
+                  className="p-3 rounded-full border border-white/5 bg-white/[0.02] text-white/80 hover:text-white hover:bg-[#f5c96a]/10 hover:border-[#f5c96a]/30 hover:scale-105 transition-all duration-300 backdrop-blur-md"
                 >
-                  <SocialIcon size={18} />
+                  <SocialIcon size={20} />
                 </a>
               );
             })}
@@ -125,13 +125,13 @@ function Footer() {
       </div>
 
       {/* ================= BOTTOM BAR ================= */}
-      <div className="border-t border-white/5 px-6 md:px-12 py-6 relative flex flex-col sm:flex-row items-center justify-between gap-4 text-white/40 max-w-7xl mx-auto z-10">
-        <span className="text-[12px] font-light tracking-wide text-center sm:text-left">
+      <div className="border-t border-white/5 px-6 md:px-12 py-6 relative flex items-center justify-center text-white/50 max-w-7xl mx-auto z-10">
+        <span className="text-[14px] font-light tracking-wide text-center">
           {copyright}
         </span>
 
-        {/* ADMIN BUTTON */}
-        <div className="sm:absolute sm:right-12">
+        {/* ADMIN BUTTON (Absolute positioned so copyright stays dead center) */}
+        <div className="absolute right-6 md:right-12">
           <button
             className="p-2.5 rounded-full border border-white/5 bg-white/[0.02] text-white/40 hover:text-[#f5c96a] hover:bg-[#f5c96a]/10 hover:border-[#f5c96a]/20 transition-all duration-300"
             title="Admin Panel"
