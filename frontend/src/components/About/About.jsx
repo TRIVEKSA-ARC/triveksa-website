@@ -188,10 +188,10 @@ function About() {
                 
                 <div className="flex items-center justify-between">
                   <div className="drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                    <p className="text-[9px] font-medium uppercase tracking-[0.3em] text-white/70">
+                    <p className="text-[9px] font-medium uppercase tracking-[0.3em] text-white/90">
                       Operational Base
                     </p>
-                    <p className="mt-0.5 text-[13px] font-semibold tracking-wide text-cyan-100">
+                    <p className="mt-0.5 text-[13px] font-semibold tracking-wide text-yellow-400">
                       {data.location || "INDIA"}
                     </p>
                   </div>
