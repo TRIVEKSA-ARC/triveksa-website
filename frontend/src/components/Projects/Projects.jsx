@@ -106,7 +106,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
                     {item.title}
                   </h4>
 
-                  <p className="mt-3 line-clamp-3 text-[13px] leading-6 text-white/85">
+                  <p className="mt-3 line-clamp-3 text-[13px] leading-6 text-white/90">
                     {item.desc}
                   </p>
 
