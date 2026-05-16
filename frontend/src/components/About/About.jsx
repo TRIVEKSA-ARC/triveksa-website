@@ -158,10 +158,10 @@ function About() {
             <div className="absolute -inset-1 -z-10 bg-gradient-to-tr from-cyan-400 via-amber-400 to-indigo-500 rounded-3xl opacity-30 blur-2xl transition duration-700 group-hover:opacity-60 group-hover:blur-3xl" />
 
             {/* LIGHT COLORFUL GLASS CARD CONTAINER */}
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-white/20 bg-black/40 p-2.5 backdrop-blur-xl transition-all duration-700 group-hover:border-cyan-400/40 group-hover:shadow-[0_30px_80px_rgba(34,211,238,0.25)]">
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-white/20 bg-white/40 p-2.5 backdrop-blur-xl transition-all duration-700 group-hover:border-cyan-400/40 group-hover:shadow-[0_30px_80px_rgba(34,211,238,0.25)]">
               
               {/* INNER IMAGE BASE FRAME */}
-              <div className="relative h-full w-full overflow-hidden rounded-[1.25rem] bg-white/[0.02]">
+              <div className="relative h-full w-full overflow-hidden rounded-[1.25rem] bg-black/[0.02]">
                 {data.image?.url && (
                   <img
                     src={data.image.url}
