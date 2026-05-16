@@ -75,12 +75,12 @@ const ProjectSection = ({ title, items = [], theme }) => {
               {/* SOFT FRAME */}
               <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-white/8" />
 
-              {/* IMAGE - CLEAR & VISIBLE */}
-              <div className="absolute inset-0">
+              {/* IMAGE WRAPPER - CLEAR, ORIGINAL SIZE, NO ZOOM CROPPING */}
+              <div className="absolute inset-0 bg-[#0A0A0C] flex items-center justify-center p-1">
                 <img
                   src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
                   alt={item.title}
-                  className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+                  className="h-full w-full object-contain transition duration-700 group-hover:scale-[1.04]"
                 />
               </div>
 
