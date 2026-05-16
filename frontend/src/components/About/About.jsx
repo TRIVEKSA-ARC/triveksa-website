@@ -197,10 +197,10 @@ function About() {
                   </div>
 
                   <div className="text-right desert-shadow drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                    <p className="text-[9px] font-medium uppercase tracking-[0.3em] text-white/70">
+                    <p className="text-[9px] font-medium uppercase tracking-[0.3em] text-white/90">
                       Status
                     </p>
-                    <p className="mt-0.5 text-[13px] font-bold tracking-wide text-emerald-400 drop-shadow-[0_0_10px_rgba(52,211,153,0.4)]">
+                    <p className="mt-0.5 text-[13px] font-bold tracking-wide text-emerald-500 drop-shadow-[0_0_10px_rgba(52,211,153,0.4)]">
                       ACTIVE
                     </p>
                   </div>
