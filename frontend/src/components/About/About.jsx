@@ -169,9 +169,6 @@ function About() {
                     className="h-full w-full object-cover transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-[1.04]"
                   />
                 )}
-                
-                {/* CLEAN HIGH-CONTRAST BLACK GRADIENT OVERLAY (CLEARED TOP & MID, DEEP CONTRAST BOTTOM) */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent transition-all duration-700 group-hover:via-black/50" />
               </div>
 
               {/* VIBRANT GLOWING FLOATING TOP BADGE */}
@@ -190,17 +187,17 @@ function About() {
                 <div className="h-px w-full bg-gradient-to-r from-cyan-400/30 via-white/10 to-transparent" />
                 
                 <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-[9px] font-medium uppercase tracking-[0.3em] text-white/50">
+                  <div className="drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                    <p className="text-[9px] font-medium uppercase tracking-[0.3em] text-white/70">
                       Operational Base
                     </p>
-                    <p className="mt-0.5 text-[13px] font-semibold tracking-wide text-cyan-100 drop-shadow-md">
+                    <p className="mt-0.5 text-[13px] font-semibold tracking-wide text-cyan-100">
                       {data.location || "INDIA"}
                     </p>
                   </div>
 
-                  <div className="text-right">
-                    <p className="text-[9px] font-medium uppercase tracking-[0.3em] text-white/50">
+                  <div className="text-right desert-shadow drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                    <p className="text-[9px] font-medium uppercase tracking-[0.3em] text-white/70">
                       Status
                     </p>
                     <p className="mt-0.5 text-[13px] font-bold tracking-wide text-emerald-400 drop-shadow-[0_0_10px_rgba(52,211,153,0.4)]">
