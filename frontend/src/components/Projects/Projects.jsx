@@ -45,7 +45,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
         >
           <span className={`h-px w-12 bg-gradient-to-r ${theme.color}`} />
           <motion.h3
-            className={`text-[11px] md:text-[12px] font-semibold uppercase tracking-[0.42em] bg-gradient-to-r ${theme.color} bg-clip-text text-transparent`}
+            className={`text-[11px] md:text-[12px] font-semibold uppercase tracking-[0.42em] bg-linear-to-r ${theme.color} bg-clip-text text-transparent`}
           >
             {title}
           </motion.h3>
@@ -70,60 +70,60 @@ const ProjectSection = ({ title, items = [], theme }) => {
               whileHover={{ y: -8 }}
               transition={{ duration: 0.4 }}
               viewport={{ once: true }}
-              className="group relative h-[320px] w-[320px] md:h-[350px] md:w-[380px] shrink-0 snap-start overflow-hidden rounded-[24px] border border-white/10 bg-[#0A0A0C] shadow-[0_12px_40px_rgba(0,0,0,0.25)] backdrop-blur-xl will-change-transform flex flex-col"
+              className="group relative h-[420px] w-[320px] md:h-[460px] md:w-[360px] shrink-0 snap-start overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.04] shadow-[0_18px_50px_rgba(0,0,0,0.20)] backdrop-blur-xl will-change-transform"
             >
               {/* SOFT FRAME */}
-              <div className="pointer-events-none absolute inset-0 rounded-[24px] ring-1 ring-white/8 z-20" />
+              <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-white/8" />
 
-              {/* IMAGE WRAPPER - SPACIOUS LANDSCAPE DISPLAY */}
-              <div className="relative h-[52%] w-full bg-black/20 flex items-center justify-center p-4 overflow-hidden border-b border-white/5">
+              {/* IMAGE WRAPPER - CLEAR, ORIGINAL SIZE, NO ZOOM CROPPING */}
+              <div className="absolute inset-0 bg-[#0A0A0C] flex items-center justify-center p-1">
                 <img
                   src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
                   alt={item.title}
-                  className="h-full w-full object-contain transition duration-700 group-hover:scale-[1.03]"
+                  className="h-full w-full object-contain transition duration-700 group-hover:scale-[1.04]"
                 />
-                
-                {/* TOP BADGE */}
-                <div className="absolute left-4 top-4 z-10">
-                  <span className="rounded-full border border-white/10 bg-black/60 px-3 py-1.5 text-[8px] uppercase tracking-[0.24em] text-white/90 backdrop-blur-md">
-                    Featured Project
-                  </span>
-                </div>
               </div>
 
-              {/* DESCRIPTION BOX - CLEAN, UNCONGESTED TIMELINE LAYOUT */}
-              <div className="flex-1 w-full p-5 md:p-6 flex flex-col justify-between bg-white/[0.01] transition duration-500 group-hover:bg-white/[0.04]">
-                <div>
-                  <h4 className="text-[16px] md:text-[18px] font-semibold tracking-[-0.01em] text-white line-clamp-1">
+              {/* LIGHT HOVER GLOW ONLY */}
+              <div
+                className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100"
+                style={{
+                  boxShadow: `inset 0 0 60px ${theme.glow}`,
+                }}
+              />
+
+              {/* TOP BADGE */}
+              <div className="absolute left-5 top-5 z-10">
+                <span className="rounded-full border border-white/15 bg-black/20 px-4 py-2 text-[10px] uppercase tracking-[0.28em] text-white/85 backdrop-blur-xl">
+                  Featured Project
+                </span>
+              </div>
+
+              {/* TRANSPARENT TEXT BOX */}
+              <div className="absolute inset-x-0 bottom-0 z-10 p-5 md:p-6">
+                <div className="rounded-[22px] border border-white/10 bg-black/[0.18] p-5 backdrop-blur-[16px] shadow-[0_12px_40px_rgba(0,0,0,0.25)] transition duration-500 group-hover:bg-white/[0.08] group-hover:border-white/20">
+                  <h4 className="text-[18px] md:text-[20px] font-semibold tracking-[-0.02em] text-white">
                     {item.title}
                   </h4>
 
-                  <p className="mt-2 line-clamp-2 text-[12px] leading-5 text-white/60 group-hover:text-white/80 transition duration-300">
+                  <p className="mt-3 line-clamp-3 text-[13px] leading-6 text-white/90">
                     {item.desc}
                   </p>
-                </div>
 
-                {/* ACTIONS */}
-                <div className="mt-4 flex items-center justify-between">
-                  <span
-                    className={`inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-gradient-to-r ${theme.color} px-4 py-2 text-[9px] font-semibold uppercase tracking-[0.2em] text-white shadow-[0_6px_15px_rgba(0,0,0,0.12)]`}
-                  >
-                    View <Plus size={12} />
-                  </span>
+                  {/* ACTIONS */}
+                  <div className="mt-5 flex items-center justify-between">
+                    <span
+                      className={`inline-flex items-center gap-2 rounded-full border border-white/10 bg-gradient-to-r ${theme.color} px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-white shadow-[0_8px_20px_rgba(0,0,0,0.16)]`}
+                    >
+                      View <Plus size={14} />
+                    </span>
 
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-black/30 text-white/80 backdrop-blur-md transition duration-300 group-hover:bg-black/50 group-hover:text-white">
-                    <ExternalLink size={14} />
-                  </span>
+                    <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-black/20 text-white/85 backdrop-blur-xl transition duration-300 group-hover:bg-black/30 group-hover:text-white">
+                      <ExternalLink size={18} />
+                    </span>
+                  </div>
                 </div>
               </div>
-
-              {/* LIGHT HOVER GLOW LAYEOVER */}
-              <div
-                className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100 z-10"
-                style={{
-                  boxShadow: `inset 0 0 50px ${theme.glow}`,
-                }}
-              />
             </motion.a>
           ))}
         </div>
@@ -185,7 +185,7 @@ function Projects() {
 
             <motion.h2 className="text-[38px] md:text-[64px] font-bold tracking-[-0.04em] leading-none text-white">
               SELECTED{" "}
-              <span className="bg-gradient-to-r from-[#fff1c2] via-[#f5c96a] to-[#d89b1d] bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-[#fff1c2] via-[#f5c96a] to-[#d89b1d] bg-clip-text text-transparent">
                 WORK
               </span>
             </motion.h2>
