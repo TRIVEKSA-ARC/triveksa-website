@@ -53,9 +53,9 @@ function About() {
       id="about"
       className="relative overflow-hidden bg-transparent px-6 py-24 text-white md:px-8 lg:px-10"
     >
-      {/* SUBTLE AMBIENT LIGHT */}
-      <div className="pointer-events-none absolute right-[-10%] top-10 h-[420px] w-[420px] rounded-full bg-amber-400/8 blur-[120px]" />
-      <div className="pointer-events-none absolute left-[-8%] bottom-0 h-[320px] w-[320px] rounded-full bg-white/5 blur-[110px]" />
+      {/* VIBRANT AMBIENT BACKGROUND LIGHTS */}
+      <div className="pointer-events-none absolute right-[-10%] top-10 h-[500px] w-[500px] rounded-full bg-gradient-to-tr from-amber-500/15 to-cyan-500/10 blur-[130px]" />
+      <div className="pointer-events-none absolute left-[-8%] bottom-0 h-[350px] w-[350px] rounded-full bg-cyan-500/10 blur-[110px]" />
 
       {/* GRID */}
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-16 xl:gap-20 items-center">
@@ -153,56 +153,57 @@ function About() {
           className="relative order-1 lg:order-2 lg:col-span-5 flex justify-center lg:justify-end"
         >
           <div className="group relative w-full max-w-[400px]">
-            {/* GLOW BEHIND CARD */}
-            <div className="absolute inset-4 -z-10 bg-gradient-to-tr from-amber-500/10 to-transparent blur-3xl opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+            
+            {/* COLORFUL GLOW AURAS BEHIND THE CARD */}
+            <div className="absolute -inset-1 -z-10 bg-gradient-to-tr from-cyan-400 via-amber-400 to-indigo-500 rounded-3xl opacity-30 blur-2xl transition duration-700 group-hover:opacity-60 group-hover:blur-3xl" />
 
-            {/* MAIN IMAGE CONTAINER */}
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-white/10 bg-black/40 p-2.5 backdrop-blur-2xl transition-all duration-700 group-hover:border-amber-400/30 group-hover:shadow-[0_30px_100px_rgba(0,0,0,0.6)]">
+            {/* LIGHT COLORFUL GLASS CARD CONTAINER */}
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-white/20 bg-white/[0.07] p-2.5 backdrop-blur-xl transition-all duration-700 group-hover:border-cyan-400/40 group-hover:shadow-[0_30px_80px_rgba(34,211,238,0.25)]">
               
-              {/* INNER FRAME IMAGE */}
-              <div className="relative h-full w-full overflow-hidden rounded-[1.25rem] bg-[#0d0d0d]">
+              {/* INNER IMAGE BASE FRAME */}
+              <div className="relative h-full w-full overflow-hidden rounded-[1.25rem] bg-white/[0.03]">
                 {data.image?.url && (
                   <img
                     src={data.image.url}
                     alt="VK Profile Visual"
-                    className="h-full w-full object-cover opacity-90 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105 group-hover:opacity-100"
+                    className="h-full w-full object-cover transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-[1.04]"
                   />
                 )}
                 
-                {/* GRADIENT OVERLAY FOR TEXT READABILITY */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/20 transition-opacity duration-700 group-hover:from-black/95" />
+                {/* VIBRANT LIGHT GRADIENT GRADUATION OVERLAY */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-cyan-500/10 transition-all duration-700 group-hover:via-black/30" />
               </div>
 
-              {/* FLOATING TOP BADGE */}
-              <div className="absolute left-6 top-6 flex items-center gap-2 rounded-full border border-white/10 bg-black/40 px-3.5 py-1.5 backdrop-blur-md">
+              {/* VIBRANT GLOWING FLOATING TOP BADGE */}
+              <div className="absolute left-6 top-6 flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-950/50 px-3.5 py-1.5 backdrop-blur-md shadow-[0_0_15px_rgba(34,211,238,0.3)]">
                 <span className="relative flex h-1.5 w-1.5">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-75"></span>
-                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-amber-500"></span>
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75"></span>
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-cyan-400"></span>
                 </span>
-                <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-amber-200/80">
+                <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-cyan-200">
                   Core_Node
                 </span>
               </div>
 
               {/* INTEGRATED BOTTOM METADATA OVERLAY */}
               <div className="absolute bottom-6 left-6 right-6 flex flex-col gap-3">
-                <div className="h-px w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent" />
+                <div className="h-px w-full bg-gradient-to-r from-cyan-400/30 via-white/10 to-transparent" />
                 
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-[9px] font-medium uppercase tracking-[0.3em] text-white/40">
+                    <p className="text-[9px] font-medium uppercase tracking-[0.3em] text-white/50">
                       Operational Base
                     </p>
-                    <p className="mt-1 text-[13px] font-semibold tracking-wide text-white/90">
+                    <p className="mt-0.5 text-[13px] font-semibold tracking-wide text-cyan-100 drop-shadow-md">
                       {data.location || "INDIA"}
                     </p>
                   </div>
 
                   <div className="text-right">
-                    <p className="text-[9px] font-medium uppercase tracking-[0.3em] text-white/40">
+                    <p className="text-[9px] font-medium uppercase tracking-[0.3em] text-white/50">
                       Status
                     </p>
-                    <p className="mt-1 text-[13px] font-bold tracking-wide text-emerald-400">
+                    <p className="mt-0.5 text-[13px] font-bold tracking-wide text-emerald-400 drop-shadow-[0_0_10px_rgba(52,211,153,0.4)]">
                       ACTIVE
                     </p>
                   </div>
@@ -211,9 +212,9 @@ function About() {
 
             </div>
 
-            {/* MINIMAL DESIGN ACCENTS FRAME OUTSIDE */}
-            <div className="absolute -left-3 -top-3 h-8 w-8 border-l border-t border-white/20 rounded-tl-xl transition-all duration-500 group-hover:-left-4 group-hover:-top-4 group-hover:border-amber-400/40" />
-            <div className="absolute -bottom-3 -right-3 h-8 w-8 border-b border-r border-white/20 rounded-br-xl transition-all duration-500 group-hover:-right-4 group-hover:-bottom-4 group-hover:border-amber-400/40" />
+            {/* NEON NESTED DESIGN ACCENTS FRAME OUTSIDE */}
+            <div className="absolute -left-3 -top-3 h-8 w-8 border-l-2 border-t-2 border-cyan-400/40 rounded-tl-xl transition-all duration-500 group-hover:-left-4 group-hover:-top-4 group-hover:border-cyan-400" />
+            <div className="absolute -bottom-3 -right-3 h-8 w-8 border-b-2 border-r-2 border-amber-400/40 rounded-br-xl transition-all duration-500 group-hover:-right-4 group-hover:-bottom-4 group-hover:border-amber-400" />
           </div>
         </motion.div>
 
