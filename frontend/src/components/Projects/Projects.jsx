@@ -12,10 +12,12 @@ const PROJECT_THEMES = {
     borderBase: "border-cyan-400/30",
     borderHover: "group-hover:border-cyan-400",
     badge: "Core_Node",
-    badgeBg: "bg-cyan-950/50",
+    badgeBg: "bg-cyan-950/40",
     badgeBorder: "border-cyan-400/50",
     badgeTextColor: "text-cyan-200",
     badgeDot: "bg-cyan-400",
+    textPanel: "from-cyan-500/20 via-cyan-950/40 to-transparent",
+    btnBg: "bg-cyan-500/10 hover:bg-cyan-400 text-cyan-400 hover:text-black border-cyan-400/30",
   },
   uiux: {
     color: "from-purple-400 to-pink-500",
@@ -23,10 +25,12 @@ const PROJECT_THEMES = {
     borderBase: "border-purple-400/30",
     borderHover: "group-hover:border-purple-400",
     badge: "UI_System",
-    badgeBg: "bg-purple-950/50",
+    badgeBg: "bg-purple-950/40",
     badgeBorder: "border-purple-400/50",
     badgeTextColor: "text-purple-200",
     badgeDot: "bg-purple-400",
+    textPanel: "from-purple-500/20 via-purple-950/40 to-transparent",
+    btnBg: "bg-purple-500/10 hover:bg-purple-400 text-purple-400 hover:text-black border-purple-400/30",
   },
   editing: {
     color: "from-amber-400 to-orange-500",
@@ -34,10 +38,12 @@ const PROJECT_THEMES = {
     borderBase: "border-amber-400/30",
     borderHover: "group-hover:border-amber-400",
     badge: "VFX_Render",
-    badgeBg: "bg-amber-950/50",
+    badgeBg: "bg-amber-950/40",
     badgeBorder: "border-amber-400/50",
     badgeTextColor: "text-amber-200",
     badgeDot: "bg-amber-400",
+    textPanel: "from-orange-500/20 via-amber-950/40 to-transparent",
+    btnBg: "bg-amber-500/10 hover:bg-amber-400 text-amber-400 hover:text-black border-amber-400/30",
   },
 };
 
@@ -87,11 +93,11 @@ const ProjectSection = ({ title, items = [], theme }) => {
               whileHover={{ y: -6 }}
               transition={{ duration: 0.4 }}
               viewport={{ once: true }}
-              className={`snap-start shrink-0 w-95 h-95 relative rounded-3xl overflow-hidden bg-white/[0.01] border ${theme.borderBase} p-2.5 backdrop-blur-md group will-change-transform transition-all duration-500 ${theme.borderHover} hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)]`}
+              className={`snap-start shrink-0 w-95 h-95 relative rounded-3xl overflow-hidden bg-gradient-to-b from-white/[0.04] to-white/[0.01] border ${theme.borderBase} p-2.5 backdrop-blur-xl group will-change-transform transition-all duration-500 ${theme.borderHover} hover:shadow-[0_25px_60px_-15px_${theme.glow}]`}
             >
               {/* BACK NEON GLOW AURAS */}
               <div
-                className={`absolute -inset-1 -z-10 bg-gradient-to-tr ${theme.color} rounded-3xl opacity-20 blur-xl transition duration-700 group-hover:opacity-50 group-hover:blur-2xl`}
+                className={`absolute -inset-1 -z-10 bg-gradient-to-tr ${theme.color} rounded-3xl opacity-20 blur-xl transition duration-700 group-hover:opacity-60 group-hover:blur-2xl`}
               />
 
               {/* IMAGE BASE FRAME AND CONTENT WRAPPER */}
@@ -101,11 +107,8 @@ const ProjectSection = ({ title, items = [], theme }) => {
                 <img
                   src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
                   alt={item.title}
-                  className="w-full h-full object-cover transition duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-[1.04]"
+                  className="w-full h-full object-cover transition duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-[1.05]"
                 />
-
-                {/* LOCALIZED CAPTION TEXT CONTRAST UNDERLAY */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
 
                 {/* VIBRANT GLOWING FLOATING TOP BADGE */}
                 <div className={`absolute left-4 top-4 flex items-center gap-2 rounded-full border ${theme.badgeBorder} ${theme.badgeBg} px-3 py-1 backdrop-blur-md`}>
@@ -118,18 +121,21 @@ const ProjectSection = ({ title, items = [], theme }) => {
                   </span>
                 </div>
 
+                {/* BRIGHT TEXT PANEL PANEL WITH COLORED VIBRANT NEON GLOW */}
+                <div className={`absolute inset-0 bg-gradient-to-t ${theme.textPanel} opacity-90 transition-all duration-500 z-10`} />
+
                 {/* CONTENT LAYER */}
-                <div className="absolute inset-0 p-4 flex flex-col justify-end z-10">
-                  <h4 className="text-[14px] font-bold tracking-wide text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                <div className="absolute inset-0 p-5 flex flex-col justify-end z-20">
+                  <h4 className="text-[14px] font-bold tracking-wide text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
                     {item.title}
                   </h4>
 
-                  <p className="text-[11px] text-white/90 mt-1 opacity-0 group-hover:opacity-100 transition-all duration-300 drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] line-clamp-2">
+                  <p className="text-[11px] text-white/90 mt-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300 drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)] line-clamp-2">
                     {item.desc}
                   </p>
 
                   {/* ACTIONS BAR */}
-                  <div className="mt-3 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <div className="mt-4 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-all duration-300">
                     <span
                       className={`flex items-center gap-2 bg-gradient-to-r ${theme.color} px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider text-white shadow-lg`}
                     >
@@ -153,18 +159,18 @@ const ProjectSection = ({ title, items = [], theme }) => {
           ))}
         </div>
 
-        {/* LEFT ARROW BUTTON */}
+        {/* BRIGHT COLORED LEFT ARROW BUTTON */}
         <button
           onClick={() => slide("left")}
-          className="absolute left-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-black/40 border border-white/10 hover:border-white/30 backdrop-blur-md text-white hover:bg-white hover:text-black transition flex items-center justify-center z-20 shadow-xl"
+          className={`absolute left-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full border backdrop-blur-md transition-all duration-300 flex items-center justify-center z-20 shadow-[0_4px_20px_rgba(0,0,0,0.4)] ${theme.btnBg}`}
         >
           <ChevronLeft size={18} />
         </button>
 
-        {/* RIGHT ARROW BUTTON */}
+        {/* BRIGHT COLORED RIGHT ARROW BUTTON */}
         <button
           onClick={() => slide("right")}
-          className="absolute right-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-black/40 border border-white/10 hover:border-white/30 backdrop-blur-md text-white hover:bg-white hover:text-black transition flex items-center justify-center z-20 shadow-xl"
+          className={`absolute right-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full border backdrop-blur-md transition-all duration-300 flex items-center justify-center z-20 shadow-[0_4px_20px_rgba(0,0,0,0.4)] ${theme.btnBg}`}
         >
           <ChevronRight size={18} />
         </button>
