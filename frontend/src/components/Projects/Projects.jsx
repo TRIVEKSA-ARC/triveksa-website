@@ -76,7 +76,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
               <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-white/8 z-20" />
 
               {/* IMAGE WRAPPER - ON TOP, SEPARATE CONTAINER */}
-              <div className="relative h-[58%] w-full bg-black/40 flex items-center justify-center p-4 overflow-hidden border-b border-white/5">
+              <div className="relative h-[58%] w-full bg-white/90 flex items-center justify-center p-4 overflow-hidden border-b border-white/5">
                 <img
                   src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
                   alt={item.title}
