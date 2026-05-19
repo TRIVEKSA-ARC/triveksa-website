@@ -76,7 +76,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
               <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-white/8 z-20" />
 
               {/* IMAGE WRAPPER - ON TOP, SEPARATE CONTAINER */}
-              <div className="relative h-[58%] w-full bg-white/90 flex items-center justify-center p-4 overflow-hidden border-b border-white/5">
+              <div className="relative h-[58%] w-full bg-white flex items-center justify-center p-4 overflow-hidden border-b border-white/5">
                 <img
                   src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
                   alt={item.title}
@@ -85,7 +85,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
                 
                 {/* TOP BADGE */}
                 <div className="absolute left-4 top-4 z-10">
-                  <span className="rounded-full border border-white/15 bg-black/40 px-3 py-1.5 text-[9px] uppercase tracking-[0.28em] text-white/85 backdrop-blur-xl">
+                  <span className="rounded-full border border-white/15 bg-black/90 px-3 py-1.5 text-[9px] uppercase tracking-[0.28em] text-white backdrop-blur-xl">
                     Featured Project
                   </span>
                 </div>
