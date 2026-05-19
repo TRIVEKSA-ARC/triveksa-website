@@ -27,8 +27,9 @@ const ProjectSection = ({ title, items = [], theme }) => {
 
   const slide = (dir) => {
     if (!scrollRef.current) return;
+    // Adjusted slide scroll distance to cleanly skip wide cards
     scrollRef.current.scrollBy({
-      left: dir === "left" ? -300 : 300,
+      left: dir === "left" ? -500 : 500,
       behavior: "smooth",
     });
   };
@@ -52,11 +53,11 @@ const ProjectSection = ({ title, items = [], theme }) => {
         </motion.div>
       </div>
 
-      {/* ================= SLIDER ================= */}
+      {/* ================= SLIDER / GRID WRAPPER ================= */}
       <div className="relative w-full">
         <div
           ref={scrollRef}
-          className="flex items-stretch gap-6 overflow-x-auto snap-x snap-mandatory px-6 pb-2"
+          className="flex flex-row md:flex-wrap items-stretch gap-6 overflow-x-auto md:overflow-x-visible snap-x snap-mandatory px-6 pb-2"
           style={{ scrollbarWidth: "none" }}
         >
           {items.map((item) => (
@@ -70,13 +71,13 @@ const ProjectSection = ({ title, items = [], theme }) => {
               whileHover={{ y: -8 }}
               transition={{ duration: 0.4 }}
               viewport={{ once: true }}
-              className="group relative h-[480px] w-[350px] md:h-[530px] md:w-[420px] shrink-0 snap-start overflow-hidden rounded-[28px] border border-white/10 bg-[#0A0A0C] shadow-[0_24px_60px_rgba(0,0,0,0.4)] backdrop-blur-xl will-change-transform flex flex-col p-4"
+              className="group relative h-[500px] w-[360px] md:h-[540px] md:w-[calc(50%-12px)] max-w-[580px] shrink-0 snap-start overflow-hidden rounded-[28px] border border-white/10 bg-[#0A0A0C] shadow-[0_24px_60px_rgba(0,0,0,0.4)] backdrop-blur-xl will-change-transform flex flex-col p-4"
             >
               {/* SOFT INTERNAL FRAME BORDER */}
               <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-white/10 z-20" />
 
               {/* IMAGE WRAPPER - PREMIUM WITH WHITE BACKDROP PANEL */}
-              <div className="relative h-[56%] w-full bg-[#121216] rounded-[20px] border border-white/5 p-3 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-white/15">
+              <div className="relative h-[58%] w-full bg-[#121216] rounded-[20px] border border-white/5 p-3 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-white/15">
                 {/* Clean White Backplate Border/Shadow Effect Behind Image */}
                 <div className="absolute inset-3 rounded-[14px] bg-white/[0.04] border border-white/10 shadow-[0_0_30px_rgba(255,255,255,0.02)] z-0" />
                 
@@ -98,7 +99,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
               <div className="flex-1 w-full px-2 pt-5 pb-2 flex flex-col justify-between bg-transparent">
                 <div>
                   {/* Styled Project Title (matching Design00x from image) */}
-                  <h4 className="text-[20px] md:text-[22px] font-bold tracking-tight text-[#E8EDF2] line-clamp-1">
+                  <h4 className="text-[20px] md:text-[23px] font-bold tracking-tight text-[#E8EDF2] line-clamp-1">
                     {item.title}
                   </h4>
 
@@ -133,18 +134,18 @@ const ProjectSection = ({ title, items = [], theme }) => {
           ))}
         </div>
 
-        {/* LEFT ARROW */}
+        {/* LEFT ARROW (Kept hidden on md layouts when wrapping is utilized) */}
         <button
           onClick={() => slide("left")}
-          className="absolute left-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/30 text-white/75 backdrop-blur-xl transition hover:bg-white hover:text-black"
+          className="absolute left-3 top-1/2 z-20 flex md:hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/30 text-white/75 backdrop-blur-xl transition hover:bg-white hover:text-black"
         >
           <ChevronLeft size={18} />
         </button>
 
-        {/* RIGHT ARROW */}
+        {/* RIGHT ARROW (Kept hidden on md layouts when wrapping is utilized) */}
         <button
           onClick={() => slide("right")}
-          className="absolute right-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/30 text-white/75 backdrop-blur-xl transition hover:bg-white hover:text-black"
+          className="absolute right-3 top-1/2 z-20 flex md:hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/30 text-white/75 backdrop-blur-xl transition hover:bg-white hover:text-black"
         >
           <ChevronRight size={18} />
         </button>
