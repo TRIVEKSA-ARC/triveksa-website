@@ -28,7 +28,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
   const slide = (dir) => {
     if (!scrollRef.current) return;
     scrollRef.current.scrollBy({
-      left: dir === "left" ? -260 : 260,
+      left: dir === "left" ? -300 : 300,
       behavior: "smooth",
     });
   };
@@ -70,57 +70,61 @@ const ProjectSection = ({ title, items = [], theme }) => {
               whileHover={{ y: -8 }}
               transition={{ duration: 0.4 }}
               viewport={{ once: true }}
-              className="group relative h-[450px] w-[320px] md:h-[500px] md:w-[360px] shrink-0 snap-start overflow-hidden rounded-[24px] border border-white/10 bg-[#050507] shadow-[0_24px_60px_rgba(0,0,0,0.4)] backdrop-blur-xl will-change-transform flex flex-col text-left"
+              className="group relative h-[480px] w-[350px] md:h-[530px] md:w-[420px] shrink-0 snap-start overflow-hidden rounded-[28px] border border-white/10 bg-[#0A0A0C] shadow-[0_24px_60px_rgba(0,0,0,0.4)] backdrop-blur-xl will-change-transform flex flex-col p-4"
             >
-              {/* SOFT INTERNAL FRAME BORDER */}
-              <div className="pointer-events-none absolute inset-0 rounded-[24px] ring-1 ring-white/10 z-20" />
+              {/* SOFT FRAME */}
+              <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-white/8 z-20" />
 
-              {/* IMAGE WRAPPER - MATTE DARK PORT/COVER VIEW */}
-              <div className="relative h-[55%] w-full bg-[#0d0d11] overflow-hidden">
+              {/* IMAGE WRAPPER - PREMIUM WITH WHITE BACKDROP PANEL */}
+              <div className="relative h-[56%] w-full bg-[#121216] rounded-[20px] border border-white/5 p-3 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-white/15">
+                {/* Clean White Backplate Border/Shadow Effect Behind Image */}
+                <div className="absolute inset-3 rounded-[14px] bg-white/[0.04] border border-white/10 shadow-[0_0_30px_rgba(255,255,255,0.02)] z-0" />
+                
                 <img
                   src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
                   alt={item.title}
-                  className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]"
+                  className="relative z-10 h-full w-full object-contain rounded-[12px] transition duration-700 group-hover:scale-[1.03]"
                 />
                 
                 {/* TOP BADGE */}
-                <div className="absolute left-4 top-4 z-10">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#0A0A0C]/80 border border-white/10 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.18em] text-white backdrop-blur-md">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                    {title}
+                <div className="absolute left-6 top-6 z-10">
+                  <span className="rounded-full border border-white/15 bg-black/90 px-3 py-1.5 text-[9px] uppercase tracking-[0.28em] text-white backdrop-blur-xl">
+                    Featured Project
                   </span>
                 </div>
               </div>
 
-              {/* DESCRIPTION BOX - PREMIUM ACCENT AND TYPOGRAPHY */}
-              <div className="flex-1 w-full p-6 flex flex-col justify-between bg-gradient-to-b from-transparent to-white/[0.01]">
+              {/* DESCRIPTION BOX - CLEANLY NESTED UNDERNEATH */}
+              <div className="flex-1 w-full px-2 pt-5 pb-2 flex flex-col justify-between bg-transparent">
                 <div>
-                  <h4 className="text-[20px] font-bold tracking-tight text-white line-clamp-1 group-hover:text-white transition duration-300">
+                  <h4 className="text-[19px] md:text-[21px] font-bold tracking-tight text-white line-clamp-1">
                     {item.title}
                   </h4>
 
-                  <p className="mt-2 line-clamp-2 text-[13px] leading-relaxed text-white/50 group-hover:text-white/70 transition duration-300">
+                  <p className="mt-2 line-clamp-2 text-[13px] leading-6 text-white/60 group-hover:text-white/80 transition duration-300">
                     {item.desc}
                   </p>
                 </div>
 
-                {/* PREMIUM ACTIONS AREA */}
-                <div className="mt-4 flex items-center justify-between border-t border-white/5 pt-4">
-                  <span className="text-[12px] font-medium text-white/40 group-hover:text-white/80 transition duration-300 flex items-center gap-1">
-                    Preview collection
+                {/* ACTIONS */}
+                <div className="mt-4 flex items-center justify-between">
+                  <span
+                    className={`inline-flex items-center gap-2 rounded-full border border-white/10 bg-gradient-to-r ${theme.color} px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-white shadow-[0_8px_20px_rgba(0,0,0,0.16)]`}
+                  >
+                    View <Plus size={14} />
                   </span>
 
-                  <span className="flex items-center gap-1 text-[13px] font-medium text-white/80 group-hover:text-white transition duration-300">
-                    View <ChevronRight size={14} className="transform group-hover:translate-x-1 transition duration-300" />
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-black/20 text-white/85 backdrop-blur-xl transition duration-300 group-hover:bg-black/40 group-hover:text-white">
+                    <ExternalLink size={16} />
                   </span>
                 </div>
               </div>
 
-              {/* HIGH-END AMBIENT GLOW ON HOVER */}
+              {/* LIGHT HOVER GLOW LAYEOVER */}
               <div
                 className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100 z-10"
                 style={{
-                  boxShadow: `inset 0 0 40px ${theme.glow}`,
+                  boxShadow: `inset 0 0 60px ${theme.glow}`,
                 }}
               />
             </motion.a>
