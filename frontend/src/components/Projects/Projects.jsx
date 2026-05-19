@@ -72,8 +72,8 @@ const ProjectSection = ({ title, items = [], theme }) => {
               viewport={{ once: true }}
               className="group relative h-[480px] w-[350px] md:h-[530px] md:w-[420px] shrink-0 snap-start overflow-hidden rounded-[28px] border border-white/10 bg-[#0A0A0C] shadow-[0_24px_60px_rgba(0,0,0,0.4)] backdrop-blur-xl will-change-transform flex flex-col p-4"
             >
-              {/* SOFT FRAME */}
-              <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-white/8 z-20" />
+              {/* SOFT INTERNAL FRAME BORDER */}
+              <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-white/10 z-20" />
 
               {/* IMAGE WRAPPER - PREMIUM WITH WHITE BACKDROP PANEL */}
               <div className="relative h-[56%] w-full bg-[#121216] rounded-[20px] border border-white/5 p-3 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-white/15">
@@ -94,28 +94,30 @@ const ProjectSection = ({ title, items = [], theme }) => {
                 </div>
               </div>
 
-              {/* DESCRIPTION BOX - CLEANLY NESTED UNDERNEATH */}
+              {/* DESCRIPTION BOX - CLEANLY NESTED UNDERNEATH WITH CUSTOM COLORS */}
               <div className="flex-1 w-full px-2 pt-5 pb-2 flex flex-col justify-between bg-transparent">
                 <div>
-                  <h4 className="text-[19px] md:text-[21px] font-bold tracking-tight text-white line-clamp-1">
+                  {/* Styled Project Title (matching Design00x from image) */}
+                  <h4 className="text-[20px] md:text-[22px] font-bold tracking-tight text-[#E8EDF2] line-clamp-1">
                     {item.title}
                   </h4>
 
-                  <p className="mt-2 line-clamp-2 text-[13px] leading-6 text-white/60 group-hover:text-white/80 transition duration-300">
+                  {/* Styled Project Description (custom teal/cyan color) */}
+                  <p className="mt-2 line-clamp-2 text-[14px] leading-6 text-[#94A3B8] group-hover:text-[#B4C6DC] transition duration-300 font-medium">
                     {item.desc}
                   </p>
                 </div>
 
-                {/* ACTIONS */}
+                {/* ACTIONS - View Button Styled from reference */}
                 <div className="mt-4 flex items-center justify-between">
                   <span
-                    className={`inline-flex items-center gap-2 rounded-full border border-white/10 bg-gradient-to-r ${theme.color} px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-white shadow-[0_8px_20px_rgba(0,0,0,0.16)]`}
+                    className={`inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#D668FF] to-[#A02CFF] px-5 py-2 text-[11px] md:text-[12px] font-bold uppercase tracking-[0.14em] text-white shadow-[0_6px_25px_rgba(180,60,255,0.25)] transition hover:brightness-110`}
                   >
-                    View <Plus size={14} />
+                    View <Plus size={16} className="text-white/90" />
                   </span>
 
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-black/20 text-white/85 backdrop-blur-xl transition duration-300 group-hover:bg-black/40 group-hover:text-white">
-                    <ExternalLink size={16} />
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[#161618] text-[#94A3B8] backdrop-blur-xl transition duration-300 group-hover:bg-[#1C1C1F] group-hover:text-white group-hover:border-white/20">
+                    <ExternalLink size={18} />
                   </span>
                 </div>
               </div>
