@@ -70,58 +70,57 @@ const ProjectSection = ({ title, items = [], theme }) => {
               whileHover={{ y: -8 }}
               transition={{ duration: 0.4 }}
               viewport={{ once: true }}
-              className="group relative h-[450px] w-[320px] md:h-[500px] md:w-[360px] shrink-0 snap-start overflow-hidden rounded-[28px] border border-white/10 bg-[#0A0A0C] shadow-[0_18px_50px_rgba(0,0,0,0.20)] backdrop-blur-xl will-change-transform flex flex-col"
+              className="group relative h-[450px] w-[320px] md:h-[500px] md:w-[360px] shrink-0 snap-start overflow-hidden rounded-[24px] border border-white/10 bg-[#050507] shadow-[0_24px_60px_rgba(0,0,0,0.4)] backdrop-blur-xl will-change-transform flex flex-col text-left"
             >
-              {/* SOFT FRAME */}
-              <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-white/8 z-20" />
+              {/* SOFT INTERNAL FRAME BORDER */}
+              <div className="pointer-events-none absolute inset-0 rounded-[24px] ring-1 ring-white/10 z-20" />
 
-              {/* IMAGE WRAPPER - ON TOP, SEPARATE CONTAINER */}
-              <div className="relative h-[58%] w-full bg-white flex items-center justify-center p-4 overflow-hidden border-b border-white/5">
+              {/* IMAGE WRAPPER - MATTE DARK PORT/COVER VIEW */}
+              <div className="relative h-[55%] w-full bg-[#0d0d11] overflow-hidden">
                 <img
                   src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
                   alt={item.title}
-                  className="h-full w-full object-contain transition duration-700 group-hover:scale-[1.04]"
+                  className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]"
                 />
                 
                 {/* TOP BADGE */}
                 <div className="absolute left-4 top-4 z-10">
-                  <span className="rounded-full border border-white/15 bg-black/90 px-3 py-1.5 text-[9px] uppercase tracking-[0.28em] text-white backdrop-blur-xl">
-                    Featured Project
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#0A0A0C]/80 border border-white/10 px-3 py-1 text-[9px] font-medium uppercase tracking-[0.18em] text-white backdrop-blur-md">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                    {title}
                   </span>
                 </div>
               </div>
 
-              {/* DESCRIPTION BOX - CLEANLY NESTED UNDERNEATH */}
-              <div className="flex-1 w-full p-5 md:p-6 flex flex-col justify-between bg-white/[0.02] transition duration-500 group-hover:bg-white/[0.06]">
+              {/* DESCRIPTION BOX - PREMIUM ACCENT AND TYPOGRAPHY */}
+              <div className="flex-1 w-full p-6 flex flex-col justify-between bg-gradient-to-b from-transparent to-white/[0.01]">
                 <div>
-                  <h4 className="text-[18px] md:text-[20px] font-semibold tracking-[-0.02em] text-white line-clamp-1">
+                  <h4 className="text-[20px] font-bold tracking-tight text-white line-clamp-1 group-hover:text-white transition duration-300">
                     {item.title}
                   </h4>
 
-                  <p className="mt-2 line-clamp-2 text-[13px] leading-6 text-white/70 group-hover:text-white/85 transition duration-300">
+                  <p className="mt-2 line-clamp-2 text-[13px] leading-relaxed text-white/50 group-hover:text-white/70 transition duration-300">
                     {item.desc}
                   </p>
                 </div>
 
-                {/* ACTIONS */}
-                <div className="mt-4 flex items-center justify-between">
-                  <span
-                    className={`inline-flex items-center gap-2 rounded-full border border-white/10 bg-gradient-to-r ${theme.color} px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-white shadow-[0_8px_20px_rgba(0,0,0,0.16)]`}
-                  >
-                    View <Plus size={14} />
+                {/* PREMIUM ACTIONS AREA */}
+                <div className="mt-4 flex items-center justify-between border-t border-white/5 pt-4">
+                  <span className="text-[12px] font-medium text-white/40 group-hover:text-white/80 transition duration-300 flex items-center gap-1">
+                    Preview collection
                   </span>
 
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-black/20 text-white/85 backdrop-blur-xl transition duration-300 group-hover:bg-black/40 group-hover:text-white">
-                    <ExternalLink size={16} />
+                  <span className="flex items-center gap-1 text-[13px] font-medium text-white/80 group-hover:text-white transition duration-300">
+                    View <ChevronRight size={14} className="transform group-hover:translate-x-1 transition duration-300" />
                   </span>
                 </div>
               </div>
 
-              {/* LIGHT HOVER GLOW LAYEOVER */}
+              {/* HIGH-END AMBIENT GLOW ON HOVER */}
               <div
                 className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100 z-10"
                 style={{
-                  boxShadow: `inset 0 0 60px ${theme.glow}`,
+                  boxShadow: `inset 0 0 40px ${theme.glow}`,
                 }}
               />
             </motion.a>
