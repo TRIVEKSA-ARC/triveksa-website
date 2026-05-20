@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast"; // ✅ ADD THIS
 import AnimatedCursor from "./components/AnimatedCursor";
 import SmoothScroll from "./components/SmoothScroll";
+import ScrollProgress from "./components/ScrollProgress";
 
 // your imports
 import Hero from "./components/Hero/Hero";
@@ -47,6 +48,8 @@ function App() {
       />
 
       <AnimatedCursor />
+
+      <ScrollProgress />
 
       <SmoothScroll>
         <Router>
