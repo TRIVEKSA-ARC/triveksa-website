@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import Reveal from "../Reveal";
+import MagneticButton from "../MagneticButton";
 
 function Hero() {
   const services = [
@@ -91,19 +92,19 @@ function Hero() {
             {/* CTA BUTTONS */}
             <Reveal delay={0.45}>
               <div className="mt-10 flex flex-wrap gap-4">
-                <a
+                <MagneticButton
                   href="#projects"
                   className="inline-flex items-center justify-center rounded-full border border-amber-300/30 bg-gradient-to-r from-[#f8d36a] to-[#d89b1d] px-8 py-3.5 text-[11px] font-bold uppercase tracking-[0.28em] text-black shadow-[0_12px_32px_rgba(216,155,29,0.3)] transition-all duration-300 hover:-translate-y-0.5"
                 >
                   View Projects
-                </a>
+                </MagneticButton>
 
-                <a
+                <MagneticButton
                   href="#contact"
                   className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/[0.1] px-8 py-3.5 text-[11px] font-bold uppercase tracking-[0.28em] text-white transition-all duration-300 hover:bg-white/[0.15]"
                 >
                   Contact Agency
-                </a>
+                </MagneticButton>
               </div>
             </Reveal>
           </div>
