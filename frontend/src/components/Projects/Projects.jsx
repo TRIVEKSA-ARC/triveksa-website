@@ -85,7 +85,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
                 <img
                   src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
                   alt={item.title}
-                  className="relative z-10 h-full w-full object-contain rounded-[16px] transition duration-700 group-hover:scale-[1.03]"
+                  className="relative z-10 h-full w-full object-contain rounded-[20px] transition duration-700 group-hover:scale-[1.03]"
                 />
                 
                 {/* TOP BADGE */}
