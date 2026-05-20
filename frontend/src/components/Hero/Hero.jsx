@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Reveal from "../Reveal";
 
 function Hero() {
   const services = [
@@ -33,168 +34,147 @@ function Hero() {
           <div className="lg:col-span-7 flex flex-col justify-center">
             
             {/* TOP LABEL */}
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-              className="mb-6 flex items-center gap-4"
-            >
-              <span className="h-px w-12 bg-gradient-to-r from-amber-400 to-transparent" />
-              <p className="text-[11px] sm:text-[12px] uppercase tracking-[0.45em] text-white/80">
-                Hi, I am
-              </p>
-            </motion.div>
+            <Reveal>
+              <div className="mb-6 flex items-center gap-4">
+                <span className="h-px w-12 bg-gradient-to-r from-amber-400 to-transparent" />
+                <p className="text-[11px] sm:text-[12px] uppercase tracking-[0.45em] text-white/80">
+                  Hi, I am
+                </p>
+              </div>
+            </Reveal>
 
             {/* NAME */}
-            <motion.h1
-              initial={{ opacity: 0, y: 26 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease: "easeOut" }}
-              className="leading-[0.9] uppercase"
-            >
-              <span className="block text-[15vw] sm:text-[88px] md:text-[110px] xl:text-[138px] font-black tracking-[-0.06em] text-white">
-                Vinod
-              </span>
-              <span className="block text-[15vw] sm:text-[88px] md:text-[110px] xl:text-[138px] font-black tracking-[-0.06em] bg-gradient-to-r from-[#fff4d6] via-[#f7d774] to-[#d89b1d] bg-clip-text text-transparent">
-                Kumar
-              </span>
-            </motion.h1>
+            <Reveal>
+              <h1 className="leading-[0.9] uppercase">
+                <span className="block text-[15vw] sm:text-[88px] md:text-[110px] xl:text-[138px] font-black tracking-[-0.06em] text-white">
+                  Vinod
+                </span>
+                <span className="block text-[15vw] sm:text-[88px] md:text-[110px] xl:text-[138px] font-black tracking-[-0.06em] bg-gradient-to-r from-[#fff4d6] via-[#f7d774] to-[#d89b1d] bg-clip-text text-transparent">
+                  Kumar
+                </span>
+              </h1>
+            </Reveal>
 
             {/* AGENCY LINE */}
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.7 }}
-              className="mt-6"
-            >
-              <div className="inline-flex items-center rounded-full border border-white/20 bg-white/[0.05] px-4 py-2">
-                <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.32em] text-white/90 font-medium">
-                  VK Digital Solutions
-                </span>
+            <Reveal delay={0.15}>
+              <div className="mt-6">
+                <div className="inline-flex items-center rounded-full border border-white/20 bg-white/[0.05] px-4 py-2">
+                  <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.32em] text-white/90 font-medium">
+                    VK Digital Solutions
+                  </span>
+                </div>
               </div>
-            </motion.div>
+            </Reveal>
 
             {/* DESCRIPTION */}
-            <motion.p
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="mt-7 max-w-2xl text-[15px] leading-8 text-white md:text-[17px] font-light"
-            >
-              We build premium digital experiences for brands, startups, and modern businesses through strategic development, refined design systems, and high-converting visual storytelling.
-            </motion.p>
+            <Reveal delay={0.25}>
+              <p className="mt-7 max-w-2xl text-[15px] leading-8 text-white md:text-[17px] font-light">
+                We build premium digital experiences for brands, startups, and modern businesses through strategic development, refined design systems, and high-converting visual storytelling.
+              </p>
+            </Reveal>
 
             {/* ROLE STRIP */}
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.42, duration: 0.8 }}
-              className="mt-8 flex flex-wrap gap-3"
-            >
-              <span className="rounded-full border border-amber-300/30 bg-amber-300/10 px-4 py-2 text-[10px] uppercase tracking-[0.28em] text-amber-200 font-bold">
-                Full Stack Development
-              </span>
-              <span className="rounded-full border border-white/20 bg-white/[0.05] px-4 py-2 text-[10px] uppercase tracking-[0.28em] text-white/90">
-                UI/UX Design
-              </span>
-              <span className="rounded-full border border-white/20 bg-white/[0.05] px-4 py-2 text-[10px] uppercase tracking-[0.28em] text-white/90">
-                Video Editing
-              </span>
-            </motion.div>
+            <Reveal delay={0.35}>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <span className="rounded-full border border-amber-300/30 bg-amber-300/10 px-4 py-2 text-[10px] uppercase tracking-[0.28em] text-amber-200 font-bold">
+                  Full Stack Development
+                </span>
+                <span className="rounded-full border border-white/20 bg-white/[0.05] px-4 py-2 text-[10px] uppercase tracking-[0.28em] text-white/90">
+                  UI/UX Design
+                </span>
+                <span className="rounded-full border border-white/20 bg-white/[0.05] px-4 py-2 text-[10px] uppercase tracking-[0.28em] text-white/90">
+                  Video Editing
+                </span>
+              </div>
+            </Reveal>
 
-            {/* CTA */}
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.55, duration: 0.8 }}
-              className="mt-10 flex flex-wrap gap-4"
-            >
-              <a
-                href="#projects"
-                className="inline-flex items-center justify-center rounded-full border border-amber-300/30 bg-gradient-to-r from-[#f8d36a] to-[#d89b1d] px-8 py-3.5 text-[11px] font-bold uppercase tracking-[0.28em] text-black shadow-[0_12px_32px_rgba(216,155,29,0.3)] transition-all duration-300 hover:-translate-y-0.5"
-              >
-                View Projects
-              </a>
+            {/* CTA BUTTONS */}
+            <Reveal delay={0.45}>
+              <div className="mt-10 flex flex-wrap gap-4">
+                <a
+                  href="#projects"
+                  className="inline-flex items-center justify-center rounded-full border border-amber-300/30 bg-gradient-to-r from-[#f8d36a] to-[#d89b1d] px-8 py-3.5 text-[11px] font-bold uppercase tracking-[0.28em] text-black shadow-[0_12px_32px_rgba(216,155,29,0.3)] transition-all duration-300 hover:-translate-y-0.5"
+                >
+                  View Projects
+                </a>
 
-              <a
-                href="#contact"
-                className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/[0.1] px-8 py-3.5 text-[11px] font-bold uppercase tracking-[0.28em] text-white transition-all duration-300 hover:bg-white/[0.15]"
-              >
-                Contact Agency
-              </a>
-            </motion.div>
+                <a
+                  href="#contact"
+                  className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/[0.1] px-8 py-3.5 text-[11px] font-bold uppercase tracking-[0.28em] text-white transition-all duration-300 hover:bg-white/[0.15]"
+                >
+                  Contact Agency
+                </a>
+              </div>
+            </Reveal>
           </div>
 
           {/* RIGHT SIDE - CAPABILITIES CARD */}
           <div className="lg:col-span-5 flex items-center">
-            <motion.div
-              initial={{ opacity: 0, x: 28 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.9, delay: 0.25 }}
-              className="w-full rounded-[28px] border border-white/10 bg-black p-4 shadow-[0_25px_60px_rgba(0,0,0,0.3)] md:p-6"
-            >
-              <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-4">
-                <div>
-                  <p className="text-[10px] uppercase tracking-[0.35em] text-white/60 font-bold">
-                    Agency Capabilities
-                  </p>
-                  <h3 className="mt-2 text-xl font-bold text-white tracking-tight">
-                    Service Overview
-                  </h3>
+            <Reveal delay={0.3}>
+              <div className="w-full rounded-[28px] border border-white/10 bg-black p-4 shadow-[0_25px_60px_rgba(0,0,0,0.3)] md:p-6">
+                <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-4">
+                  <div>
+                    <p className="text-[10px] uppercase tracking-[0.35em] text-white/60 font-bold">
+                      Agency Capabilities
+                    </p>
+                    <h3 className="mt-2 text-xl font-bold text-white tracking-tight">
+                      Service Overview
+                    </h3>
+                  </div>
+
+                  <div className="flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-400/10 px-3 py-1.5">
+                    <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-[10px] uppercase tracking-[0.22em] text-emerald-300 font-bold">
+                      Available
+                    </span>
+                  </div>
                 </div>
 
-                <div className="flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-400/10 px-3 py-1.5">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-[10px] uppercase tracking-[0.22em] text-emerald-300 font-bold">
-                    Available
-                  </span>
-                </div>
-              </div>
+                <div className="space-y-3">
+                  {services.map((item, i) => (
+                    <motion.a
+                      href="#projects"
+                      key={item.id}
+                      initial={{ opacity: 0, y: 18 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.45 + i * 0.12, duration: 0.6 }}
+                      className="group block rounded-[22px] border border-white/10 bg-white/[0.03] backdrop-blur-md p-5 transition-all duration-300 hover:border-amber-300/40 hover:bg-white/[0.08]"
+                    >
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <div className="mb-2 flex items-center gap-3">
+                            <span className="text-[10px] font-mono font-bold text-amber-400">
+                              {item.id}
+                            </span>
+                            <span className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-medium">
+                              {item.label}
+                            </span>
+                          </div>
 
-              <div className="space-y-3">
-                {services.map((item, i) => (
-                  <motion.a
-                    href="#projects"
-                    key={item.id}
-                    initial={{ opacity: 0, y: 18 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.45 + i * 0.12, duration: 0.6 }}
-                    className="group block rounded-[22px] border border-white/10 bg-white/[0.03] backdrop-blur-md p-5 transition-all duration-300 hover:border-amber-300/40 hover:bg-white/[0.08]"
-                  >
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <div className="mb-2 flex items-center gap-3">
-                          <span className="text-[10px] font-mono font-bold text-amber-400">
-                            {item.id}
-                          </span>
-                          <span className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-medium">
-                            {item.label}
-                          </span>
+                          <h4 className="text-lg font-bold tracking-tight text-white transition-colors duration-300 group-hover:text-amber-200">
+                            {item.title}
+                          </h4>
                         </div>
 
-                        <h4 className="text-lg font-bold tracking-tight text-white transition-colors duration-300 group-hover:text-amber-200">
-                          {item.title}
-                        </h4>
+                        <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/[0.05] text-white transition-all duration-300 group-hover:border-amber-400 group-hover:text-amber-400 group-hover:rotate-[-45deg]">
+                          →
+                        </div>
                       </div>
+                    </motion.a>
+                  ))}
+                </div>
 
-                      <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/[0.05] text-white transition-all duration-300 group-hover:border-amber-400 group-hover:text-amber-400 group-hover:rotate-[-45deg]">
-                        →
-                      </div>
-                    </div>
-                  </motion.a>
-                ))}
+                {/* AGENCY NOTE */}
+                <div className="mt-4 rounded-[22px] border border-white/10 bg-black/[0.06] p-5">
+                  <p className="text-[10px] uppercase tracking-[0.34em] text-white/50 font-bold">
+                    Agency Note
+                  </p>
+                  <p className="mt-3 text-sm leading-7 text-white font-medium">
+                    We create professional brand-first digital systems that look elegant, feel modern, and perform with purpose.
+                  </p>
+                </div>
               </div>
-
-              {/* AGENCY NOTE */}
-              <div className="mt-4 rounded-[22px] border border-white/10 bg-black/[0.06] p-5">
-                <p className="text-[10px] uppercase tracking-[0.34em] text-white/50 font-bold">
-                  Agency Note
-                </p>
-                <p className="mt-3 text-sm leading-7 text-white font-medium">
-                  We create professional brand-first digital systems that look elegant, feel modern, and perform with purpose.
-                </p>
-              </div>
-            </motion.div>
+            </Reveal>
           </div>
         </div>
       </section>
