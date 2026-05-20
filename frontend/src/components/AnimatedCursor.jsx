@@ -28,7 +28,7 @@ function AnimatedCursor() {
         background: `
           radial-gradient(
             600px circle at ${position.x}px ${position.y}px,
-            rgba(80, 180, 255, 0.18),
+            rgba(255, 200, 80, 0.20),
             rgba(0, 140, 255, 0.12),
             rgba(0, 80, 180, 0.08),
             transparent 80%
