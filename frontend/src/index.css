@@ -60,32 +60,3 @@ html.lenis body {
   overflow: hidden;
 }
 
-/* ================= FLOATING PLANETS ================= */
-
-@keyframes floatPlanet {
-  0% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-25px);
-  }
-
-  100% {
-    transform: translateY(0px);
-  }
-}
-
-@keyframes floatPlanetTwo {
-  0% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(18px);
-  }
-
-  100% {
-    transform: translateY(0px);
-  }
-}
