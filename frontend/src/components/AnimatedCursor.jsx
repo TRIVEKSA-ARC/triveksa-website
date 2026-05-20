@@ -31,7 +31,7 @@ function AnimatedCursor() {
             rgba(255,255,255,0.15),
             rgba(0, 140, 255, 0.12),
             rgba(0, 80, 180, 0.08),
-            transparent 90%
+            transparent 60%
           )
         `,
       }}
