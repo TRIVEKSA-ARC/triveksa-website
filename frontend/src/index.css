@@ -31,6 +31,15 @@ body {
   animation: fadeIn 0.5s ease-out;
 }
 
+/* ================= CUSTOM CURSOR ================= */
 
-  /* Background Video */
+body {
+  cursor: none;
+}
+
+@media (max-width: 768px) {
+  body {
+    cursor: auto;
+  }
+}
  

@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast"; // ✅ ADD THIS
+import AnimatedCursor from "./components/AnimatedCursor";
 
 // your imports
 import Hero from "./components/Hero/Hero";
@@ -43,6 +44,8 @@ function App() {
           duration: 3000,
         }}
       />
+
+      <AnimatedCursor />
 
       <Router>
         <AuthProvider>
