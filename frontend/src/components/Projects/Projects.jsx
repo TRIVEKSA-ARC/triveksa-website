@@ -58,7 +58,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
       <div className="relative w-full px-6">
         <div
           ref={scrollRef}
-          className="flex flex-row items-stretch gap-6 overflow-x-auto snap-x snap-mandatory pb-4 scroll-smooth"
+          className="flex flex-row items-stretch gap-6 overflow-x-auto flex-nowrap snap-x snap-mandatory pb-6 scroll-smooth"
           style={{ scrollbarWidth: "none" }}
         >
           {items.map((item) => (
@@ -72,15 +72,15 @@ const ProjectSection = ({ title, items = [], theme }) => {
               whileHover={{ y: -8 }}
               transition={{ duration: 0.4 }}
               viewport={{ once: true }}
-              className="group relative h-[500px] w-[85vw] md:h-[540px] md:w-[calc(50%-12px)] shrink-0 snap-start overflow-hidden rounded-[28px] border border-white/10 bg-[#0A0A0C] shadow-[0_24px_60px_rgba(0,0,0,0.4)] backdrop-blur-xl will-change-transform flex flex-col p-4"
+              className="group relative h-[500px] w-[85vw] md:h-[540px] md:w-[calc(50%-12px)] shrink-0 snap-start overflow-hidden rounded-[28px] border border-white/[0.08] bg-[#0D0E12] shadow-[0_32px_70px_-15px_rgba(0,0,0,0.8)] backdrop-blur-xl will-change-transform flex flex-col p-4"
             >
               {/* SOFT INTERNAL FRAME BORDER */}
-              <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-white/10 z-20" />
+              <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-white/5 z-20" />
 
-              {/* IMAGE WRAPPER - PREMIUM WITH WHITE BACKDROP PANEL */}
-              <div className="relative h-[58%] w-full bg-[#ffffff] rounded-[20px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-white/15">
-                {/* Clean White Backplate Border/Shadow Effect Behind Image */}
-                <div className="absolute inset-3 rounded-[14px] bg-white/[0.04] border border-white/10 shadow-[0_0_30px_rgba(255,255,255,0.02)] z-0" />
+              {/* IMAGE WRAPPER - MATTE BLACK PANEL BACKGROUND TO MATCH APP IMAGES */}
+              <div className="relative h-[58%] w-full bg-[#181920] rounded-[20px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-white/15">
+                {/* Clean Backplate Border/Shadow Effect Behind Image */}
+                <div className="absolute inset-3 rounded-[14px] bg-white/[0.02] border border-white/5 shadow-[0_0_30px_rgba(0,0,0,0.2)] z-0" />
                 
                 <img
                   src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
@@ -90,7 +90,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
                 
                 {/* TOP BADGE */}
                 <div className="absolute left-6 top-6 z-10">
-                  <span className="rounded-full border border-white/15 bg-black/90 px-3 py-1.5 text-[9px] uppercase tracking-[0.28em] text-white backdrop-blur-xl">
+                  <span className="rounded-full border border-white/10 bg-black/80 px-3 py-1.5 text-[9px] uppercase tracking-[0.28em] text-white/90 backdrop-blur-xl">
                     Featured Project
                   </span>
                 </div>
@@ -100,12 +100,12 @@ const ProjectSection = ({ title, items = [], theme }) => {
               <div className="flex-1 w-full px-2 pt-5 pb-2 flex flex-col justify-between bg-transparent">
                 <div>
                   {/* Styled Project Title */}
-                  <h4 className="text-[20px] md:text-[23px] font-bold tracking-tight text-[#E8EDF2] line-clamp-1">
+                  <h4 className="text-[20px] md:text-[23px] font-bold tracking-tight text-[#F1F5F9] line-clamp-1">
                     {item.title}
                   </h4>
 
                   {/* Styled Project Description */}
-                  <p className="mt-2 line-clamp-2 text-[14px] leading-6 text-[#94A3B8] group-hover:text-[#B4C6DC] transition duration-300 font-medium">
+                  <p className="mt-2 line-clamp-2 text-[14px] leading-6 text-[#94A3B8] group-hover:text-[#CBD5E1] transition duration-300 font-medium">
                     {item.desc}
                   </p>
                 </div>
@@ -118,7 +118,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
                     View <Plus size={16} className="text-white/90" />
                   </span>
 
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[#161618] text-[#94A3B8] backdrop-blur-xl transition duration-300 group-hover:bg-[#1C1C1F] group-hover:text-white group-hover:border-white/20">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] backdrop-blur-xl transition duration-300 group-hover:bg-[#1E2028] group-hover:text-white group-hover:border-white/20">
                     <ExternalLink size={18} />
                   </span>
                 </div>
@@ -135,18 +135,18 @@ const ProjectSection = ({ title, items = [], theme }) => {
           ))}
         </div>
 
-        {/* LEFT ARROW ARROW CONTROL BUTTON */}
+        {/* LEFT ARROW CONTROL BUTTON */}
         <button
           onClick={() => slide("left")}
-          className="absolute left-0 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/50 text-white/75 backdrop-blur-xl transition hover:bg-white hover:text-black shadow-lg"
+          className="absolute left-0 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/60 text-white/80 backdrop-blur-xl transition hover:bg-white hover:text-black shadow-2xl"
         >
           <ChevronLeft size={18} />
         </button>
 
-        {/* RIGHT ARROW ARROW CONTROL BUTTON */}
+        {/* RIGHT ARROW CONTROL BUTTON */}
         <button
           onClick={() => slide("right")}
-          className="absolute right-0 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/50 text-white/75 backdrop-blur-xl transition hover:bg-white hover:text-black shadow-lg"
+          className="absolute right-0 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/60 text-white/80 backdrop-blur-xl transition hover:bg-white hover:text-black shadow-2xl"
         >
           <ChevronRight size={18} />
         </button>
