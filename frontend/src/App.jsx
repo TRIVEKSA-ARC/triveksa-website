@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import LoadingScreen from "./components/LoadingScreen";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast"; // ✅ ADD THIS
 import AnimatedCursor from "./components/AnimatedCursor";
@@ -38,20 +36,8 @@ function Home() {
 
 /* ================= APP ================= */
 function App() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 3500);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <>
-      {loading && <LoadingScreen />}
-      
       {/* ✅ TOASTER (ADD ONCE) */}
       <Toaster
         position="top-right"
