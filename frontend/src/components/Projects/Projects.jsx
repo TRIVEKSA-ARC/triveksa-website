@@ -66,7 +66,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
         {/* HORIZONTAL CARDS TRACK CONTAINER */}
         <div
           ref={scrollRef}
-          className="flex flex-row items-stretch gap-8 overflow-x-auto flex-nowrap snap-x snap-mandatory pb-8 scroll-smooth"
+          className="flex flex-row items-stretch gap-6 overflow-x-auto flex-nowrap snap-x snap-mandatory pb-8 scroll-smooth"
           style={{ scrollbarWidth: "none" }}
         >
           {items.map((item, index) => (
@@ -77,7 +77,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
                 rel="noopener noreferrer"
                 whileHover={{ y: -8 }}
                 transition={{ duration: 0.4 }}
-                className="group relative h-[510px] w-[82vw] md:h-[540px] md:w-[400px] shrink-0 snap-start overflow-hidden rounded-[28px] border border-cyan-500/10 bg-[#0B0D14] shadow-[0_20px_50px_rgba(56,189,248,0.15)] backdrop-blur-xl will-change-transform flex flex-col p-4"
+                className="group relative h-[510px] w-[82vw] md:w-[360px] lg:w-[376px] shrink-0 snap-start overflow-hidden rounded-[28px] border border-cyan-500/10 bg-[#0B0D14] shadow-[0_20px_50px_rgba(56,189,248,0.15)] backdrop-blur-xl will-change-transform flex flex-col p-4"
               >
                 {/* SOFT INTERNAL FRAME BORDER */}
                 <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-white/5 z-20" />
@@ -103,7 +103,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
                 {/* DESCRIPTION BOX */}
                 <div className="flex-1 w-full px-2 pt-5 pb-2 flex flex-col justify-between bg-transparent">
                   <div>
-                    <h4 className="text-[20px] md:text-[23px] font-bold tracking-tight text-[#F1F5F9] line-clamp-1">
+                    <h4 className="text-[20px] md:text-[22px] font-bold tracking-tight text-[#F1F5F9] line-clamp-1">
                       {item.title}
                     </h4>
 
