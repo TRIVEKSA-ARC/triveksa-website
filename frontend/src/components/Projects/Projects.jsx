@@ -36,9 +36,9 @@ const ProjectSection = ({ title, items = [], theme }) => {
   };
 
   return (
-    <div className="mb-24 w-full">
+    <div className="mb-28 w-full">
       {/* HEADER */}
-      <div className="mx-auto mb-8 max-w-7xl px-6">
+      <div className="mx-auto mb-10 max-w-7xl px-8">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -54,11 +54,21 @@ const ProjectSection = ({ title, items = [], theme }) => {
         </motion.div>
       </div>
 
-      {/* ================= SLIDER WRAPPER ================= */}
-      <div className="relative w-full px-6">
+      {/* ================= SLIDER WRAPPER CONTAINER ================= */}
+      <div className="mx-auto max-w-7xl px-12 relative w-full">
+        
+        {/* LEFT ARROW CONTROL BUTTON (Positioned safely outside container to avoid crowding) */}
+        <button
+          onClick={() => slide("left")}
+          className="absolute -left-4 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-white hover:text-black hover:scale-105 shadow-[0_0_20px_rgba(56,189,248,0.2)]"
+        >
+          <ChevronLeft size={20} />
+        </button>
+
+        {/* HORIZONTAL CARDS TRACK CONTAINER */}
         <div
           ref={scrollRef}
-          className="flex flex-row items-stretch gap-6 overflow-x-auto flex-nowrap snap-x snap-mandatory pb-6 scroll-smooth"
+          className="flex flex-row items-stretch gap-8 overflow-x-auto flex-nowrap snap-x snap-mandatory pb-8 scroll-smooth"
           style={{ scrollbarWidth: "none" }}
         >
           {items.map((item) => (
@@ -72,15 +82,15 @@ const ProjectSection = ({ title, items = [], theme }) => {
               whileHover={{ y: -8 }}
               transition={{ duration: 0.4 }}
               viewport={{ once: true }}
-              className="group relative h-[500px] w-[85vw] md:h-[540px] md:w-[calc(50%-12px)] shrink-0 snap-start overflow-hidden rounded-[28px] border border-white/[0.08] bg-[#0D0E12] shadow-[0_32px_70px_-15px_rgba(0,0,0,0.8)] backdrop-blur-xl will-change-transform flex flex-col p-4"
+              className="group relative h-[510px] w-[82vw] md:h-[540px] md:w-[calc(50%-16px)] shrink-0 snap-start overflow-hidden rounded-[28px] border border-cyan-500/10 bg-[#0B0D14] shadow-[0_20px_50px_rgba(56,189,248,0.15)] backdrop-blur-xl will-change-transform flex flex-col p-4"
             >
               {/* SOFT INTERNAL FRAME BORDER */}
               <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-white/5 z-20" />
 
               {/* IMAGE WRAPPER - MATTE BLACK PANEL BACKGROUND TO MATCH APP IMAGES */}
-              <div className="relative h-[58%] w-full bg-[#181920] rounded-[20px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-white/15">
+              <div className="relative h-[58%] w-full bg-[#141622] rounded-[20px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-cyan-500/20">
                 {/* Clean Backplate Border/Shadow Effect Behind Image */}
-                <div className="absolute inset-3 rounded-[14px] bg-white/[0.02] border border-white/5 shadow-[0_0_30px_rgba(0,0,0,0.2)] z-0" />
+                <div className="absolute inset-3 rounded-[14px] bg-white/[0.01] border border-white/5 shadow-[0_0_30px_rgba(0,0,0,0.4)] z-0" />
                 
                 <img
                   src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
@@ -118,7 +128,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
                     View <Plus size={16} className="text-white/90" />
                   </span>
 
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] backdrop-blur-xl transition duration-300 group-hover:bg-[#1E2028] group-hover:text-white group-hover:border-white/20">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] backdrop-blur-xl transition duration-300 group-hover:bg-[#1E2028] group-hover:text-white group-hover:border-cyan-500/30">
                     <ExternalLink size={18} />
                   </span>
                 </div>
@@ -135,21 +145,14 @@ const ProjectSection = ({ title, items = [], theme }) => {
           ))}
         </div>
 
-        {/* LEFT ARROW CONTROL BUTTON */}
-        <button
-          onClick={() => slide("left")}
-          className="absolute left-0 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/60 text-white/80 backdrop-blur-xl transition hover:bg-white hover:text-black shadow-2xl"
-        >
-          <ChevronLeft size={18} />
-        </button>
-
-        {/* RIGHT ARROW CONTROL BUTTON */}
+        {/* RIGHT ARROW CONTROL BUTTON (Positioned safely outside container to avoid crowding) */}
         <button
           onClick={() => slide("right")}
-          className="absolute right-0 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/60 text-white/80 backdrop-blur-xl transition hover:bg-white hover:text-black shadow-2xl"
+          className="absolute -right-4 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-white hover:text-black hover:scale-105 shadow-[0_0_20px_rgba(56,189,248,0.2)]"
         >
-          <ChevronRight size={18} />
+          <ChevronRight size={20} />
         </button>
+
       </div>
     </div>
   );
