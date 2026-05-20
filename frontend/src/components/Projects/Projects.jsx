@@ -34,7 +34,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
   };
 
   return (
-    <div className="mb-20 md:mb-28 w-full">
+    <div className="mb-16 md:mb-28 w-full">
       {/* HEADER */}
       <div className="mx-auto mb-6 md:mb-10 max-w-7xl px-6 md:px-8">
         <motion.div
@@ -55,7 +55,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
       {/* ================= SLIDER WRAPPER CONTAINER ================= */}
       <div className="mx-auto max-w-7xl px-4 md:px-12 relative w-full">
         
-        {/* LEFT ARROW CONTROL BUTTON - Hidden on Mobile Touch Screens */}
+        {/* DESKTOP LEFT ARROW CONTROL BUTTON */}
         <button
           onClick={() => slide("left")}
           className="hidden md:flex absolute -left-4 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-white hover:text-black hover:scale-105 shadow-[0_0_20px_rgba(56,189,248,0.2)]"
@@ -66,7 +66,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
         {/* HORIZONTAL CARDS TRACK CONTAINER */}
         <div
           ref={scrollRef}
-          className="flex flex-row items-stretch gap-4 md:gap-6 overflow-x-auto flex-nowrap snap-x snap-mandatory pb-8 scroll-smooth px-2 md:px-0"
+          className="flex flex-row items-stretch gap-4 md:gap-6 overflow-x-auto flex-nowrap snap-x snap-mandatory pb-6 md:pb-8 scroll-smooth px-2 md:px-0"
           style={{ 
             scrollbarWidth: "none",
             WebkitOverflowScrolling: "touch" 
@@ -141,13 +141,32 @@ const ProjectSection = ({ title, items = [], theme }) => {
           ))}
         </div>
 
-        {/* RIGHT ARROW CONTROL BUTTON - Hidden on Mobile Touch Screens */}
+        {/* DESKTOP RIGHT ARROW CONTROL BUTTON */}
         <button
           onClick={() => slide("right")}
           className="hidden md:flex absolute -right-4 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-white hover:text-black hover:scale-105 shadow-[0_0_20px_rgba(56,189,248,0.2)]"
         >
           <ChevronRight size={20} />
         </button>
+
+        {/* MOBILE CONTROLS FOOTER (Visible only on screens below md breakpoint) */}
+        <div className="flex md:hidden items-center justify-center gap-6 mt-2">
+          <button
+            onClick={() => slide("left")}
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[#0B0D14] text-white/80 active:scale-95 transition"
+          >
+            <ChevronLeft size={18} />
+          </button>
+          <span className="text-[11px] uppercase tracking-[0.2em] text-white/40 font-medium">
+            Swipe or Tap
+          </span>
+          <button
+            onClick={() => slide("right")}
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[#0B0D14] text-white/80 active:scale-95 transition"
+          >
+            <ChevronRight size={18} />
+          </button>
+        </div>
 
       </div>
     </div>
@@ -195,7 +214,7 @@ function Projects() {
               </span>
             </motion.h2>
 
-            <p className="mx-auto mt-4 max-w-2xl text-[11px] md:text-[14px] uppercase tracking-[0.22em] md:tracking-[0.28em] leading-6 md:leading-7 text-white/90 low-weight">
+            <p className="mx-auto mt-4 max-w-2xl text-[11px] md:text-[14px] uppercase tracking-[0.22em] md:tracking-[0.28em] leading-6 md:leading-7 text-white/90">
               A refined collection of development, design, and editing projects crafted with detail and purpose
             </p>
           </motion.div>
