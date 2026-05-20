@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast"; // ✅ ADD THIS
 import AnimatedCursor from "./components/AnimatedCursor";
+import SmoothScroll from "./components/SmoothScroll";
 
 // your imports
 import Hero from "./components/Hero/Hero";
@@ -47,31 +48,33 @@ function App() {
 
       <AnimatedCursor />
 
-      <Router>
-        <AuthProvider>
-          <FooterProvider>
-            <ProjectProvider>
-              <AboutProvider>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/login" element={<AdminLogin />} />
-                  <Route path="/forgot-password" element={<ForgotPassword />} />
-                  <Route path="/reset-password/:token" element={<ResetPassword />} />
+      <SmoothScroll>
+        <Router>
+          <AuthProvider>
+            <FooterProvider>
+              <ProjectProvider>
+                <AboutProvider>
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/login" element={<AdminLogin />} />
+                    <Route path="/forgot-password" element={<ForgotPassword />} />
+                    <Route path="/reset-password/:token" element={<ResetPassword />} />
 
-                  <Route
-                    path="/admin/*"
-                    element={
-                      <ProtectedRoute>
-                        <Admin />
-                      </ProtectedRoute>
-                    }
-                  />
-                </Routes>
-              </AboutProvider>
-            </ProjectProvider>
-          </FooterProvider>
-        </AuthProvider>
-      </Router>
+                    <Route
+                      path="/admin/*"
+                      element={
+                        <ProtectedRoute>
+                          <Admin />
+                        </ProtectedRoute>
+                      }
+                    />
+                  </Routes>
+                </AboutProvider>
+              </ProjectProvider>
+            </FooterProvider>
+          </AuthProvider>
+        </Router>
+      </SmoothScroll>
     </>
   );
 }
