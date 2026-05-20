@@ -78,7 +78,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
               <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-white/10 z-20" />
 
               {/* IMAGE WRAPPER - PREMIUM WITH WHITE BACKDROP PANEL */}
-              <div className="relative h-[58%] w-full bg-[#fffde3] rounded-[20px] border border-white/5 p-4 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-white/15">
+              <div className="relative h-[58%] w-full bg-[#fffde3] rounded-[20px] border border-white/5 p-1 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-white/15">
                 {/* Clean White Backplate Border/Shadow Effect Behind Image */}
                 <div className="absolute inset-3 rounded-[14px] bg-white/[0.04] border border-white/10 shadow-[0_0_30px_rgba(255,255,255,0.02)] z-0" />
                 
