@@ -23,14 +23,15 @@ function AnimatedCursor() {
 
   return (
     <div
-      className="pointer-events-none fixed inset-0 z-[9999] hidden md:block"
+      className="pointer-events-none fixed inset-0 z-[9999] hidden md:block transition-all duration-75"
       style={{
         background: `
           radial-gradient(
-            350px circle at ${position.x}px ${position.y}px,
-            rgba(255,255,255,0.12),
-            rgba(0,180,255,0.08),
-            transparent 65%
+            500px circle at ${position.x}px ${position.y}px,
+            rgba(0, 200, 255, 0.18),
+            rgba(0, 140, 255, 0.12),
+            rgba(0, 80, 180, 0.08),
+            transparent 70%
           )
         `,
       }}
