@@ -49,10 +49,12 @@ function App() {
 
       <AnimatedCursor />
 
-      <ScrollProgress />
+      
 
       <SmoothScroll>
         <Router>
+
+          <ScrollProgress />
           <AuthProvider>
             <FooterProvider>
               <ProjectProvider>
