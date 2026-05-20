@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react"; // Imported for premium visual look
 import Reveal from "../Reveal";
 import MagneticButton from "../MagneticButton";
 
@@ -139,7 +140,7 @@ function Hero() {
                       initial={{ opacity: 0, y: 18 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.45 + i * 0.12, duration: 0.6 }}
-                      className="group block rounded-[22px] border border-white/10 bg-white/[0.03] backdrop-blur-md p-4 md:p-5 transition-all duration-300 hover:border-amber-300/40 hover:bg-white/[0.08]"
+                      className="group block rounded-[22px] border border-white/10 bg-white/[0.03] backdrop-blur-md p-4 md:p-5 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-amber-300/40 hover:bg-white/[0.07] hover:shadow-[0_10px_30px_rgba(245,201,106,0.03)]"
                     >
                       <div className="flex items-start justify-between gap-4">
                         <div>
@@ -157,8 +158,9 @@ function Hero() {
                           </h4>
                         </div>
 
-                        <div className="flex h-10 w-10 md:h-11 md:w-11 shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/[0.05] text-white transition-all duration-300 group-hover:border-amber-400 group-hover:text-amber-400 group-hover:rotate-[-45deg]">
-                          →
+                        {/* PREMIUM ELEVATED ARROW BUTTON BLOCK */}
+                        <div className="flex h-10 w-10 md:h-11 md:w-11 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/[0.02] text-white/70 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:border-amber-400 group-hover:bg-amber-400/10 group-hover:text-amber-400">
+                          <ArrowUpRight size={18} className="transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
                         </div>
                       </div>
                     </motion.a>
