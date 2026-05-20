@@ -2,10 +2,9 @@ import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Plus, ExternalLink } from "lucide-react";
 import { useProjects } from "../../context/ProjectContext";
+import Reveal from "../Reveal";
 
 /* ================= PROJECT SECTION ================= */
-
-// Safety check: if category or items don't exist yet, don't render items
 
 const PROJECT_THEMES = {
   web: {
@@ -27,7 +26,6 @@ const ProjectSection = ({ title, items = [], theme }) => {
 
   const slide = (dir) => {
     if (!scrollRef.current) return;
-    // Calculate precise slide scroll step based on the new larger card container dimensions
     const scrollAmount = scrollRef.current.clientWidth * 0.5;
     scrollRef.current.scrollBy({
       left: dir === "left" ? -scrollAmount : scrollAmount,
@@ -57,7 +55,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
       {/* ================= SLIDER WRAPPER CONTAINER ================= */}
       <div className="mx-auto max-w-7xl px-12 relative w-full">
         
-        {/* LEFT ARROW CONTROL BUTTON (Positioned safely outside container to avoid crowding) */}
+        {/* LEFT ARROW CONTROL BUTTON */}
         <button
           onClick={() => slide("left")}
           className="absolute -left-4 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-white hover:text-black hover:scale-105 shadow-[0_0_20px_rgba(56,189,248,0.2)]"
@@ -71,81 +69,76 @@ const ProjectSection = ({ title, items = [], theme }) => {
           className="flex flex-row items-stretch gap-8 overflow-x-auto flex-nowrap snap-x snap-mandatory pb-8 scroll-smooth"
           style={{ scrollbarWidth: "none" }}
         >
-          {items.map((item) => (
-            <motion.a
-              key={item._id}
-              href={item.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ y: -8 }}
-              transition={{ duration: 0.4 }}
-              viewport={{ once: true }}
-              className="group relative h-[510px] w-[82vw] md:h-[540px] md:w-[calc(50%-16px)] shrink-0 snap-start overflow-hidden rounded-[28px] border border-cyan-500/10 bg-[#0B0D14] shadow-[0_20px_50px_rgba(56,189,248,0.15)] backdrop-blur-xl will-change-transform flex flex-col p-4"
-            >
-              {/* SOFT INTERNAL FRAME BORDER */}
-              <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-white/5 z-20" />
+          {items.map((item, index) => (
+            <Reveal key={item._id} delay={index * 0.1}>
+              <motion.a
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ y: -8 }}
+                transition={{ duration: 0.4 }}
+                className="group relative h-[510px] w-[82vw] md:h-[540px] md:w-[400px] shrink-0 snap-start overflow-hidden rounded-[28px] border border-cyan-500/10 bg-[#0B0D14] shadow-[0_20px_50px_rgba(56,189,248,0.15)] backdrop-blur-xl will-change-transform flex flex-col p-4"
+              >
+                {/* SOFT INTERNAL FRAME BORDER */}
+                <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-white/5 z-20" />
 
-              {/* IMAGE WRAPPER - MATTE BLACK PANEL BACKGROUND TO MATCH APP IMAGES */}
-              <div className="relative h-[58%] w-full bg-[#141622] rounded-[20px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-cyan-500/20">
-                {/* Clean Backplate Border/Shadow Effect Behind Image */}
-                <div className="absolute inset-3 rounded-[14px] bg-white/[0.01] border border-white/5 shadow-[0_0_30px_rgba(0,0,0,0.4)] z-0" />
-                
-                <img
-                  src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
-                  alt={item.title}
-                  className="relative z-10 h-full w-full object-contain rounded-[14px] transition duration-700 group-hover:scale-[1.03]"
+                {/* IMAGE WRAPPER */}
+                <div className="relative h-[58%] w-full bg-[#141622] rounded-[20px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-cyan-500/20">
+                  <div className="absolute inset-3 rounded-[14px] bg-white/[0.01] border border-white/5 shadow-[0_0_30px_rgba(0,0,0,0.4)] z-0" />
+                  
+                  <img
+                    src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
+                    alt={item.title}
+                    className="relative z-10 h-full w-full object-contain rounded-[14px] transition duration-700 group-hover:scale-[1.03]"
+                  />
+                  
+                  {/* TOP BADGE */}
+                  <div className="absolute left-6 top-6 z-10">
+                    <span className="rounded-full border border-white/10 bg-black/80 px-3 py-1.5 text-[9px] uppercase tracking-[0.28em] text-white/90 backdrop-blur-xl">
+                      Featured Project
+                    </span>
+                  </div>
+                </div>
+
+                {/* DESCRIPTION BOX */}
+                <div className="flex-1 w-full px-2 pt-5 pb-2 flex flex-col justify-between bg-transparent">
+                  <div>
+                    <h4 className="text-[20px] md:text-[23px] font-bold tracking-tight text-[#F1F5F9] line-clamp-1">
+                      {item.title}
+                    </h4>
+
+                    <p className="mt-2 line-clamp-2 text-[14px] leading-6 text-[#94A3B8] group-hover:text-[#CBD5E1] transition duration-300 font-medium">
+                      {item.desc}
+                    </p>
+                  </div>
+
+                  {/* ACTIONS */}
+                  <div className="mt-4 flex items-center justify-between">
+                    <span
+                      className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#D668FF] to-[#A02CFF] px-5 py-2 text-[11px] md:text-[12px] font-bold uppercase tracking-[0.14em] text-white shadow-[0_6px_25px_rgba(180,60,255,0.25)] transition hover:brightness-110"
+                    >
+                      View <Plus size={16} className="text-white/90" />
+                    </span>
+
+                    <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] backdrop-blur-xl transition duration-300 group-hover:bg-[#1E2028] group-hover:text-white group-hover:border-cyan-500/30">
+                      <ExternalLink size={18} />
+                    </span>
+                  </div>
+                </div>
+
+                {/* LIGHT HOVER GLOW LAYEOVER */}
+                <div
+                  className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100 z-10"
+                  style={{
+                    boxShadow: `inset 0 0 60px ${theme.glow}`,
+                  }}
                 />
-                
-                {/* TOP BADGE */}
-                <div className="absolute left-6 top-6 z-10">
-                  <span className="rounded-full border border-white/10 bg-black/80 px-3 py-1.5 text-[9px] uppercase tracking-[0.28em] text-white/90 backdrop-blur-xl">
-                    Featured Project
-                  </span>
-                </div>
-              </div>
-
-              {/* DESCRIPTION BOX - CLEANLY NESTED UNDERNEATH WITH CUSTOM COLORS */}
-              <div className="flex-1 w-full px-2 pt-5 pb-2 flex flex-col justify-between bg-transparent">
-                <div>
-                  {/* Styled Project Title */}
-                  <h4 className="text-[20px] md:text-[23px] font-bold tracking-tight text-[#F1F5F9] line-clamp-1">
-                    {item.title}
-                  </h4>
-
-                  {/* Styled Project Description */}
-                  <p className="mt-2 line-clamp-2 text-[14px] leading-6 text-[#94A3B8] group-hover:text-[#CBD5E1] transition duration-300 font-medium">
-                    {item.desc}
-                  </p>
-                </div>
-
-                {/* ACTIONS - View Button Styled from reference */}
-                <div className="mt-4 flex items-center justify-between">
-                  <span
-                    className={`inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#D668FF] to-[#A02CFF] px-5 py-2 text-[11px] md:text-[12px] font-bold uppercase tracking-[0.14em] text-white shadow-[0_6px_25px_rgba(180,60,255,0.25)] transition hover:brightness-110`}
-                  >
-                    View <Plus size={16} className="text-white/90" />
-                  </span>
-
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] backdrop-blur-xl transition duration-300 group-hover:bg-[#1E2028] group-hover:text-white group-hover:border-cyan-500/30">
-                    <ExternalLink size={18} />
-                  </span>
-                </div>
-              </div>
-
-              {/* LIGHT HOVER GLOW LAYEOVER */}
-              <div
-                className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100 z-10"
-                style={{
-                  boxShadow: `inset 0 0 60px ${theme.glow}`,
-                }}
-              />
-            </motion.a>
+              </motion.a>
+            </Reveal>
           ))}
         </div>
 
-        {/* RIGHT ARROW CONTROL BUTTON (Positioned safely outside container to avoid crowding) */}
+        {/* RIGHT ARROW CONTROL BUTTON */}
         <button
           onClick={() => slide("right")}
           className="absolute -right-4 top-1/2 z-30 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-white hover:text-black hover:scale-105 shadow-[0_0_20px_rgba(56,189,248,0.2)]"
@@ -162,7 +155,6 @@ const ProjectSection = ({ title, items = [], theme }) => {
 function Projects() {
   const { projects, loading } = useProjects();
 
-  // Guard clause to handle loading state from context
   if (loading) {
     return (
       <section className="py-32 text-center text-white/50">
