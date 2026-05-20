@@ -79,7 +79,7 @@ function Footer() {
                 <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/5 bg-white/[0.02] text-[#f5c96a] transition duration-300 group-hover:bg-[#f5c96a]/10 group-hover:border-[#f5c96a]/20">
                   <Mail size={18} />
                 </div>
-                <span className="text-[16px] tracking-wide text-white/85 group-hover:text-white transition duration-300">
+                <span className="text-[16px] tracking-wide text-white/85 group-hover:text-white transition duration-300 break-all">
                   {email}
                 </span>
               </div>
@@ -128,13 +128,13 @@ function Footer() {
           </div>
 
           {/* ================= BOTTOM BAR ================= */}
-          <div className="border-t border-white/5 px-6 md:px-12 py-6 relative flex items-center justify-center text-white/50 max-w-7xl mx-auto z-10">
-            <span className="text-[14px] font-light tracking-wide text-center">
+          <div className="border-t border-white/5 px-6 md:px-12 py-6 relative flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0 max-w-7xl mx-auto z-10">
+            <span className="text-[13px] md:text-[14px] font-light tracking-wide text-center text-white/50">
               {copyright}
             </span>
 
-            {/* ADMIN BUTTON */}
-            <div className="absolute right-6 md:right-12">
+            {/* RESPONSIVE ADMIN BUTTON */}
+            <div className="static md:absolute md:right-6 lg:right-12">
               <button
                 className="p-2.5 rounded-full border border-white/5 bg-white/[0.02] text-white/40 hover:text-[#f5c96a] hover:bg-[#f5c96a]/10 hover:border-[#f5c96a]/20 transition-all duration-300"
                 title="Admin Panel"
