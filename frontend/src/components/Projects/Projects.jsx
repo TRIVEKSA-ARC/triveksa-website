@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Plus, ExternalLink } from "lucide-react";
 import { useProjects } from "../../context/ProjectContext";
@@ -21,9 +21,13 @@ const PROJECT_THEMES = {
 
 const ProjectSection = ({ title, items = [], theme }) => {
   const scrollRef = useRef(null);
-  
-  // Conditional rule: show navigation arrows and mobile controls only if 4 or more cards exist
-  const hasSliderLogic = items.length >= 4;
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Define if the section qualifies for marquee movement (4 or more cards)
+  const hasMarqueeLogic = items.length >= 4;
+
+  // Duplicate items array only if we need a seamless infinite loop track
+  const finalItems = hasMarqueeLogic ? [...items, ...items] : items;
 
   const slide = (dir) => {
     if (!scrollRef.current) return;
@@ -33,9 +37,6 @@ const ProjectSection = ({ title, items = [], theme }) => {
       behavior: "smooth",
     });
   };
-
-  // If there are absolutely no items in this section, do not render it
-  if (items.length === 0) return null;
 
   return (
     <div className="mb-14 md:mb-28 w-full">
@@ -57,126 +58,136 @@ const ProjectSection = ({ title, items = [], theme }) => {
       </div>
 
       {/* SLIDER WRAPPER */}
-      <div className="mx-auto max-w-7xl px-4 md:px-12 relative w-full">
+      <div className="mx-auto max-w-7xl px-4 md:px-12 relative w-full overflow-hidden">
         
         {/* DESKTOP ARROW LEFT */}
-        {hasSliderLogic && (
-          <button
-            onClick={() => slide("left")}
-            className="hidden md:flex absolute -left-4 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-white hover:text-black hover:scale-105 shadow-[0_0_20px_rgba(56,189,248,0.2)]"
-          >
-            <ChevronLeft size={20} />
-          </button>
-        )}
-
-        {/* CARDS TRACK */}
-        <div
-          ref={scrollRef}
-          className={`flex flex-row items-stretch gap-4 md:gap-6 flex-nowrap pb-6 md:pb-8 scroll-smooth px-2 md:px-0 ${
-            hasSliderLogic 
-              ? "overflow-x-auto snap-x snap-mandatory" 
-              : "md:overflow-x-visible overflow-x-auto"
-          }`}
-          style={{ 
-            scrollbarWidth: "none",
-            WebkitOverflowScrolling: "touch" 
-          }}
+        <button
+          onClick={() => slide("left")}
+          className="hidden md:flex absolute -left-4 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-white hover:text-black hover:scale-105 shadow-[0_0_20px_rgba(56,189,248,0.2)]"
         >
-          {items.map((item, index) => (
-            <Reveal key={item._id} delay={index * 0.1}>
-              <motion.a
-                href={item.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ y: -8 }}
-                transition={{ duration: 0.4 }}
-                className="group relative h-auto min-h-[410px] w-[82vw] sm:w-[340px] md:h-[510px] md:w-[360px] lg:w-[376px] shrink-0 snap-center md:snap-start overflow-hidden rounded-[24px] md:rounded-[28px] border border-cyan-500/10 bg-[#0B0D14] shadow-[0_20px_50px_rgba(56,189,248,0.15)] backdrop-blur-xl flex flex-col p-3.5 md:p-4"
-              >
-                <div className="pointer-events-none absolute inset-0 rounded-[24px] md:rounded-[28px] ring-1 ring-white/5 z-20" />
+          <ChevronLeft size={20} />
+        </button>
 
-                {/* IMAGE FRAME */}
-                <div className="relative h-[200px] md:h-[55%] w-full bg-[#141622] rounded-[18px] md:rounded-[20px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-cyan-500/20 shrink-0">
-                  <div className="absolute inset-3 rounded-[14px] bg-white/[0.01] border border-white/5 shadow-[0_0_30px_rgba(0,0,0,0.4)] z-0" />
-                  
-                  <img
-                    src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
-                    alt={item.title}
-                    className="relative z-10 h-full w-full object-cover rounded-[14px] transition duration-700 group-hover:scale-[1.03]"
+        {/* CARDS TRACK TRACKER */}
+        <div 
+          className="w-full overflow-hidden"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          <motion.div
+            ref={scrollRef}
+            className="flex flex-row items-stretch gap-4 md:gap-6 flex-nowrap pb-6 md:pb-8 w-max px-2 md:px-0"
+            animate={hasMarqueeLogic && !isPaused ? "animate" : "paused"}
+            variants={{
+              animate: {
+                // Moving left-to-right loops seamlessly by starting from half-width translation back to 0
+                x: ["-50%", "0%"],
+                transition: {
+                  x: {
+                    repeat: Infinity,
+                    repeatType: "loop",
+                    duration: items.length * 6, // Smooth dynamic speed baseline
+                    ease: "linear",
+                  },
+                },
+              },
+              paused: {
+                x: undefined, // Maintains position upon manual interactions/pauses
+              },
+            }}
+          >
+            {finalItems.map((item, index) => (
+              <Reveal key={`${item._id}-${index}`} delay={(index % items.length) * 0.1}>
+                <motion.a
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ y: -8 }}
+                  transition={{ duration: 0.4 }}
+                  className="group relative h-auto min-h-[410px] w-[82vw] sm:w-[340px] md:h-[510px] md:w-[360px] lg:w-[376px] shrink-0 overflow-hidden rounded-[24px] md:rounded-[28px] border border-cyan-500/10 bg-[#0B0D14] shadow-[0_20px_50px_rgba(56,189,248,0.15)] backdrop-blur-xl flex flex-col p-3.5 md:p-4"
+                >
+                  <div className="pointer-events-none absolute inset-0 rounded-[24px] md:rounded-[28px] ring-1 ring-white/5 z-20" />
+
+                  {/* IMAGE FRAME */}
+                  <div className="relative h-[200px] md:h-[55%] w-full bg-[#141622] rounded-[18px] md:rounded-[20px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-cyan-500/20 shrink-0">
+                    <div className="absolute inset-3 rounded-[14px] bg-white/[0.01] border border-white/5 shadow-[0_0_30px_rgba(0,0,0,0.4)] z-0" />
+                    
+                    <img
+                      src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
+                      alt={item.title}
+                      className="relative z-10 h-full w-full object-cover rounded-[14px] transition duration-700 group-hover:scale-[1.03]"
+                    />
+                    
+                    <div className="absolute left-4 top-4 z-10">
+                      <span className="rounded-full border border-white/10 bg-black/80 px-2.5 py-1 text-[8px] md:text-[9px] uppercase tracking-[0.28em] text-white/90 backdrop-blur-xl">
+                        Featured
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* DESCRIPTION BOX */}
+                  <div className="flex-1 w-full px-1 pt-4 pb-1 flex flex-col justify-between gap-4">
+                    <div>
+                      <h4 className="text-[18px] md:text-[22px] font-bold tracking-tight text-[#F1F5F9] line-clamp-1">
+                        {item.title}
+                      </h4>
+
+                      <p className="mt-2 line-clamp-2 text-[13px] md:text-[14px] leading-relaxed text-[#94A3B8] group-hover:text-[#CBD5E1] transition duration-300 font-medium">
+                        {item.desc}
+                      </p>
+                    </div>
+
+                    {/* ACTIONS */}
+                    <div className="flex items-center justify-between mt-auto">
+                      <span
+                        className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#D668FF] to-[#A02CFF] px-4 py-2 text-[11px] md:text-[12px] font-bold uppercase tracking-[0.14em] text-white shadow-[0_6px_25px_rgba(180,60,255,0.25)] transition hover:brightness-110"
+                      >
+                        View <Plus size={14} className="text-white/90" />
+                      </span>
+
+                      <span className="flex h-10 w-10 md:h-11 md:w-11 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] backdrop-blur-xl transition duration-300 group-hover:bg-[#1E2028] group-hover:text-white group-hover:border-cyan-500/30">
+                        <ExternalLink size={16} />
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* LIGHT HOVER GLOW */}
+                  <div
+                    className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100 z-10"
+                    style={{ boxShadow: `inset 0 0 60px ${theme.glow}` }}
                   />
-                  
-                  <div className="absolute left-4 top-4 z-10">
-                    <span className="rounded-full border border-white/10 bg-black/80 px-2.5 py-1 text-[8px] md:text-[9px] uppercase tracking-[0.28em] text-white/90 backdrop-blur-xl">
-                      Featured
-                    </span>
-                  </div>
-                </div>
-
-                {/* DESCRIPTION BOX */}
-                <div className="flex-1 w-full px-1 pt-4 pb-1 flex flex-col justify-between gap-4">
-                  <div>
-                    <h4 className="text-[18px] md:text-[22px] font-bold tracking-tight text-[#F1F5F9] line-clamp-1">
-                      {item.title}
-                    </h4>
-
-                    <p className="mt-2 line-clamp-2 text-[13px] md:text-[14px] leading-relaxed text-[#94A3B8] group-hover:text-[#CBD5E1] transition duration-300 font-medium">
-                      {item.desc}
-                    </p>
-                  </div>
-
-                  {/* ACTIONS */}
-                  <div className="flex items-center justify-between mt-auto">
-                    <span
-                      className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#D668FF] to-[#A02CFF] px-4 py-2 text-[11px] md:text-[12px] font-bold uppercase tracking-[0.14em] text-white shadow-[0_6px_25px_rgba(180,60,255,0.25)] transition hover:brightness-110"
-                    >
-                      View <Plus size={14} className="text-white/90" />
-                    </span>
-
-                    <span className="flex h-10 w-10 md:h-11 md:w-11 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] backdrop-blur-xl transition duration-300 group-hover:bg-[#1E2028] group-hover:text-white group-hover:border-cyan-500/30">
-                      <ExternalLink size={16} />
-                    </span>
-                  </div>
-                </div>
-
-                {/* LIGHT HOVER GLOW */}
-                <div
-                  className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100 z-10"
-                  style={{ boxShadow: `inset 0 0 60px ${theme.glow}` }}
-                />
-              </motion.a>
-            </Reveal>
-          ))}
+                </motion.a>
+              </Reveal>
+            ))}
+          </motion.div>
         </div>
 
         {/* DESKTOP ARROW RIGHT */}
-        {hasSliderLogic && (
-          <button
-            onClick={() => slide("right")}
-            className="hidden md:flex absolute -right-4 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-white hover:text-black hover:scale-105 shadow-[0_0_20px_rgba(56,189,248,0.2)]"
-          >
-            <ChevronRight size={20} />
-          </button>
-        )}
+        <button
+          onClick={() => slide("right")}
+          className="hidden md:flex absolute -right-4 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-white hover:text-black hover:scale-105 shadow-[0_0_20px_rgba(56,189,248,0.2)]"
+        >
+          <ChevronRight size={20} />
+        </button>
 
         {/* UNIFORM MOBILE CONTROLS FOOTER */}
-        {hasSliderLogic && (
-          <div className="flex md:hidden items-center justify-center gap-6 mt-2">
-            <button
-              onClick={() => slide("left")}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[#0B0D14] text-white/80 active:scale-95 transition"
-            >
-              <ChevronLeft size={18} />
-            </button>
-            <span className="text-[11px] uppercase tracking-[0.2em] text-white/40 font-medium">
-              Swipe or Tap
-            </span>
-            <button
-              onClick={() => slide("right")}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[#0B0D14] text-white/80 active:scale-95 transition"
-            >
-              <ChevronRight size={18} />
-            </button>
-          </div>
-        )}
+        <div className="flex md:hidden items-center justify-center gap-6 mt-2">
+          <button
+            onClick={() => slide("left")}
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[#0B0D14] text-white/80 active:scale-95 transition"
+          >
+            <ChevronLeft size={18} />
+          </button>
+          <span className="text-[11px] uppercase tracking-[0.2em] text-white/40 font-medium">
+            Swipe or Tap
+          </span>
+          <button
+            onClick={() => slide("right")}
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[#0B0D14] text-white/80 active:scale-95 transition"
+          >
+            <ChevronRight size={18} />
+          </button>
+        </div>
 
       </div>
     </div>
