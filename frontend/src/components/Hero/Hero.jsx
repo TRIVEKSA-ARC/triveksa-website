@@ -80,13 +80,13 @@ function Hero() {
             <Reveal delay={0.35}>
               <div className="mt-6 md:mt-8 flex flex-wrap gap-2.5 md:gap-3">
                 <span className="rounded-full border border-amber-300/30 bg-amber-300/10 px-3.5 py-1.5 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-amber-200 font-bold">
-                  Full Stack Development - MERN
+                  Full Stack Development- MERN
                 </span>
                 <span className="rounded-full border border-white/20 bg-white/[0.05] px-3.5 py-1.5 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-white/90">
-                  UI/UX Design - FIGMA
+                  UI/UX Design- FIGMA
                 </span>
                 <span className="rounded-full border border-white/20 bg-white/[0.05] px-3.5 py-1.5 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-white/90">
-                  Video Editing - DAVINCI
+                  Video Editing- DAVINCI
                 </span>
               </div>
             </Reveal>
