@@ -71,7 +71,7 @@ function Hero() {
             {/* DESCRIPTION */}
             <Reveal delay={0.25}>
               <p className="mt-6 max-w-2xl text-[14px] md:text-[17px] leading-relaxed md:leading-8 text-white/80 font-light">
-                I’m Vinod Kumar, founder of TRIVEKSA ARC — a creative technology startup focused on building premium web platforms, scalable digital systems, modern UI/UX experiences, and impactful visual brands for the next generation of businesses.
+                Passionate about building futuristic digital experiences through development, design, branding, and creative technology. Focused on creating products that combine performance, visuals, and real-world business impact.
 
               </p>
             </Reveal>
@@ -80,13 +80,13 @@ function Hero() {
             <Reveal delay={0.35}>
               <div className="mt-6 md:mt-8 flex flex-wrap gap-2.5 md:gap-3">
                 <span className="rounded-full border border-amber-300/30 bg-amber-300/10 px-3.5 py-1.5 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-amber-200 font-bold">
-                  Full Stack Development
+                  FULL STACK SYSTEMS
                 </span>
                 <span className="rounded-full border border-white/20 bg-white/[0.05] px-3.5 py-1.5 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-white/90">
-                  UI/UX Design
+                  UI/UX EXPERIENCES
                 </span>
                 <span className="rounded-full border border-white/20 bg-white/[0.05] px-3.5 py-1.5 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-white/90">
-                  Video Editing
+                  CREATIVE BRANDING
                 </span>
               </div>
             </Reveal>
@@ -174,7 +174,7 @@ function Hero() {
                      Note
                   </p>
                   <p className="mt-2 text-xs md:text-sm leading-relaxed text-white/80 font-medium">
-                    TRIVEKSA ARC combines development, design, branding, and digital strategy to create modern experiences built for growth and long-term impact.
+                    TRIVEKSA ARC combines technology, design, and digital creativity to craft premium web experiences, scalable platforms, and modern brand systems built for long-term growth and real-world impact.
                   </p>
                 </div>
               </div>
