@@ -102,7 +102,7 @@ function Footer() {
               <div className="flex items-center gap-3 md:flex-row-reverse">
                 <span className="h-px w-8 bg-gradient-to-r from-[#d89b1d] to-[#fff1c2]" />
                 <h3 className="text-[13px] font-semibold uppercase tracking-[0.4em] text-white/70">
-                  Follow Me
+                  Connect With TRIVEKSA ARC
                 </h3>
               </div>
 
