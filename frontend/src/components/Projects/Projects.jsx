@@ -60,13 +60,15 @@ const ProjectSection = ({ title, items = [], theme }) => {
       {/* SLIDER WRAPPER */}
       <div className="mx-auto max-w-7xl px-4 md:px-12 relative w-full overflow-hidden">
         
-        {/* DESKTOP ARROW LEFT */}
-        <button
-          onClick={() => slide("left")}
-          className="hidden md:flex absolute -left-4 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-white hover:text-black hover:scale-105 shadow-[0_0_20px_rgba(56,189,248,0.2)]"
-        >
-          <ChevronLeft size={20} />
-        </button>
+        {/* DESKTOP ARROW LEFT (Only visible if 4 or more cards exist) */}
+        {hasMarqueeLogic && (
+          <button
+            onClick={() => slide("left")}
+            className="hidden md:flex absolute -left-4 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-white hover:text-black hover:scale-105 shadow-[0_0_20px_rgba(56,189,248,0.2)]"
+          >
+            <ChevronLeft size={20} />
+          </button>
+        )}
 
         {/* CARDS TRACK TRACKER */}
         <div 
@@ -162,32 +164,15 @@ const ProjectSection = ({ title, items = [], theme }) => {
           </motion.div>
         </div>
 
-        {/* DESKTOP ARROW RIGHT */}
-        <button
-          onClick={() => slide("right")}
-          className="hidden md:flex absolute -right-4 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-white hover:text-black hover:scale-105 shadow-[0_0_20px_rgba(56,189,248,0.2)]"
-        >
-          <ChevronRight size={20} />
-        </button>
-
-        {/* UNIFORM MOBILE CONTROLS FOOTER */}
-        <div className="flex md:hidden items-center justify-center gap-6 mt-2">
-          <button
-            onClick={() => slide("left")}
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[#0B0D14] text-white/80 active:scale-95 transition"
-          >
-            <ChevronLeft size={18} />
-          </button>
-          <span className="text-[11px] uppercase tracking-[0.2em] text-white/40 font-medium">
-            Swipe or Tap
-          </span>
+        {/* DESKTOP ARROW RIGHT (Only visible if 4 or more cards exist) */}
+        {hasMarqueeLogic && (
           <button
             onClick={() => slide("right")}
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[#0B0D14] text-white/80 active:scale-95 transition"
+            className="hidden md:flex absolute -right-4 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-white hover:text-black hover:scale-105 shadow-[0_0_20px_rgba(56,189,248,0.2)]"
           >
-            <ChevronRight size={18} />
+            <ChevronRight size={20} />
           </button>
-        </div>
+        )}
 
       </div>
     </div>
