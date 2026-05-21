@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { motion } from "framer-motion";
+import React, { useRef, useState } from "react";
+import { motion, useAnimationFrame } from "framer-motion";
 import { ChevronLeft, ChevronRight, Plus, ExternalLink } from "lucide-react";
 import { useProjects } from "../../context/ProjectContext";
 import Reveal from "../Reveal";
@@ -21,6 +21,31 @@ const PROJECT_THEMES = {
 
 const ProjectSection = ({ title, items = [], theme }) => {
   const scrollRef = useRef(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Fallback if items are empty
+  if (!items || items.length === 0) return null;
+
+  // Duplicate items for the infinite marquee trick on desktop
+  const duplicatedItems = [...items, ...items, ...items];
+
+  // Animation frame loop for smooth marquee on desktop
+  useAnimationFrame((time, delta) => {
+    if (!scrollRef.current || isHovered) return;
+    
+    // Check if we are on a desktop device (width >= 768px)
+    if (window.innerWidth >= 768) {
+      // Speed multiplier (adjust 0.05 to make it faster or slower)
+      const speed = 0.05; 
+      scrollRef.current.scrollLeft += speed * delta;
+
+      // Reset scroll position to the middle third seamlessly when reaching the end third
+      const maxScroll = scrollRef.current.scrollWidth / 3;
+      if (scrollRef.current.scrollLeft >= maxScroll * 2) {
+        scrollRef.current.scrollLeft -= maxScroll;
+      }
+    }
+  });
 
   const slide = (dir) => {
     if (!scrollRef.current) return;
@@ -53,7 +78,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
       {/* SLIDER WRAPPER */}
       <div className="mx-auto max-w-7xl px-4 md:px-12 relative w-full">
         
-        {/* DESKTOP ARROW LEFT */}
+        {/* DESKTOP ARROW LEFT (Maintained structure - acts as a manual boost override) */}
         <button
           onClick={() => slide("left")}
           className="hidden md:flex absolute -left-4 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-white hover:text-black hover:scale-105 shadow-[0_0_20px_rgba(56,189,248,0.2)]"
@@ -64,14 +89,16 @@ const ProjectSection = ({ title, items = [], theme }) => {
         {/* CARDS TRACK */}
         <div
           ref={scrollRef}
-          className="flex flex-row items-stretch gap-4 md:gap-6 overflow-x-auto flex-nowrap snap-x snap-mandatory pb-6 md:pb-8 scroll-smooth px-2 md:px-0"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          className="flex flex-row items-stretch gap-4 md:gap-6 overflow-x-auto flex-nowrap snap-x snap-mandatory md:snap-none pb-6 md:pb-8 scroll-smooth px-2 md:px-0 select-none"
           style={{ 
             scrollbarWidth: "none",
             WebkitOverflowScrolling: "touch" 
           }}
         >
-          {items.map((item, index) => (
-            <Reveal key={item._id} delay={index * 0.1}>
+          {duplicatedItems.map((item, index) => (
+            <Reveal key={`${item._id}-${index}`} delay={(index % items.length) * 0.1}>
               <motion.a
                 href={item.url}
                 target="_blank"
@@ -90,6 +117,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
                     src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
                     alt={item.title}
                     className="relative z-10 h-full w-full object-cover rounded-[14px] transition duration-700 group-hover:scale-[1.03]"
+                    draggable="false"
                   />
                   
                   <div className="absolute left-4 top-4 z-10">
@@ -135,7 +163,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
           ))}
         </div>
 
-        {/* DESKTOP ARROW RIGHT */}
+        {/* DESKTOP ARROW RIGHT (Manual boost override) */}
         <button
           onClick={() => slide("right")}
           className="hidden md:flex absolute -right-4 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-white hover:text-black hover:scale-105 shadow-[0_0_20px_rgba(56,189,248,0.2)]"
