@@ -167,7 +167,15 @@ function Hero() {
                   ))}
                 </div>
 
-                
+                {/*  NOTE */}
+                <div className="mt-4 rounded-[22px] border border-white/10 bg-black/[0.06] p-4 md:p-5">
+                  <p className="text-[10px] uppercase tracking-[0.34em] text-white/50 font-bold">
+                     Note
+                  </p>
+                  <p className="mt-2 text-xs md:text-sm leading-relaxed text-white/80 font-medium">
+                    We create professional brand-first digital systems that look elegant, feel modern, and perform with purpose.
+                  </p>
+                </div>
               </div>
             </Reveal>
           </div>
