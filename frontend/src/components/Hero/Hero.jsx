@@ -62,7 +62,7 @@ function Hero() {
               <div className="mt-5 md:mt-6">
                 <div className="inline-flex items-center rounded-full border border-white/20 bg-white/[0.05] px-4 py-2">
                   <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.32em] text-white/90 font-medium">
-                    VK Digital Solutions
+                    TRIVEKSA ARC
                   </span>
                 </div>
               </div>
@@ -71,7 +71,7 @@ function Hero() {
             {/* DESCRIPTION */}
             <Reveal delay={0.25}>
               <p className="mt-6 max-w-2xl text-[14px] md:text-[17px] leading-relaxed md:leading-8 text-white/80 font-light">
-                We build premium digital experiences for brands, startups, and modern businesses through strategic development, refined design systems, and high-converting visual storytelling.
+                Triveksa Arc is a creative technology brand focused on building modern digital experiences, scalable platforms, and premium visual identities for the next generation of businesses.
               </p>
             </Reveal>
 
@@ -104,7 +104,7 @@ function Hero() {
                   href="#contact"
                   className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/[0.1] px-8 py-3.5 text-[11px] font-bold uppercase tracking-[0.28em] text-white transition-all duration-300 hover:bg-white/[0.15] w-full sm:w-auto"
                 >
-                  Contact Agency
+                  Let's Build
                 </MagneticButton>
               </div>
             </Reveal>
@@ -117,7 +117,7 @@ function Hero() {
                 <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-4">
                   <div>
                     <p className="text-[10px] uppercase tracking-[0.35em] text-white/60 font-bold">
-                      Agency Capabilities
+                      Core Expertise
                     </p>
                     <h3 className="mt-2 text-xl font-bold text-white tracking-tight">
                       Service Overview
