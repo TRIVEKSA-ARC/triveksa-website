@@ -40,7 +40,7 @@ function Hero() {
               <div className="mb-4 md:mb-6 flex items-center gap-4">
                 <span className="h-px w-12 bg-gradient-to-r from-amber-400 to-transparent" />
                 <p className="text-[11px] sm:text-[12px] uppercase tracking-[0.45em] text-white/80">
-                  Founder of TRIVEKSA ARC
+                  Founder of TRIVIXA ARC
                 </p>
               </div>
             </Reveal>
@@ -62,7 +62,7 @@ function Hero() {
               <div className="mt-5 md:mt-6">
                 <div className="inline-flex items-center rounded-full border border-white/20 bg-white/[0.05] px-4 py-2">
                   <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.32em] text-white/90 font-medium">
-                    TRIVEKSA ARC • Creative Technology Startup
+                    Creative Developer • Digital Systems Designer • Founder of Trivixa Arc
                   </span>
                 </div>
               </div>
@@ -70,23 +70,25 @@ function Hero() {
 
             {/* DESCRIPTION */}
             <Reveal delay={0.25}>
-              <p className="mt-6 max-w-2xl text-[14px] md:text-[17px] leading-relaxed md:leading-8 text-white/80 font-light">
-                Passionate about building futuristic digital experiences through development, design, branding, and creative technology. Focused on creating products that combine performance, visuals, and real-world business impact.
-
+              <p className="mt-6 max-w-xl text-[14px] md:text-[17px] leading-relaxed md:leading-8 text-white/80 font-light">
+                Building premium digital platforms, modern interfaces, and creative systems for ambitious brands and startups.
               </p>
             </Reveal>
 
-            {/* ROLE STRIP */}
+            {/* ROLE STRIP / TRUST SIGNAL */}
             <Reveal delay={0.35}>
               <div className="mt-6 md:mt-8 flex flex-wrap gap-2.5 md:gap-3">
                 <span className="rounded-full border border-amber-300/30 bg-amber-300/10 px-3.5 py-1.5 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-amber-200 font-bold">
-                  FULL STACK SYSTEMS
+                  Web Platforms
                 </span>
                 <span className="rounded-full border border-white/20 bg-white/[0.05] px-3.5 py-1.5 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-white/90">
-                  UI/UX EXPERIENCES
+                  UI Systems
                 </span>
                 <span className="rounded-full border border-white/20 bg-white/[0.05] px-3.5 py-1.5 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-white/90">
-                  CREATIVE BRANDING
+                  Creative Branding
+                </span>
+                <span className="rounded-full border border-white/20 bg-white/[0.05] px-3.5 py-1.5 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-white/90">
+                  Digital Experiences
                 </span>
               </div>
             </Reveal>
@@ -95,27 +97,34 @@ function Hero() {
             <Reveal delay={0.45}>
               <div className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-4">
                 <MagneticButton
-                  href="#projects"
+                  href="#contact"
                   className="inline-flex items-center justify-center rounded-full border border-amber-300/30 bg-gradient-to-r from-[#f8d36a] to-[#d89b1d] px-8 py-3.5 text-[11px] font-bold uppercase tracking-[0.28em] text-black shadow-[0_12px_32px_rgba(216,155,29,0.3)] transition-all duration-300 hover:-translate-y-0.5 w-full sm:w-auto"
                 >
-                  View Projects
+                  Book a Project Call
                 </MagneticButton>
 
                 <MagneticButton
-                  href="#contact"
+                  href="#projects"
                   className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/[0.1] px-8 py-3.5 text-[11px] font-bold uppercase tracking-[0.28em] text-white transition-all duration-300 hover:bg-white/[0.15] w-full sm:w-auto"
                 >
-                  Let's Build
+                  Explore Selected Work
                 </MagneticButton>
               </div>
             </Reveal>
           </div>
 
-          {/* RIGHT SIDE - CAPABILITIES CARD */}
+          {/* RIGHT SIDE - CAPABILITIES CARD WITH INTERACTIVE PREMIUM MOTION */}
           <div className="lg:col-span-5 flex items-center w-full">
             <Reveal delay={0.3} className="w-full">
-              <div className="w-full rounded-[28px] border border-white/10 bg-black p-4 shadow-[0_25px_60px_rgba(0,0,0,0.3)] md:p-6">
-                <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-4">
+              <motion.div 
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="group/card relative w-full rounded-[28px] border border-white/10 bg-black p-4 shadow-[0_25px_60px_rgba(0,0,0,0.3)] md:p-6 overflow-hidden"
+              >
+                {/* SUBTLE INTERACTIVE RADIAL HIGHLIGHT ON HOVER */}
+                <div className="pointer-events-none absolute -inset-px rounded-[28px] bg-gradient-to-r from-amber-400/20 to-transparent opacity-0 transition-opacity duration-500 group-hover/card:opacity-100" />
+                
+                <div className="relative z-10 mb-4 flex items-center justify-between border-b border-white/10 pb-4">
                   <div>
                     <p className="text-[10px] uppercase tracking-[0.35em] text-white/60 font-bold">
                       Core Expertise
@@ -133,7 +142,7 @@ function Hero() {
                   </div>
                 </div>
 
-                <div className="space-y-3">
+                <div className="relative z-10 space-y-3">
                   {services.map((item, i) => (
                     <motion.a
                       href="#projects"
@@ -161,23 +170,23 @@ function Hero() {
 
                         {/* PREMIUM ELEVATED ARROW BUTTON BLOCK */}
                         <div className="flex h-10 w-10 md:h-11 md:w-11 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/[0.02] text-white/70 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:border-amber-400 group-hover:bg-amber-400/10 group-hover:text-amber-400">
-                          <ArrowUpRight size={18} className="transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
+                          <ArrowUpRight size={18} className="transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-45" />
                         </div>
                       </div>
                     </motion.a>
                   ))}
                 </div>
 
-                {/*  NOTE */}
-                <div className="mt-4 rounded-[22px] border border-white/10 bg-black/[0.06] p-4 md:p-5">
+                {/* NOTE */}
+                <div className="relative z-10 mt-4 rounded-[22px] border border-white/10 bg-black/[0.06] p-4 md:p-5">
                   <p className="text-[10px] uppercase tracking-[0.34em] text-white/50 font-bold">
-                     Note
+                    Note
                   </p>
                   <p className="mt-2 text-xs md:text-sm leading-relaxed text-white/80 font-medium">
-                    TRIVEKSA ARC combines technology, design, and digital creativity to craft premium web experiences, scalable platforms, and modern brand systems built for long-term growth and real-world impact.
+                    Trivixa Arc combines technology, design, and digital creativity to craft premium web experiences, scalable platforms, and modern brand systems built for long-term growth and real-world impact.
                   </p>
                 </div>
-              </div>
+              </motion.div>
             </Reveal>
           </div>
         </div>
