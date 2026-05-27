@@ -19,92 +19,99 @@ const PROJECT_THEMES = {
   },
 };
 
-// --- CINEMATIC HERO FEATURED PROJECT (ISSUE 4) ---
+// --- CINEMATIC HERO FEATURED PROJECT MATCHED TO SCREENSHOTS ---
 const HeroFeaturedProject = ({ project, theme }) => {
   if (!project) return null;
 
   return (
     <div className="mx-auto max-w-7xl px-4 md:px-8 mb-16 md:mb-28">
       <Reveal>
-        <div className="relative w-full rounded-[28px] md:rounded-[36px] border border-white/10 bg-[#0B0D14]/80 backdrop-blur-2xl p-6 md:p-10 overflow-hidden group shadow-[0_30px_70px_rgba(0,0,0,0.5)]">
+        <div className="relative w-full rounded-[28px] md:rounded-[40px] border border-white/10 bg-[#0F111A]/70 backdrop-blur-2xl p-4 sm:p-6 md:p-8 lg:p-10 overflow-hidden group shadow-[0_30px_70px_rgba(0,0,0,0.6)]">
           {/* Subtle Backglow */}
           <div 
             className="absolute -right-20 -top-20 w-80 h-80 rounded-full blur-[120px] pointer-events-none transition duration-500 group-hover:opacity-80"
             style={{ backgroundColor: theme?.glow || "rgba(245,158,11,0.15)" }}
           />
 
-          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center relative z-10">
-            {/* Left Box: Cinematic Image Preview */}
-            <a 
-              href={project.url} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="w-full lg:w-1/2 aspect-[16/10] bg-[#141622] rounded-[20px] md:rounded-[24px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-white/10 shrink-0"
-            >
-              <img
-                src={project.img?.startsWith("http") ? project.img : "/placeholder.png"}
-                alt={project.title}
-                className="h-full w-full object-cover rounded-[16px] transition duration-700 group-hover:scale-[1.02]"
-              />
-            </a>
+          {/* Grid Layout System Matched Exactly to Screenshot Weights */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
+            
+            {/* Left Column: Outer Realistic App Frame Canvas (lg:col-span-5) */}
+            <div className="w-full lg:col-span-5 flex items-center justify-center">
+              <a 
+                href={project.url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-full aspect-[16/10] bg-[#0A0B10] rounded-[20px] md:rounded-[24px] border border-white/10 p-3 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-white/20 shadow-2xl relative"
+              >
+                <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-white/5 pointer-events-none z-20" />
+                <img
+                  src={project.img?.startsWith("http") ? project.img : "/placeholder.png"}
+                  alt={project.title}
+                  className="h-full w-full object-cover rounded-[14px] md:rounded-[16px] transition duration-700 group-hover:scale-[1.02] relative z-10"
+                />
+              </a>
+            </div>
 
-            {/* Right Box: Strategic Value Messaging */}
-            <div className="w-full lg:w-1/2 flex flex-col justify-between h-full align-stretch">
+            {/* Right Column: Strategic Project Info Content (lg:col-span-7) */}
+            <div className="w-full lg:col-span-7 flex flex-col justify-center">
               <div>
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-center gap-3 mb-5">
                   <span className="rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.25em] text-amber-400">
                     Featured Experience
                   </span>
                   <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-white/60">
-                    {project.category || "Case Study"}
+                    {project.category || "Web"}
                   </span>
                 </div>
 
-                <h3 className="text-[28px] md:text-[42px] font-bold tracking-tight text-white leading-tight mb-4">
+                <h3 className="text-[32px] md:text-[48px] font-bold tracking-tight text-white leading-tight mb-4 uppercase">
                   {project.title}
                 </h3>
 
-                <p className="text-[14px] md:text-[16px] leading-relaxed text-[#94A3B8] font-medium mb-6">
+                <p className="text-[14px] md:text-[15px] leading-relaxed text-[#94A3B8] font-normal mb-8 max-w-2xl">
                   {project.desc}
                 </p>
 
-                {/* Metrics Matrix (Issue 1 & 5) */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-b border-white/5 py-5 mb-6">
+                {/* Metrics Matrix Grid */}
+                <div className="grid grid-cols-3 gap-4 border-t border-b border-white/5 py-6 mb-8">
                   <div>
-                    <span className="text-[10px] uppercase tracking-wider text-white/40 block mb-1">Industry</span>
-                    <span className="text-[13px] font-semibold text-[#F1F5F9]">{project.industry || "Digital Solutions"}</span>
+                    <span className="text-[10px] uppercase tracking-wider text-white/40 block mb-1.5 font-medium">Industry</span>
+                    <span className="text-[13px] md:text-[14px] font-semibold text-[#F1F5F9] truncate block">{project.industry || "Digital Solutions"}</span>
                   </div>
                   <div>
-                    <span className="text-[10px] uppercase tracking-wider text-white/40 block mb-1">Core Focus</span>
-                    <span className="text-[13px] font-semibold text-[#F1F5F9]">{project.goal || "Premium Experience"}</span>
+                    <span className="text-[10px] uppercase tracking-wider text-white/40 block mb-1.5 font-medium">Core Focus</span>
+                    <span className="text-[13px] md:text-[14px] font-semibold text-[#F1F5F9] truncate block">{project.goal || "Premium Experience"}</span>
                   </div>
                   <div>
-                    <span className="text-[10px] uppercase tracking-wider text-amber-400 block mb-1">Business Impact</span>
-                    <span className="text-[13px] font-bold text-amber-400">{project.result || "Conversion Optimized"}</span>
+                    <span className="text-[10px] uppercase tracking-wider text-amber-400 block mb-1.5 font-medium">Business Impact</span>
+                    <span className="text-[13px] md:text-[14px] font-bold text-amber-400 truncate block">{project.result || "Conversion Optimized"}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between mt-auto pt-2">
+              {/* Action Trigger Buttons */}
+              <div className="flex items-center justify-between mt-2">
                 <a
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 rounded-full bg-white px-6 py-3 text-[12px] font-bold uppercase tracking-[0.14em] text-black shadow-[0_10px_30px_rgba(255,255,255,0.15)] transition hover:bg-neutral-200 hover:scale-[1.02]"
+                  className="inline-flex items-center gap-2.5 rounded-full bg-white px-7 py-3.5 text-[11px] font-bold uppercase tracking-[0.16em] text-black shadow-[0_10px_30px_rgba(255,255,255,0.15)] transition hover:bg-neutral-200 hover:scale-[1.02]"
                 >
-                  Explore Experience <Plus size={14} className="text-black" />
+                  Explore Experience <Plus size={14} className="text-black stroke-[3]" />
                 </a>
 
                 <a 
                   href={project.url} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] transition duration-300 hover:text-white hover:border-white/30"
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-[#14161F] text-[#94A3B8] transition duration-300 hover:text-white hover:border-white/30"
                 >
                   <ExternalLink size={18} />
                 </a>
               </div>
             </div>
+
           </div>
         </div>
       </Reveal>
