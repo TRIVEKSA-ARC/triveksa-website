@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Plus, ExternalLink } from "lucide-react";
 import { useProjects } from "../../context/ProjectContext";
@@ -124,6 +124,39 @@ const HeroFeaturedProject = ({ project, theme }) => {
 // --- ROW PROJECT CARD COMPONENT ---
 const ProjectSection = ({ title, items = [], theme }) => {
   const scrollRef = useRef(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    if (!scrollRef.current) return;
+
+    // Condition 1: Don't auto-slide if only 1 card or fewer
+    if (items.length <= 1) return;
+
+    // Condition 3: Pause when hovered
+    if (isHovered) return;
+
+    const interval = setInterval(() => {
+      if (!scrollRef.current) return;
+
+      const container = scrollRef.current;
+      const maxScrollLeft = container.scrollWidth - container.clientWidth;
+
+      // Reset to start when reaching end, else scroll right by clientWidth
+      if (container.scrollLeft >= maxScrollLeft - 10) {
+        container.scrollTo({
+          left: 0,
+          behavior: "smooth",
+        });
+      } else {
+        container.scrollBy({
+          left: container.clientWidth,
+          behavior: "smooth",
+        });
+      }
+    }, 5000); // 5000ms timing matching website aesthetic perfectly
+
+    return () => clearInterval(interval);
+  }, [items.length, isHovered]);
 
   const slide = (dir) => {
     if (!scrollRef.current) return;
@@ -167,6 +200,8 @@ const ProjectSection = ({ title, items = [], theme }) => {
         {/* CARDS TRACK */}
         <div
           ref={scrollRef}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
           className="flex flex-row items-stretch gap-6 overflow-x-auto flex-nowrap snap-x snap-mandatory pb-6 md:pb-8 scroll-smooth px-2 md:px-0"
           style={{ 
             scrollbarWidth: "none",
@@ -176,7 +211,10 @@ const ProjectSection = ({ title, items = [], theme }) => {
           {items.map((item, index) => (
             <div key={item._id || index} className="w-full shrink-0 snap-center snap-always">
               <Reveal delay={index * 0.1}>
-                <div
+                {/* Framer motion wrapper for micro-interaction workspace card mechanics */}
+                <motion.div
+                  whileHover={{ x: 12 }}
+                  transition={{ type: "spring", stiffness: 90, damping: 18 }}
                   className={`group relative w-full overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/10 bg-[#0B0D14]/80 backdrop-blur-2xl p-5 md:p-7 ${theme.shadow} ${theme.shadowHover} ${theme.borderHover} transition-all duration-500 flex flex-col md:flex-row gap-6 md:gap-8 items-center`}
                 >
                   {/* Premium Theme Hover Backglow */}
@@ -258,7 +296,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
                     </div>
                   </div>
 
-                </div>
+                </motion.div>
               </Reveal>
             </div>
           ))}

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 function Reveal({
   children,
   delay = 0,
-  y = 80,
+  y = 40,
 }) {
   return (
     <motion.div
@@ -16,13 +16,13 @@ function Reveal({
         y: 0,
       }}
       transition={{
-        duration: 1,
+        duration: 0.65,
         delay,
-        ease: [0.25, 1, 0.5, 1],
+        ease: [0.22, 1, 0.36, 1],
       }}
       viewport={{
         once: true,
-        amount: 0.2,
+        amount: 0.15,
       }}
     >
       {children}
