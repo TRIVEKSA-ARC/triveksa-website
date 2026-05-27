@@ -26,7 +26,7 @@ const HeroFeaturedProject = ({ project, theme }) => {
   return (
     <div className="mx-auto max-w-7xl px-4 md:px-8 mb-16 md:mb-28">
       <Reveal>
-        <div className="relative w-full rounded-[28px] md:rounded-[36px] border border-white/10 bg-[#0B0D14]/80 backdrop-blur-2xl p-6 md:p-10 overflow-hidden group shadow-[0_30px_70px_rgba(216,155,29,0.15)] transition-all duration-500 hover:border-amber-500/20">
+        <div className="relative w-full rounded-[28px] md:rounded-[36px] border border-white/10 bg-[#0B0D14]/80 backdrop-blur-2xl p-6 md:p-10 overflow-hidden group shadow-[0_30px_70px_rgba(255,255,255,0.06)] transition-all duration-500 hover:border-white/20">
           {/* Subtle Premium Gold Backglow */}
           <div 
             className="absolute -right-20 -top-20 w-80 h-80 rounded-full blur-[120px] pointer-events-none transition duration-500 group-hover:opacity-100 opacity-70"
@@ -39,7 +39,7 @@ const HeroFeaturedProject = ({ project, theme }) => {
               href={project.url} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="w-full lg:w-1/2 aspect-[16/10] bg-[#141622] rounded-[20px] md:rounded-[24px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-amber-500/30 shrink-0"
+              className="w-full lg:w-1/2 aspect-[16/10] bg-[#141622] rounded-[20px] md:rounded-[24px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-white/20 shrink-0"
             >
               <img
                 src={project.img?.startsWith("http") ? project.img : "/placeholder.png"}
@@ -99,7 +99,7 @@ const HeroFeaturedProject = ({ project, theme }) => {
                   href={project.url} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] transition duration-300 hover:text-white hover:border-amber-500/40"
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] transition duration-300 hover:text-white hover:border-white/30"
                 >
                   <ExternalLink size={18} />
                 </a>
@@ -150,7 +150,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
         {/* DESKTOP ARROW LEFT (Optimized padding gap using -left-16) */}
         <button
           onClick={() => slide("left")}
-          className="hidden md:flex absolute -left-16 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-amber-500 hover:text-black hover:scale-105 shadow-[0_0_20px_rgba(216,155,29,0.2)]"
+          className="hidden md:flex absolute -left-16 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-white hover:text-black hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.05)]"
         >
           <ChevronLeft size={20} />
         </button>
@@ -168,7 +168,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
             <div key={item._id || index} className="w-full shrink-0 snap-center snap-always">
               <Reveal delay={index * 0.1}>
                 <div
-                  className="group relative w-full overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/10 bg-[#0B0D14]/80 backdrop-blur-2xl p-5 md:p-7 shadow-[0_25px_60px_rgba(216,155,29,0.1)] transition-all duration-500 hover:border-amber-500/20 flex flex-col md:flex-row gap-6 md:gap-8 items-center"
+                  className="group relative w-full overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/10 bg-[#0B0D14]/80 backdrop-blur-2xl p-5 md:p-7 shadow-[0_25px_60px_rgba(255,255,255,0.04)] transition-all duration-500 hover:border-white/20 flex flex-col md:flex-row gap-6 md:gap-8 items-center"
                 >
                   {/* Premium Gold Hover Backglow */}
                   <div 
@@ -181,7 +181,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
                     href={item.url} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="w-full md:w-1/2 aspect-[16/10] bg-[#141622] rounded-[18px] md:rounded-[22px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-amber-500/20 shrink-0"
+                    className="w-full md:w-1/2 aspect-[16/10] bg-[#141622] rounded-[18px] md:rounded-[22px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-white/20 shrink-0"
                   >
                     <img
                       src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
@@ -242,7 +242,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
                         href={item.url} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] transition duration-300 hover:text-white hover:border-amber-500/30"
+                        className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] transition duration-300 hover:text-white hover:border-white/20"
                       >
                         <ExternalLink size={14} />
                       </a>
@@ -258,7 +258,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
         {/* DESKTOP ARROW RIGHT (Optimized padding gap using -right-16) */}
         <button
           onClick={() => slide("right")}
-          className="hidden md:flex absolute -right-16 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-amber-500 hover:text-black hover:scale-105 shadow-[0_0_20px_rgba(216,155,29,0.2)]"
+          className="hidden md:flex absolute -right-16 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-white hover:text-black hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.05)]"
         >
           <ChevronRight size={20} />
         </button>
