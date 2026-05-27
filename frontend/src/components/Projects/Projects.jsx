@@ -195,9 +195,6 @@ const ProjectSection = ({ title, items = [], theme }) => {
     }
   };
 
-  // If there are no items left in this category after removing the featured project, do not render the section track
-  if (items.length === 0) return null;
-
   return (
     <div className="mb-14 md:mb-28 w-full relative">
       {/* HEADER */}
@@ -377,12 +374,6 @@ function Projects() {
     projects.web?.[0] || 
     projects.uiux?.[0];
 
-  // Helper function to safely filter out the featured hero project from categories by its custom database ID field
-  const getFilteredItems = (items = []) => {
-    if (!featuredHeroProject) return items;
-    return items.filter(item => item._id !== featuredHeroProject._id);
-  };
-
   return (
     <section id="projects" className="relative overflow-hidden bg-transparent py-12 md:py-24 text-white">
       <div className="mx-auto max-w-7xl">
@@ -414,10 +405,10 @@ function Projects() {
         {/* FEATURED PREMIUM HERO ACTION MODULE */}
         <HeroFeaturedProject project={featuredHeroProject} theme={PROJECT_THEMES.web} />
 
-        {/* SLIDER ROW CATEGORIES - Passing down filtered arrays cleanly */}
-        <ProjectSection title="Development" items={getFilteredItems(projects.web)} theme={PROJECT_THEMES.web} />
-        <ProjectSection title="UI / UX Design" items={getFilteredItems(projects.uiux)} theme={PROJECT_THEMES.uiux} />
-        <ProjectSection title="Motion & Editing" items={getFilteredItems(projects.editing)} theme={PROJECT_THEMES.editing} />
+        {/* SLIDER ROW CATEGORIES */}
+        <ProjectSection title="Development" items={projects.web || []} theme={PROJECT_THEMES.web} />
+        <ProjectSection title="UI / UX Design" items={projects.uiux || []} theme={PROJECT_THEMES.uiux} />
+        <ProjectSection title="Motion & Editing" items={projects.editing || []} theme={PROJECT_THEMES.editing} />
       </div>
     </section>
   );
