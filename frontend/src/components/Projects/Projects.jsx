@@ -112,7 +112,7 @@ const HeroFeaturedProject = ({ project, theme }) => {
   );
 };
 
-const ProjectSection = ({ title, items = [], theme }) => {
+const ProjectSection = ({ title, items = [], theme, excludeId }) => {
   const scrollRef = useRef(null);
 
   const slide = (dir) => {
@@ -123,6 +123,11 @@ const ProjectSection = ({ title, items = [], theme }) => {
       behavior: "smooth",
     });
   };
+
+  // Filter out the hero item before building cards
+  const filteredItems = items.filter(item => item._id !== excludeId);
+
+  if (filteredItems.length === 0) return null;
 
   return (
     <div className="mb-14 md:mb-28 w-full">
@@ -163,7 +168,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
             WebkitOverflowScrolling: "touch" 
           }}
         >
-          {items.map((item, index) => (
+          {filteredItems.map((item, index) => (
             <Reveal key={item._id} delay={index * 0.1}>
               <motion.a
                 href={item.url}
@@ -331,10 +336,10 @@ function Projects() {
         {/* FEATURED PREMIUM HERO ACTION MODULE */}
         <HeroFeaturedProject project={featuredHeroProject} theme={PROJECT_THEMES.web} />
 
-        {/* SLIDER ROW CATEGORIES */}
-        <ProjectSection title="Development" items={projects.web} theme={PROJECT_THEMES.web} />
-        <ProjectSection title="UI / UX Design" items={projects.uiux} theme={PROJECT_THEMES.uiux} />
-        <ProjectSection title="Motion & Editing" items={projects.editing} theme={PROJECT_THEMES.editing} />
+        {/* SLIDER ROW CATEGORIES - Safely passes down the featured id to avoid duplicate generation */}
+        <ProjectSection title="Development" items={projects.web} theme={PROJECT_THEMES.web} excludeId={featuredHeroProject?._id} />
+        <ProjectSection title="UI / UX Design" items={projects.uiux} theme={PROJECT_THEMES.uiux} excludeId={featuredHeroProject?._id} />
+        <ProjectSection title="Motion & Editing" items={projects.editing} theme={PROJECT_THEMES.editing} excludeId={featuredHeroProject?._id} />
       </div>
     </section>
   );
