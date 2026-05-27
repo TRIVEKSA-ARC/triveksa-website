@@ -1,21 +1,21 @@
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Plus, ExternalLink, Target, BarChart3, Briefcase } from "lucide-react";
+import { ChevronLeft, ChevronRight, Plus, ExternalLink } from "lucide-react";
 import { useProjects } from "../../context/ProjectContext";
 import Reveal from "../Reveal";
 
 const PROJECT_THEMES = {
   web: {
     color: "from-cyan-400 to-blue-500",
-    glow: "rgba(6,182,212,0.35)",
+    glow: "rgba(216,155,29,0.25)", // Enhanced premium gold glow
   },
   uiux: {
     color: "from-purple-400 to-pink-500",
-    glow: "rgba(168,85,247,0.35)",
+    glow: "rgba(216,155,29,0.25)", // Enhanced premium gold glow
   },
   editing: {
     color: "from-amber-400 to-orange-500",
-    glow: "rgba(245,158,11,0.35)",
+    glow: "rgba(216,155,29,0.25)", // Enhanced premium gold glow
   },
 };
 
@@ -26,11 +26,11 @@ const HeroFeaturedProject = ({ project, theme }) => {
   return (
     <div className="mx-auto max-w-7xl px-4 md:px-8 mb-16 md:mb-28">
       <Reveal>
-        <div className="relative w-full rounded-[28px] md:rounded-[36px] border border-white/10 bg-[#0B0D14]/80 backdrop-blur-2xl p-6 md:p-10 overflow-hidden group shadow-[0_30px_70px_rgba(0,0,0,0.5)]">
-          {/* Subtle Backglow */}
+        <div className="relative w-full rounded-[28px] md:rounded-[36px] border border-white/10 bg-[#0B0D14]/80 backdrop-blur-2xl p-6 md:p-10 overflow-hidden group shadow-[0_30px_70px_rgba(216,155,29,0.15)] transition-all duration-500 hover:border-amber-500/20">
+          {/* Subtle Premium Gold Backglow */}
           <div 
-            className="absolute -right-20 -top-20 w-80 h-80 rounded-full blur-[120px] pointer-events-none transition duration-500 group-hover:opacity-80"
-            style={{ backgroundColor: theme?.glow || "rgba(245,158,11,0.15)" }}
+            className="absolute -right-20 -top-20 w-80 h-80 rounded-full blur-[120px] pointer-events-none transition duration-500 group-hover:opacity-100 opacity-70"
+            style={{ backgroundColor: theme?.glow || "rgba(216,155,29,0.2)" }}
           />
 
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center relative z-10">
@@ -39,7 +39,7 @@ const HeroFeaturedProject = ({ project, theme }) => {
               href={project.url} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="w-full lg:w-1/2 aspect-[16/10] bg-[#141622] rounded-[20px] md:rounded-[24px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-white/10 shrink-0"
+              className="w-full lg:w-1/2 aspect-[16/10] bg-[#141622] rounded-[20px] md:rounded-[24px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-amber-500/30 shrink-0"
             >
               <img
                 src={project.img?.startsWith("http") ? project.img : "/placeholder.png"}
@@ -99,7 +99,7 @@ const HeroFeaturedProject = ({ project, theme }) => {
                   href={project.url} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] transition duration-300 hover:text-white hover:border-white/30"
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] transition duration-300 hover:text-white hover:border-amber-500/40"
                 >
                   <ExternalLink size={18} />
                 </a>
@@ -126,7 +126,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
   };
 
   return (
-    <div className="mb-14 md:mb-28 w-full">
+    <div className="mb-14 md:mb-28 w-full relative">
       {/* HEADER */}
       <div className="mx-auto mb-6 max-w-7xl px-6 md:px-8">
         <motion.div
@@ -147,10 +147,10 @@ const ProjectSection = ({ title, items = [], theme }) => {
       {/* SLIDER WRAPPER */}
       <div className="mx-auto max-w-7xl px-4 md:px-8 relative w-full">
         
-        {/* DESKTOP ARROW LEFT */}
+        {/* DESKTOP ARROW LEFT (Optimized padding gap using -left-16) */}
         <button
           onClick={() => slide("left")}
-          className="hidden md:flex absolute -left-4 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-white hover:text-black hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.05)]"
+          className="hidden md:flex absolute -left-16 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-amber-500 hover:text-black hover:scale-105 shadow-[0_0_20px_rgba(216,155,29,0.2)]"
         >
           <ChevronLeft size={20} />
         </button>
@@ -165,14 +165,14 @@ const ProjectSection = ({ title, items = [], theme }) => {
           }}
         >
           {items.map((item, index) => (
-            <div key={item._id || index} className="w-full md:w-full shrink-0 snap-center snap-always">
+            <div key={item._id || index} className="w-full shrink-0 snap-center snap-always">
               <Reveal delay={index * 0.1}>
                 <div
-                  className="group relative w-full overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/10 bg-[#0B0D14]/80 backdrop-blur-2xl p-5 md:p-7 shadow-[0_25px_60px_rgba(0,0,0,0.45)] flex flex-col md:flex-row gap-6 md:gap-8 items-center"
+                  className="group relative w-full overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/10 bg-[#0B0D14]/80 backdrop-blur-2xl p-5 md:p-7 shadow-[0_25px_60px_rgba(216,155,29,0.1)] transition-all duration-500 hover:border-amber-500/20 flex flex-col md:flex-row gap-6 md:gap-8 items-center"
                 >
-                  {/* Subtle Hover Backglow */}
+                  {/* Premium Gold Hover Backglow */}
                   <div 
-                    className="absolute -right-20 -top-20 w-64 h-64 rounded-full blur-[100px] pointer-events-none opacity-0 transition duration-500 group-hover:opacity-60"
+                    className="absolute -right-20 -top-20 w-64 h-64 rounded-full blur-[100px] pointer-events-none opacity-0 transition duration-500 group-hover:opacity-70"
                     style={{ backgroundColor: theme?.glow }}
                   />
 
@@ -181,7 +181,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
                     href={item.url} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="w-full md:w-1/2 aspect-[16/10] bg-[#141622] rounded-[18px] md:rounded-[22px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-white/10 shrink-0"
+                    className="w-full md:w-1/2 aspect-[16/10] bg-[#141622] rounded-[18px] md:rounded-[22px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-amber-500/20 shrink-0"
                   >
                     <img
                       src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
@@ -242,7 +242,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
                         href={item.url} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] transition duration-300 hover:text-white hover:border-white/20"
+                        className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] transition duration-300 hover:text-white hover:border-amber-500/30"
                       >
                         <ExternalLink size={14} />
                       </a>
@@ -255,10 +255,10 @@ const ProjectSection = ({ title, items = [], theme }) => {
           ))}
         </div>
 
-        {/* DESKTOP ARROW RIGHT */}
+        {/* DESKTOP ARROW RIGHT (Optimized padding gap using -right-16) */}
         <button
           onClick={() => slide("right")}
-          className="hidden md:flex absolute -right-4 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-white hover:text-black hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.05)]"
+          className="hidden md:flex absolute -right-16 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-amber-500 hover:text-black hover:scale-105 shadow-[0_0_20px_rgba(216,155,29,0.2)]"
         >
           <ChevronRight size={20} />
         </button>
@@ -298,7 +298,6 @@ function Projects() {
     );
   }
 
-  // Fallback selector for premium hero banner experience asset
   const featuredHeroProject = 
     projects.web?.find(p => p.isHero) || 
     projects.uiux?.find(p => p.isHero) || 
@@ -339,7 +338,7 @@ function Projects() {
         {/* FEATURED PREMIUM HERO ACTION MODULE */}
         <HeroFeaturedProject project={featuredHeroProject} theme={PROJECT_THEMES.web} />
 
-        {/* SLIDER ROW CATEGORIES - All Sections Preserved */}
+        {/* SLIDER ROW CATEGORIES */}
         <ProjectSection title="Development" items={projects.web || []} theme={PROJECT_THEMES.web} />
         <ProjectSection title="UI / UX Design" items={projects.uiux || []} theme={PROJECT_THEMES.uiux} />
         <ProjectSection title="Motion & Editing" items={projects.editing || []} theme={PROJECT_THEMES.editing} />
