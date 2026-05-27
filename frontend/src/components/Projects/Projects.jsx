@@ -112,7 +112,7 @@ const HeroFeaturedProject = ({ project, theme }) => {
   );
 };
 
-const ProjectSection = ({ title, items = [], theme, excludeId }) => {
+const ProjectSection = ({ title, items = [], theme }) => {
   const scrollRef = useRef(null);
 
   const slide = (dir) => {
@@ -123,11 +123,6 @@ const ProjectSection = ({ title, items = [], theme, excludeId }) => {
       behavior: "smooth",
     });
   };
-
-  // Filter out the hero item before building cards
-  const filteredItems = items.filter(item => item._id !== excludeId);
-
-  if (filteredItems.length === 0) return null;
 
   return (
     <div className="mb-14 md:mb-28 w-full">
@@ -168,7 +163,7 @@ const ProjectSection = ({ title, items = [], theme, excludeId }) => {
             WebkitOverflowScrolling: "touch" 
           }}
         >
-          {filteredItems.map((item, index) => (
+          {items.map((item, index) => (
             <Reveal key={item._id} delay={index * 0.1}>
               <motion.a
                 href={item.url}
@@ -176,12 +171,12 @@ const ProjectSection = ({ title, items = [], theme, excludeId }) => {
                 rel="noopener noreferrer"
                 whileHover={{ y: -8 }}
                 transition={{ duration: 0.4 }}
-                className="group relative h-auto min-h-[490px] w-[82vw] sm:w-[350px] md:h-[590px] md:w-[370px] lg:w-[385px] shrink-0 snap-center md:snap-start overflow-hidden rounded-[24px] md:rounded-[28px] border border-cyan-500/10 bg-[#0B0D14] shadow-[0_20px_50px_rgba(56,189,248,0.15)] backdrop-blur-xl flex flex-col p-3.5 md:p-4"
+                className="group relative h-auto min-h-[490px] w-[82vw] sm:w-[350px] md:h-[590px] md:w-[370px] lg:w-[385px] shrink-0 snap-center md:snap-start overflow-hidden rounded-[24px] md:rounded-[28px] border border-white/10 bg-[#0B0D14] shadow-[0_20px_50px_rgba(0,0,0,0.3)] backdrop-blur-xl flex flex-col p-3.5 md:p-4"
               >
                 <div className="pointer-events-none absolute inset-0 rounded-[24px] md:rounded-[28px] ring-1 ring-white/5 z-20" />
 
                 {/* IMAGE FRAME */}
-                <div className="relative h-[180px] md:h-[45%] w-full bg-[#141622] rounded-[18px] md:rounded-[20px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-cyan-500/20 shrink-0">
+                <div className="relative h-[180px] md:h-[45%] w-full bg-[#141622] rounded-[18px] md:rounded-[20px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-white/20 shrink-0">
                   <div className="absolute inset-3 rounded-[14px] bg-white/[0.01] border border-white/5 shadow-[0_0_30px_rgba(0,0,0,0.4)] z-0" />
                   
                   <img
@@ -190,7 +185,7 @@ const ProjectSection = ({ title, items = [], theme, excludeId }) => {
                     className="relative z-10 h-full w-full object-cover rounded-[14px] transition duration-700 group-hover:scale-[1.03]"
                   />
                   
-                  {/* METRIC CATEGORIES INSTEAD OF REPETITIVE LABELS (ISSUE 2) */}
+                  {/* METRIC CATEGORIES */}
                   <div className="absolute left-4 top-4 z-10">
                     <span className="rounded-full border border-white/10 bg-black/80 px-2.5 py-1 text-[8px] md:text-[9px] uppercase tracking-[0.28em] text-white/90 backdrop-blur-xl font-bold">
                       {item.category || (index % 3 === 0 ? "Client Project" : index % 3 === 1 ? "Case Study" : "UI Concept")}
@@ -198,7 +193,7 @@ const ProjectSection = ({ title, items = [], theme, excludeId }) => {
                   </div>
                 </div>
 
-                {/* DESCRIPTION & STRATEGIC INSIGHTS BOX (ISSUE 1 & 5) */}
+                {/* DESCRIPTION & STRATEGIC INSIGHTS BOX */}
                 <div className="flex-1 w-full px-1 pt-4 pb-1 flex flex-col justify-between gap-3">
                   <div>
                     <h4 className="text-[18px] md:text-[21px] font-bold tracking-tight text-[#F1F5F9] line-clamp-1">
@@ -228,7 +223,7 @@ const ProjectSection = ({ title, items = [], theme, excludeId }) => {
                     </div>
                   </div>
 
-                  {/* PREMIUM CALL TO ACTIONS (ISSUE 3) */}
+                  {/* PREMIUM CALL TO ACTIONS */}
                   <div className="flex items-center justify-between mt-auto pt-2">
                     <span
                       className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#D668FF] to-[#A02CFF] px-4 py-2 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.14em] text-white shadow-[0_6px_25px_rgba(180,60,255,0.25)] transition hover:brightness-110"
@@ -236,7 +231,7 @@ const ProjectSection = ({ title, items = [], theme, excludeId }) => {
                       {item.category === "Case Study" ? "View Case Study" : "Explore Experience"} <Plus size={12} className="text-white/90" />
                     </span>
 
-                    <span className="flex h-9 w-9 md:h-10 md:w-10 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] backdrop-blur-xl transition duration-300 group-hover:bg-[#1E2028] group-hover:text-white group-hover:border-cyan-500/30">
+                    <span className="flex h-9 w-9 md:h-10 md:w-10 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] backdrop-blur-xl transition duration-300 group-hover:bg-[#1E2028] group-hover:text-white group-hover:border-white/30">
                       <ExternalLink size={14} />
                     </span>
                   </div>
@@ -336,10 +331,10 @@ function Projects() {
         {/* FEATURED PREMIUM HERO ACTION MODULE */}
         <HeroFeaturedProject project={featuredHeroProject} theme={PROJECT_THEMES.web} />
 
-        {/* SLIDER ROW CATEGORIES - Safely passes down the featured id to avoid duplicate generation */}
-        <ProjectSection title="Development" items={projects.web} theme={PROJECT_THEMES.web} excludeId={featuredHeroProject?._id} />
-        <ProjectSection title="UI / UX Design" items={projects.uiux} theme={PROJECT_THEMES.uiux} excludeId={featuredHeroProject?._id} />
-        <ProjectSection title="Motion & Editing" items={projects.editing} theme={PROJECT_THEMES.editing} excludeId={featuredHeroProject?._id} />
+        {/* SLIDER ROW CATEGORIES - All Sections Preserved */}
+        <ProjectSection title="Development" items={projects.web || []} theme={PROJECT_THEMES.web} />
+        <ProjectSection title="UI / UX Design" items={projects.uiux || []} theme={PROJECT_THEMES.uiux} />
+        <ProjectSection title="Motion & Editing" items={projects.editing || []} theme={PROJECT_THEMES.editing} />
       </div>
     </section>
   );
