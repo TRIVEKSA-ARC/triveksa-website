@@ -139,29 +139,37 @@ const ProjectSection = ({ title, items = [], theme }) => {
       if (!scrollRef.current) return;
 
       const container = scrollRef.current;
+      
+      // Calculate premium transition offsets based on exact card widths
+      const firstChild = container.firstElementChild;
+      const scrollAmount = firstChild ? firstChild.clientWidth + 24 : container.clientWidth;
+      
       const maxScrollLeft = container.scrollWidth - container.clientWidth;
 
-      // Reset to start when reaching end, else scroll right by clientWidth
-      if (container.scrollLeft >= maxScrollLeft - 10) {
+      // Reset smoothly to start when reaching final boundary context
+      if (container.scrollLeft >= maxScrollLeft - 20) {
         container.scrollTo({
           left: 0,
           behavior: "smooth",
         });
       } else {
         container.scrollBy({
-          left: container.clientWidth,
+          left: scrollAmount,
           behavior: "smooth",
         });
       }
-    }, 5000); // 5000ms timing matching website aesthetic perfectly
+    }, 5000); // Luxury 5000ms cinematic pacing loop
 
     return () => clearInterval(interval);
   }, [items.length, isHovered]);
 
   const slide = (dir) => {
     if (!scrollRef.current) return;
-    const scrollAmount = scrollRef.current.clientWidth;
-    scrollRef.current.scrollBy({
+    const container = scrollRef.current;
+    const firstChild = container.firstElementChild;
+    const scrollAmount = firstChild ? firstChild.clientWidth + 24 : container.clientWidth;
+
+    container.scrollBy({
       left: dir === "left" ? -scrollAmount : scrollAmount,
       behavior: "smooth",
     });
@@ -210,94 +218,90 @@ const ProjectSection = ({ title, items = [], theme }) => {
         >
           {items.map((item, index) => (
             <div key={item._id || index} className="w-full shrink-0 snap-center snap-always">
-              <Reveal delay={index * 0.1}>
-                {/* Framer motion wrapper for micro-interaction workspace card mechanics */}
-                <motion.div
-                  whileHover={{ x: 12 }}
-                  transition={{ type: "spring", stiffness: 90, damping: 18 }}
-                  className={`group relative w-full overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/10 bg-[#0B0D14]/80 backdrop-blur-2xl p-5 md:p-7 ${theme.shadow} ${theme.shadowHover} ${theme.borderHover} transition-all duration-500 flex flex-col md:flex-row gap-6 md:gap-8 items-center`}
+              {/* Note: Removed <Reveal> component wrapper from here to prevent horizontal scroll micro-stuttering */}
+              <div
+                className={`group relative w-full overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/10 bg-[#0B0D14]/80 backdrop-blur-2xl p-5 md:p-7 ${theme.shadow} ${theme.shadowHover} ${theme.borderHover} transition-all duration-500 flex flex-col md:flex-row gap-6 md:gap-8 items-center`}
+              >
+                {/* Premium Theme Hover Backglow */}
+                <div 
+                  className="absolute -right-20 -top-20 w-64 h-64 rounded-full blur-[100px] pointer-events-none opacity-0 transition duration-500 group-hover:opacity-70"
+                  style={{ backgroundColor: theme?.glow }}
+                />
+
+                {/* Left Side: Image Preview */}
+                <a 
+                  href={item.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className={`w-full md:w-1/2 aspect-[16/10] bg-[#141622] rounded-[18px] md:rounded-[22px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 ${theme.borderHover} shrink-0`}
                 >
-                  {/* Premium Theme Hover Backglow */}
-                  <div 
-                    className="absolute -right-20 -top-20 w-64 h-64 rounded-full blur-[100px] pointer-events-none opacity-0 transition duration-500 group-hover:opacity-70"
-                    style={{ backgroundColor: theme?.glow }}
+                  <img
+                    src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
+                    alt={item.title}
+                    className="h-full w-full object-cover rounded-[14px] transition duration-700 group-hover:scale-[1.02]"
                   />
+                </a>
 
-                  {/* Left Side: Image Preview */}
-                  <a 
-                    href={item.url} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className={`w-full md:w-1/2 aspect-[16/10] bg-[#141622] rounded-[18px] md:rounded-[22px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 ${theme.borderHover} shrink-0`}
-                  >
-                    <img
-                      src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
-                      alt={item.title}
-                      className="h-full w-full object-cover rounded-[14px] transition duration-700 group-hover:scale-[1.02]"
-                    />
-                  </a>
-
-                  {/* Right Side: Information Matrix */}
-                  <div className="w-full md:w-1/2 flex flex-col justify-between h-full align-stretch">
-                    <div>
-                      <div className="flex items-center gap-2.5 mb-3">
-                        <span className="rounded-full border border-amber-500/20 bg-amber-500/10 px-2.5 py-0.5 text-[8px] md:text-[9px] font-bold uppercase tracking-[0.22em] text-amber-400">
-                          Featured Experience
-                        </span>
-                        <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-[8px] md:text-[9px] uppercase tracking-[0.15em] text-white/60">
-                          {item.category || "Web"}
-                        </span>
-                      </div>
-
-                      <h4 className="text-[22px] md:text-[28px] font-bold tracking-tight text-white stroke-none leading-tight mb-2.5 line-clamp-1">
-                        {item.title}
-                      </h4>
-
-                      <p className="text-[12px] md:text-[13px] leading-relaxed text-[#94A3B8] font-medium mb-4 line-clamp-2">
-                        {item.desc}
-                      </p>
-
-                      {/* Meta Parameters Grid Layout */}
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 border-t border-b border-white/5 py-3.5 mb-4 text-[11px]">
-                        <div>
-                          <span className="text-[9px] uppercase tracking-wider text-white/40 block mb-0.5">Industry</span>
-                          <span className="font-semibold text-[#F1F5F9] truncate block">{item.industry || "Digital Solutions"}</span>
-                        </div>
-                        <div>
-                          <span className="text-[9px] uppercase tracking-wider text-white/40 block mb-0.5">Core Focus</span>
-                          <span className="font-semibold text-[#F1F5F9] truncate block">{item.goal || "Premium Experience"}</span>
-                        </div>
-                        <div>
-                          <span className="text-[9px] uppercase tracking-wider text-amber-400 block mb-0.5">Business Impact</span>
-                          <span className="font-bold text-amber-400 truncate block">{item.result || "Conversion Optimized"}</span>
-                        </div>
-                      </div>
+                {/* Right Side: Information Matrix */}
+                <div className="w-full md:w-1/2 flex flex-col justify-between h-full align-stretch">
+                  <div>
+                    <div className="flex items-center gap-2.5 mb-3">
+                      <span className="rounded-full border border-amber-500/20 bg-amber-500/10 px-2.5 py-0.5 text-[8px] md:text-[9px] font-bold uppercase tracking-[0.22em] text-amber-400">
+                        Featured Experience
+                      </span>
+                      <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-[8px] md:text-[9px] uppercase tracking-[0.15em] text-white/60">
+                        {item.category || "Web"}
+                      </span>
                     </div>
 
-                    {/* Actions Bar */}
-                    <div className="flex items-center justify-between mt-auto pt-1">
-                      <a
-                        href={item.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-[10px] font-bold uppercase tracking-[0.12em] text-black shadow-sm transition hover:bg-neutral-200 hover:scale-[1.01]"
-                      >
-                        Explore Experience <Plus size={12} className="text-black" />
-                      </a>
+                    <h4 className="text-[22px] md:text-[28px] font-bold tracking-tight text-white stroke-none leading-tight mb-2.5 line-clamp-1">
+                      {item.title}
+                    </h4>
 
-                      <a 
-                        href={item.url} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className={`flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] transition duration-300 hover:text-white ${theme.borderHover}`}
-                      >
-                        <ExternalLink size={14} />
-                      </a>
+                    <p className="text-[12px] md:text-[13px] leading-relaxed text-[#94A3B8] font-medium mb-4 line-clamp-2">
+                      {item.desc}
+                    </p>
+
+                    {/* Meta Parameters Grid Layout */}
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 border-t border-b border-white/5 py-3.5 mb-4 text-[11px]">
+                      <div>
+                        <span className="text-[9px] uppercase tracking-wider text-white/40 block mb-0.5">Industry</span>
+                        <span className="font-semibold text-[#F1F5F9] truncate block">{item.industry || "Digital Solutions"}</span>
+                      </div>
+                      <div>
+                        <span className="text-[9px] uppercase tracking-wider text-white/40 block mb-0.5">Core Focus</span>
+                        <span className="font-semibold text-[#F1F5F9] truncate block">{item.goal || "Premium Experience"}</span>
+                      </div>
+                      <div>
+                        <span className="text-[9px] uppercase tracking-wider text-amber-400 block mb-0.5">Business Impact</span>
+                        <span className="font-bold text-amber-400 truncate block">{item.result || "Conversion Optimized"}</span>
+                      </div>
                     </div>
                   </div>
 
-                </motion.div>
-              </Reveal>
+                  {/* Actions Bar */}
+                  <div className="flex items-center justify-between mt-auto pt-1">
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-[10px] font-bold uppercase tracking-[0.12em] text-black shadow-sm transition hover:bg-neutral-200 hover:scale-[1.01]"
+                    >
+                      Explore Experience <Plus size={12} className="text-black" />
+                    </a>
+
+                    <a 
+                      href={item.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className={`flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] transition duration-300 hover:text-white ${theme.borderHover}`}
+                    >
+                      <ExternalLink size={14} />
+                    </a>
+                  </div>
+                </div>
+
+              </div>
             </div>
           ))}
         </div>
@@ -355,31 +359,28 @@ function Projects() {
     <section id="projects" className="relative overflow-hidden bg-transparent py-12 md:py-24 text-white">
       <div className="mx-auto max-w-7xl">
         <header className="mb-14 md:mb-24 px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mx-auto max-w-3xl"
-          >
-            <div className="mb-4 flex items-center justify-center gap-3">
-              <span className="h-px w-10 bg-gradient-to-r from-transparent via-amber-400 to-transparent" />
-              <p className="text-[10px] md:text-[12px] uppercase tracking-[0.42em] text-white/90">
-                Curated Projects
+          <Reveal>
+            <div className="mx-auto max-w-3xl">
+              <div className="mb-4 flex items-center justify-center gap-3">
+                <span className="h-px w-10 bg-gradient-to-r from-transparent via-amber-400 to-transparent" />
+                <p className="text-[10px] md:text-[12px] uppercase tracking-[0.42em] text-white/90">
+                  Curated Projects
+                </p>
+                <span className="h-px w-10 bg-gradient-to-r from-transparent via-amber-400 to-transparent" />
+              </div>
+
+              <h2 className="text-[32px] md:text-[64px] font-bold tracking-[-0.04em] leading-none text-white">
+                SELECTED{" "}
+                <span className="bg-gradient-to-r from-[#fff1c2] via-[#f5c96a] to-[#d89b1d] bg-clip-text text-transparent">
+                  WORK
+                </span>
+              </h2>
+
+              <p className="mx-auto mt-4 max-w-2xl text-[11px] md:text-[14px] uppercase tracking-[0.22em] leading-relaxed text-white/70">
+                A refined collection of development, design, and editing projects crafted with detail and purpose
               </p>
-              <span className="h-px w-10 bg-gradient-to-r from-transparent via-amber-400 to-transparent" />
             </div>
-
-            <motion.h2 className="text-[32px] md:text-[64px] font-bold tracking-[-0.04em] leading-none text-white">
-              SELECTED{" "}
-              <span className="bg-gradient-to-r from-[#fff1c2] via-[#f5c96a] to-[#d89b1d] bg-clip-text text-transparent">
-                WORK
-              </span>
-            </motion.h2>
-
-            <p className="mx-auto mt-4 max-w-2xl text-[11px] md:text-[14px] uppercase tracking-[0.22em] leading-relaxed text-white/70">
-              A refined collection of development, design, and editing projects crafted with detail and purpose
-            </p>
-          </motion.div>
+          </Reveal>
         </header>
 
         {/* FEATURED PREMIUM HERO ACTION MODULE */}
