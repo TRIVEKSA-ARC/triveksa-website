@@ -7,21 +7,21 @@ import Reveal from "../Reveal";
 const PROJECT_THEMES = {
   web: {
     color: "from-cyan-400 to-blue-500",
-    glow: "rgba(34,211,238,0.25)", // Deep cyan neon backglow
-    shadow: "shadow-[0_30px_70px_rgba(6,182,212,0.15)]", // Premium matching interactive shadows
+    glow: "rgba(34,211,238,0.25)", 
+    shadow: "shadow-[0_30px_70px_rgba(6,182,212,0.15)]", 
     shadowHover: "hover:shadow-[0_30px_80px_rgba(59,130,246,0.25)]",
     borderHover: "hover:border-cyan-500/30",
   },
   uiux: {
     color: "from-purple-400 to-pink-500",
-    glow: "rgba(192,132,252,0.25)", // Deep luxury purple backglow
+    glow: "rgba(192,132,252,0.25)", 
     shadow: "shadow-[0_30px_70px_rgba(168,85,247,0.12)]",
     shadowHover: "hover:shadow-[0_30px_80px_rgba(236,72,153,0.22)]",
     borderHover: "hover:border-purple-500/30",
   },
   editing: {
     color: "from-amber-400 to-orange-500",
-    glow: "rgba(251,191,36,0.22)", // Deep warning cinematic amber backglow
+    glow: "rgba(251,191,36,0.22)", 
     shadow: "shadow-[0_30px_70px_rgba(245,158,11,0.12)]",
     shadowHover: "hover:shadow-[0_30px_80px_rgba(249,115,22,0.22)]",
     borderHover: "hover:border-amber-500/30",
@@ -35,7 +35,11 @@ const HeroFeaturedProject = ({ project, theme }) => {
   return (
     <div className="mx-auto max-w-7xl px-4 md:px-8 mb-16 md:mb-28">
       <Reveal>
-        <div className={`relative w-full rounded-[28px] md:rounded-[36px] border border-white/10 bg-[#0B0D14]/80 backdrop-blur-2xl p-6 md:p-10 overflow-hidden group ${theme.shadow} ${theme.shadowHover} ${theme.borderHover} transition-all duration-500`}>
+        <motion.div 
+          whileHover={{ x: 8 }}
+          transition={{ type: "spring", stiffness: 100, damping: 20 }}
+          className={`relative w-full rounded-[28px] md:rounded-[36px] border border-white/10 bg-[#0B0D14]/80 backdrop-blur-2xl p-6 md:p-10 overflow-hidden group ${theme.shadow} ${theme.shadowHover} ${theme.borderHover} transition-all duration-500`}
+        >
           {/* Subtle Dynamic Theme Backglow */}
           <div 
             className="absolute -right-20 -top-20 w-80 h-80 rounded-full blur-[120px] pointer-events-none transition duration-500 group-hover:opacity-100 opacity-70"
@@ -115,7 +119,7 @@ const HeroFeaturedProject = ({ project, theme }) => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </Reveal>
     </div>
   );
@@ -126,17 +130,14 @@ const ProjectSection = ({ title, items = [], theme }) => {
   const scrollRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
 
-  // Elite Cinematic Infinite / Slow Left-to-Right Auto Scroll loop logic
+  // Auto scroll logic that temporarily breaks loop whenever hovered is flagged true
   useEffect(() => {
     let animationId;
-    
     const autoScroll = () => {
       if (!scrollRef.current || isHovered) return;
-      
       const track = scrollRef.current;
-      track.scrollLeft += 0.65; // Extremely buttery smooth continuous movement metric speed
+      track.scrollLeft += 0.6; // Buttery slow horizontal continuous movement metric speed
       
-      // Infinite bounce/reset setup loop if it crosses end limit boundaries smoothly
       if (track.scrollLeft >= (track.scrollWidth - track.clientWidth - 4)) {
         track.scrollLeft = 0;
       }
@@ -146,7 +147,6 @@ const ProjectSection = ({ title, items = [], theme }) => {
     if (!isHovered) {
       animationId = requestAnimationFrame(autoScroll);
     }
-
     return () => cancelAnimationFrame(animationId);
   }, [isHovered]);
 
@@ -205,7 +205,10 @@ const ProjectSection = ({ title, items = [], theme }) => {
           {items.map((item, index) => (
             <div key={item._id || index} className="w-full shrink-0 snap-center snap-always">
               <Reveal delay={index * 0.1}>
-                <div
+                {/* Framer motion wrapper for micro-interaction workspace card mechanics */}
+                <motion.div
+                  whileHover={{ x: 12 }}
+                  transition={{ type: "spring", stiffness: 90, damping: 18 }}
                   className={`group relative w-full overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/10 bg-[#0B0D14]/80 backdrop-blur-2xl p-5 md:p-7 ${theme.shadow} ${theme.shadowHover} ${theme.borderHover} transition-all duration-500 flex flex-col md:flex-row gap-6 md:gap-8 items-center`}
                 >
                   {/* Premium Theme Hover Backglow */}
@@ -287,7 +290,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
                     </div>
                   </div>
 
-                </div>
+                </motion.div>
               </Reveal>
             </div>
           ))}
