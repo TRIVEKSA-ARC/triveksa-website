@@ -126,31 +126,28 @@ const ProjectSection = ({ title, items = [], theme }) => {
   const scrollRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
 
+  // Clone item list to create an infinite, seamless loop standard
+  const extendedItems = items.length > 1 ? [...items, ...items] : items;
+
   useEffect(() => {
-    if (!scrollRef.current) return;
+    if (!scrollRef.current || items.length <= 1 || isHovered) return;
 
-    // Condition 1: Don't auto-slide if only 1 card or fewer
-    if (items.length <= 1) return;
-
-    // Condition 3: Pause when hovered
-    if (isHovered) return;
+    const container = scrollRef.current;
 
     const interval = setInterval(() => {
       if (!scrollRef.current) return;
 
-      const container = scrollRef.current;
-      
-      // Calculate premium transition offsets based on exact card widths
       const firstChild = container.firstElementChild;
       const scrollAmount = firstChild ? firstChild.clientWidth + 24 : container.clientWidth;
       
-      const maxScrollLeft = container.scrollWidth - container.clientWidth;
+      // Halfway marks the total span boundary of original items
+      const originalWidthBoundary = scrollAmount * items.length;
 
-      // Reset smoothly to start when reaching final boundary context
-      if (container.scrollLeft >= maxScrollLeft - 20) {
+      // When reaching or passing original items window context, reset position seamlessly to start
+      if (container.scrollLeft >= originalWidthBoundary - 10) {
         container.scrollTo({
-          left: 0,
-          behavior: "smooth",
+          left: container.scrollLeft - originalWidthBoundary + scrollAmount,
+          behavior: "auto", // Instant context shift with zero visual lag
         });
       } else {
         container.scrollBy({
@@ -158,7 +155,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
           behavior: "smooth",
         });
       }
-    }, 5000); // Luxury 5000ms cinematic pacing loop
+    }, 5000); 
 
     return () => clearInterval(interval);
   }, [items.length, isHovered]);
@@ -168,11 +165,34 @@ const ProjectSection = ({ title, items = [], theme }) => {
     const container = scrollRef.current;
     const firstChild = container.firstElementChild;
     const scrollAmount = firstChild ? firstChild.clientWidth + 24 : container.clientWidth;
+    const originalWidthBoundary = scrollAmount * items.length;
 
-    container.scrollBy({
-      left: dir === "left" ? -scrollAmount : scrollAmount,
-      behavior: "smooth",
-    });
+    if (dir === "right") {
+      if (container.scrollLeft >= originalWidthBoundary - 10) {
+        // Adjust scroll position layout silently before moving forward
+        container.scrollTo({
+          left: container.scrollLeft - originalWidthBoundary,
+          behavior: "auto",
+        });
+        setTimeout(() => {
+          container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+        }, 10);
+      } else {
+        container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      }
+    } else {
+      if (container.scrollLeft <= 10) {
+        container.scrollTo({
+          left: originalWidthBoundary,
+          behavior: "auto",
+        });
+        setTimeout(() => {
+          container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+        }, 10);
+      } else {
+        container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+      }
+    }
   };
 
   return (
@@ -216,9 +236,8 @@ const ProjectSection = ({ title, items = [], theme }) => {
             WebkitOverflowScrolling: "touch" 
           }}
         >
-          {items.map((item, index) => (
-            <div key={item._id || index} className="w-full shrink-0 snap-center snap-always">
-              {/* Note: Removed <Reveal> component wrapper from here to prevent horizontal scroll micro-stuttering */}
+          {extendedItems.map((item, index) => (
+            <div key={`${item._id || index}-${index}`} className="w-full shrink-0 snap-center snap-always">
               <div
                 className={`group relative w-full overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/10 bg-[#0B0D14]/80 backdrop-blur-2xl p-5 md:p-7 ${theme.shadow} ${theme.shadowHover} ${theme.borderHover} transition-all duration-500 flex flex-col md:flex-row gap-6 md:gap-8 items-center`}
               >
