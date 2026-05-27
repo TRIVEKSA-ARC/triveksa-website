@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Plus, ExternalLink } from "lucide-react";
 import { useProjects } from "../../context/ProjectContext";
@@ -124,6 +124,31 @@ const HeroFeaturedProject = ({ project, theme }) => {
 // --- ROW PROJECT CARD COMPONENT ---
 const ProjectSection = ({ title, items = [], theme }) => {
   const scrollRef = useRef(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Elite Cinematic Infinite / Slow Left-to-Right Auto Scroll loop logic
+  useEffect(() => {
+    let animationId;
+    
+    const autoScroll = () => {
+      if (!scrollRef.current || isHovered) return;
+      
+      const track = scrollRef.current;
+      track.scrollLeft += 0.65; // Extremely buttery smooth continuous movement metric speed
+      
+      // Infinite bounce/reset setup loop if it crosses end limit boundaries smoothly
+      if (track.scrollLeft >= (track.scrollWidth - track.clientWidth - 4)) {
+        track.scrollLeft = 0;
+      }
+      animationId = requestAnimationFrame(autoScroll);
+    };
+
+    if (!isHovered) {
+      animationId = requestAnimationFrame(autoScroll);
+    }
+
+    return () => cancelAnimationFrame(animationId);
+  }, [isHovered]);
 
   const slide = (dir) => {
     if (!scrollRef.current) return;
@@ -154,7 +179,11 @@ const ProjectSection = ({ title, items = [], theme }) => {
       </div>
 
       {/* SLIDER WRAPPER */}
-      <div className="mx-auto max-w-7xl px-4 md:px-8 relative w-full">
+      <div 
+        className="mx-auto max-w-7xl px-4 md:px-8 relative w-full"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         
         {/* DESKTOP ARROW LEFT */}
         <button
