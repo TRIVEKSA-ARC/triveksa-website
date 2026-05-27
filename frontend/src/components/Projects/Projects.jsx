@@ -7,15 +7,24 @@ import Reveal from "../Reveal";
 const PROJECT_THEMES = {
   web: {
     color: "from-cyan-400 to-blue-500",
-    glow: "rgba(216,155,29,0.25)", // Enhanced premium gold glow
+    glow: "rgba(34,211,238,0.25)", // Deep cyan neon backglow
+    shadow: "shadow-[0_30px_70px_rgba(6,182,212,0.15)]", // Premium matching interactive shadows
+    shadowHover: "hover:shadow-[0_30px_80px_rgba(59,130,246,0.25)]",
+    borderHover: "hover:border-cyan-500/30",
   },
   uiux: {
     color: "from-purple-400 to-pink-500",
-    glow: "rgba(216,155,29,0.25)", // Enhanced premium gold glow
+    glow: "rgba(192,132,252,0.25)", // Deep luxury purple backglow
+    shadow: "shadow-[0_30px_70px_rgba(168,85,247,0.12)]",
+    shadowHover: "hover:shadow-[0_30px_80px_rgba(236,72,153,0.22)]",
+    borderHover: "hover:border-purple-500/30",
   },
   editing: {
     color: "from-amber-400 to-orange-500",
-    glow: "rgba(216,155,29,0.25)", // Enhanced premium gold glow
+    glow: "rgba(251,191,36,0.22)", // Deep warning cinematic amber backglow
+    shadow: "shadow-[0_30px_70px_rgba(245,158,11,0.12)]",
+    shadowHover: "hover:shadow-[0_30px_80px_rgba(249,115,22,0.22)]",
+    borderHover: "hover:border-amber-500/30",
   },
 };
 
@@ -26,11 +35,11 @@ const HeroFeaturedProject = ({ project, theme }) => {
   return (
     <div className="mx-auto max-w-7xl px-4 md:px-8 mb-16 md:mb-28">
       <Reveal>
-        <div className="relative w-full rounded-[28px] md:rounded-[36px] border border-white/10 bg-[#0B0D14]/80 backdrop-blur-2xl p-6 md:p-10 overflow-hidden group shadow-[0_30px_70px_rgba(255,255,255,0.06)] transition-all duration-500 hover:border-white/20">
-          {/* Subtle Premium Gold Backglow */}
+        <div className={`relative w-full rounded-[28px] md:rounded-[36px] border border-white/10 bg-[#0B0D14]/80 backdrop-blur-2xl p-6 md:p-10 overflow-hidden group ${theme.shadow} ${theme.shadowHover} ${theme.borderHover} transition-all duration-500`}>
+          {/* Subtle Dynamic Theme Backglow */}
           <div 
             className="absolute -right-20 -top-20 w-80 h-80 rounded-full blur-[120px] pointer-events-none transition duration-500 group-hover:opacity-100 opacity-70"
-            style={{ backgroundColor: theme?.glow || "rgba(216,155,29,0.2)" }}
+            style={{ backgroundColor: theme?.glow || "rgba(34,211,238,0.2)" }}
           />
 
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center relative z-10">
@@ -39,7 +48,7 @@ const HeroFeaturedProject = ({ project, theme }) => {
               href={project.url} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="w-full lg:w-1/2 aspect-[16/10] bg-[#141622] rounded-[20px] md:rounded-[24px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-white/20 shrink-0"
+              className={`w-full lg:w-1/2 aspect-[16/10] bg-[#141622] rounded-[20px] md:rounded-[24px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 ${theme.borderHover} shrink-0`}
             >
               <img
                 src={project.img?.startsWith("http") ? project.img : "/placeholder.png"}
@@ -90,7 +99,7 @@ const HeroFeaturedProject = ({ project, theme }) => {
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 rounded-full bg-white px-6 py-3 text-[12px] font-bold uppercase tracking-[0.14em] text-black shadow-[0_10px_30px_rgba(255,255,255,0.15)] transition hover:bg-neutral-200 hover:scale-[1.02]"
+                  className="inline-flex items-center gap-2.5 rounded-full bg-white px-6 py-3 text-[12px] font-bold uppercase tracking-[0.14em] text-black shadow-md transition hover:bg-neutral-200 hover:scale-[1.02]"
                 >
                   Explore Experience <Plus size={14} className="text-black" />
                 </a>
@@ -99,7 +108,7 @@ const HeroFeaturedProject = ({ project, theme }) => {
                   href={project.url} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] transition duration-300 hover:text-white hover:border-white/30"
+                  className={`flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] transition duration-300 hover:text-white ${theme.borderHover}`}
                 >
                   <ExternalLink size={18} />
                 </a>
@@ -147,10 +156,10 @@ const ProjectSection = ({ title, items = [], theme }) => {
       {/* SLIDER WRAPPER */}
       <div className="mx-auto max-w-7xl px-4 md:px-8 relative w-full">
         
-        {/* DESKTOP ARROW LEFT (Optimized padding gap using -left-16) */}
+        {/* DESKTOP ARROW LEFT */}
         <button
           onClick={() => slide("left")}
-          className="hidden md:flex absolute -left-16 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-white hover:text-black hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.05)]"
+          className="hidden md:flex absolute -left-16 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-neutral-900 hover:text-white hover:scale-105"
         >
           <ChevronLeft size={20} />
         </button>
@@ -168,9 +177,9 @@ const ProjectSection = ({ title, items = [], theme }) => {
             <div key={item._id || index} className="w-full shrink-0 snap-center snap-always">
               <Reveal delay={index * 0.1}>
                 <div
-                  className="group relative w-full overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/10 bg-[#0B0D14]/80 backdrop-blur-2xl p-5 md:p-7 shadow-[0_25px_60px_rgba(255,255,255,0.04)] transition-all duration-500 hover:border-white/20 flex flex-col md:flex-row gap-6 md:gap-8 items-center"
+                  className={`group relative w-full overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/10 bg-[#0B0D14]/80 backdrop-blur-2xl p-5 md:p-7 ${theme.shadow} ${theme.shadowHover} ${theme.borderHover} transition-all duration-500 flex flex-col md:flex-row gap-6 md:gap-8 items-center`}
                 >
-                  {/* Premium Gold Hover Backglow */}
+                  {/* Premium Theme Hover Backglow */}
                   <div 
                     className="absolute -right-20 -top-20 w-64 h-64 rounded-full blur-[100px] pointer-events-none opacity-0 transition duration-500 group-hover:opacity-70"
                     style={{ backgroundColor: theme?.glow }}
@@ -181,7 +190,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
                     href={item.url} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="w-full md:w-1/2 aspect-[16/10] bg-[#141622] rounded-[18px] md:rounded-[22px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 group-hover:border-white/20 shrink-0"
+                    className={`w-full md:w-1/2 aspect-[16/10] bg-[#141622] rounded-[18px] md:rounded-[22px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 ${theme.borderHover} shrink-0`}
                   >
                     <img
                       src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
@@ -202,7 +211,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
                         </span>
                       </div>
 
-                      <h4 className="text-[22px] md:text-[28px] font-bold tracking-tight text-white leading-tight mb-2.5 line-clamp-1">
+                      <h4 className="text-[22px] md:text-[28px] font-bold tracking-tight text-white stroke-none leading-tight mb-2.5 line-clamp-1">
                         {item.title}
                       </h4>
 
@@ -233,7 +242,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
                         href={item.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-[10px] font-bold uppercase tracking-[0.12em] text-black shadow-md transition hover:bg-neutral-200 hover:scale-[1.01]"
+                        className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-[10px] font-bold uppercase tracking-[0.12em] text-black shadow-sm transition hover:bg-neutral-200 hover:scale-[1.01]"
                       >
                         Explore Experience <Plus size={12} className="text-black" />
                       </a>
@@ -242,7 +251,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
                         href={item.url} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] transition duration-300 hover:text-white hover:border-white/20"
+                        className={`flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] transition duration-300 hover:text-white ${theme.borderHover}`}
                       >
                         <ExternalLink size={14} />
                       </a>
@@ -255,10 +264,10 @@ const ProjectSection = ({ title, items = [], theme }) => {
           ))}
         </div>
 
-        {/* DESKTOP ARROW RIGHT (Optimized padding gap using -right-16) */}
+        {/* DESKTOP ARROW RIGHT */}
         <button
           onClick={() => slide("right")}
-          className="hidden md:flex absolute -right-16 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-white hover:text-black hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.05)]"
+          className="hidden md:flex absolute -right-16 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-white hover:text-black hover:scale-105"
         >
           <ChevronRight size={20} />
         </button>
