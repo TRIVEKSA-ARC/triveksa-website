@@ -15,7 +15,7 @@ const PROJECT_THEMES = {
   uiux: {
     color: "from-purple-400 to-pink-500",
     glow: "rgba(192,132,252,0.25)", // Deep luxury purple backglow
-    shadow: "shadow-[0_8px_24px_rgba(168,85,247,0.06),0_24px_60px_rgba(168,85,247,0.10),0_40px_120px_rgba(168,85,247,0.16)]",
+    shadow: "shadow-[0_30px_70px_rgba(168,85,247,0.12)]",
     shadowHover: "hover:shadow-[0_30px_80px_rgba(236,72,153,0.22)]",
     borderHover: "hover:border-purple-500/30",
   },
@@ -26,99 +26,6 @@ const PROJECT_THEMES = {
     shadowHover: "hover:shadow-[0_30px_80px_rgba(249,115,22,0.22)]",
     borderHover: "hover:border-amber-500/30",
   },
-};
-
-// --- CINEMATIC HERO FEATURED PROJECT ---
-const HeroFeaturedProject = ({ project, theme }) => {
-  if (!project) return null;
-
-  return (
-    <div className="mx-auto max-w-7xl px-4 md:px-8 mb-16 md:mb-28">
-      <Reveal>
-        <div className={`relative w-full rounded-[28px] md:rounded-[36px] border border-white/10 bg-[#0B0D14]/80 backdrop-blur-2xl p-6 md:p-10 overflow-hidden group ${theme.shadow} ${theme.shadowHover} ${theme.borderHover} transition-all duration-500`}>
-          {/* Subtle Dynamic Theme Backglow */}
-          <div 
-            className="absolute -right-20 -top-20 w-80 h-80 rounded-full blur-[120px] pointer-events-none transition duration-500 group-hover:opacity-100 opacity-70"
-            style={{ backgroundColor: theme?.glow || "rgba(34,211,238,0.2)" }}
-          />
-
-          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center relative z-10">
-            {/* Left Box: Cinematic Image Preview */}
-            <a 
-              href={project.url} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className={`w-full lg:w-1/2 aspect-[16/10] bg-[#141622] rounded-[20px] md:rounded-[24px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 ${theme.borderHover} shrink-0`}
-            >
-              <img
-                src={project.img?.startsWith("http") ? project.img : "/placeholder.png"}
-                alt={project.title}
-                className="h-full w-full object-cover rounded-[16px] transition duration-700 group-hover:scale-[1.02]"
-              />
-            </a>
-
-            {/* Right Box: Strategic Value Messaging */}
-            <div className="w-full lg:w-1/2 flex flex-col justify-between h-full align-stretch">
-              <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.25em] text-amber-400">
-                    Featured Experience
-                  </span>
-                  <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-white/60">
-                    {project.category || "Case Study"}
-                  </span>
-                </div>
-
-                <h3 className="text-[28px] md:text-[42px] font-bold tracking-tight text-white leading-tight mb-4">
-                  {project.title}
-                </h3>
-
-                <p className="text-[14px] md:text-[16px] leading-relaxed text-[#94A3B8] font-medium mb-6">
-                  {project.desc}
-                </p>
-
-                {/* Metrics Matrix */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-b border-white/5 py-5 mb-6">
-                  <div>
-                    <span className="text-[10px] uppercase tracking-wider text-white/40 block mb-1">Industry</span>
-                    <span className="text-[13px] font-semibold text-[#F1F5F9]">{project.industry || "Digital Solutions"}</span>
-                  </div>
-                  <div>
-                    <span className="text-[10px] uppercase tracking-wider text-white/40 block mb-1">Core Focus</span>
-                    <span className="text-[13px] font-semibold text-[#F1F5F9]">{project.goal || "Premium Experience"}</span>
-                  </div>
-                  <div>
-                    <span className="text-[10px] uppercase tracking-wider text-amber-400 block mb-1">Business Impact</span>
-                    <span className="text-[13px] font-bold text-amber-400">{project.result || "Conversion Optimized"}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between mt-auto pt-2">
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 rounded-full bg-white px-6 py-3 text-[12px] font-bold uppercase tracking-[0.14em] text-black shadow-md transition hover:bg-neutral-200 hover:scale-[1.02]"
-                >
-                  Explore Experience <Plus size={14} className="text-black" />
-                </a>
-
-                <a 
-                  href={project.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className={`flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] transition duration-300 hover:text-white ${theme.borderHover}`}
-                >
-                  <ExternalLink size={18} />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Reveal>
-    </div>
-  );
 };
 
 // --- ROW PROJECT CARD COMPONENT ---
@@ -368,12 +275,6 @@ function Projects() {
     );
   }
 
-  const featuredHeroProject = 
-    projects.web?.find(p => p.isHero) || 
-    projects.uiux?.find(p => p.isHero) || 
-    projects.web?.[0] || 
-    projects.uiux?.[0];
-
   return (
     <section id="projects" className="relative overflow-hidden bg-transparent py-12 md:py-24 text-white">
       <div className="mx-auto max-w-7xl">
@@ -401,9 +302,6 @@ function Projects() {
             </div>
           </Reveal>
         </header>
-
-        {/* FEATURED PREMIUM HERO ACTION MODULE */}
-        <HeroFeaturedProject project={featuredHeroProject} theme={PROJECT_THEMES.web} />
 
         {/* SLIDER ROW CATEGORIES */}
         <ProjectSection title="Development" items={projects.web || []} theme={PROJECT_THEMES.web} />
