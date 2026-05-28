@@ -84,7 +84,7 @@ function AboutAdmin() {
               })
             }
             placeholder={field.label}
-            className="w-full rounded-xl border border-white/10 bg-black/70 p-4 text-white outline-none transition focus:border-amber-400/40"
+            className="w-full rounded-xl border border-white/10 bg-black/70 px-5 py-4 text-white outline-none transition focus:border-amber-400/40"
           />
         </div>
       ))}
@@ -97,7 +97,7 @@ function AboutAdmin() {
 
       <button
         onClick={submit}
-        className="mt-6 px-6 py-3 bg-amber-500 text-black font-bold rounded-lg hover:bg-amber-400 transition"
+        className="mt-6 px-6 py-3 bg-amber-500 text-black font-bold rounded-2xl shadow-[0_10px_30px_rgba(245,158,11,0.25)] hover:bg-amber-400 hover:scale-[1.02] transition duration-300"
       >
         Save Changes
       </button>

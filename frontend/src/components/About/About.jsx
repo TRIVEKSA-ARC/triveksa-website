@@ -148,6 +148,7 @@ function About() {
 
         {/* LEFT — CONTENT */}
         <div className="relative order-2 lg:order-1 lg:col-span-7">
+          <div className="absolute inset-0 rounded-[40px] bg-black/18 backdrop-blur-[2px]" />
           
           {/* SUBTITLE */}
           <Reveal>
@@ -168,7 +169,7 @@ function About() {
           <div className="relative z-10 space-y-5 md:space-y-7">
             {/* MAIN HEADLINE */}
             <Reveal delay={0.05}>
-              <h2 className="max-w-3xl text-[30px] sm:text-[38px] md:text-[52px] leading-[1.05] tracking-[-0.05em] font-bold text-white">
+              <h2 className="max-w-2xl text-[30px] sm:text-[38px] md:text-[52px] leading-[1.05] tracking-[-0.05em] font-bold text-white">
                 Premium Digital Experiences Engineered For Modern Brands
               </h2>
             </Reveal>
@@ -180,7 +181,7 @@ function About() {
                 <Reveal key={i} delay={0.12 + i * 0.1}>
                   <p
                     className={`max-w-2xl text-[14px] md:text-[17px] leading-relaxed md:leading-8 font-light ${
-                      i === 0 ? "text-white/88" : "text-white/65"
+                      i === 0 ? "text-white/72" : "text-white/65"
                     }`}
                   >
                     {renderStyledText(text)}
@@ -212,7 +213,7 @@ function About() {
 
           {/* HIGH CONTRAST SERVICES CHIPS */}
           <Reveal delay={0.5}>
-            <div className="mt-8 flex flex-wrap gap-2.5 md:gap-3">
+            <div className="mt-10 flex flex-wrap gap-2.5 md:gap-3">
               {data.services.map((service) => (
                 <motion.span
                   key={service}
