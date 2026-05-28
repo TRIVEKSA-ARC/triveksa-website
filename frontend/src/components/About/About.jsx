@@ -260,7 +260,7 @@ function About() {
                 <motion.span
                   key={service}
                   whileHover={{ y: -2, scale: 1.02 }}
-                  {/* FIX ✅ 6️⃣: REDUCED SHAPE INTENSITY WITH TO CLEANER bg-white/[0.02] AND border-white/10 */}
+                  
                   className="rounded-full border border-white/10 bg-white/[0.02] px-4 py-2 text-[10px] md:text-[11px] font-medium uppercase tracking-[0.28em] text-white backdrop-blur-md transition-all duration-300 hover:border-amber-300/40 hover:bg-amber-300/[0.08] hover:shadow-[0_8px_20px_rgba(245,201,106,0.05)]"
                 >
                   {service}
