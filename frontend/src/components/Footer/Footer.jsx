@@ -8,7 +8,6 @@ import Reveal from "../Reveal";
 const getIcon = (iconName) => {
   if (!iconName) return LucideIcons.Github;
 
-  // Convert "fa-github" / "Github" / "facebook" → Lucide format
   const formatted =
     iconName
       .replace("fa-", "")
@@ -23,18 +22,18 @@ function Footer() {
   const navigate = useNavigate();
   const { footer } = useFooter();
 
-  /* ✅ SAFE FALLBACK WITH STRONGER AGENCY TEXTS */
+  /* ✅ SAFE FALLBACK WITH REFINED PREMIUM AGENCY DATA */
   const data = footer || {
     message:
-      "Crafting premium digital experiences for modern brands, startups, and creators.",
-    email: "contact@vinodkumar.com",
-    phone: "+91 98765 43210",
+      "Building modern digital experiences through development, design, branding, and creative technology — crafted for startups, creators, and next-generation businesses.",
+    email: "hello@triveksaarc.com",
+    phone: "9652155580",
     adminIcon: "Shield",
     socials: [
-      { label: "Github", link: "https://github.com", icon: "github" },
-      { label: "Linkedin", link: "https://linkedin.com", icon: "linkedin" },
       { label: "Instagram", link: "https://instagram.com", icon: "instagram" },
-      { label: "Twitter", link: "https://twitter.com", icon: "twitter" },
+      { label: "Youtube", link: "https://youtube.com", icon: "youtube" },
+      { label: "Github", link: "https://github.com", icon: "github" },
+      { label: "Facebook", link: "https://facebook.com", icon: "facebook" },
     ],
   };
 
@@ -50,64 +49,66 @@ function Footer() {
       <div className="pointer-events-none absolute right-[-5%] top-[-10%] h-[300px] w-[300px] rounded-full bg-amber-500/5 blur-[120px]" />
 
       <Reveal>
-        <div>
-          {/* ================= MAIN CONTENT ================= */}
-          <div className="max-w-7xl mx-auto px-6 md:px-12 py-24 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 text-white relative z-10">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          {/* ================= MAIN CONTENT GRID ================= */}
+          <div className="py-20 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 text-white relative z-10 items-start">
 
-            {/* LEFT — MESSAGE */}
-            <div className="flex flex-col items-start space-y-5">
+            {/* LEFT — CORE STUDIO IDENTITY */}
+            <div className="flex flex-col items-start space-y-6">
               <div className="flex items-center gap-3">
                 <span className="h-px w-8 bg-gradient-to-r from-[#fff1c2] to-[#d89b1d]" />
-                <h3 className="text-[13px] font-semibold uppercase tracking-[0.4em] bg-gradient-to-r from-[#fff1c2] via-[#f5c96a] to-[#d89b1d] bg-clip-text text-transparent">
+                <h3 className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.45em] bg-gradient-to-r from-[#fff1c2] via-[#f5c96a] to-[#d89b1d] bg-clip-text text-transparent">
                   Trivixa Studio
                 </h3>
               </div>
-              <p className="text-white/80 text-[16px] leading-7 max-w-sm font-light">
-                {message || "Crafting premium digital experiences for modern brands, startups, and creators."}
+              <p className="text-[#94A3B8] text-[14px] leading-relaxed max-w-sm font-medium opacity-90">
+                {message}
               </p>
             </div>
 
-            {/* CENTER — CONTACT INFO WITH STRONGER CTA */}
-            <div className="flex flex-col items-start md:items-center justify-center gap-5">
-              <span className="text-[14px] md:text-[15px] font-medium tracking-wide text-white/50 md:text-center block mb-1">
-                Ready to build something exceptional?
-              </span>
-
-              <div
-                className="flex items-center gap-4 group cursor-pointer w-fit py-1"
-                onClick={() => (window.location.href = `mailto:${email}`)}
-              >
-                <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/5 bg-white/[0.02] text-[#f5c96a] transition duration-300 group-hover:bg-[#f5c96a]/10 group-hover:border-[#f5c96a]/20">
-                  <Mail size={18} />
-                </div>
-                <span className="text-[16px] tracking-wide text-white/85 group-hover:text-white transition duration-300 break-all">
-                  {email}
+            {/* CENTER — INTERACTIVE ENGAGEMENT CALLOUT */}
+            <div className="flex flex-col items-start md:items-center justify-start space-y-6 md:w-full">
+              <div className="w-full max-w-xs flex flex-col items-start gap-4">
+                <span className="text-[13px] font-semibold uppercase tracking-[0.2em] text-white/40 block">
+                  Ready to build something exceptional?
                 </span>
-              </div>
 
-              <div
-                className="flex items-center gap-4 group cursor-pointer w-fit py-1"
-                onClick={() => (window.location.href = `tel:${phone}`)}
-              >
-                <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/5 bg-white/[0.02] text-[#f5c96a] transition duration-300 group-hover:bg-[#f5c96a]/10 group-hover:border-[#f5c96a]/20">
-                  <Phone size={18} />
+                <div
+                  className="flex items-center gap-4 group cursor-pointer py-1.5 w-full border-b border-white/[0.03] hover:border-[#f5c96a]/20 transition duration-300"
+                  onClick={() => (window.location.href = `mailto:${email}`)}
+                >
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/5 bg-white/[0.01] text-[#f5c96a] transition duration-300 group-hover:bg-[#f5c96a]/10 group-hover:border-[#f5c96a]/20">
+                    <Mail size={15} />
+                  </div>
+                  <span className="text-[15px] tracking-wide text-white/80 group-hover:text-white transition duration-300 break-all font-medium">
+                    {email}
+                  </span>
                 </div>
-                <span className="text-[16px] tracking-wide text-white/85 group-hover:text-white transition duration-300">
-                  {phone}
-                </span>
+
+                <div
+                  className="flex items-center gap-4 group cursor-pointer py-1.5 w-full border-b border-white/[0.03] hover:border-[#f5c96a]/20 transition duration-300"
+                  onClick={() => (window.location.href = `tel:${phone}`)}
+                >
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/5 bg-white/[0.01] text-[#f5c96a] transition duration-300 group-hover:bg-[#f5c96a]/10 group-hover:border-[#f5c96a]/20">
+                    <Phone size={15} />
+                  </div>
+                  <span className="text-[15px] tracking-wide text-white/80 group-hover:text-white transition duration-300 font-medium">
+                    {phone}
+                  </span>
+                </div>
               </div>
             </div>
 
-            {/* RIGHT — SOCIALS */}
-            <div className="flex flex-col items-start md:items-end justify-center gap-5">
+            {/* RIGHT — BRAND NETWORKS */}
+            <div className="flex flex-col items-start md:items-end justify-start space-y-6 md:w-full">
               <div className="flex items-center gap-3 md:flex-row-reverse">
                 <span className="h-px w-8 bg-gradient-to-r from-[#d89b1d] to-[#fff1c2]" />
-                <h3 className="text-[13px] font-semibold uppercase tracking-[0.4em] text-white/70">
+                <h3 className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.45em] text-white/50">
                   Connect With Trivixa
                 </h3>
               </div>
 
-              <div className="flex gap-3">
+              <div className="flex flex-wrap gap-3 justify-start md:justify-end">
                 {socials.map((item, index) => {
                   const SocialIcon = getIcon(item.icon);
 
@@ -118,9 +119,9 @@ function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       title={item.label}
-                      className="p-3 rounded-full border border-white/5 bg-white/[0.02] text-white/80 hover:text-white hover:bg-[#f5c96a]/10 hover:border-[#f5c96a]/30 hover:scale-105 transition-all duration-300 backdrop-blur-md"
+                      className="p-3 rounded-full border border-white/5 bg-white/[0.01] text-white/60 hover:text-white hover:bg-[#f5c96a]/10 hover:border-[#f5c96a]/30 hover:scale-105 transition-all duration-300 backdrop-blur-md"
                     >
-                      <SocialIcon size={20} />
+                      <SocialIcon size={18} />
                     </a>
                   );
                 })}
@@ -128,17 +129,18 @@ function Footer() {
             </div>
           </div>
 
-          {/* ================= BOTTOM BAR ================= */}
-          <div className="border-t border-white/5 px-6 md:px-12 py-6 relative flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0 max-w-7xl mx-auto z-10">
-            <span className="text-[13px] md:text-[14px] font-light tracking-wide text-center text-white/50">
+          {/* ================= CLOSING UTILITY BAR ================= */}
+          <div className="border-t border-white/5 py-8 relative flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0 z-10">
+            <span className="text-[12px] font-medium tracking-widest uppercase text-center text-white/30">
               {copyright}
             </span>
 
             {/* INVISIBLE TRIGGER TARGET FOR ADMIN PANEL */}
-            <div className="absolute right-4 bottom-4 z-50">
+            <div className="absolute right-0 bottom-7 z-50">
               <button
-                className="w-3 h-3 bg-transparent border-none cursor-default opacity-0 select-none outline-none"
-                title=""
+                className="w-4 h-4 bg-transparent border-none cursor-default opacity-0 select-none outline-none"
+                aria-hidden="true"
+                tabIndex={-1}
                 onClick={() => window.open("/admin", "_blank")}
               />
             </div>
