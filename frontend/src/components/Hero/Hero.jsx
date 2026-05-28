@@ -15,7 +15,7 @@ function Hero() {
   return (
     <>
       {/* ================= AGENCY HERO ================= */}
-      <section className="relative min-h-screen w-full overflow-hidden bg-transparent text-white flex items-center font-sans py-20 lg:py-0">
+      <section className="relative min-h-screen w-full overflow-hidden bg-transparent text-white flex items-center font-sans py-24 lg:py-32">
         
         {/* SUBTLE GRID OVERLAY */}
         <div
@@ -32,64 +32,67 @@ function Hero() {
         <div className="pointer-events-none absolute bottom-[-120px] left-[4%] h-[380px] w-[380px] rounded-full bg-neutral-300/10 blur-[130px]" />
         <div className="pointer-events-none absolute top-[35%] left-[45%] h-[280px] w-[280px] rounded-full bg-yellow-200/5 blur-[100px]" />
 
-        <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 gap-12 px-5 py-8 sm:px-8 md:px-10 lg:grid-cols-12 lg:gap-12 lg:px-12">
+        <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 gap-16 px-6 sm:px-8 md:px-10 lg:grid-cols-12 lg:gap-8 lg:px-12 items-center">
           
-          {/* LEFT SIDE */}
-          <div className="lg:col-span-7 flex flex-col justify-center">
+          {/* LEFT SIDE — CONTENT ARCHITECTURE */}
+          <div className="lg:col-span-7 flex flex-col justify-center space-y-8 md:space-y-10">
             
-            {/* TOP LABEL */}
-            <Reveal>
-              <div className="mb-4 md:mb-6 flex items-center gap-4">
-                <span className="h-px w-12 bg-gradient-to-r from-amber-400 to-transparent" />
-                <p className="text-[11px] sm:text-[12px] uppercase tracking-[0.45em] text-white/80">
-                  Founder of TRIVIXA ARC
-                </p>
-              </div>
-            </Reveal>
-
-            {/* NAME */}
-            <Reveal>
-              <h1 className="leading-[0.95] md:leading-[0.9] uppercase">
-                <span className="block text-[44px] sm:text-[88px] md:text-[110px] xl:text-[138px] font-black tracking-[-0.06em] text-white">
-                  Vinod
-                </span>
-                <span className="block text-[44px] sm:text-[88px] md:text-[110px] xl:text-[138px] font-black tracking-[-0.06em] bg-gradient-to-r from-[#fff4d6] via-[#f7d774] to-[#d89b1d] bg-clip-text text-transparent">
-                  Kumar
-                </span>
-              </h1>
-            </Reveal>
-
-            {/* AGENCY LINE */}
-            <Reveal delay={0.15}>
-              <div className="mt-5 md:mt-6">
-                <div className="inline-flex items-center rounded-full border border-white/20 bg-white/[0.05] px-4 py-2">
-                  <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.32em] text-white/90 font-medium">
-                    Creative Developer • Digital Systems Designer • Founder of Trivixa Arc
-                  </span>
+            <div className="flex flex-col space-y-4 md:space-y-6">
+              {/* TOP LABEL */}
+              <Reveal>
+                <div className="flex items-center gap-4">
+                  <span className="h-px w-12 bg-gradient-to-r from-amber-400 to-transparent" />
+                  <p className="text-[11px] sm:text-[12px] uppercase tracking-[0.45em] text-amber-400 font-semibold drop-shadow-md">
+                    Founder of TRIVIXA ARC
+                  </p>
                 </div>
+              </Reveal>
+
+              {/* NAME */}
+              <Reveal>
+                <h1 className="leading-[0.95] md:leading-[0.9] uppercase">
+                  <span className="block text-[48px] sm:text-[88px] md:text-[110px] xl:text-[138px] font-black tracking-[-0.05em] text-white drop-shadow-sm">
+                    Vinod
+                  </span>
+                  <span className="block text-[48px] sm:text-[88px] md:text-[110px] xl:text-[138px] font-black tracking-[-0.05em] bg-gradient-to-r from-[#fff4d6] via-[#f7d774] to-[#d89b1d] bg-clip-text text-transparent filter drop-shadow-sm">
+                    Kumar
+                  </span>
+                </h1>
+              </Reveal>
+            </div>
+
+            {/* AGENCY LINE — IMPROVED PREMIUM BADGE STYLE */}
+            <Reveal delay={0.15}>
+              <div className="flex flex-col space-y-2 border-l-2 border-amber-400/40 pl-4 py-1">
+                <span className="text-[12px] sm:text-[14px] uppercase tracking-[0.25em] text-white font-bold">
+                  Creative Developer • Digital Systems Designer
+                </span>
+                <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-white/60 font-medium">
+                  Architecting Experiences at Trivixa Arc
+                </span>
               </div>
             </Reveal>
 
             {/* DESCRIPTION */}
             <Reveal delay={0.25}>
-              <p className="mt-6 max-w-xl text-[14px] md:text-[17px] leading-relaxed md:leading-8 text-white/80 font-light">
+              <p className="max-w-xl text-[15px] md:text-[18px] leading-relaxed md:leading-8 text-neutral-200 font-light drop-shadow-sm">
                 Building premium digital platforms, modern interfaces, and creative systems for ambitious brands and startups.
               </p>
             </Reveal>
 
             {/* ROLE STRIP / TRUST SIGNAL */}
             <Reveal delay={0.35}>
-              <div className="mt-6 md:mt-8 flex flex-wrap gap-2.5 md:gap-3">
-                <span className="rounded-full border border-amber-300/30 bg-amber-300/10 px-3.5 py-1.5 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-amber-200 font-bold">
+              <div className="flex flex-wrap gap-2.5 md:gap-3 pt-2">
+                <span className="rounded-full border border-amber-400/30 bg-amber-400/10 px-4 py-2 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-amber-300 font-bold backdrop-blur-sm">
                   Web Platforms
                 </span>
-                <span className="rounded-full border border-white/20 bg-white/[0.05] px-3.5 py-1.5 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-white/90">
+                <span className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-neutral-300 font-medium backdrop-blur-sm">
                   UI Systems
                 </span>
-                <span className="rounded-full border border-white/20 bg-white/[0.05] px-3.5 py-1.5 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-white/90">
+                <span className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-neutral-300 font-medium backdrop-blur-sm">
                   Creative Branding
                 </span>
-                <span className="rounded-full border border-white/20 bg-white/[0.05] px-3.5 py-1.5 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-white/90">
+                <span className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-neutral-300 font-medium backdrop-blur-sm">
                   Digital Experiences
                 </span>
               </div>
@@ -97,17 +100,17 @@ function Hero() {
 
             {/* CTA BUTTONS */}
             <Reveal delay={0.45}>
-              <div className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <MagneticButton
                   href="#contact"
-                  className="inline-flex items-center justify-center rounded-full border border-amber-300/30 bg-gradient-to-r from-[#f8d36a] to-[#d89b1d] px-8 py-3.5 text-[11px] font-bold uppercase tracking-[0.28em] text-black shadow-[0_12px_32px_rgba(216,155,29,0.3)] transition-all duration-300 hover:-translate-y-0.5 w-full sm:w-auto"
+                  className="inline-flex items-center justify-center rounded-full border border-amber-300/30 bg-gradient-to-r from-[#f8d36a] to-[#d89b1d] px-8 py-4 text-[11px] font-bold uppercase tracking-[0.28em] text-black shadow-[0_12px_32px_rgba(216,155,29,0.25)] transition-all duration-300 hover:-translate-y-0.5 w-full sm:w-auto"
                 >
                   Book a Project Call
                 </MagneticButton>
 
                 <MagneticButton
                   href="#projects"
-                  className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/[0.1] px-8 py-3.5 text-[11px] font-bold uppercase tracking-[0.28em] text-white transition-all duration-300 hover:bg-white/[0.15] w-full sm:w-auto"
+                  className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/[0.06] px-8 py-4 text-[11px] font-bold uppercase tracking-[0.28em] text-white backdrop-blur-md transition-all duration-300 hover:bg-white/[0.12] w-full sm:w-auto"
                 >
                   Explore Selected Work
                 </MagneticButton>
@@ -115,19 +118,19 @@ function Hero() {
             </Reveal>
           </div>
 
-          {/* RIGHT SIDE — NOW THE PREMIUM IMAGE PROFILE CARD */}
+          {/* RIGHT SIDE — HIGH CONTRAST PROFILE CARD */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end items-center w-full">
             <Reveal delay={0.25} className="w-full flex justify-center lg:justify-end">
-              <div className="group relative w-full max-w-[360px] md:max-w-[400px]">
+              <div className="group relative w-full max-w-[350px] md:max-w-[390px]">
                 
                 {/* RESTRAINED, MATTE GLOW AURA BEHIND THE CARD */}
-                <div className="absolute -inset-px -z-10 bg-gradient-to-tr from-amber-400/10 to-white/5 rounded-3xl opacity-40 blur-xl transition duration-700 group-hover:opacity-70" />
+                <div className="absolute -inset-px -z-10 bg-gradient-to-tr from-amber-400/20 to-white/5 rounded-3xl opacity-40 blur-xl transition duration-700 group-hover:opacity-60" />
 
                 {/* CLEAN GLASS CARD CONTAINER */}
-                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-white/15 bg-neutral-950/40 p-2 md:p-2.5 backdrop-blur-xl transition-all duration-700 group-hover:border-amber-400/30 group-hover:shadow-[0_30px_80px_rgba(216,155,29,0.1)]">
+                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-white/10 bg-neutral-950/50 p-2 md:p-2.5 backdrop-blur-2xl transition-all duration-700 group-hover:border-amber-400/40 group-hover:shadow-[0_30px_80px_rgba(216,155,29,0.15)]">
                   
                   {/* INNER IMAGE BASE FRAME */}
-                  <div className="relative h-full w-full overflow-hidden rounded-[1.25rem] bg-neutral-900">
+                  <div className="relative h-full w-full overflow-hidden rounded-[1.25rem] bg-neutral-900 border border-white/5">
                     {data.image?.url ? (
                       <img
                         src={data.image.url}
@@ -142,36 +145,35 @@ function Hero() {
                   </div>
 
                   {/* FLOATING TOP BADGE */}
-                  <div className="absolute left-5 top-5 flex items-center gap-2 rounded-full border border-white/15 bg-black/60 px-3 py-1.5 backdrop-blur-md">
-                    <span className="relative flex h-1.5 w-1.5">
-                      <span className="absolute inline-flex h-full w-full animate-pulse rounded-full bg-amber-400 opacity-75"></span>
-                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-amber-400"></span>
+                  <div className="absolute left-5 top-5 flex items-center gap-2 rounded-full border border-white/15 bg-neutral-950/70 px-3.5 py-1.5 backdrop-blur-xl shadow-lg">
+                    <span className="relative flex h-2 w-2">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-75"></span>
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-400"></span>
                     </span>
-                    <span className="text-[8px] md:text-[9px] font-bold uppercase tracking-[0.25em] text-white/90">
+                    <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-white/90">
                       Founder Profile
                     </span>
                   </div>
 
-                  {/* BOTTOM METADATA OVERLAY */}
-                  <div className="absolute bottom-5 left-5 right-5 flex flex-col gap-2 md:gap-3 bg-black/60 p-4 rounded-xl backdrop-blur-md md:bg-black/40">
-                    <div className="hidden md:block h-px w-full bg-gradient-to-r from-white/15 via-white/5 to-transparent" />
-                    
+                  {/* BOTTOM METADATA OVERLAY — HIGHLY OPTIMIZED CONTRAST */}
+                  <div className="absolute bottom-5 left-5 right-5 flex flex-col gap-3 bg-neutral-950/80 p-4 rounded-xl border border-white/10 shadow-xl backdrop-blur-xl">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-[8px] md:text-[9px] font-medium uppercase tracking-[0.3em] text-white/50">
+                        <p className="text-[8px] md:text-[9px] font-semibold uppercase tracking-[0.3em] text-neutral-400">
                           Location
                         </p>
-                        <p className="mt-0.5 text-[11px] md:text-[12px] font-semibold tracking-wider text-white">
+                        <p className="mt-1 text-[12px] md:text-[13px] font-bold tracking-wider text-white">
                           {data.location || "INDIA"}
                         </p>
                       </div>
 
                       <div className="text-right">
-                        <p className="text-[8px] md:text-[9px] font-medium uppercase tracking-[0.3em] text-white/50">
+                        <p className="text-[8px] md:text-[9px] font-semibold uppercase tracking-[0.3em] text-neutral-400">
                           Status
                         </p>
-                        <p className="mt-0.5 text-[11px] md:text-[12px] font-bold tracking-wider text-emerald-400">
-                          Available for Projects
+                        <p className="mt-1 text-[12px] md:text-[13px] font-extrabold tracking-wider text-emerald-400 flex items-center justify-end gap-1.5">
+                          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                          Available
                         </p>
                       </div>
                     </div>
