@@ -118,10 +118,10 @@ function Hero() {
             </Reveal>
           </div>
 
-          {/* RIGHT SIDE — PROFILE CARD WITH MODIFIED TOP ALIGNMENT */}
+          {/* RIGHT SIDE — LARGER PROFILE CARD CONFIGURATION */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end items-center w-full">
             <Reveal delay={0.25} className="w-full flex justify-center lg:justify-end">
-              <div className="group relative w-full max-w-[350px] md:max-w-[390px]">
+              <div className="group relative w-full max-w-[390px] md:max-w-[440px]">
                 
                 {/* RESTRAINED, MATTE GLOW AURA BEHIND THE CARD */}
                 <div className="absolute -inset-px -z-10 bg-gradient-to-tr from-amber-400/20 to-white/5 rounded-3xl opacity-40 blur-xl transition duration-700 group-hover:opacity-60" />
