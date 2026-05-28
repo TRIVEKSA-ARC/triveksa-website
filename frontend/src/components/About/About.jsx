@@ -72,13 +72,13 @@ function About() {
               {/* CLEAN GLASS CARD CONTAINER */}
               <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-white/15 bg-neutral-950/40 p-2 md:p-2.5 backdrop-blur-xl transition-all duration-700 group-hover:border-amber-400/30 group-hover:shadow-[0_30px_80px_rgba(216,155,29,0.1)]">
                 
-                {/* INNER IMAGE BASE FRAME */}
+                {/* INNER IMAGE BASE FRAME (CLEAN & TRANQUIL ORIGINAL VIEW) */}
                 <div className="relative h-full w-full overflow-hidden rounded-[1.25rem] bg-neutral-900">
                   {data.image?.url ? (
                     <img
                       src={data.image.url}
                       alt="Vinod Kumar Profile"
-                      className="h-full w-full object-cover grayscale opacity-90 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03] group-hover:grayscale-0"
+                      className="h-full w-full object-cover opacity-100"
                     />
                   ) : (
                     <div className="h-full w-full bg-gradient-to-b from-neutral-800 to-neutral-950 flex items-center justify-center text-white/20 text-xs tracking-widest uppercase">
