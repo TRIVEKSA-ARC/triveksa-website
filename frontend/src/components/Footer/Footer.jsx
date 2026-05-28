@@ -50,49 +50,49 @@ function Footer() {
 
       <Reveal>
         <div className="max-w-7xl mx-auto px-6 md:px-12">
-          {/* ================= MAIN CONTENT GRID ================= */}
-          <div className="py-20 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 text-white relative z-10 items-start">
+          {/* ================= MAIN CONTENT GRID (PADDING REDUCED) ================= */}
+          <div className="py-12 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 text-white relative z-10 items-start">
 
             {/* LEFT — CORE STUDIO IDENTITY */}
-            <div className="flex flex-col items-start space-y-6">
+            <div className="flex flex-col items-start space-y-4">
               <div className="flex items-center gap-3">
                 <span className="h-px w-8 bg-gradient-to-r from-[#fff1c2] to-[#d89b1d]" />
                 <h3 className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.45em] bg-gradient-to-r from-[#fff1c2] via-[#f5c96a] to-[#d89b1d] bg-clip-text text-transparent">
                   Trivixa Studio
                 </h3>
               </div>
-              <p className="text-[#94A3B8] text-[14px] leading-relaxed max-w-sm font-medium opacity-90">
+              <p className="text-white/90 text-[14px] leading-relaxed max-w-sm font-medium">
                 {message}
               </p>
             </div>
 
             {/* CENTER — INTERACTIVE ENGAGEMENT CALLOUT */}
-            <div className="flex flex-col items-start md:items-center justify-start space-y-6 md:w-full">
-              <div className="w-full max-w-xs flex flex-col items-start gap-4">
-                <span className="text-[13px] font-semibold uppercase tracking-[0.2em] text-white/40 block">
+            <div className="flex flex-col items-start md:items-center justify-start space-y-4 md:w-full">
+              <div className="w-full max-w-xs flex flex-col items-start gap-3">
+                <span className="text-[13px] font-semibold uppercase tracking-[0.2em] text-white/60 block">
                   Ready to build something exceptional?
                 </span>
 
                 <div
-                  className="flex items-center gap-4 group cursor-pointer py-1.5 w-full border-b border-white/[0.03] hover:border-[#f5c96a]/20 transition duration-300"
+                  className="flex items-center gap-4 group cursor-pointer py-1 w-full border-b border-white/[0.03] hover:border-[#f5c96a]/20 transition duration-300"
                   onClick={() => (window.location.href = `mailto:${email}`)}
                 >
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/5 bg-white/[0.01] text-[#f5c96a] transition duration-300 group-hover:bg-[#f5c96a]/10 group-hover:border-[#f5c96a]/20">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.02] text-[#f5c96a] transition duration-300 group-hover:bg-[#f5c96a]/10 group-hover:border-[#f5c96a]/20">
                     <Mail size={15} />
                   </div>
-                  <span className="text-[15px] tracking-wide text-white/80 group-hover:text-white transition duration-300 break-all font-medium">
+                  <span className="text-[15px] tracking-wide text-white group-hover:text-[#f5c96a] transition duration-300 break-all font-medium">
                     {email}
                   </span>
                 </div>
 
                 <div
-                  className="flex items-center gap-4 group cursor-pointer py-1.5 w-full border-b border-white/[0.03] hover:border-[#f5c96a]/20 transition duration-300"
+                  className="flex items-center gap-4 group cursor-pointer py-1 w-full border-b border-white/[0.03] hover:border-[#f5c96a]/20 transition duration-300"
                   onClick={() => (window.location.href = `tel:${phone}`)}
                 >
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/5 bg-white/[0.01] text-[#f5c96a] transition duration-300 group-hover:bg-[#f5c96a]/10 group-hover:border-[#f5c96a]/20">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.02] text-[#f5c96a] transition duration-300 group-hover:bg-[#f5c96a]/10 group-hover:border-[#f5c96a]/20">
                     <Phone size={15} />
                   </div>
-                  <span className="text-[15px] tracking-wide text-white/80 group-hover:text-white transition duration-300 font-medium">
+                  <span className="text-[15px] tracking-wide text-white group-hover:text-[#f5c96a] transition duration-300 font-medium">
                     {phone}
                   </span>
                 </div>
@@ -100,10 +100,10 @@ function Footer() {
             </div>
 
             {/* RIGHT — BRAND NETWORKS */}
-            <div className="flex flex-col items-start md:items-end justify-start space-y-6 md:w-full">
+            <div className="flex flex-col items-start md:items-end justify-start space-y-4 md:w-full">
               <div className="flex items-center gap-3 md:flex-row-reverse">
                 <span className="h-px w-8 bg-gradient-to-r from-[#d89b1d] to-[#fff1c2]" />
-                <h3 className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.45em] text-white/50">
+                <h3 className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.45em] text-white/80">
                   Connect With Trivixa
                 </h3>
               </div>
@@ -119,7 +119,7 @@ function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       title={item.label}
-                      className="p-3 rounded-full border border-white/5 bg-white/[0.01] text-white/60 hover:text-white hover:bg-[#f5c96a]/10 hover:border-[#f5c96a]/30 hover:scale-105 transition-all duration-300 backdrop-blur-md"
+                      className="p-3 rounded-full border border-white/10 bg-white/[0.02] text-white/80 hover:text-[#f5c96a] hover:bg-[#f5c96a]/10 hover:border-[#f5c96a]/30 hover:scale-105 transition-all duration-300 backdrop-blur-md"
                     >
                       <SocialIcon size={18} />
                     </a>
@@ -129,20 +129,20 @@ function Footer() {
             </div>
           </div>
 
-          {/* ================= CLOSING UTILITY BAR ================= */}
-          <div className="border-t border-white/5 py-8 relative flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0 z-10">
-            <span className="text-[12px] font-medium tracking-widest uppercase text-center text-white/30">
+          {/* ================= CLOSING UTILITY BAR (PADDING REDUCED) ================= */}
+          <div className="border-t border-white/5 py-6 relative flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0 z-10">
+            <span className="text-[12px] font-medium tracking-widest uppercase text-center text-white/40">
               {copyright}
             </span>
 
-            {/* RESTORED ADMIN ICON IN RIGHT BOTTOM CORNER */}
-            <div className="static md:absolute md:right-0 md:bottom-8">
+            {/* ADMIN ICON IN RIGHT BOTTOM CORNER */}
+            <div className="static md:absolute md:right-0 md:bottom-5">
               <button
-                className="p-2.5 rounded-full border border-white/5 bg-white/[0.01] text-white/30 hover:text-[#f5c96a] hover:bg-[#f5c96a]/10 hover:border-[#f5c96a]/20 transition-all duration-300"
+                className="p-2 rounded-full border border-white/10 bg-white/[0.02] text-white/40 hover:text-[#f5c96a] hover:bg-[#f5c96a]/10 hover:border-[#f5c96a]/20 transition-all duration-300"
                 title="Admin Panel"
                 onClick={() => window.open("/admin", "_blank")}
               >
-                <Shield size={15} />
+                <Shield size={14} />
               </button>
             </div>
           </div>
