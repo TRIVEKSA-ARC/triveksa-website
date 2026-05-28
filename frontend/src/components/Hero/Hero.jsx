@@ -1,14 +1,16 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react"; // Imported for premium visual look
 import Reveal from "../Reveal";
 import MagneticButton from "../MagneticButton";
+import { useAbout } from "../../context/AboutContext";
 
 function Hero() {
-  const services = [
-    { id: "01", label: "Development", title: "Full Stack Solutions" },
-    { id: "02", label: "Design", title: "UI/UX Systems" },
-    { id: "03", label: "Content", title: "Video & Brand Visuals" },
-  ];
+  const { about } = useAbout();
+
+  // Safely grab live background variables, keeping default values as structural lockups
+  const data = about || {
+    image: null,
+    location: "INDIA",
+  };
 
   return (
     <>
@@ -113,80 +115,70 @@ function Hero() {
             </Reveal>
           </div>
 
-          {/* RIGHT SIDE - CAPABILITIES CARD WITH INTERACTIVE PREMIUM MOTION */}
-          <div className="lg:col-span-5 flex items-center w-full">
-            <Reveal delay={0.3} className="w-full">
-              <motion.div 
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="group/card relative w-full rounded-[28px] border border-white/10 bg-black p-4 shadow-[0_25px_60px_rgba(0,0,0,0.3)] md:p-6 overflow-hidden"
-              >
-                {/* SUBTLE INTERACTIVE RADIAL HIGHLIGHT ON HOVER */}
-                <div className="pointer-events-none absolute -inset-px rounded-[28px] bg-gradient-to-r from-amber-400/20 to-transparent opacity-0 transition-opacity duration-500 group-hover/card:opacity-100" />
+          {/* RIGHT SIDE — NOW THE PREMIUM IMAGE PROFILE CARD */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-end items-center w-full">
+            <Reveal delay={0.25} className="w-full flex justify-center lg:justify-end">
+              <div className="group relative w-full max-w-[360px] md:max-w-[400px]">
                 
-                <div className="relative z-10 mb-4 flex items-center justify-between border-b border-white/10 pb-4">
-                  <div>
-                    <p className="text-[10px] uppercase tracking-[0.35em] text-white/60 font-bold">
-                      Core Expertise
-                    </p>
-                    <h3 className="mt-2 text-xl font-bold text-white tracking-tight">
-                      Service Overview
-                    </h3>
+                {/* RESTRAINED, MATTE GLOW AURA BEHIND THE CARD */}
+                <div className="absolute -inset-px -z-10 bg-gradient-to-tr from-amber-400/10 to-white/5 rounded-3xl opacity-40 blur-xl transition duration-700 group-hover:opacity-70" />
+
+                {/* CLEAN GLASS CARD CONTAINER */}
+                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-white/15 bg-neutral-950/40 p-2 md:p-2.5 backdrop-blur-xl transition-all duration-700 group-hover:border-amber-400/30 group-hover:shadow-[0_30px_80px_rgba(216,155,29,0.1)]">
+                  
+                  {/* INNER IMAGE BASE FRAME */}
+                  <div className="relative h-full w-full overflow-hidden rounded-[1.25rem] bg-neutral-900">
+                    {data.image?.url ? (
+                      <img
+                        src={data.image.url}
+                        alt="Vinod Kumar Profile"
+                        className="h-full w-full object-cover opacity-100"
+                      />
+                    ) : (
+                      <div className="h-full w-full bg-gradient-to-b from-neutral-800 to-neutral-950 flex items-center justify-center text-white/20 text-xs tracking-widest uppercase">
+                        Profile Visual
+                      </div>
+                    )}
                   </div>
 
-                  <div className="flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-400/10 px-3 py-1.5">
-                    <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span className="text-[10px] uppercase tracking-[0.22em] text-emerald-300 font-bold">
-                      Available
+                  {/* FLOATING TOP BADGE */}
+                  <div className="absolute left-5 top-5 flex items-center gap-2 rounded-full border border-white/15 bg-black/60 px-3 py-1.5 backdrop-blur-md">
+                    <span className="relative flex h-1.5 w-1.5">
+                      <span className="absolute inline-flex h-full w-full animate-pulse rounded-full bg-amber-400 opacity-75"></span>
+                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-amber-400"></span>
+                    </span>
+                    <span className="text-[8px] md:text-[9px] font-bold uppercase tracking-[0.25em] text-white/90">
+                      Founder Profile
                     </span>
                   </div>
-                </div>
 
-                <div className="relative z-10 space-y-3">
-                  {services.map((item, i) => (
-                    <motion.a
-                      href="#projects"
-                      key={item.id}
-                      initial={{ opacity: 0, y: 18 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.45 + i * 0.12, duration: 0.6 }}
-                      className="group block rounded-[22px] border border-white/10 bg-white/[0.03] backdrop-blur-md p-4 md:p-5 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-amber-300/40 hover:bg-white/[0.07] hover:shadow-[0_10px_30px_rgba(245,201,106,0.03)]"
-                    >
-                      <div className="flex items-start justify-between gap-4">
-                        <div>
-                          <div className="mb-2 flex items-center gap-3">
-                            <span className="text-[10px] font-mono font-bold text-amber-400">
-                              {item.id}
-                            </span>
-                            <span className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-medium">
-                              {item.label}
-                            </span>
-                          </div>
-
-                          <h4 className="text-base md:text-lg font-bold tracking-tight text-white transition-colors duration-300 group-hover:text-amber-200">
-                            {item.title}
-                          </h4>
-                        </div>
-
-                        {/* PREMIUM ELEVATED ARROW BUTTON BLOCK */}
-                        <div className="flex h-10 w-10 md:h-11 md:w-11 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/[0.02] text-white/70 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:border-amber-400 group-hover:bg-amber-400/10 group-hover:text-amber-400">
-                          <ArrowUpRight size={18} className="transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-45" />
-                        </div>
+                  {/* BOTTOM METADATA OVERLAY */}
+                  <div className="absolute bottom-5 left-5 right-5 flex flex-col gap-2 md:gap-3 bg-black/60 p-4 rounded-xl backdrop-blur-md md:bg-black/40">
+                    <div className="hidden md:block h-px w-full bg-gradient-to-r from-white/15 via-white/5 to-transparent" />
+                    
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-[8px] md:text-[9px] font-medium uppercase tracking-[0.3em] text-white/50">
+                          Location
+                        </p>
+                        <p className="mt-0.5 text-[11px] md:text-[12px] font-semibold tracking-wider text-white">
+                          {data.location || "INDIA"}
+                        </p>
                       </div>
-                    </motion.a>
-                  ))}
-                </div>
 
-                {/* NOTE */}
-                <div className="relative z-10 mt-4 rounded-[22px] border border-white/10 bg-black/[0.06] p-4 md:p-5">
-                  <p className="text-[10px] uppercase tracking-[0.34em] text-white/50 font-bold">
-                    Note
-                  </p>
-                  <p className="mt-2 text-xs md:text-sm leading-relaxed text-white/80 font-medium">
-                    Trivixa Arc combines technology, design, and digital creativity to craft premium web experiences, scalable platforms, and modern brand systems built for long-term growth and real-world impact.
-                  </p>
+                      <div className="text-right">
+                        <p className="text-[8px] md:text-[9px] font-medium uppercase tracking-[0.3em] text-white/50">
+                          Status
+                        </p>
+                        <p className="mt-0.5 text-[11px] md:text-[12px] font-bold tracking-wider text-emerald-400">
+                          Available for Projects
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
-              </motion.div>
+              </div>
             </Reveal>
           </div>
         </div>
