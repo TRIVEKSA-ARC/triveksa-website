@@ -136,17 +136,17 @@ function Hero() {
                       animate={{ x: ["-50%", "0%"] }}
                       transition={{
                         ease: "linear",
-                        duration: 5,
+                        duration: 12,
                         repeat: Infinity,
                       }}
                     >
                       {/* === SET 1 === */}
                       {/* SLIDE 1 — LOGO */}
-                      <div className="h-full w-1/4 flex-shrink-0 bg-neutral-950 flex items-center justify-center p-10 md:p-14">
+                      <div className="h-full w-1/4 flex-shrink-0 bg-neutral-950 relative">
                         <img
                           src="/Logo.png"
                           alt="Trivixa Arc Logo"
-                          className="max-h-full max-w-full object-contain filter drop-shadow-md select-none"
+                          className="h-full w-full object-cover filter drop-shadow-md select-none"
                         />
                       </div>
 
@@ -167,11 +167,11 @@ function Hero() {
 
                       {/* === SET 2 (DUPLICATED MATRIX FOR SEAMLESS INF-LOOP) === */}
                       {/* SLIDE 3 — LOGO DUPLICATE */}
-                      <div className="h-full w-1/4 flex-shrink-0 bg-neutral-950 flex items-center justify-center p-10 md:p-14">
+                      <div className="h-full w-1/4 flex-shrink-0 bg-neutral-950 relative">
                         <img
                           src="/Logo.png"
                           alt="Trivixa Arc Logo"
-                          className="max-h-full max-w-full object-contain filter drop-shadow-md select-none"
+                          className="h-full w-full object-cover filter drop-shadow-md select-none"
                         />
                       </div>
 
