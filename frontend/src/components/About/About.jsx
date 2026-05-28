@@ -68,13 +68,52 @@ function About() {
       {/* GRID */}
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16 xl:gap-20 items-center">
         
-        {/* RIGHT — NOW CORE EXPERTISE CAPABILITIES CARD */}
-        <div className="relative order-1 lg:order-2 lg:col-span-5 flex items-center w-full justify-center lg:justify-end">
-          <Reveal delay={0.3} className="w-full max-w-[450px] lg:max-w-none">
+        {/* RIGHT — PROFILE CARD GRID WITH DETACHED BLUR IMAGE DESIGN */}
+        <div className="relative order-1 lg:order-2 lg:col-span-5 flex flex-col sm:flex-row items-center w-full justify-center lg:justify-end gap-6">
+          
+          {/* LEFT CHUNK: PROFILE IMAGE CONTAINER */}
+          {data.image && (
+            <Reveal delay={0.2} className="w-full max-w-[340px] sm:w-[45%]">
+              <motion.div
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="group/img relative aspect-[4/5] w-full overflow-hidden rounded-[28px] border border-white/10 bg-black/40 shadow-[0_8px_24px_rgba(0,0,0,0.45)]"
+              >
+                {/* GLASS BLUR TEXT OVERLAYS */}
+                <div className="absolute top-4 left-4 z-20 flex items-center gap-1.5 rounded-full bg-black/40 backdrop-blur-md px-2.5 py-1 border border-white/10">
+                  <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+                  <span className="text-[8px] uppercase tracking-[0.2em] text-white/90 font-bold">
+                    Founder Profile
+                  </span>
+                </div>
+
+                <img
+                  src={data.image}
+                  alt="Vinod Kumar"
+                  className="h-full w-full object-cover object-center grayscale contrast-[1.05] transition-transform duration-700 ease-out group-hover/img:scale-105 group-hover/img:grayscale-0"
+                />
+
+                <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center justify-between rounded-xl bg-black/40 backdrop-blur-md p-2.5 border border-white/10">
+                  <div>
+                    <p className="text-[8px] uppercase tracking-[0.15em] text-white/50 font-bold">Location</p>
+                    <p className="text-[10px] text-white font-semibold mt-0.5">{data.location || "INDIA"}</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-[8px] uppercase tracking-[0.15em] text-white/50 font-bold">Status</p>
+                    <p className="text-[10px] text-emerald-400 font-semibold mt-0.5 animate-pulse">Available for Projects</p>
+                  </div>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
+              </motion.div>
+            </Reveal>
+          )}
+
+          {/* RIGHT CHUNK: CORE EXPERTISE CAPABILITIES CARD */}
+          <Reveal delay={0.3} className={`w-full ${data.image ? "max-w-[380px] sm:w-[55%]" : "max-w-[450px] lg:max-w-none"}`}>
             <motion.div 
               whileHover={{ y: -4 }}
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="group/card relative w-full rounded-[28px] border border-white/10 bg-black p-4 shadow-[0_8px_24px_rgba(0,0,0,0.45),0_24px_60px_rgba(0,0,0,0.38),0_50px_90px_rgba(168,85,247,0.08)] md:p-6 overflow-hidden"
+              className="group/card relative w-full rounded-[28px] border border-white/10 bg-black p-4 shadow-[0_8px_24px_rgba(0,0,0,0.45),0_24px_60px_rgba(0,0,0,0.38),0_50px_90px_rgba(168,85,247,0.08)] md:p-5 overflow-hidden"
             >
               {/* SUBTLE INTERACTIVE RADIAL HIGHLIGHT ON HOVER */}
               <div className="pointer-events-none absolute -inset-px rounded-[28px] bg-gradient-to-r from-amber-400/20 to-transparent opacity-0 transition-opacity duration-500 group-hover/card:opacity-100" />
@@ -89,12 +128,14 @@ function About() {
                   </h3>
                 </div>
 
-                <div className="flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-400/10 px-3 py-1.5">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-[10px] uppercase tracking-[0.22em] text-emerald-300 font-bold">
-                    Available
-                  </span>
-                </div>
+                {!data.image && (
+                  <div className="flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-400/10 px-3 py-1.5">
+                    <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-[10px] uppercase tracking-[0.22em] text-emerald-300 font-bold">
+                      Available
+                    </span>
+                  </div>
+                )}
               </div>
 
               <div className="relative z-10 space-y-3">
@@ -106,11 +147,11 @@ function About() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.15 + i * 0.12, duration: 0.6 }}
-                    className="group block rounded-[22px] border border-white/10 bg-white/[0.03] backdrop-blur-md p-4 md:p-5 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-amber-300/40 hover:bg-white/[0.07] hover:shadow-[0_10px_30px_rgba(245,201,106,0.03)]"
+                    className="group block rounded-[22px] border border-white/10 bg-white/[0.03] backdrop-blur-md p-3.5 md:p-4 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-amber-300/40 hover:bg-white/[0.07] hover:shadow-[0_10px_30px_rgba(245,201,106,0.03)]"
                   >
                     <div className="flex items-start justify-between gap-4">
                       <div>
-                        <div className="mb-2 flex items-center gap-3">
+                        <div className="mb-1.5 flex items-center gap-3">
                           <span className="text-[10px] font-mono font-bold text-amber-400">
                             {item.id}
                           </span>
@@ -119,14 +160,14 @@ function About() {
                           </span>
                         </div>
 
-                        <h4 className="text-base md:text-lg font-bold tracking-tight text-white transition-colors duration-300 group-hover:text-amber-200">
+                        <h4 className="text-sm md:text-base font-bold tracking-tight text-white transition-colors duration-300 group-hover:text-amber-200">
                           {item.title}
                         </h4>
                       </div>
 
                       {/* PREMIUM ELEVATED ARROW BUTTON BLOCK */}
-                      <div className="flex h-10 w-10 md:h-11 md:w-11 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/[0.02] text-white/70 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:border-amber-400 group-hover:bg-amber-400/10 group-hover:text-amber-400">
-                        <ArrowUpRight size={18} className="transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-45" />
+                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/[0.02] text-white/70 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:border-amber-400 group-hover:bg-amber-400/10 group-hover:text-amber-400">
+                        <ArrowUpRight size={16} className="transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-45" />
                       </div>
                     </div>
                   </motion.a>
@@ -134,11 +175,11 @@ function About() {
               </div>
 
               {/* NOTE */}
-              <div className="relative z-10 mt-4 rounded-[22px] border border-white/10 bg-black/[0.06] p-4 md:p-5">
+              <div className="relative z-10 mt-4 rounded-[22px] border border-white/10 bg-black/[0.06] p-3.5 md:p-4">
                 <p className="text-[10px] uppercase tracking-[0.34em] text-white/50 font-bold">
                   Note
                 </p>
-                <p className="mt-2 text-xs md:text-sm leading-relaxed text-white/80 font-medium">
+                <p className="mt-1.5 text-xs leading-relaxed text-white/80 font-medium">
                   Trivixa Arc combines technology, design, and digital creativity to craft premium web experiences, scalable platforms, and modern brand systems built for long-term growth and real-world impact.
                 </p>
               </div>
