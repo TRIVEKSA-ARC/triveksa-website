@@ -61,15 +61,19 @@ function About() {
       id="about"
       className="relative overflow-hidden bg-transparent px-5 py-16 text-white md:px-8 lg:px-10 md:py-24"
     >
+      {/* FIX ✅ 7️⃣: CINEMATIC LEFT GRADIENT OVERLAY FOR READABILITY */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent z-0" />
+
       {/* RESTRAINED LUXURY AMBIENT BACKGROUND LIGHTS */}
-      <div className="pointer-events-none absolute right-[-10%] top-10 h-[500px] w-[500px] rounded-full bg-amber-500/[0.06] blur-[140px]" />
-      <div className="pointer-events-none absolute left-[-8%] bottom-0 h-[350px] w-[350px] rounded-full bg-neutral-500/[0.04] blur-[120px]" />
+      <div className="pointer-events-none absolute right-[-10%] top-10 h-[500px] w-[500px] rounded-full bg-amber-500/[0.06] blur-[140px] z-0" />
+      <div className="pointer-events-none absolute left-[-8%] bottom-0 h-[350px] w-[350px] rounded-full bg-neutral-500/[0.04] blur-[120px] z-0" />
 
       {/* GRID */}
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16 xl:gap-20 items-center">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16 xl:gap-20 items-center relative z-10">
         
         {/* RIGHT — PROFILE CARD GRID WITH DETACHED BLUR IMAGE DESIGN */}
-        <div className="relative order-1 lg:order-2 lg:col-span-5 flex flex-col sm:flex-row items-center w-full justify-center lg:justify-end gap-6">
+        {/* FIX ✅ 8️⃣: APPLIED lg:mt-10 FOR LOWER BALANCE ALIGNMENT */}
+        <div className="relative order-1 lg:order-2 lg:col-span-5 flex flex-col sm:flex-row items-center w-full justify-center lg:justify-end gap-6 lg:mt-10">
           
           {/* LEFT CHUNK: PROFILE IMAGE CONTAINER */}
           {data.image && (
@@ -109,7 +113,8 @@ function About() {
           )}
 
           {/* RIGHT CHUNK: CORE EXPERTISE CAPABILITIES CARD */}
-          <Reveal delay={0.3} className={`w-full ${data.image ? "max-w-[380px] sm:w-[55%]" : "max-w-[450px] lg:max-w-none"}`}>
+          {/* FIX ✅ 4️⃣: UPDATED MAX WIDTH FROM max-w-[380px] TO max-w-[430px] FOR BETTER PROPORTIONS */}
+          <Reveal delay={0.3} className={`w-full ${data.image ? "max-w-[430px] sm:w-[55%]" : "max-w-[450px] lg:max-w-none"}`}>
             <motion.div 
               whileHover={{ y: -4 }}
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
@@ -189,7 +194,7 @@ function About() {
 
         {/* LEFT — CONTENT */}
         <div className="relative order-2 lg:order-1 lg:col-span-7">
-          <div className="absolute inset-0 rounded-[40px] bg-black/18 backdrop-blur-[2px]" />
+          {/* FIX ✅ 1️⃣: REMOVED THE absolute INNER BACKDROP BOX COMPLETELY TO RESTORE DEPTH */}
           
           {/* SUBTITLE */}
           <Reveal>
@@ -207,10 +212,12 @@ function About() {
           </span>
 
           {/* MAIN TEXT BLOCK */}
-          <div className="relative z-10 space-y-5 md:space-y-7">
+          {/* FIX ✅ 5️⃣: OPTIMIZED SPACING DOWN TO space-y-4 md:space-y-5 */}
+          <div className="relative z-10 space-y-4 md:space-y-5">
             {/* MAIN HEADLINE */}
+            {/* FIX ✅ 2️⃣: ADJUSTED FROM md:text-[52px] TO TAILORED BALANCED SIZES md:text-[44px] xl:text-[48px] */}
             <Reveal delay={0.05}>
-              <h2 className="max-w-2xl text-[30px] sm:text-[38px] md:text-[52px] leading-[1.05] tracking-[-0.05em] font-bold text-white">
+              <h2 className="max-w-2xl text-[30px] sm:text-[38px] md:text-[44px] xl:text-[48px] leading-[1.05] tracking-[-0.05em] font-bold text-white">
                 Premium Digital Experiences Engineered For Modern Brands
               </h2>
             </Reveal>
@@ -242,24 +249,19 @@ function About() {
               </div>
             </Reveal>
 
-            {/* HIGHLIGHT TEXT */}
-            {data.highlightText && (
-              <Reveal delay={0.4}>
-                <p className="max-w-3xl pt-2 text-[22px] sm:text-[26px] leading-tight md:text-[36px] font-bold tracking-[-0.03em] text-white">
-                  {renderStyledText(data.highlightText, true)}
-                </p>
-              </Reveal>
-            )}
+            {/* FIX ✅ 3️⃣: REPETITIVE HIGHLIGHT BLOCK REMOVED FOR CLEANER LUXURY LOOK */}
           </div>
 
           {/* HIGH CONTRAST SERVICES CHIPS */}
+          {/* FIX ✅ 5️⃣: ADJUSTED TOP MARGIN SPACING FROM mt-10 TO mt-7 */}
           <Reveal delay={0.5}>
-            <div className="mt-10 flex flex-wrap gap-2.5 md:gap-3">
+            <div className="mt-7 flex flex-wrap gap-2.5 md:gap-3">
               {data.services.map((service) => (
                 <motion.span
                   key={service}
                   whileHover={{ y: -2, scale: 1.02 }}
-                  className="rounded-full border border-white/15 bg-white/[0.04] px-4 py-2 text-[10px] md:text-[11px] font-medium uppercase tracking-[0.28em] text-white backdrop-blur-md transition-all duration-300 hover:border-amber-300/40 hover:bg-amber-300/[0.08] hover:shadow-[0_8px_20px_rgba(245,201,106,0.05)]"
+                  {/* FIX ✅ 6️⃣: REDUCED SHAPE INTENSITY WITH TO CLEANER bg-white/[0.02] AND border-white/10 */}
+                  className="rounded-full border border-white/10 bg-white/[0.02] px-4 py-2 text-[10px] md:text-[11px] font-medium uppercase tracking-[0.28em] text-white backdrop-blur-md transition-all duration-300 hover:border-amber-300/40 hover:bg-amber-300/[0.08] hover:shadow-[0_8px_20px_rgba(245,201,106,0.05)]"
                 >
                   {service}
                 </motion.span>
