@@ -14,8 +14,6 @@ function AboutAdmin() {
     location: "",
   });
 
-  const [image, setImage] = useState(null);
-
   /* ================= LOAD DATA INTO FORM ================= */
   useEffect(() => {
     if (about) {
@@ -46,8 +44,6 @@ function AboutAdmin() {
         form.services.split(",").map(s => s.trim())
       )
     );
-
-    if (image) fd.append("image", image);
 
     const success = await updateAbout(fd);
 
@@ -88,12 +84,6 @@ function AboutAdmin() {
           />
         </div>
       ))}
-
-      <input
-        type="file"
-        onChange={(e) => setImage(e.target.files[0])}
-        className="mt-4"
-      />
 
       <button
         onClick={submit}

@@ -75,42 +75,7 @@ function About() {
         {/* FIX ✅ 8️⃣: APPLIED lg:mt-10 FOR LOWER BALANCE ALIGNMENT */}
         <div className="relative order-1 lg:order-2 lg:col-span-5 flex flex-col sm:flex-row items-center w-full justify-center lg:justify-end gap-6 lg:mt-10">
           
-          {/* LEFT CHUNK: PROFILE IMAGE CONTAINER */}
-          {data.image && (
-            <Reveal delay={0.2} className="w-full max-w-[340px] sm:w-[45%]">
-              <motion.div
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="group/img relative aspect-[4/5] w-full overflow-hidden rounded-[28px] border border-white/10 bg-black/40 shadow-[0_8px_24px_rgba(0,0,0,0.45)]"
-              >
-                {/* GLASS BLUR TEXT OVERLAYS */}
-                <div className="absolute top-4 left-4 z-20 flex items-center gap-1.5 rounded-full bg-black/40 backdrop-blur-md px-2.5 py-1 border border-white/10">
-                  <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
-                  <span className="text-[8px] uppercase tracking-[0.2em] text-white/90 font-bold">
-                    Founder Profile
-                  </span>
-                </div>
-
-                <img
-                  src={data.image}
-                  alt="Vinod Kumar"
-                  className="h-full w-full object-cover object-center grayscale contrast-[1.05] transition-transform duration-700 ease-out group-hover/img:scale-105 group-hover/img:grayscale-0"
-                />
-
-                <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center justify-between rounded-xl bg-black/40 backdrop-blur-md p-2.5 border border-white/10">
-                  <div>
-                    <p className="text-[8px] uppercase tracking-[0.15em] text-white/50 font-bold">Location</p>
-                    <p className="text-[10px] text-white font-semibold mt-0.5">{data.location || "INDIA"}</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-[8px] uppercase tracking-[0.15em] text-white/50 font-bold">Status</p>
-                    <p className="text-[10px] text-emerald-400 font-semibold mt-0.5 animate-pulse">Available for Projects</p>
-                  </div>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
-              </motion.div>
-            </Reveal>
-          )}
+          {/* PROFILE IMAGE CONTAINER REMOVED FROM THIS BLOCK */}
 
           {/* RIGHT CHUNK: CORE EXPERTISE CAPABILITIES CARD */}
           {/* FIX ✅ 4️⃣: UPDATED MAX WIDTH FROM max-w-[380px] TO max-w-[430px] FOR BETTER PROPORTIONS */}
@@ -260,7 +225,6 @@ function About() {
                 <motion.span
                   key={service}
                   whileHover={{ y: -2, scale: 1.02 }}
-                  
                   className="rounded-full border border-white/10 bg-white/[0.02] px-4 py-2 text-[10px] md:text-[11px] font-medium uppercase tracking-[0.28em] text-white backdrop-blur-md transition-all duration-300 hover:border-amber-300/40 hover:bg-amber-300/[0.08] hover:shadow-[0_8px_20px_rgba(245,201,106,0.05)]"
                 >
                   {service}
