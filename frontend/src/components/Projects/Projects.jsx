@@ -8,12 +8,14 @@ const PROJECT_THEMES = {
   web: {
     color: "from-cyan-400 to-blue-500",
     glow: "rgba(34,211,238,0.18)", 
-    // Cinematic 3D Layered System: Occlusion + Grounding Ambient + Low-Opacity Tint
+    // Pure structural dark shadows + a soft, rounded bottom-cast radial light drop
     shadow: {
-      boxShadow: "0 6px 18px rgba(0,0,0,0.45), 0 18px 40px rgba(0,0,0,0.38), 0 50px 90px rgba(6,182,212,0.08)"
+      boxShadow: "0 6px 18px rgba(0,0,0,0.45), 0 18px 40px rgba(0,0,0,0.38)",
+      backgroundImage: "radial-gradient(circle at 50% 120%, rgba(6,182,212,0.12) 0%, rgba(0,0,0,0) 70%)"
     },
     shadowHover: {
-      boxShadow: "0 10px 24px rgba(0,0,0,0.55), 0 24px 60px rgba(0,0,0,0.45), 0 60px 140px rgba(34,211,238,0.12)"
+      boxShadow: "0 10px 24px rgba(0,0,0,0.55), 0 24px 60px rgba(0,0,0,0.45)",
+      backgroundImage: "radial-gradient(circle at 50% 120%, rgba(34,211,238,0.22) 0%, rgba(0,0,0,0) 70%)"
     },
     borderHover: "hover:border-cyan-500/30",
   },
@@ -21,10 +23,12 @@ const PROJECT_THEMES = {
     color: "from-purple-400 to-pink-500",
     glow: "rgba(192,132,252,0.18)",
     shadow: {
-      boxShadow: "0 6px 18px rgba(0,0,0,0.45), 0 18px 40px rgba(0,0,0,0.38), 0 50px 90px rgba(168,85,247,0.08)"
+      boxShadow: "0 6px 18px rgba(0,0,0,0.45), 0 18px 40px rgba(0,0,0,0.38)",
+      backgroundImage: "radial-gradient(circle at 50% 120%, rgba(168,85,247,0.11) 0%, rgba(0,0,0,0) 70%)"
     },
     shadowHover: {
-      boxShadow: "0 10px 24px rgba(0,0,0,0.55), 0 24px 60px rgba(0,0,0,0.45), 0 60px 140px rgba(168,85,247,0.12)"
+      boxShadow: "0 10px 24px rgba(0,0,0,0.55), 0 24px 60px rgba(0,0,0,0.45)",
+      backgroundImage: "radial-gradient(circle at 50% 120%, rgba(192,132,252,0.20) 0%, rgba(0,0,0,0) 70%)"
     },
     borderHover: "hover:border-purple-500/30",
   },
@@ -32,10 +36,12 @@ const PROJECT_THEMES = {
     color: "from-amber-400 to-orange-500",
     glow: "rgba(251,191,36,0.15)",
     shadow: {
-      boxShadow: "0 6px 18px rgba(0,0,0,0.45), 0 18px 40px rgba(0,0,0,0.38), 0 50px 90px rgba(245,158,11,0.08)"
+      boxShadow: "0 6px 18px rgba(0,0,0,0.45), 0 18px 40px rgba(0,0,0,0.38)",
+      backgroundImage: "radial-gradient(circle at 50% 120%, rgba(245,158,11,0.11) 0%, rgba(0,0,0,0) 70%)"
     },
     shadowHover: {
-      boxShadow: "0 10px 24px rgba(0,0,0,0.55), 0 24px 60px rgba(0,0,0,0.45), 0 60px 140px rgba(251,191,36,0.12)"
+      boxShadow: "0 10px 24px rgba(0,0,0,0.55), 0 24px 60px rgba(0,0,0,0.45)",
+      backgroundImage: "radial-gradient(circle at 50% 120%, rgba(251,191,36,0.20) 0%, rgba(0,0,0,0) 70%)"
     },
     borderHover: "hover:border-amber-500/30",
   },
