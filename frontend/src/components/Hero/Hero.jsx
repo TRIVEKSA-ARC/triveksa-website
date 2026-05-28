@@ -110,7 +110,7 @@ function Hero() {
 
                 <MagneticButton
                   href="#projects"
-                  className="inline-flex items-center justify-center rounded-full border border-amber-300/30 bg-white/[0.06] px-8 py-4 text-[11px] font-bold uppercase tracking-[0.28em] text-white  transition-all duration-300 hover:bg-amber-300 w-full sm:w-auto"
+                  className="inline-flex items-center justify-center rounded-full border border-amber-300/30 bg-white/[0.06] px-8 py-4 text-[11px] font-bold uppercase tracking-[0.28em] text-white  transition-all duration-300 hover:bg-indigo-700 w-full sm:w-auto"
                 >
                   Explore Selected Work
                 </MagneticButton>
