@@ -37,7 +37,7 @@ function Footer() {
     ],
   };
 
-  const { message, email, phone, socials, adminIcon } = data;
+  const { message, email, phone, socials } = data;
 
   const copyright =
     `© ${new Date().getFullYear()} Vinod Kumar. All rights reserved.`;
@@ -135,14 +135,15 @@ function Footer() {
               {copyright}
             </span>
 
-            {/* INVISIBLE TRIGGER TARGET FOR ADMIN PANEL */}
-            <div className="absolute right-0 bottom-7 z-50">
+            {/* RESTORED ADMIN ICON IN RIGHT BOTTOM CORNER */}
+            <div className="static md:absolute md:right-0 md:bottom-8">
               <button
-                className="w-4 h-4 bg-transparent border-none cursor-default opacity-0 select-none outline-none"
-                aria-hidden="true"
-                tabIndex={-1}
+                className="p-2.5 rounded-full border border-white/5 bg-white/[0.01] text-white/30 hover:text-[#f5c96a] hover:bg-[#f5c96a]/10 hover:border-[#f5c96a]/20 transition-all duration-300"
+                title="Admin Panel"
                 onClick={() => window.open("/admin", "_blank")}
-              />
+              >
+                <Shield size={15} />
+              </button>
             </div>
           </div>
         </div>
