@@ -15,7 +15,7 @@ const PROJECT_THEMES = {
   uiux: {
     color: "from-purple-400 to-pink-500",
     glow: "rgba(192,132,252,0.25)", // Deep luxury purple backglow
-    shadow: "shadow-[0_30px_30px_rgba(168,85,247,0.12)]",
+    shadow: "shadow-[0_8px_24px_rgba(168,85,247,0.06),0_24px_60px_rgba(168,85,247,0.10),0_40px_120px_rgba(168,85,247,0.16)]",
     shadowHover: "hover:shadow-[0_30px_80px_rgba(236,72,153,0.22)]",
     borderHover: "hover:border-purple-500/30",
   },
