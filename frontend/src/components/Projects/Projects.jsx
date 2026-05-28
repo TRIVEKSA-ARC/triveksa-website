@@ -146,7 +146,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
         {/* DESKTOP ARROW LEFT */}
         <button
           onClick={() => slide("left")}
-          className="hidden md:flex absolute -left-16 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-neutral-900 hover:text-white hover:scale-105"
+          className="hidden md:flex absolute -left-8 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-neutral-900 hover:text-white hover:scale-105"
         >
           <ChevronLeft size={20} />
         </button>
@@ -163,98 +163,8 @@ const ProjectSection = ({ title, items = [], theme }) => {
           }}
         >
           {extendedItems.map((item, index) => {
-            // Manage state of local element hovering for custom style assignment object
-            const [localHover, setLocalHover] = useState(false);
-
             return (
-              <div key={`${item._id || index}-${index}`} className="w-full shrink-0 snap-center snap-always">
-                <div
-                  onMouseEnter={() => setLocalHover(true)}
-                  onMouseLeave={() => setLocalHover(false)}
-                  style={localHover ? theme.shadowHover : theme.shadow}
-                  className={`group relative w-full overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/[0.08] bg-[#0B0D14]/85 backdrop-blur-2xl p-5 md:p-7 ${theme.borderHover} transition-all duration-500 flex flex-col md:flex-row gap-6 md:gap-8 items-center`}
-                >
-                  {/* Premium Theme Hover Backglow */}
-                  <div 
-                    className="absolute -right-20 -top-20 w-64 h-64 rounded-full blur-[100px] pointer-events-none opacity-0 transition duration-500 group-hover:opacity-70"
-                    style={{ backgroundColor: theme?.glow }}
-                  />
-
-                  {/* Left Side: Image Preview */}
-                  <a 
-                    href={item.url} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className={`w-full md:w-1/2 aspect-[16/10] bg-[#141622] rounded-[18px] md:rounded-[22px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 ${theme.borderHover} shrink-0`}
-                  >
-                    <img
-                      src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
-                      alt={item.title}
-                      className="h-full w-full object-cover rounded-[14px] transition duration-700 group-hover:scale-[1.02]"
-                    />
-                  </a>
-
-                  {/* Right Side: Information Matrix */}
-                  <div className="w-full md:w-1/2 flex flex-col justify-between h-full align-stretch">
-                    <div>
-                      <div className="flex items-center gap-2.5 mb-3">
-                        <span className="rounded-full border border-amber-500/20 bg-amber-500/10 px-2.5 py-0.5 text-[8px] md:text-[9px] font-bold uppercase tracking-[0.22em] text-amber-400">
-                          Featured Experience
-                        </span>
-                        <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-[8px] md:text-[9px] uppercase tracking-[0.15em] text-white/60">
-                          {item.category || "Web"}
-                        </span>
-                      </div>
-
-                      <h4 className="text-[22px] md:text-[28px] font-bold tracking-tight text-white stroke-none leading-tight mb-2.5 line-clamp-1">
-                        {item.title}
-                      </h4>
-
-                      <p className="text-[12px] md:text-[13px] leading-relaxed text-[#94A3B8] font-medium mb-4 line-clamp-2">
-                        {item.desc}
-                      </p>
-
-                      {/* Meta Parameters Grid Layout */}
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 border-t border-b border-white/5 py-3.5 mb-4 text-[11px]">
-                        <div>
-                          <span className="text-[9px] uppercase tracking-wider text-white/40 block mb-0.5">Industry</span>
-                          <span className="font-semibold text-[#F1F5F9] truncate block">{item.industry || "Digital Solutions"}</span>
-                        </div>
-                        <div>
-                          <span className="text-[9px] uppercase tracking-wider text-white/40 block mb-0.5">Core Focus</span>
-                          <span className="font-semibold text-[#F1F5F9] truncate block">{item.goal || "Premium Experience"}</span>
-                        </div>
-                        <div>
-                          <span className="text-[9px] uppercase tracking-wider text-amber-400 block mb-0.5">Business Impact</span>
-                          <span className="font-bold text-amber-400 truncate block">{item.result || "Conversion Optimized"}</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Actions Bar */}
-                    <div className="flex items-center justify-between mt-auto pt-1">
-                      <a
-                        href={item.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-[10px] font-bold uppercase tracking-[0.12em] text-black shadow-sm transition hover:bg-neutral-200 hover:scale-[1.01]"
-                      >
-                        Explore Experience <Plus size={12} className="text-black" />
-                      </a>
-
-                      <a 
-                        href={item.url} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className={`flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] transition duration-300 hover:text-white ${theme.borderHover}`}
-                      >
-                        <ExternalLink size={14} />
-                      </a>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
+              <ProjectCard key={`${item._id || index}-${index}`} item={item} theme={theme} />
             );
           })}
         </div>
@@ -262,7 +172,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
         {/* DESKTOP ARROW RIGHT */}
         <button
           onClick={() => slide("right")}
-          className="hidden md:flex absolute -right-16 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-white hover:text-black hover:scale-105"
+          className="hidden md:flex absolute -right-8 top-1/2 z-30 h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/70 text-white/80 backdrop-blur-xl transition duration-300 hover:bg-white hover:text-black hover:scale-105"
         >
           <ChevronRight size={20} />
         </button>
@@ -291,6 +201,102 @@ const ProjectSection = ({ title, items = [], theme }) => {
   );
 };
 
+// --- ISOLATED CARD STATE COMPONENT ---
+const ProjectCard = ({ item, theme }) => {
+  const [localHover, setLocalHover] = useState(false);
+
+  return (
+    <div className="w-full shrink-0 snap-center snap-always">
+      <motion.div
+        onMouseEnter={() => setLocalHover(true)}
+        onMouseLeave={() => setLocalHover(false)}
+        whileHover={{ y: -6 }}
+        style={localHover ? theme.shadowHover : theme.shadow}
+        className={`group relative w-full overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/[0.08] bg-[#0B0D14]/85 backdrop-blur-2xl p-5 md:p-7 ${theme.borderHover} transition-all duration-500 flex flex-col md:flex-row gap-6 md:gap-8 items-center`}
+      >
+        {/* Premium Theme Hover Backglow */}
+        <div 
+          className="absolute -right-20 -top-20 w-64 h-64 rounded-full blur-[100px] pointer-events-none opacity-0 transition duration-500 group-hover:opacity-70"
+          style={{ backgroundColor: theme?.glow }}
+        />
+
+        {/* Left Side: Image Preview */}
+        <a 
+          href={item.url} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className={`w-full md:w-1/2 aspect-[16/9] bg-[#141622] rounded-[18px] md:rounded-[22px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 ${theme.borderHover} shrink-0`}
+        >
+          <img
+            src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
+            alt={item.title}
+            className="h-full w-full object-cover rounded-[14px] transition duration-700 group-hover:scale-[1.02]"
+          />
+        </a>
+
+        {/* Right Side: Information Matrix */}
+        <div className="w-full md:w-1/2 flex flex-col justify-between h-full align-stretch">
+          <div>
+            <div className="flex items-center gap-2.5 mb-3">
+              <span className="rounded-full border border-amber-500/20 bg-amber-500/10 px-2.5 py-0.5 text-[8px] md:text-[9px] font-bold uppercase tracking-[0.22em] text-amber-400">
+                Featured Experience
+              </span>
+              <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-[8px] md:text-[9px] uppercase tracking-[0.15em] text-white/60">
+                {item.category || "Web"}
+              </span>
+            </div>
+
+            <h4 className="text-[22px] md:text-[28px] font-bold tracking-tight text-white stroke-none leading-tight mb-2.5 line-clamp-1">
+              {item.title}
+            </h4>
+
+            <p className="text-[12px] md:text-[13px] leading-relaxed text-[#94A3B8] font-medium mb-4 line-clamp-2">
+              {item.desc}
+            </p>
+
+            {/* Meta Parameters Grid Layout */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 border-t border-b border-white/5 py-3.5 mb-4 text-[11px]">
+              <div>
+                <span className="text-[9px] uppercase tracking-wider text-white/40 block mb-0.5">Industry</span>
+                <span className="font-semibold text-[#F1F5F9] truncate block">{item.industry || "Digital Solutions"}</span>
+              </div>
+              <div>
+                <span className="text-[9px] uppercase tracking-wider text-white/40 block mb-0.5">Core Focus</span>
+                <span className="font-semibold text-[#F1F5F9] truncate block">{item.goal || "Premium Experience"}</span>
+              </div>
+              <div>
+                <span className="text-[9px] uppercase tracking-wider text-amber-400 block mb-0.5">Business Impact</span>
+                <span className="font-bold text-amber-400 truncate block">{item.result || "Conversion Optimized"}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Actions Bar */}
+          <div className="flex items-center justify-between mt-auto pt-1">
+            <a
+              href={item.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-[10px] font-bold uppercase tracking-[0.12em] text-black shadow-sm transition-all duration-500 hover:bg-neutral-200 hover:scale-[1.01] hover:tracking-[0.18em]"
+            >
+              Explore Experience <Plus size={12} className="text-black" />
+            </a>
+
+            <a 
+              href={item.url} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={`flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] transition duration-300 hover:text-white ${theme.borderHover}`}
+            >
+              <ExternalLink size={14} />
+            </a>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
 function Projects() {
   const { projects, loading } = useProjects();
 
@@ -303,7 +309,7 @@ function Projects() {
   }
 
   return (
-    <section id="projects" className="relative overflow-hidden bg-transparent py-12 md:py-24 text-white">
+    <section id="projects" className="relative overflow-hidden bg-transparent py-20 md:py-32 text-white">
       <div className="mx-auto max-w-7xl">
         <header className="mb-14 md:mb-24 px-4 text-center">
           <Reveal>
