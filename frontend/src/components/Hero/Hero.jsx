@@ -129,23 +129,45 @@ function Hero() {
                 {/* CLEAN GLASS CARD CONTAINER */}
                 <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-white/10 bg-neutral-950/50 p-2 md:p-2.5 backdrop-blur-2xl transition-all duration-700 group-hover:border-amber-400/40 group-hover:shadow-[0_30px_80px_rgba(216,155,29,0.15)]">
                   
-                  {/* INNER IMAGE BASE FRAME */}
-                  <div className="relative h-full w-full overflow-hidden rounded-[1.25rem] bg-neutral-900 border border-white/5">
-                    {data.image?.url ? (
-                      <img
-                        src={data.image.url}
-                        alt="Vinod Kumar Profile"
-                        className="h-full w-full object-cover opacity-100"
-                      />
-                    ) : (
-                      <div className="h-full w-full bg-gradient-to-b from-neutral-800 to-neutral-950 flex items-center justify-center text-white/20 text-xs tracking-widest uppercase">
-                        Profile Visual
+                  {/* INNER IMAGE BASE FRAME (SLIDER ROW) */}
+                  <div className="relative h-full w-full overflow-hidden rounded-[1.25rem] bg-neutral-900 border border-white/5 flex flex-row">
+                    <motion.div 
+                      className="flex h-full w-[200%] flex-nowrap flex-shrink-0"
+                      animate={{ x: ["0%", "-50%"] }}
+                      transition={{
+                        ease: "linear",
+                        duration: 5,
+                        repeat: Infinity,
+                      }}
+                    >
+                      {/* SLIDE 1 — LOGO */}
+                      <div className="h-full w-1/2 flex-shrink-0 bg-neutral-950 flex items-center justify-center p-8">
+                        <img
+                          src="/Logo.png"
+                          alt="Trivixa Arc Logo"
+                          className="max-h-full max-w-full object-contain filter drop-shadow-md"
+                        />
                       </div>
-                    )}
+
+                      {/* SLIDE 2 — PROFILE IMAGE */}
+                      <div className="h-full w-1/2 flex-shrink-0 relative">
+                        {data.image?.url ? (
+                          <img
+                            src={data.image.url}
+                            alt="Vinod Kumar Profile"
+                            className="h-full w-full object-cover opacity-100"
+                          />
+                        ) : (
+                          <div className="h-full w-full bg-gradient-to-b from-neutral-800 to-neutral-950 flex items-center justify-center text-white/20 text-xs tracking-widest uppercase">
+                            Profile Visual
+                          </div>
+                        )}
+                      </div>
+                    </motion.div>
                   </div>
 
                   {/* FLOATING TOP BADGE */}
-                  <div className="absolute left-5 top-5 flex items-center gap-2 rounded-full border border-white/15 bg-neutral-950/70 px-3.5 py-1.5 backdrop-blur-xl shadow-lg">
+                  <div className="absolute left-5 top-5 flex items-center gap-2 rounded-full border border-white/15 bg-neutral-950/70 px-3.5 py-1.5 backdrop-blur-xl shadow-lg z-20">
                     <span className="relative flex h-2 w-2">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-75"></span>
                       <span className="relative inline-flex h-2 w-2 rounded-full bg-amber-400"></span>
@@ -156,7 +178,7 @@ function Hero() {
                   </div>
 
                   {/* BOTTOM METADATA OVERLAY — HIGHLY OPTIMIZED CONTRAST */}
-                  <div className="absolute bottom-5 left-5 right-5 flex flex-col gap-3 bg-slate-800 p-4 rounded-xl border border-white shadow-xl backdrop-blur-xl">
+                  <div className="absolute bottom-5 left-5 right-5 flex flex-col gap-3 bg-slate-800 p-4 rounded-xl border border-white shadow-xl backdrop-blur-xl z-20">
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-[8px] md:text-[9px] font-semibold uppercase tracking-[0.3em] text-neutral-400">
