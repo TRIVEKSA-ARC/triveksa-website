@@ -83,16 +83,16 @@ function Hero() {
             {/* ROLE STRIP / TRUST SIGNAL */}
             <Reveal delay={0.35}>
               <div className="flex flex-wrap gap-2.5 md:gap-3">
-                <span className="rounded-full border border-white bg-slate-800 px-4 py-2 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-amber-400 font-bold ">
+                <span className="rounded-full border border-white bg-slate-800 px-4 py-2 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-amber-100 font-bold ">
                   Web Platforms
                 </span>
-                <span className="rounded-full border border-white bg-slate-800 px-4 py-2 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-amber-400 font-medium ">
+                <span className="rounded-full border border-white bg-slate-800 px-4 py-2 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-amber-100 font-medium ">
                   UI Systems
                 </span>
-                <span className="rounded-full border border-white bg-slate-800 px-4 py-2 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-amber-400 font-medium ">
+                <span className="rounded-full border border-white bg-slate-800 px-4 py-2 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-amber-100 font-medium ">
                   Creative Branding
                 </span>
-                <span className="rounded-full border border-white bg-slate-800 px-4 py-2 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-amber-400 font-medium ">
+                <span className="rounded-full border border-white bg-slate-800 px-4 py-2 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-amber-100 font-medium ">
                   Digital Experiences
                 </span>
               </div>
@@ -156,7 +156,7 @@ function Hero() {
                   </div>
 
                   {/* BOTTOM METADATA OVERLAY — HIGHLY OPTIMIZED CONTRAST */}
-                  <div className="absolute bottom-5 left-5 right-5 flex flex-col gap-3 bg-neutral-950/80 p-4 rounded-xl border border-white/10 shadow-xl backdrop-blur-xl">
+                  <div className="absolute bottom-5 left-5 right-5 flex flex-col gap-3 bg-slate-800 p-4 rounded-xl border border-white shadow-xl backdrop-blur-xl">
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-[8px] md:text-[9px] font-semibold uppercase tracking-[0.3em] text-neutral-400">
@@ -171,7 +171,7 @@ function Hero() {
                         <p className="text-[8px] md:text-[9px] font-semibold uppercase tracking-[0.3em] text-neutral-400">
                           Status
                         </p>
-                        <p className="mt-1 text-[12px] md:text-[13px] font-extrabold tracking-wider text-emerald-400 flex items-center justify-end gap-1.5">
+                        <p className="mt-1 text-[12px] md:text-[13px] font-extrabold tracking-wider text-green-400 flex items-center justify-end gap-1.5">
                           <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
                           Available
                         </p>
