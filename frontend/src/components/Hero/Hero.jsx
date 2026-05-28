@@ -15,7 +15,7 @@ function Hero() {
   return (
     <>
       {/* ================= AGENCY HERO ================= */}
-      <section className="relative min-h-screen w-full overflow-hidden bg-transparent text-white flex items-center font-sans py-24 lg:py-32">
+      <section className="relative min-h-screen w-full overflow-hidden bg-transparent text-white flex items-center font-sans py-20 lg:py-0">
         
         {/* SUBTLE GRID OVERLAY */}
         <div
@@ -32,12 +32,12 @@ function Hero() {
         <div className="pointer-events-none absolute bottom-[-120px] left-[4%] h-[380px] w-[380px] rounded-full bg-neutral-300/10 blur-[130px]" />
         <div className="pointer-events-none absolute top-[35%] left-[45%] h-[280px] w-[280px] rounded-full bg-yellow-200/5 blur-[100px]" />
 
-        <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 gap-16 px-6 sm:px-8 md:px-10 lg:grid-cols-12 lg:gap-8 lg:px-12 items-center">
+        <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 gap-12 px-6 sm:px-8 md:px-10 lg:grid-cols-12 lg:gap-8 lg:px-12 items-center">
           
           {/* LEFT SIDE — CONTENT ARCHITECTURE */}
-          <div className="lg:col-span-7 flex flex-col justify-center space-y-8 md:space-y-10">
+          <div className="lg:col-span-7 flex flex-col justify-center space-y-6 md:space-y-7">
             
-            <div className="flex flex-col space-y-4 md:space-y-6">
+            <div className="flex flex-col space-y-3 md:space-y-4">
               {/* TOP LABEL */}
               <Reveal>
                 <div className="flex items-center gap-4">
@@ -63,7 +63,7 @@ function Hero() {
 
             {/* AGENCY LINE — IMPROVED PREMIUM BADGE STYLE */}
             <Reveal delay={0.15}>
-              <div className="flex flex-col space-y-2 border-l-2 border-amber-400/40 pl-4 py-1">
+              <div className="flex flex-col space-y-1.5 border-l-2 border-amber-400/40 pl-4 py-0.5">
                 <span className="text-[12px] sm:text-[14px] uppercase tracking-[0.25em] text-white font-bold">
                   Creative Developer • Digital Systems Designer
                 </span>
@@ -82,7 +82,7 @@ function Hero() {
 
             {/* ROLE STRIP / TRUST SIGNAL */}
             <Reveal delay={0.35}>
-              <div className="flex flex-wrap gap-2.5 md:gap-3 pt-2">
+              <div className="flex flex-wrap gap-2.5 md:gap-3">
                 <span className="rounded-full border border-amber-400/30 bg-amber-400/10 px-4 py-2 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-amber-300 font-bold backdrop-blur-sm">
                   Web Platforms
                 </span>
@@ -100,7 +100,7 @@ function Hero() {
 
             {/* CTA BUTTONS */}
             <Reveal delay={0.45}>
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row gap-4 pt-2">
                 <MagneticButton
                   href="#contact"
                   className="inline-flex items-center justify-center rounded-full border border-amber-300/30 bg-gradient-to-r from-[#f8d36a] to-[#d89b1d] px-8 py-4 text-[11px] font-bold uppercase tracking-[0.28em] text-black shadow-[0_12px_32px_rgba(216,155,29,0.25)] transition-all duration-300 hover:-translate-y-0.5 w-full sm:w-auto"
@@ -118,7 +118,7 @@ function Hero() {
             </Reveal>
           </div>
 
-          {/* RIGHT SIDE — HIGH CONTRAST PROFILE CARD */}
+          {/* RIGHT SIDE — PROFILE CARD WITH MODIFIED TOP ALIGNMENT */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end items-center w-full">
             <Reveal delay={0.25} className="w-full flex justify-center lg:justify-end">
               <div className="group relative w-full max-w-[350px] md:max-w-[390px]">
