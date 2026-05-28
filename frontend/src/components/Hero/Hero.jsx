@@ -129,33 +129,59 @@ function Hero() {
                 {/* CLEAN GLASS CARD CONTAINER */}
                 <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-white/10 bg-neutral-950/50 p-2 md:p-2.5 backdrop-blur-2xl transition-all duration-700 group-hover:border-amber-400/40 group-hover:shadow-[0_30px_80px_rgba(216,155,29,0.15)]">
                   
-                  {/* INNER IMAGE BASE FRAME (SLIDER ROW) */}
+                  {/* INNER IMAGE BASE FRAME (INFINITE SLIDER MATRIX) */}
                   <div className="relative h-full w-full overflow-hidden rounded-[1.25rem] bg-neutral-900 border border-white/5 flex flex-row">
                     <motion.div 
-                      className="flex h-full w-[200%] flex-nowrap flex-shrink-0"
-                      animate={{ x: ["0%", "-50%"] }}
+                      className="flex h-full w-[400%] flex-nowrap flex-shrink-0"
+                      animate={{ x: ["-50%", "0%"] }}
                       transition={{
                         ease: "linear",
                         duration: 5,
                         repeat: Infinity,
                       }}
                     >
+                      {/* === SET 1 === */}
                       {/* SLIDE 1 — LOGO */}
-                      <div className="h-full w-1/2 flex-shrink-0 bg-neutral-950 flex items-center justify-center p-8">
+                      <div className="h-full w-1/4 flex-shrink-0 bg-neutral-950 flex items-center justify-center p-10 md:p-14">
                         <img
                           src="/Logo.png"
                           alt="Trivixa Arc Logo"
-                          className="max-h-full max-w-full object-contain filter drop-shadow-md"
+                          className="max-h-full max-w-full object-contain filter drop-shadow-md select-none"
                         />
                       </div>
 
                       {/* SLIDE 2 — PROFILE IMAGE */}
-                      <div className="h-full w-1/2 flex-shrink-0 relative">
+                      <div className="h-full w-1/4 flex-shrink-0 relative">
                         {data.image?.url ? (
                           <img
                             src={data.image.url}
                             alt="Vinod Kumar Profile"
-                            className="h-full w-full object-cover opacity-100"
+                            className="h-full w-full object-cover opacity-100 select-none"
+                          />
+                        ) : (
+                          <div className="h-full w-full bg-gradient-to-b from-neutral-800 to-neutral-950 flex items-center justify-center text-white/20 text-xs tracking-widest uppercase">
+                            Profile Visual
+                          </div>
+                        )}
+                      </div>
+
+                      {/* === SET 2 (DUPLICATED MATRIX FOR SEAMLESS INF-LOOP) === */}
+                      {/* SLIDE 3 — LOGO DUPLICATE */}
+                      <div className="h-full w-1/4 flex-shrink-0 bg-neutral-950 flex items-center justify-center p-10 md:p-14">
+                        <img
+                          src="/Logo.png"
+                          alt="Trivixa Arc Logo"
+                          className="max-h-full max-w-full object-contain filter drop-shadow-md select-none"
+                        />
+                      </div>
+
+                      {/* SLIDE 4 — PROFILE IMAGE DUPLICATE */}
+                      <div className="h-full w-1/4 flex-shrink-0 relative">
+                        {data.image?.url ? (
+                          <img
+                            src={data.image.url}
+                            alt="Vinod Kumar Profile"
+                            className="h-full w-full object-cover opacity-100 select-none"
                           />
                         ) : (
                           <div className="h-full w-full bg-gradient-to-b from-neutral-800 to-neutral-950 flex items-center justify-center text-white/20 text-xs tracking-widest uppercase">
