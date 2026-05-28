@@ -83,16 +83,16 @@ function Hero() {
             {/* ROLE STRIP / TRUST SIGNAL */}
             <Reveal delay={0.35}>
               <div className="flex flex-wrap gap-2.5 md:gap-3">
-                <span className="rounded-full border border-white bg-slate-800 px-4 py-2 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-amber-300 font-bold ">
+                <span className="rounded-full border border-white bg-slate-800 px-4 py-2 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-slate-100 font-bold ">
                   Web Platforms
                 </span>
-                <span className="rounded-full border border-white bg-slate-800 px-4 py-2 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-neutral-300 font-medium ">
+                <span className="rounded-full border border-white bg-slate-800 px-4 py-2 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-slate-100 font-medium ">
                   UI Systems
                 </span>
-                <span className="rounded-full border border-white bg-slate-800 px-4 py-2 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-neutral-300 font-medium ">
+                <span className="rounded-full border border-white bg-slate-800 px-4 py-2 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-slate-100 font-medium ">
                   Creative Branding
                 </span>
-                <span className="rounded-full border border-white bg-slate-800 px-4 py-2 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-neutral-300 font-medium ">
+                <span className="rounded-full border border-white bg-slate-800 px-4 py-2 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-slate-100 font-medium ">
                   Digital Experiences
                 </span>
               </div>
