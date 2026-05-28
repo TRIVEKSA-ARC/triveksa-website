@@ -83,7 +83,7 @@ function Hero() {
             {/* ROLE STRIP / TRUST SIGNAL */}
             <Reveal delay={0.35}>
               <div className="flex flex-wrap gap-2.5 md:gap-3">
-                <span className="rounded-full border border-amber-400/30 bg-amber-400/10 px-4 py-2 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-amber-300 font-bold ">
+                <span className="rounded-full border border-white bg-slate-800 px-4 py-2 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-amber-300 font-bold ">
                   Web Platforms
                 </span>
                 <span className="rounded-full border border-white bg-slate-800 px-4 py-2 text-[9px] md:text-[10px] uppercase tracking-[0.28em] text-neutral-300 font-medium ">
@@ -103,14 +103,14 @@ function Hero() {
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
                 <MagneticButton
                   href="#contact"
-                  className="inline-flex items-center justify-center rounded-full border border-amber-300/30 bg-gradient-to-r from-[#f8d36a] to-[#d89b1d] px-8 py-4 text-[11px] font-bold uppercase tracking-[0.28em] text-black shadow-[0_12px_32px_rgba(216,155,29,0.25)] transition-all duration-300 hover:-translate-y-0.5 w-full sm:w-auto"
+                  className="inline-flex items-center justify-center rounded-full border border-white bg-gradient-to-r from-[#f8d36a] to-[#d89b1d] px-8 py-4 text-[11px] font-bold uppercase tracking-[0.28em] text-black shadow-[0_12px_32px_rgba(216,155,29,0.25)] transition-all duration-300 hover:-translate-y-0.5 w-full sm:w-auto"
                 >
                   Book a Project Call
                 </MagneticButton>
 
                 <MagneticButton
                   href="#projects"
-                  className="inline-flex items-center justify-center rounded-full border border-amber-300/30 bg-white/[0.06] px-8 py-4 text-[11px] font-bold uppercase tracking-[0.28em] text-white  transition-all duration-300 hover:bg-slate-800  w-full sm:w-auto"
+                  className="inline-flex items-center justify-center rounded-full border border-white bg-black/[0.06] px-8 py-4 text-[11px] font-bold uppercase tracking-[0.28em] text-white  transition-all duration-300 hover:bg-slate-800  w-full sm:w-auto"
                 >
                   Explore Selected Work
                 </MagneticButton>
