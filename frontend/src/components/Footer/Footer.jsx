@@ -53,8 +53,17 @@ function Footer() {
           {/* ================= MAIN CONTENT GRID (PADDING REDUCED) ================= */}
           <div className="py-12 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 text-white relative z-10 items-start">
 
-            {/* LEFT — CORE STUDIO IDENTITY */}
+            {/* LEFT — CORE STUDIO IDENTITY WITH LOGO */}
             <div className="flex flex-col items-start space-y-4">
+              {/* BRAND LOGO DISPLAY */}
+              <div className="mb-2">
+                <img 
+                  src="/Logo.png" 
+                  alt="Trivixa Logo" 
+                  className="h-10 w-auto object-contain opacity-95 hover:opacity-100 transition-opacity duration-300"
+                />
+              </div>
+              
               <div className="flex items-center gap-3">
                 <span className="h-px w-8 bg-gradient-to-r from-[#fff1c2] to-[#d89b1d]" />
                 <h3 className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.45em] bg-gradient-to-r from-[#fff1c2] via-[#f5c96a] to-[#d89b1d] bg-clip-text text-transparent">
