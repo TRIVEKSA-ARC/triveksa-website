@@ -62,7 +62,7 @@ function About() {
       className="relative overflow-hidden bg-transparent px-5 py-16 text-white md:px-8 lg:px-10 md:py-24"
     >
       {/* FIX ✅ 7️⃣: CINEMATIC LEFT GRADIENT OVERLAY FOR READABILITY */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent z-0" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/20 via-black/20 to-transparent z-0" />
 
       {/* RESTRAINED LUXURY AMBIENT BACKGROUND LIGHTS */}
       <div className="pointer-events-none absolute right-[-10%] top-10 h-[500px] w-[500px] rounded-full bg-amber-500/[0.06] blur-[140px] z-0" />
