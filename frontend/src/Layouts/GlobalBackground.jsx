@@ -36,12 +36,12 @@ function GlobalBackground({ children }) {
     });
 
     /* ===============================
-       PREMIUM SLOW CINEMATIC BG
+       PREMIUM CINEMATIC BG MOTION
     =============================== */
 
     gsap.fromTo(
       bgRef.current,
-      { scale: 1.08 },
+      { scale: 1.05 },
       {
         scale: 1,
         duration: 45,
@@ -70,7 +70,7 @@ function GlobalBackground({ children }) {
     }).add("shipAtTop");
 
     /* ===============================
-       LIGHT + CONTENT REVEAL
+       LIGHT REVEAL
     =============================== */
 
     tl.to(
@@ -83,6 +83,10 @@ function GlobalBackground({ children }) {
       },
       "shipAtTop+=0.2"
     );
+
+    /* ===============================
+       CONTENT REVEAL
+    =============================== */
 
     tl.to(
       contentRef.current,
@@ -130,46 +134,46 @@ function GlobalBackground({ children }) {
         }}
       />
 
-      {/* 🎬 GLOBAL CINEMATIC DARK OVERLAY */}
+      {/* ✨ PREMIUM CENTER LIGHT */}
       <div
         className="
           fixed inset-0
           z-[1]
           pointer-events-none
-          bg-gradient-to-b
-          from-black/65
-          via-black/35
-          to-black/75
+          bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.10)_0%,rgba(0,0,0,0.15)_75%)]
         "
       />
 
-      {/* 🌌 CENTER FOCUS LIGHT */}
+      {/* 🔵 SOFT BLUE ATMOSPHERE */}
       <div
         className="
           fixed inset-0
           z-[2]
           pointer-events-none
-          bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08)_0%,transparent_65%)]
+          bg-[radial-gradient(circle_at_top_left,rgba(59,130,246,0.10),transparent_45%)]
         "
       />
 
-      {/* 🔵 BLUE ATMOSPHERIC LIGHT */}
+      {/* 🌟 GOLD ATMOSPHERIC LIGHT */}
       <div
         className="
           fixed inset-0
           z-[2]
           pointer-events-none
-          bg-[radial-gradient(circle_at_top_left,rgba(59,130,246,0.10),transparent_40%)]
+          bg-[radial-gradient(circle_at_top_right,rgba(251,191,36,0.06),transparent_40%)]
         "
       />
 
-      {/* 🌫 SUBTLE EDGE VIGNETTE */}
+      {/* 🌫️ SOFT BOTTOM DEPTH */}
       <div
         className="
           fixed inset-0
           z-[2]
           pointer-events-none
-          bg-[radial-gradient(circle,transparent_45%,rgba(0,0,0,0.45)_100%)]
+          bg-gradient-to-t
+          from-black/30
+          via-transparent
+          to-transparent
         "
       />
 
@@ -200,8 +204,8 @@ function GlobalBackground({ children }) {
           w-[420px]
           h-[75vh]
           bg-gradient-to-b
-          from-yellow-200/20
-          via-sky-200/15
+          from-yellow-200/18
+          via-sky-200/12
           to-transparent
           blur-3xl
           origin-top
