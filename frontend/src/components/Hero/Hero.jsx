@@ -133,10 +133,13 @@ function Hero() {
                   <div className="relative h-full w-full overflow-hidden rounded-[1.25rem] bg-neutral-900 border border-white/5 flex flex-row">
                     <motion.div 
                       className="flex h-full w-[400%] flex-nowrap flex-shrink-0"
-                      animate={{ x: ["-50%", "0%"] }}
+                      animate={{
+                        x: ["0%", "0%", "-25%", "-25%", "-50%"]
+                      }}
                       transition={{
-                        ease: "linear",
-                        duration: 12,
+                        times: [0, 0.35, 0.45, 0.85, 1],
+                        ease: "easeInOut",
+                        duration: 20,
                         repeat: Infinity,
                       }}
                     >
