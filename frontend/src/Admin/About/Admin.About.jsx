@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useAbout } from "../../context/AboutContext";
 import toast from "react-hot-toast";
 
-
 function AboutAdmin() {
   const { about, updateAbout } = useAbout();
 
@@ -10,7 +9,6 @@ function AboutAdmin() {
     subtitle: "",
     paragraph1: "",
     paragraph2: "",
-    paragraph3: "",
     highlightText: "",
     services: "",
     location: "",
@@ -25,7 +23,6 @@ function AboutAdmin() {
         subtitle: about.subtitle || "",
         paragraph1: about.paragraph1 || "",
         paragraph2: about.paragraph2 || "",
-        paragraph3: about.paragraph3 || "",
         highlightText: about.highlightText || "",
         services: about.services?.join(", ") || "",
         location: about.location || "",
@@ -40,7 +37,6 @@ function AboutAdmin() {
     fd.append("subtitle", form.subtitle);
     fd.append("paragraph1", form.paragraph1);
     fd.append("paragraph2", form.paragraph2);
-    fd.append("paragraph3", form.paragraph3);
     fd.append("highlightText", form.highlightText);
     fd.append("location", form.location);
 
@@ -56,26 +52,41 @@ function AboutAdmin() {
     const success = await updateAbout(fd);
 
     if (success) {
-       toast.success("About section updated successfully");
-         } else {
-          toast.error("Failed to update About section");
-        }
-    };
+      toast.success("About section updated successfully");
+    } else {
+      toast.error("Failed to update About section");
+    }
+  };
 
   return (
     <div className="p-10 text-white">
       <h1 className="text-3xl mb-6">Edit About Section</h1>
 
-      {Object.keys(form).map((key) => (
-        <input
-          key={key}
-          value={form[key]}
-          onChange={(e) =>
-            setForm({ ...form, [key]: e.target.value })
-          }
-          placeholder={key}
-          className="block mb-3 p-3 w-full bg-black border border-white/10 rounded-lg"
-        />
+      {[
+        { key: "subtitle", label: "Section Label" },
+        { key: "paragraph1", label: "Main About Paragraph" },
+        { key: "paragraph2", label: "Secondary About Paragraph" },
+        { key: "highlightText", label: "Large Highlight Statement" },
+        { key: "services", label: "Services (comma separated)" },
+        { key: "location", label: "Location" },
+      ].map((field) => (
+        <div key={field.key} className="mb-4">
+          <label className="mb-2 block text-sm font-medium text-white/70">
+            {field.label}
+          </label>
+
+          <input
+            value={form[field.key]}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                [field.key]: e.target.value,
+              })
+            }
+            placeholder={field.label}
+            className="w-full rounded-xl border border-white/10 bg-black/70 p-4 text-white outline-none transition focus:border-amber-400/40"
+          />
+        </div>
       ))}
 
       <input

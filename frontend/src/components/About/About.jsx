@@ -74,7 +74,7 @@ function About() {
             <motion.div 
               whileHover={{ y: -4 }}
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="group/card relative w-full rounded-[28px] border border-white/10 bg-black p-4 shadow-[0_25px_60px_rgba(0,0,0,0.3)] md:p-6 overflow-hidden"
+              className="group/card relative w-full rounded-[28px] border border-white/10 bg-black p-4 shadow-[0_8px_24px_rgba(0,0,0,0.45),0_24px_60px_rgba(0,0,0,0.38),0_50px_90px_rgba(168,85,247,0.08)] md:p-6 overflow-hidden"
             >
               {/* SUBTLE INTERACTIVE RADIAL HIGHLIGHT ON HOVER */}
               <div className="pointer-events-none absolute -inset-px rounded-[28px] bg-gradient-to-r from-amber-400/20 to-transparent opacity-0 transition-opacity duration-500 group-hover/card:opacity-100" />
@@ -166,22 +166,36 @@ function About() {
 
           {/* MAIN TEXT BLOCK */}
           <div className="relative z-10 space-y-5 md:space-y-7">
-            {[data.paragraph1, data.paragraph2, data.paragraph3].filter(Boolean).map((text, i) => (
-              <Reveal key={i} delay={0.1 + i * 0.1}>
-                <p className="max-w-3xl text-[14px] md:text-[17px] leading-relaxed md:leading-8 text-white/80 font-light">
-                  {renderStyledText(text)}
-                </p>
-              </Reveal>
-            ))}
+            {/* MAIN HEADLINE */}
+            <Reveal delay={0.05}>
+              <h2 className="max-w-3xl text-[30px] sm:text-[38px] md:text-[52px] leading-[1.05] tracking-[-0.05em] font-bold text-white">
+                Premium Digital Experiences Engineered For Modern Brands
+              </h2>
+            </Reveal>
 
-            {/* AGENCY MISSION BREAKOUT (WHY TRIVIXA) */}
+            {/* PARAGRAPHS */}
+            {[data.paragraph1, data.paragraph2]
+              .filter(Boolean)
+              .map((text, i) => (
+                <Reveal key={i} delay={0.12 + i * 0.1}>
+                  <p
+                    className={`max-w-2xl text-[14px] md:text-[17px] leading-relaxed md:leading-8 font-light ${
+                      i === 0 ? "text-white/88" : "text-white/65"
+                    }`}
+                  >
+                    {renderStyledText(text)}
+                  </p>
+                </Reveal>
+              ))}
+
+            {/* AGENCY MISSION */}
             <Reveal delay={0.35}>
               <div className="mt-6 border-l border-amber-400/30 pl-4 md:pl-5 py-1">
-                <p className="text-[10px] uppercase tracking-[0.34em] text-amber-400/70 font-bold mb-1.5">
+                <p className="mb-1.5 text-[10px] font-bold uppercase tracking-[0.34em] text-amber-400/70">
                   Agency Mission
                 </p>
-                <p className="text-[13px] md:text-[15px] leading-relaxed text-white/70 italic font-light max-w-2xl">
-                  At Trivixa, the focus is on combining technology, design, and storytelling to create modern digital experiences that elevate brands online.
+                <p className="max-w-2xl text-[13px] md:text-[15px] leading-relaxed text-white/70 italic font-light">
+                  Every project is crafted with a balance of aesthetics, usability, and scalable engineering to create digital experiences that feel premium and perform efficiently.
                 </p>
               </div>
             </Reveal>
@@ -203,7 +217,7 @@ function About() {
                 <motion.span
                   key={service}
                   whileHover={{ y: -2, scale: 1.02 }}
-                  className="rounded-full border border-white/25 bg-white/[0.06] px-4 py-2 text-[10px] md:text-[11px] font-medium uppercase tracking-[0.28em] text-white backdrop-blur-md transition-all duration-300 hover:border-amber-300/40 hover:bg-amber-300/[0.08] hover:shadow-[0_8px_20px_rgba(245,201,106,0.05)]"
+                  className="rounded-full border border-white/15 bg-white/[0.04] px-4 py-2 text-[10px] md:text-[11px] font-medium uppercase tracking-[0.28em] text-white backdrop-blur-md transition-all duration-300 hover:border-amber-300/40 hover:bg-amber-300/[0.08] hover:shadow-[0_8px_20px_rgba(245,201,106,0.05)]"
                 >
                   {service}
                 </motion.span>
