@@ -7,38 +7,37 @@ import Reveal from "../Reveal";
 const PROJECT_THEMES = {
   web: {
     color: "from-cyan-400 to-blue-500",
-    glow: "rgba(34,211,238,0.18)", // Slightly softened neon backglow to balance layered depth
-    // Multi-layered realistic 3D shadow system: 
-    // Layer 1: Dark, crisp occlusion shadow | Layer 2: Medium ambient depth | Layer 3: High-spread colored neon aura
+    glow: "rgba(34,211,238,0.18)", 
+    // Cinematic 3D Layered System: Occlusion + Grounding Ambient + Low-Opacity Tint
     shadow: {
-      boxShadow: "0 10px 20px rgba(0, 0, 0, 0.6), 0 30px 60px rgba(0, 0, 0, 0.45), 0 40px 80px rgba(6, 182, 212, 0.12)"
+      boxShadow: "0 6px 18px rgba(0,0,0,0.45), 0 18px 40px rgba(0,0,0,0.38), 0 50px 90px rgba(6,182,212,0.08)"
     },
     shadowHover: {
-      boxShadow: "0 15px 25px rgba(0, 0, 0, 0.7), 0 40px 70px rgba(0, 0, 0, 0.55), 0 50px 100px rgba(34, 211, 238, 0.25)"
+      boxShadow: "0 10px 24px rgba(0,0,0,0.55), 0 24px 60px rgba(0,0,0,0.45), 0 60px 140px rgba(34,211,238,0.12)"
     },
-    borderHover: "hover:border-cyan-500/40",
+    borderHover: "hover:border-cyan-500/30",
   },
   uiux: {
     color: "from-purple-400 to-pink-500",
     glow: "rgba(192,132,252,0.18)",
     shadow: {
-      boxShadow: "0 10px 20px rgba(0, 0, 0, 0.6), 0 30px 60px rgba(0, 0, 0, 0.45), 0 40px 80px rgba(168, 85, 247, 0.1)"
+      boxShadow: "0 6px 18px rgba(0,0,0,0.45), 0 18px 40px rgba(0,0,0,0.38), 0 50px 90px rgba(168,85,247,0.08)"
     },
     shadowHover: {
-      boxShadow: "0 15px 25px rgba(0, 0, 0, 0.7), 0 40px 70px rgba(0, 0, 0, 0.55), 0 50px 100px rgba(192, 132, 252, 0.22)"
+      boxShadow: "0 10px 24px rgba(0,0,0,0.55), 0 24px 60px rgba(0,0,0,0.45), 0 60px 140px rgba(168,85,247,0.12)"
     },
-    borderHover: "hover:border-purple-500/40",
+    borderHover: "hover:border-purple-500/30",
   },
   editing: {
     color: "from-amber-400 to-orange-500",
     glow: "rgba(251,191,36,0.15)",
     shadow: {
-      boxShadow: "0 10px 20px rgba(0, 0, 0, 0.6), 0 30px 60px rgba(0, 0, 0, 0.45), 0 40px 80px rgba(245, 158, 11, 0.1)"
+      boxShadow: "0 6px 18px rgba(0,0,0,0.45), 0 18px 40px rgba(0,0,0,0.38), 0 50px 90px rgba(245,158,11,0.08)"
     },
     shadowHover: {
-      boxShadow: "0 15px 25px rgba(0, 0, 0, 0.7), 0 40px 70px rgba(0, 0, 0, 0.55), 0 50px 100px rgba(251, 191, 36, 0.22)"
+      boxShadow: "0 10px 24px rgba(0,0,0,0.55), 0 24px 60px rgba(0,0,0,0.45), 0 60px 140px rgba(251,191,36,0.12)"
     },
-    borderHover: "hover:border-amber-500/40",
+    borderHover: "hover:border-amber-500/30",
   },
 };
 
@@ -167,7 +166,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
                   onMouseEnter={() => setLocalHover(true)}
                   onMouseLeave={() => setLocalHover(false)}
                   style={localHover ? theme.shadowHover : theme.shadow}
-                  className={`group relative w-full overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/10 bg-[#0B0D14]/85 backdrop-blur-2xl p-5 md:p-7 ${theme.borderHover} transition-all duration-500 flex flex-col md:flex-row gap-6 md:gap-8 items-center`}
+                  className={`group relative w-full overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/[0.08] bg-[#0B0D14]/85 backdrop-blur-2xl p-5 md:p-7 ${theme.borderHover} transition-all duration-500 flex flex-col md:flex-row gap-6 md:gap-8 items-center`}
                 >
                   {/* Premium Theme Hover Backglow */}
                   <div 
