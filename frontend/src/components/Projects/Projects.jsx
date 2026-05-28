@@ -331,7 +331,7 @@ function Projects() {
         </header>
 
         {/* SLIDER ROW CATEGORIES */}
-        <ProjectSection title="WEB Development" items={projects.web || []} theme={PROJECT_THEMES.web} />
+        <ProjectSection title="WEB / APP Development" items={projects.web || []} theme={PROJECT_THEMES.web} />
         <ProjectSection title="UI / UX Design" items={projects.uiux || []} theme={PROJECT_THEMES.uiux} />
         <ProjectSection title="Motion & Editing" items={projects.editing || []} theme={PROJECT_THEMES.editing} />
       </div>
