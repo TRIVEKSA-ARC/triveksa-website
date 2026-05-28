@@ -7,24 +7,38 @@ import Reveal from "../Reveal";
 const PROJECT_THEMES = {
   web: {
     color: "from-cyan-400 to-blue-500",
-    glow: "rgba(34,211,238,0.25)", // Deep cyan neon backglow
-    shadow: "shadow-[0_30px_70px_rgba(6,182,212,0.15)]", // Premium matching interactive shadows
-    shadowHover: "hover:shadow-[0_30px_80px_rgba(59,130,246,0.25)]",
-    borderHover: "hover:border-cyan-500/30",
+    glow: "rgba(34,211,238,0.18)", // Slightly softened neon backglow to balance layered depth
+    // Multi-layered realistic 3D shadow system: 
+    // Layer 1: Dark, crisp occlusion shadow | Layer 2: Medium ambient depth | Layer 3: High-spread colored neon aura
+    shadow: {
+      boxShadow: "0 10px 20px rgba(0, 0, 0, 0.6), 0 30px 60px rgba(0, 0, 0, 0.45), 0 40px 80px rgba(6, 182, 212, 0.12)"
+    },
+    shadowHover: {
+      boxShadow: "0 15px 25px rgba(0, 0, 0, 0.7), 0 40px 70px rgba(0, 0, 0, 0.55), 0 50px 100px rgba(34, 211, 238, 0.25)"
+    },
+    borderHover: "hover:border-cyan-500/40",
   },
   uiux: {
     color: "from-purple-400 to-pink-500",
-    glow: "rgba(192,132,252,0.25)", // Deep luxury purple backglow
-    shadow: "shadow-[0_30px_70px_rgba(168,85,247,0.12)]",
-    shadowHover: "hover:shadow-[0_30px_80px_rgba(236,72,153,0.22)]",
-    borderHover: "hover:border-purple-500/30",
+    glow: "rgba(192,132,252,0.18)",
+    shadow: {
+      boxShadow: "0 10px 20px rgba(0, 0, 0, 0.6), 0 30px 60px rgba(0, 0, 0, 0.45), 0 40px 80px rgba(168, 85, 247, 0.1)"
+    },
+    shadowHover: {
+      boxShadow: "0 15px 25px rgba(0, 0, 0, 0.7), 0 40px 70px rgba(0, 0, 0, 0.55), 0 50px 100px rgba(192, 132, 252, 0.22)"
+    },
+    borderHover: "hover:border-purple-500/40",
   },
   editing: {
     color: "from-amber-400 to-orange-500",
-    glow: "rgba(251,191,36,0.22)", // Deep warning cinematic amber backglow
-    shadow: "shadow-[0_30px_70px_rgba(245,158,11,0.12)]",
-    shadowHover: "hover:shadow-[0_30px_80px_rgba(249,115,22,0.22)]",
-    borderHover: "hover:border-amber-500/30",
+    glow: "rgba(251,191,36,0.15)",
+    shadow: {
+      boxShadow: "0 10px 20px rgba(0, 0, 0, 0.6), 0 30px 60px rgba(0, 0, 0, 0.45), 0 40px 80px rgba(245, 158, 11, 0.1)"
+    },
+    shadowHover: {
+      boxShadow: "0 15px 25px rgba(0, 0, 0, 0.7), 0 40px 70px rgba(0, 0, 0, 0.55), 0 50px 100px rgba(251, 191, 36, 0.22)"
+    },
+    borderHover: "hover:border-amber-500/40",
   },
 };
 
@@ -137,99 +151,107 @@ const ProjectSection = ({ title, items = [], theme }) => {
           ref={scrollRef}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="flex flex-row items-stretch gap-6 overflow-x-auto flex-nowrap snap-x snap-mandatory pb-6 md:pb-8 scroll-smooth px-2 md:px-0"
+          className="flex flex-row items-stretch gap-6 overflow-x-auto flex-nowrap snap-x snap-mandatory pb-6 md:pb-12 scroll-smooth px-2 md:px-0"
           style={{ 
             scrollbarWidth: "none",
             WebkitOverflowScrolling: "touch" 
           }}
         >
-          {extendedItems.map((item, index) => (
-            <div key={`${item._id || index}-${index}`} className="w-full shrink-0 snap-center snap-always">
-              <div
-                className={`group relative w-full overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/10 bg-[#0B0D14]/80 backdrop-blur-2xl p-5 md:p-7 ${theme.shadow} ${theme.shadowHover} ${theme.borderHover} transition-all duration-500 flex flex-col md:flex-row gap-6 md:gap-8 items-center`}
-              >
-                {/* Premium Theme Hover Backglow */}
-                <div 
-                  className="absolute -right-20 -top-20 w-64 h-64 rounded-full blur-[100px] pointer-events-none opacity-0 transition duration-500 group-hover:opacity-70"
-                  style={{ backgroundColor: theme?.glow }}
-                />
+          {extendedItems.map((item, index) => {
+            // Manage state of local element hovering for custom style assignment object
+            const [localHover, setLocalHover] = useState(false);
 
-                {/* Left Side: Image Preview */}
-                <a 
-                  href={item.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className={`w-full md:w-1/2 aspect-[16/10] bg-[#141622] rounded-[18px] md:rounded-[22px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 ${theme.borderHover} shrink-0`}
+            return (
+              <div key={`${item._id || index}-${index}`} className="w-full shrink-0 snap-center snap-always">
+                <div
+                  onMouseEnter={() => setLocalHover(true)}
+                  onMouseLeave={() => setLocalHover(false)}
+                  style={localHover ? theme.shadowHover : theme.shadow}
+                  className={`group relative w-full overflow-hidden rounded-[28px] md:rounded-[32px] border border-white/10 bg-[#0B0D14]/85 backdrop-blur-2xl p-5 md:p-7 ${theme.borderHover} transition-all duration-500 flex flex-col md:flex-row gap-6 md:gap-8 items-center`}
                 >
-                  <img
-                    src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
-                    alt={item.title}
-                    className="h-full w-full object-cover rounded-[14px] transition duration-700 group-hover:scale-[1.02]"
+                  {/* Premium Theme Hover Backglow */}
+                  <div 
+                    className="absolute -right-20 -top-20 w-64 h-64 rounded-full blur-[100px] pointer-events-none opacity-0 transition duration-500 group-hover:opacity-70"
+                    style={{ backgroundColor: theme?.glow }}
                   />
-                </a>
 
-                {/* Right Side: Information Matrix */}
-                <div className="w-full md:w-1/2 flex flex-col justify-between h-full align-stretch">
-                  <div>
-                    <div className="flex items-center gap-2.5 mb-3">
-                      <span className="rounded-full border border-amber-500/20 bg-amber-500/10 px-2.5 py-0.5 text-[8px] md:text-[9px] font-bold uppercase tracking-[0.22em] text-amber-400">
-                        Featured Experience
-                      </span>
-                      <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-[8px] md:text-[9px] uppercase tracking-[0.15em] text-white/60">
-                        {item.category || "Web"}
-                      </span>
+                  {/* Left Side: Image Preview */}
+                  <a 
+                    href={item.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className={`w-full md:w-1/2 aspect-[16/10] bg-[#141622] rounded-[18px] md:rounded-[22px] border border-white/5 p-2 flex items-center justify-center overflow-hidden transition duration-500 ${theme.borderHover} shrink-0`}
+                  >
+                    <img
+                      src={item.img?.startsWith("http") ? item.img : "/placeholder.png"}
+                      alt={item.title}
+                      className="h-full w-full object-cover rounded-[14px] transition duration-700 group-hover:scale-[1.02]"
+                    />
+                  </a>
+
+                  {/* Right Side: Information Matrix */}
+                  <div className="w-full md:w-1/2 flex flex-col justify-between h-full align-stretch">
+                    <div>
+                      <div className="flex items-center gap-2.5 mb-3">
+                        <span className="rounded-full border border-amber-500/20 bg-amber-500/10 px-2.5 py-0.5 text-[8px] md:text-[9px] font-bold uppercase tracking-[0.22em] text-amber-400">
+                          Featured Experience
+                        </span>
+                        <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-[8px] md:text-[9px] uppercase tracking-[0.15em] text-white/60">
+                          {item.category || "Web"}
+                        </span>
+                      </div>
+
+                      <h4 className="text-[22px] md:text-[28px] font-bold tracking-tight text-white stroke-none leading-tight mb-2.5 line-clamp-1">
+                        {item.title}
+                      </h4>
+
+                      <p className="text-[12px] md:text-[13px] leading-relaxed text-[#94A3B8] font-medium mb-4 line-clamp-2">
+                        {item.desc}
+                      </p>
+
+                      {/* Meta Parameters Grid Layout */}
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 border-t border-b border-white/5 py-3.5 mb-4 text-[11px]">
+                        <div>
+                          <span className="text-[9px] uppercase tracking-wider text-white/40 block mb-0.5">Industry</span>
+                          <span className="font-semibold text-[#F1F5F9] truncate block">{item.industry || "Digital Solutions"}</span>
+                        </div>
+                        <div>
+                          <span className="text-[9px] uppercase tracking-wider text-white/40 block mb-0.5">Core Focus</span>
+                          <span className="font-semibold text-[#F1F5F9] truncate block">{item.goal || "Premium Experience"}</span>
+                        </div>
+                        <div>
+                          <span className="text-[9px] uppercase tracking-wider text-amber-400 block mb-0.5">Business Impact</span>
+                          <span className="font-bold text-amber-400 truncate block">{item.result || "Conversion Optimized"}</span>
+                        </div>
+                      </div>
                     </div>
 
-                    <h4 className="text-[22px] md:text-[28px] font-bold tracking-tight text-white stroke-none leading-tight mb-2.5 line-clamp-1">
-                      {item.title}
-                    </h4>
+                    {/* Actions Bar */}
+                    <div className="flex items-center justify-between mt-auto pt-1">
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-[10px] font-bold uppercase tracking-[0.12em] text-black shadow-sm transition hover:bg-neutral-200 hover:scale-[1.01]"
+                      >
+                        Explore Experience <Plus size={12} className="text-black" />
+                      </a>
 
-                    <p className="text-[12px] md:text-[13px] leading-relaxed text-[#94A3B8] font-medium mb-4 line-clamp-2">
-                      {item.desc}
-                    </p>
-
-                    {/* Meta Parameters Grid Layout */}
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 border-t border-b border-white/5 py-3.5 mb-4 text-[11px]">
-                      <div>
-                        <span className="text-[9px] uppercase tracking-wider text-white/40 block mb-0.5">Industry</span>
-                        <span className="font-semibold text-[#F1F5F9] truncate block">{item.industry || "Digital Solutions"}</span>
-                      </div>
-                      <div>
-                        <span className="text-[9px] uppercase tracking-wider text-white/40 block mb-0.5">Core Focus</span>
-                        <span className="font-semibold text-[#F1F5F9] truncate block">{item.goal || "Premium Experience"}</span>
-                      </div>
-                      <div>
-                        <span className="text-[9px] uppercase tracking-wider text-amber-400 block mb-0.5">Business Impact</span>
-                        <span className="font-bold text-amber-400 truncate block">{item.result || "Conversion Optimized"}</span>
-                      </div>
+                      <a 
+                        href={item.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className={`flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] transition duration-300 hover:text-white ${theme.borderHover}`}
+                      >
+                        <ExternalLink size={14} />
+                      </a>
                     </div>
                   </div>
 
-                  {/* Actions Bar */}
-                  <div className="flex items-center justify-between mt-auto pt-1">
-                    <a
-                      href={item.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-[10px] font-bold uppercase tracking-[0.12em] text-black shadow-sm transition hover:bg-neutral-200 hover:scale-[1.01]"
-                    >
-                      Explore Experience <Plus size={12} className="text-black" />
-                    </a>
-
-                    <a 
-                      href={item.url} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className={`flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-[#16171D] text-[#94A3B8] transition duration-300 hover:text-white ${theme.borderHover}`}
-                    >
-                      <ExternalLink size={14} />
-                    </a>
-                  </div>
                 </div>
-
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* DESKTOP ARROW RIGHT */}
