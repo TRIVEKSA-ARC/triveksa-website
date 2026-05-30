@@ -74,10 +74,10 @@ const ProjectSection = ({ title, items = [], theme }) => {
           style={{ backgroundColor: theme.glow }}
         />
 
-        {/* Outer Perspective Chamber */}
+        {/* Perspective Chamber */}
         <div 
           className="relative w-full max-w-7xl h-full flex items-center justify-center"
-          style={{ perspective: "1200px", transformStyle: "preserve-3d" }}
+          style={{ perspective: "1400px", transformStyle: "preserve-3d" }}
         >
           {items.map((item, index) => {
             // Determine relative math distance inside the ring arrangement
@@ -128,13 +128,18 @@ const ProjectSection = ({ title, items = [], theme }) => {
   );
 };
 
-// --- PERSPECTIVE 3D CARD COMPONENT ---
+// --- PERSPECTIVE 3D INNER-RING CARD COMPONENT ---
 const ProjectCard = ({ item, theme, offset, isActive }) => {
-  // Compute positions dynamically based on offset (-1: Left, 0: Center, 1: Right)
-  const rotateY = offset * 18; // Angles away exactly like the image context
-  const translateX = offset * 105; // Horizontal offset positioning percentage 
-  const translateZ = isActive ? 0 : -150; // Deep depth push-back for side items
-  const opacity = isActive ? 1 : 0.65;
+  // CRITICAL FLIP: Multiply by negative offset to force inner curve layer rotation
+  // Left card (offset -1) rotates positive Y, Right card (offset 1) rotates negative Y
+  const rotateY = -offset * 22; 
+  
+  // Adjusted alignment tracking spacing percentage to hold the inner ring overlap seamlessly
+  const translateX = offset * 92; 
+  
+  // Push unselected side elements slightly backward along Z space to construct the arena depth
+  const translateZ = isActive ? 0 : -120; 
+  const opacity = isActive ? 1 : 0.45;
   const zIndex = isActive ? 30 : 10;
 
   return (
@@ -146,12 +151,12 @@ const ProjectCard = ({ item, theme, offset, isActive }) => {
         z: translateZ,
         rotateY: rotateY,
         opacity: opacity,
-        scale: isActive ? 1 : 0.9,
+        scale: isActive ? 1 : 0.88,
       }}
       transition={{
         type: "spring",
-        stiffness: 260,
-        damping: 26,
+        stiffness: 240,
+        damping: 28,
       }}
       className={`absolute w-[90%] sm:w-[450px] md:w-[850px] shrink-0 rounded-[32px] md:rounded-[40px] border border-white/[0.08] bg-[#0F1016]/90 backdrop-blur-3xl p-6 md:p-8 ${theme.borderHover} transition-colors duration-500 flex flex-col md:flex-row gap-6 md:gap-8 items-center ${isActive ? "pointer-events-auto" : "pointer-events-none"}`}
       style={{
