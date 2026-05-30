@@ -77,7 +77,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
         {/* Perspective Chamber */}
         <div 
           className="relative w-full max-w-7xl h-full flex items-center justify-center"
-          style={{ perspective: "1400px", transformStyle: "preserve-3d" }}
+          style={{ perspective: "1000px", transformStyle: "preserve-3d" }}
         >
           {items.map((item, index) => {
             // Determine relative math distance inside the ring arrangement
@@ -130,16 +130,17 @@ const ProjectSection = ({ title, items = [], theme }) => {
 
 // --- PERSPECTIVE 3D INNER-RING CARD COMPONENT ---
 const ProjectCard = ({ item, theme, offset, isActive }) => {
-  // CRITICAL FLIP: Multiply by negative offset to force inner curve layer rotation
-  // Left card (offset -1) rotates positive Y, Right card (offset 1) rotates negative Y
-  const rotateY = -offset * 22; 
+  // Angle rotation flipped to form a deep curve inward
+  const rotateY = -offset * 25; 
   
-  // Adjusted alignment tracking spacing percentage to hold the inner ring overlap seamlessly
-  const translateX = offset * 92; 
+  // horizontal distribution spacing
+  const translateX = offset * 96; 
   
-  // Push unselected side elements slightly backward along Z space to construct the arena depth
-  const translateZ = isActive ? 0 : -120; 
-  const opacity = isActive ? 1 : 0.45;
+  // Depth Correction: Pushes the active middle card inside/backwards (-160px)
+  // while the side pieces sit forward (-40px) to form the inner cylinder wall shape
+  const translateZ = isActive ? -160 : -40; 
+  
+  const opacity = isActive ? 1 : 0.55;
   const zIndex = isActive ? 30 : 10;
 
   return (
@@ -151,12 +152,12 @@ const ProjectCard = ({ item, theme, offset, isActive }) => {
         z: translateZ,
         rotateY: rotateY,
         opacity: opacity,
-        scale: isActive ? 1 : 0.88,
+        scale: isActive ? 1 : 0.84,
       }}
       transition={{
         type: "spring",
-        stiffness: 240,
-        damping: 28,
+        stiffness: 220,
+        damping: 26,
       }}
       className={`absolute w-[90%] sm:w-[450px] md:w-[850px] shrink-0 rounded-[32px] md:rounded-[40px] border border-white/[0.08] bg-[#0F1016]/90 backdrop-blur-3xl p-6 md:p-8 ${theme.borderHover} transition-colors duration-500 flex flex-col md:flex-row gap-6 md:gap-8 items-center ${isActive ? "pointer-events-auto" : "pointer-events-none"}`}
       style={{
