@@ -60,9 +60,9 @@ const ProjectSection = ({ title, items = [], theme }) => {
   };
 
   return (
-    <div className="mb-20 md:mb-32 w-full relative overflow-visible">
+    <div className="mb-24 md:mb-36 w-full relative overflow-visible">
       {/* HEADER */}
-      <div className="mx-auto mb-10 md:mb-14 max-w-7xl px-6 md:px-8">
+      <div className="mx-auto mb-12 max-w-7xl px-6 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -80,21 +80,21 @@ const ProjectSection = ({ title, items = [], theme }) => {
 
       {/* 3D CAROUSEL CANVAS CHAMBER */}
       <div 
-        className="relative w-full h-[660px] sm:h-[600px] md:h-[580px] lg:h-[540px] flex flex-col items-center justify-center overflow-visible select-none"
+        className="relative w-full h-[680px] sm:h-[620px] md:h-[560px] flex flex-col items-center justify-center overflow-visible select-none"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         
         {/* Cinematic Backdrop Radial Glow Mesh */}
         <div 
-          className="absolute w-[280px] h-[280px] md:w-[550px] md:h-[550px] rounded-full blur-[100px] md:blur-[160px] opacity-35 pointer-events-none transition-all duration-1000 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+          className="absolute w-[300px] h-[300px] md:w-[500px] md:h-[500px] rounded-full blur-[120px] md:blur-[160px] opacity-35 pointer-events-none transition-all duration-1000 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
           style={{ backgroundColor: theme.glow }}
         />
 
         {/* Perspective Deck */}
         <div 
-          className="relative w-full max-w-[1400px] h-full flex items-center justify-center"
-          style={{ perspective: "1800px", transformStyle: "preserve-3d" }}
+          className="relative w-full max-w-7xl h-full flex items-center justify-center"
+          style={{ perspective: "1600px", transformStyle: "preserve-3d" }}
         >
           {items.map((item, index) => {
             let offset = index - activeIndex;
@@ -126,7 +126,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
               onClick={handlePrev}
               whileHover={{ scale: 1.08, x: -8 }}
               whileTap={{ scale: 0.96 }}
-              className="hidden md:flex absolute left-6 lg:left-12 z-40 h-16 w-16 items-center justify-center rounded-full border border-white/[0.08] bg-neutral-950/60 text-white backdrop-blur-2xl transition-colors duration-300 hover:bg-white hover:text-black shadow-2xl"
+              className="hidden md:flex absolute left-8 z-40 h-16 w-16 items-center justify-center rounded-full border border-white/[0.08] bg-neutral-950/60 text-white backdrop-blur-2xl transition-colors duration-300 hover:bg-white hover:text-black shadow-2xl"
             >
               <ChevronLeft size={26} />
             </motion.button>
@@ -135,13 +135,13 @@ const ProjectSection = ({ title, items = [], theme }) => {
               onClick={handleNext}
               whileHover={{ scale: 1.08, x: 8 }}
               whileTap={{ scale: 0.96 }}
-              className="hidden md:flex absolute right-6 lg:right-12 z-40 h-16 w-16 items-center justify-center rounded-full border border-white/[0.08] bg-neutral-950/60 text-white backdrop-blur-2xl transition-colors duration-300 hover:bg-white hover:text-black shadow-2xl"
+              className="hidden md:flex absolute right-8 z-40 h-16 w-16 items-center justify-center rounded-full border border-white/[0.08] bg-neutral-950/60 text-white backdrop-blur-2xl transition-colors duration-300 hover:bg-white hover:text-black shadow-2xl"
             >
               <ChevronRight size={26} />
             </motion.button>
 
-            {/* UNIFORM MOBILE CONTROLS FOOTER */}
-            <div className="flex md:hidden items-center justify-center gap-6 mt-4 z-40 relative">
+            {/* UNIFORM MOBILE CONTROLS FOOTER (Positioned perfectly below card layout boundaries) */}
+            <div className="flex md:hidden items-center justify-center gap-6 mt-6 z-40 relative">
               <button
                 onClick={handlePrev}
                 className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[#0B0D14]/90 text-white/80 active:scale-95 transition backdrop-blur-md"
@@ -167,11 +167,11 @@ const ProjectSection = ({ title, items = [], theme }) => {
 
 // --- PERSPECTIVE 3D INNER-RING CARD COMPONENT ---
 const ProjectCard = ({ item, theme, offset, isActive }) => {
-  const rotateY = -offset * 22; 
-  const translateX = offset * 106; 
-  const translateZ = isActive ? -100 : -50; 
+  const rotateY = -offset * 24; 
+  const translateX = offset * 102; 
+  const translateZ = isActive ? -140 : -40; 
   
-  const opacity = isActive ? 1 : 0.35;
+  const opacity = isActive ? 1 : 0.40;
   const zIndex = isActive ? 30 : 10;
 
   return (
@@ -183,34 +183,33 @@ const ProjectCard = ({ item, theme, offset, isActive }) => {
         z: translateZ,
         rotateY: rotateY,
         opacity: opacity,
-        scale: isActive ? 1 : 0.80,
+        scale: isActive ? 1 : 0.82,
       }}
       transition={{
         type: "tween",
-        ease: [0.25, 1, 0.5, 1],
+        ease: [0.25, 1, 0.5, 1], // Custom cinematic cubic-bezier for clean velocity decline
         duration: 0.85, 
       }}
-      // Enhanced card width bounds on desktop (w-[1120px]) and layout padding structure
-      className={`absolute w-[92%] sm:w-[85%] md:w-[960px] lg:w-[1120px] shrink-0 rounded-[32px] md:rounded-[40px] border border-white/[0.06] bg-[#0A0B10]/95 backdrop-blur-3xl p-5 sm:p-6 md:p-8 lg:p-10 ${theme.borderHover} transition-colors duration-500 flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-10 items-center ${isActive ? "pointer-events-auto" : "pointer-events-none"}`}
+      className={`absolute w-[92%] sm:w-[85%] md:w-[1000px] shrink-0 rounded-[32px] md:rounded-[48px] border border-white/[0.06] bg-[#0A0B10]/95 backdrop-blur-3xl p-5 sm:p-6 md:p-10 ${theme.borderHover} transition-colors duration-500 flex flex-col md:flex-row gap-6 md:gap-10 items-center ${isActive ? "pointer-events-auto" : "pointer-events-none"}`}
       style={{
         zIndex: zIndex,
         boxShadow: isActive ? theme.shadow.boxShadow : "0 15px 45px rgba(0,0,0,0.6)",
       }}
     >
       {/* Left Side: Premium Image Container */}
-      <div className="w-full md:w-[48%] lg:w-1/2 aspect-[16/10] bg-[#12131A] rounded-[22px] md:rounded-[32px] border border-white/[0.05] p-2 flex items-center justify-center overflow-hidden shrink-0 group relative shadow-inner">
+      <div className="w-full md:w-1/2 aspect-[16/10] bg-[#12131A] rounded-[22px] md:rounded-[36px] border border-white/[0.05] p-2 flex items-center justify-center overflow-hidden shrink-0 group relative shadow-inner">
         <img
           src={item.img && item.img.startsWith("http") ? item.img : "/placeholder.png"}
           alt={item.title}
-          className="h-full w-full object-cover rounded-[16px] md:rounded-[24px] transition duration-700 group-hover:scale-[1.04]"
+          className="h-full w-full object-cover rounded-[16px] md:rounded-[28px] transition duration-700 group-hover:scale-[1.05]"
         />
         <div className={`absolute inset-0 bg-gradient-to-tr ${theme.color} opacity-0 group-hover:opacity-15 transition duration-500 pointer-events-none`} />
       </div>
 
       {/* Right Side: Information Layout Matrix */}
-      <div className="w-full md:w-[52%] lg:w-1/2 flex flex-col justify-between h-full py-1">
+      <div className="w-full md:w-1/2 flex flex-col justify-between h-full py-1">
         <div>
-          <div className="flex items-center gap-2 mb-3 md:mb-4">
+          <div className="flex items-center gap-2 mb-4">
             <span className={`rounded-full bg-gradient-to-r ${theme.color} p-[1px]`}>
               <span className="block rounded-full bg-[#0A0B10] px-3 py-0.5 text-[8px] md:text-[9px] font-black uppercase tracking-[0.25em] text-white">
                 Featured Experience
@@ -221,26 +220,26 @@ const ProjectCard = ({ item, theme, offset, isActive }) => {
             </span>
           </div>
 
-          <h4 className="text-[20px] sm:text-[24px] md:text-[30px] lg:text-[36px] font-bold tracking-tight text-white leading-tight mb-2 md:mb-3 lg:mb-4 line-clamp-1">
+          <h4 className="text-[20px] sm:text-[24px] md:text-[38px] font-bold tracking-tight text-white leading-tight mb-2 md:mb-4 line-clamp-1">
             {item.title}
           </h4>
 
-          <p className="text-[12px] md:text-[14px] lg:text-[15px] leading-relaxed text-[#94A3B8] font-normal mb-4 md:mb-5 lg:mb-6 line-clamp-2 md:line-clamp-3">
+          <p className="text-[12px] md:text-[15px] leading-relaxed text-[#94A3B8] font-normal mb-4 md:mb-6 line-clamp-2 md:line-clamp-3">
             {item.desc}
           </p>
 
           {/* Premium Meta Information Details Grid */}
-          <div className="grid grid-cols-3 gap-2 md:gap-4 border-t border-b border-white/[0.06] py-3 md:py-4 lg:py-5 mb-4 md:mb-5 lg:mb-6 text-[10px] md:text-[11px] lg:text-[12px]">
+          <div className="grid grid-cols-3 gap-2 md:gap-4 border-t border-b border-white/[0.06] py-3 md:py-5 mb-4 md:mb-6 text-[10px] md:text-[12px]">
             <div>
-              <span className="text-[8px] md:text-[9px] uppercase tracking-[0.15em] text-white/40 block mb-1">Industry</span>
+              <span className="text-[8px] md:text-[9px] uppercase tracking-[0.15em] text-white/40 block mb-0.5 md:mb-1">Industry</span>
               <span className="font-semibold text-[#E2E8F0] truncate block">{item.industry || "Digital Solutions"}</span>
             </div>
             <div>
-              <span className="text-[8px] md:text-[9px] uppercase tracking-[0.15em] text-white/40 block mb-1">Core Focus</span>
+              <span className="text-[8px] md:text-[9px] uppercase tracking-[0.15em] text-white/40 block mb-0.5 md:mb-1">Core Focus</span>
               <span className="font-semibold text-[#E2E8F0] truncate block">{item.goal || "Premium Experience"}</span>
             </div>
             <div>
-              <span className={`text-[8px] md:text-[9px] uppercase tracking-[0.15em] bg-gradient-to-r ${theme.color} bg-clip-text text-transparent font-bold block mb-1`}>Impact</span>
+              <span className={`text-[8px] md:text-[9px] uppercase tracking-[0.15em] bg-gradient-to-r ${theme.color} bg-clip-text text-transparent font-bold block mb-0.5 md:mb-1`}>Impact</span>
               <span className="font-bold text-white truncate block">{item.result || "Conversion Optimized"}</span>
             </div>
           </div>
@@ -252,7 +251,7 @@ const ProjectCard = ({ item, theme, offset, isActive }) => {
             href={item.url}
             target="_blank"
             rel="noopener noreferrer"
-            className={`inline-flex items-center gap-2 rounded-full bg-gradient-to-r ${theme.color} px-4 py-2.5 md:px-5 md:py-3 lg:px-6 lg:py-3.5 text-[9px] md:text-[10px] font-black uppercase tracking-[0.15em] text-white shadow-xl transition-all duration-300 hover:scale-[1.03] hover:brightness-110 active:scale-97`}
+            className={`inline-flex items-center gap-2 rounded-full bg-gradient-to-r ${theme.color} px-4 py-2.5 md:px-6 md:py-3.5 text-[9px] md:text-[10px] font-black uppercase tracking-[0.15em] text-white shadow-xl transition-all duration-300 hover:scale-[1.03] hover:brightness-110 active:scale-97`}
           >
             Explore Experience <Plus size={12} className="text-white" />
           </a>
@@ -261,9 +260,9 @@ const ProjectCard = ({ item, theme, offset, isActive }) => {
             href={item.url} 
             target="_blank" 
             rel="noopener noreferrer"
-            className={`flex h-9 w-9 md:h-10 md:w-10 lg:h-11 lg:w-11 items-center justify-center rounded-full border border-white/[0.08] bg-[#111218] text-[#94A3B8] transition duration-300 hover:text-white hover:bg-white/5 ${theme.borderHover}`}
+            className={`flex h-9 w-9 md:h-11 md:w-11 items-center justify-center rounded-full border border-white/[0.08] bg-[#111218] text-[#94A3B8] transition duration-300 hover:text-white hover:bg-white/5 ${theme.borderHover}`}
           >
-            <ExternalLink size={14} />
+            <ExternalLink size={14} md={18} />
           </a>
         </div>
       </div>
@@ -283,9 +282,9 @@ function Projects() {
   }
 
   return (
-    <section id="projects" className="relative overflow-hidden bg-transparent py-20 md:py-32 text-white">
+    <section id="projects" className="relative overflow-hidden bg-transparent py-24 md:py-36 text-white">
       <div className="mx-auto max-w-7xl">
-        <header className="mb-12 md:mb-16 lg:mb-20 px-4 text-center">
+        <header className="mb-14 md:mb-20 px-4 text-center">
           <Reveal>
             <div className="mx-auto max-w-3xl">
               <div className="mb-5 flex items-center justify-center gap-3">
