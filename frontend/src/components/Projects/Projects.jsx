@@ -109,9 +109,14 @@ const ProjectSection = ({ title, items = [], theme }) => {
           {items.map((item, index) => {
             let offset = index - activeIndex;
             
-            // Seamless Infinite Circular Ring Evaluation Logic
-            if (offset < -1) offset += items.length;
-            if (offset > 1) offset -= items.length;
+            // Scaled Infinite Ring Calculation logic protecting low-count structures
+            if (items.length > 2) {
+              if (offset < -1) offset += items.length;
+              if (offset > 1) offset -= items.length;
+            } else if (items.length === 2) {
+              if (offset < -0.5) offset += 2;
+              if (offset > 0.5) offset -= 2;
+            }
 
             const isVisible = Math.abs(offset) <= 1;
             if (!isVisible) return null;
@@ -132,21 +137,37 @@ const ProjectSection = ({ title, items = [], theme }) => {
         {/* PREMIUM CONTROLS WITH REFINED DIRECTIONAL MOTION & EXPANDED GAPS */}
         {items.length > 1 && (
           <>
-            {/* DESKTOP CONTROLS */}
+            {/* DESKTOP CONTROLS - RESTRUCTURED FOR REVEAL ON CAROUSEL CHAMBER HOVER */}
             <motion.button
               onClick={handlePrev}
-              whileHover={{ scale: 1.08, x: -4 }}
+              initial={{ opacity: 0, x: -30, scale: 0.9 }}
+              animate={{ 
+                opacity: isHovered ? 1 : 0, 
+                x: isHovered ? -8 : -30,
+                scale: isHovered ? 1 : 0.9,
+                pointerEvents: isHovered ? "auto" : "none"
+              }}
+              whileHover={{ scale: 1.08, x: -14 }}
               whileTap={{ scale: 0.96 }}
-              className="hidden md:flex absolute md:-left-2 lg:-left-6 z-40 h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-neutral-950/80 text-white/90 backdrop-blur-2xl transition-all duration-300 hover:bg-white hover:text-black hover:border-white shadow-[0_0_30px_rgba(0,0,0,0.8)]"
+              transition={{ type: "spring", stiffness: 350, damping: 28 }}
+              className="hidden md:flex absolute md:left-2 lg:-left-6 z-40 h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-neutral-950/80 text-white/90 backdrop-blur-2xl transition-colors duration-300 hover:bg-white hover:text-black hover:border-white shadow-[0_0_30px_rgba(0,0,0,0.8)]"
             >
               <ChevronLeft size={26} />
             </motion.button>
 
             <motion.button
               onClick={handleNext}
-              whileHover={{ scale: 1.08, x: 4 }}
+              initial={{ opacity: 0, x: 30, scale: 0.9 }}
+              animate={{ 
+                opacity: isHovered ? 1 : 0, 
+                x: isHovered ? 8 : 30,
+                scale: isHovered ? 1 : 0.9,
+                pointerEvents: isHovered ? "auto" : "none"
+              }}
+              whileHover={{ scale: 1.08, x: 14 }}
               whileTap={{ scale: 0.96 }}
-              className="hidden md:flex absolute md:-right-2 lg:-right-6 z-40 h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-neutral-950/80 text-white/90 backdrop-blur-2xl transition-all duration-300 hover:bg-white hover:text-black hover:border-white shadow-[0_0_30px_rgba(0,0,0,0.8)]"
+              transition={{ type: "spring", stiffness: 350, damping: 28 }}
+              className="hidden md:flex absolute md:right-2 lg:-right-6 z-40 h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-neutral-950/80 text-white/90 backdrop-blur-2xl transition-colors duration-300 hover:bg-white hover:text-black hover:border-white shadow-[0_0_30px_rgba(0,0,0,0.8)]"
             >
               <ChevronRight size={26} />
             </motion.button>
@@ -201,12 +222,11 @@ const ProjectCard = ({ item, theme, offset, isActive, onDragEnd }) => {
         ease: [0.25, 1, 0.5, 1],
         duration: 0.85, 
       }}
-      // Added Mobile Swipe Gestures to the active card
+      // Mobile Swipe Gestures bounded strictly inside active card space
       drag={isActive ? "x" : false}
       dragConstraints={{ left: 0, right: 0 }}
       dragElastic={0.2}
       onDragEnd={onDragEnd}
-      // Brightened borders, crystal glass background structural shifts
       className={`absolute w-full md:w-[960px] lg:w-[1120px] shrink-0 rounded-[32px] md:rounded-[40px] border border-white/10 bg-[#0A0B10]/95 backdrop-blur-3xl p-5 sm:p-6 md:p-8 lg:p-10 ${theme.borderHover} transition-colors duration-500 flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-10 items-center ${isActive ? "pointer-events-auto cursor-grab active:cursor-grabbing" : "pointer-events-none"}`}
       style={{
         zIndex: zIndex,
