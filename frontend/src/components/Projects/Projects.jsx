@@ -61,7 +61,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
 
   // Drag Gesture End Handler for Mobile Touch Navigation
   const handleDragEnd = (event, info) => {
-    const swipeThreshold = 50; 
+    const swipeThreshold = 30; 
     if (info.offset.x < -swipeThreshold) {
       handleNext();
     } else if (info.offset.x > swipeThreshold) {
@@ -222,19 +222,20 @@ const ProjectCard = ({ item, theme, offset, isActive, onDragEnd }) => {
         ease: [0.25, 1, 0.5, 1],
         duration: 0.85, 
       }}
-      // Mobile Swipe Gestures bounded strictly inside active card space
-      drag={isActive ? "x" : false}
+      // Mobile swipe interface linked securely via global gesture calculations
+      drag="x"
       dragConstraints={{ left: 0, right: 0 }}
-      dragElastic={0.2}
+      dragElastic={0.6}
       onDragEnd={onDragEnd}
-      className={`absolute w-full md:w-[960px] lg:w-[1120px] shrink-0 rounded-[32px] md:rounded-[40px] border border-white/10 bg-[#0A0B10]/95 backdrop-blur-3xl p-5 sm:p-6 md:p-8 lg:p-10 ${theme.borderHover} transition-colors duration-500 flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-10 items-center ${isActive ? "pointer-events-auto cursor-grab active:cursor-grabbing" : "pointer-events-none"}`}
+      className={`absolute w-full md:w-[960px] lg:w-[1120px] shrink-0 rounded-[32px] md:rounded-[40px] border border-white/10 bg-[#0A0B10]/95 backdrop-blur-3xl p-5 sm:p-6 md:p-8 lg:p-10 ${theme.borderHover} transition-colors duration-500 flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-10 items-center cursor-grab active:cursor-grabbing`}
       style={{
         zIndex: zIndex,
         boxShadow: isActive ? theme.shadow.boxShadow : "0 20px 50px rgba(0,0,0,0.7)",
+        pointerEvents: isActive ? "auto" : "none"
       }}
     >
       {/* Left Side: Premium Image Container */}
-      <div className="w-full md:w-[48%] lg:w-1/2 aspect-[16/10] bg-[#12131A] rounded-[22px] md:rounded-[32px] border border-white/10 p-2 flex items-center justify-center overflow-hidden shrink-0 group relative shadow-2xl">
+      <div className="w-full md:w-[48%] lg:w-1/2 aspect-[16/10] bg-[#12131A] rounded-[22px] md:rounded-[32px] border border-white/10 p-2 flex items-center justify-center overflow-hidden shrink-0 group relative shadow-2xl pointer-events-none">
         <img
           src={item.img && item.img.startsWith("http") ? item.img : "/placeholder.png"}
           alt={item.title}
@@ -244,7 +245,7 @@ const ProjectCard = ({ item, theme, offset, isActive, onDragEnd }) => {
       </div>
 
       {/* Right Side: Information Layout Matrix */}
-      <div className="w-full md:w-[52%] lg:w-1/2 flex flex-col justify-between h-full py-1">
+      <div className="w-full md:w-[52%] lg:w-1/2 flex flex-col justify-between h-full py-1 select-none">
         <div>
           <div className="flex items-center gap-2 mb-3 md:mb-4">
             <span className={`rounded-full bg-gradient-to-r ${theme.color} p-[1px]`}>
@@ -283,7 +284,7 @@ const ProjectCard = ({ item, theme, offset, isActive, onDragEnd }) => {
         </div>
 
         {/* Footer Interaction Elements */}
-        <div className="flex items-center justify-between mt-auto pt-1">
+        <div className="flex items-center justify-between mt-auto pt-1 pointer-events-auto">
           <a
             href={item.url}
             target="_blank"
@@ -306,53 +307,5 @@ const ProjectCard = ({ item, theme, offset, isActive, onDragEnd }) => {
     </motion.div>
   );
 };
-
-function Projects() {
-  const { projects, loading } = useProjects();
-
-  if (loading) {
-    return (
-      <section className="py-32 text-center text-white/40 tracking-widest text-xs uppercase">
-        Loading Masterpieces...
-      </section>
-    );
-  }
-
-  return (
-    <section id="projects" className="relative overflow-hidden bg-transparent py-20 md:py-32 text-white">
-      <div className="mx-auto max-w-7xl">
-        <header className="mb-12 md:mb-16 lg:mb-20 px-4 text-center">
-          <Reveal>
-            <div className="mx-auto max-w-3xl">
-              <div className="mb-5 flex items-center justify-center gap-3">
-                <span className="h-px w-12 bg-gradient-to-r from-transparent via-amber-400 to-transparent" />
-                <p className="text-[10px] md:text-[13px] uppercase tracking-[0.45em] text-white/80">
-                  Curated Projects
-                </p>
-                <span className="h-px w-12 bg-gradient-to-r from-transparent via-amber-400 to-transparent" />
-              </div>
-
-              <h2 className="text-[36px] md:text-[72px] font-bold tracking-[-0.04em] leading-none text-white">
-                SELECTED{" "}
-                <span className="bg-gradient-to-r from-[#fff1c2] via-[#f5c96a] to-[#d89b1d] bg-clip-text text-transparent">
-                  WORK
-                </span>
-              </h2>
-
-              <p className="mx-auto mt-5 max-w-2xl text-[11px] md:text-[14px] uppercase tracking-[0.25em] leading-relaxed text-white/60">
-                A refined collection of development, design, and editing projects crafted with detail and purpose
-              </p>
-            </div>
-          </Reveal>
-        </header>
-
-        {/* CAROUSEL INSTANCES CATEGORIZED ARRAY */}
-        <ProjectSection title="WEB / APP Development" items={projects.web || []} theme={PROJECT_THEMES.web} />
-        <ProjectSection title="UI / UX Design" items={projects.uiux || []} theme={PROJECT_THEMES.uiux} />
-        <ProjectSection title="Motion & Editing" items={projects.editing || []} theme={PROJECT_THEMES.editing} />
-      </div>
-    </section>
-  );
-}
 
 export default Projects;
