@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { motion, useAnimationControls } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Plus, ExternalLink } from "lucide-react";
 import { useProjects } from "../../context/ProjectContext";
 import Reveal from "../Reveal";
@@ -37,15 +37,14 @@ const ProjectSection = ({ title, items = [], theme }) => {
   const [isHovered, setIsHovered] = useState(false);
   const autoPlayRef = useRef(null);
 
-  // Fallback / safety check
   if (!items || items.length === 0) return null;
 
-  // Infinite Seamless Loop Auto-Play Management
+  // Cinematic Fluid Carousel Timing Manager
   useEffect(() => {
     if (!isHovered && items.length > 1) {
       autoPlayRef.current = setInterval(() => {
         setActiveIndex((prev) => (prev + 1) % items.length);
-      }, 4500); // Transitions to next card smoothly every 4.5 seconds
+      }, 5500); // Extended window for a more premium reading pace
     }
     return () => {
       if (autoPlayRef.current) clearInterval(autoPlayRef.current);
@@ -100,7 +99,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
           {items.map((item, index) => {
             let offset = index - activeIndex;
             
-            // True Infinite circular Ring Math Calculation Logic
+            // Seamless Infinite Circular Ring Evaluation Logic
             if (offset < -1) offset += items.length;
             if (offset > 1) offset -= items.length;
 
@@ -119,14 +118,14 @@ const ProjectSection = ({ title, items = [], theme }) => {
           })}
         </div>
 
-        {/* PREMIUM CONTROLS */}
+        {/* PREMIUM CONTROLS WITH REFINED DIRECTIONAL MOTION */}
         {items.length > 1 && (
           <>
             {/* Left Control Trigger */}
             <motion.button
               onClick={handlePrev}
-              whileHover={{ scale: 1.1, x: -6 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.08, x: -8 }}
+              whileTap={{ scale: 0.96 }}
               className="absolute left-4 md:left-8 z-40 h-16 w-16 flex items-center justify-center rounded-full border border-white/[0.08] bg-neutral-950/60 text-white backdrop-blur-2xl transition-colors duration-300 hover:bg-white hover:text-black shadow-2xl"
             >
               <ChevronLeft size={26} />
@@ -135,8 +134,8 @@ const ProjectSection = ({ title, items = [], theme }) => {
             {/* Right Control Trigger */}
             <motion.button
               onClick={handleNext}
-              whileHover={{ scale: 1.1, x: 6 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.08, x: 8 }}
+              whileTap={{ scale: 0.96 }}
               className="absolute right-4 md:right-8 z-40 h-16 w-16 flex items-center justify-center rounded-full border border-white/[0.08] bg-neutral-950/60 text-white backdrop-blur-2xl transition-colors duration-300 hover:bg-white hover:text-black shadow-2xl"
             >
               <ChevronRight size={26} />
@@ -150,10 +149,9 @@ const ProjectSection = ({ title, items = [], theme }) => {
 
 // --- PERSPECTIVE 3D INNER-RING CARD COMPONENT ---
 const ProjectCard = ({ item, theme, offset, isActive }) => {
-  // Configured variables for ultra-premium sizing matrix layout
   const rotateY = -offset * 24; 
-  const translateX = offset * 102; // Pushes adjacent panels comfortably outward to prevent overlap
-  const translateZ = isActive ? -140 : -40; // Immersive concave structural depth alignment
+  const translateX = offset * 102; 
+  const translateZ = isActive ? -140 : -40; 
   
   const opacity = isActive ? 1 : 0.40;
   const zIndex = isActive ? 30 : 10;
@@ -170,9 +168,9 @@ const ProjectCard = ({ item, theme, offset, isActive }) => {
         scale: isActive ? 1 : 0.82,
       }}
       transition={{
-        type: "spring",
-        stiffness: 180,
-        damping: 24,
+        type: "tween",
+        ease: [0.25, 1, 0.5, 1], // Custom cinematic cubic-bezier for clean velocity decline
+        duration: 0.85, 
       }}
       className={`absolute w-[92%] sm:w-[500px] md:w-[1000px] shrink-0 rounded-[40px] md:rounded-[48px] border border-white/[0.06] bg-[#0A0B10]/95 backdrop-blur-3xl p-6 md:p-10 ${theme.borderHover} transition-colors duration-500 flex flex-col md:flex-row gap-8 md:gap-10 items-center ${isActive ? "pointer-events-auto" : "pointer-events-none"}`}
       style={{
@@ -187,7 +185,6 @@ const ProjectCard = ({ item, theme, offset, isActive }) => {
           alt={item.title}
           className="h-full w-full object-cover rounded-[20px] md:rounded-[28px] transition duration-700 group-hover:scale-[1.05]"
         />
-        {/* Dynamic Gradient Shifter overlay to enrich image surfaces */}
         <div className={`absolute inset-0 bg-gradient-to-tr ${theme.color} opacity-0 group-hover:opacity-15 transition duration-500 pointer-events-none`} />
       </div>
 
