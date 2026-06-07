@@ -23,7 +23,7 @@ function ContactModal({ isOpen, onClose }) {
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="relative w-full max-w-xl rounded-[2.5rem] bg-white p-10 md:p-14 shadow-[0_30px_60px_-12px_rgba(0,0,0,0.1)] border border-gray-100 overflow-hidden"
           >
-            {/* PROGRESS INDICATOR - Minimalist */}
+            {/* PROGRESS INDICATOR */}
             <div className="absolute right-0 top-0 bottom-0 w-[2px] bg-gray-50">
               <motion.div
                 className="w-full bg-amber-500 origin-top"
@@ -31,7 +31,7 @@ function ContactModal({ isOpen, onClose }) {
               />
             </div>
 
-            {/* CLOSE BUTTON - Refined */}
+            {/* CLOSE BUTTON */}
             <button
               onClick={onClose}
               className="absolute right-10 top-10 text-gray-300 hover:text-gray-900 transition-colors duration-300"
@@ -53,10 +53,11 @@ function ContactModal({ isOpen, onClose }) {
                 </p>
               </div>
 
-              <form className="space-y-10">
+              <form className="space-y-10" onSubmit={(e) => e.preventDefault()}>
                 <div className="space-y-10">
                   <Input placeholder="Full Name" />
                   <Input placeholder="Email Address" />
+                  <Input placeholder="Phone Number" />
                   <Input placeholder="Project Budget" />
                   <textarea 
                     placeholder="Tell us about your project..." 
@@ -64,6 +65,7 @@ function ContactModal({ isOpen, onClose }) {
                   />
                 </div>
 
+                {/* RESTORED LAUNCH BUTTON */}
                 <button 
                   type="submit" 
                   className="group flex items-center justify-between w-full border border-gray-900 py-6 px-8 text-gray-900 transition-all duration-500 hover:bg-gray-900 hover:text-white"
