@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import { useState } from "react"; // Added state import
+import { useState } from "react";
 import AnimatedCursor from "./components/AnimatedCursor";
 import SmoothScroll from "./components/SmoothScroll";
 
@@ -9,7 +9,7 @@ import Hero from "./components/Hero/Hero";
 import About from "./components/About/About";
 import Projects from "./components/Projects/Projects";
 import Footer from "./components/Footer/Footer";
-import ContactModal from "./components/Contact/ContactModal"; // Added import
+import ContactModal from "./components/Contact/ContactModal";
 import Admin from "./Admin/Admin";
 import GlobalBackground from "./Layouts/GlobalBackground";
 
@@ -28,20 +28,21 @@ function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <GlobalBackground>
-      <Hero />
-      <About />
-      <Projects />
-      
-      {/* Pass function to open modal */}
-      <Footer onOpenModal={() => setIsModalOpen(true)} />
-      
-      {/* Modal is here at root level, free from clipping */}
+    <>
+      {/* 1. GlobalBackground only wraps your page content */}
+      <GlobalBackground>
+        <Hero />
+        <About />
+        <Projects />
+        <Footer onOpenModal={() => setIsModalOpen(true)} />
+      </GlobalBackground>
+
+      {/* 2. ContactModal is outside GlobalBackground, preventing clipping */}
       <ContactModal 
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
       />
-    </GlobalBackground>
+    </>
   );
 }
 
