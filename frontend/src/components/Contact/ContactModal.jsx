@@ -42,8 +42,18 @@ function ContactModal({ isOpen, onClose }) {
                   <Input placeholder="Full Name" />
                   <Input placeholder="Email Address" />
                   <Input placeholder="Phone Number" />
-                  <Input placeholder="Project Budget" />
+                  
+                  {/* SERVICE NEEDED DROPDOWN */}
+                  <select className="w-full bg-gray-50 rounded-xl p-4 text-gray-900 outline-none focus:ring-2 focus:ring-amber-500/20 transition-all border border-gray-100 appearance-none cursor-pointer">
+                    <option value="" disabled selected>Service Needed</option>
+                    <option value="web">Web Development</option>
+                    <option value="uiux">UI/UX Design</option>
+                    <option value="video">Video Editing</option>
+                    <option value="branding">Branding</option>
+                  </select>
                 </div>
+                
+                <Input placeholder="Project Budget (e.g., ₹50,000)" />
                 
                 <textarea 
                   placeholder="Tell us about your project..." 
