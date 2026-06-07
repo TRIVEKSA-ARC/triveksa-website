@@ -47,6 +47,8 @@ function Footer() {
 
   return (
     <footer id="contact" className="relative w-full bg-[#030303] border-t border-white/5 overflow-hidden">
+      
+      {/* MODAL IS PLACED HERE OUTSIDE REVEAL TO PREVENT Z-INDEX/CLIPPING ISSUES */}
       <ContactModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
