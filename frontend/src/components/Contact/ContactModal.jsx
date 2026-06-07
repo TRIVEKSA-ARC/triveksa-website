@@ -34,7 +34,7 @@ function ContactModal({ isOpen, onClose }) {
             {/* CLOSE BUTTON */}
             <button
               onClick={onClose}
-              className="absolute right-10 top-10 text-gray-300 hover:text-gray-900 transition-colors duration-300"
+              className="absolute right-10 top-10 text-gray-400 hover:text-gray-900 transition-colors duration-300"
             >
               <X size={20} strokeWidth={1.5} />
             </button>
@@ -65,10 +65,10 @@ function ContactModal({ isOpen, onClose }) {
                   />
                 </div>
 
-                {/* RESTORED LAUNCH BUTTON */}
+                {/* HIGH VISIBILITY BUTTON */}
                 <button 
                   type="submit" 
-                  className="group flex items-center justify-between w-full border border-gray-900 py-6 px-8 text-gray-900 transition-all duration-500 hover:bg-gray-900 hover:text-white"
+                  className="group flex items-center justify-between w-full bg-amber-600 py-6 px-8 text-white transition-all duration-500 hover:bg-amber-700 hover:shadow-xl rounded-xl"
                 >
                   <span className="font-bold uppercase tracking-[0.2em] text-sm">Launch Project</span>
                   <span className="text-xl">→</span>
@@ -89,7 +89,7 @@ function Input({ placeholder }) {
       <input 
         type="text" 
         placeholder={placeholder} 
-        className="w-full bg-transparent border-b border-gray-200 py-3 text-gray-900 placeholder:text-gray-300 outline-none transition-all duration-300 group-hover:border-gray-400 focus:border-amber-500"
+        className="w-full bg-transparent border-b border-gray-200 py-3 text-gray-900 placeholder:text-gray-400 outline-none transition-all duration-300 group-hover:border-gray-400 focus:border-amber-500"
       />
     </div>
   );
