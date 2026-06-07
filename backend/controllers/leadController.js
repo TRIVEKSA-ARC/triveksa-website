@@ -1,4 +1,5 @@
 import Lead from "../models/Lead.js";
+import sendEmail from "../utils/sendEmail.js";
 
 export const createLead = async (req, res) => {
   try {
@@ -19,7 +20,7 @@ export const createLead = async (req, res) => {
       });
     }
 
-    // Create Lead
+    // Save Lead
     const lead = await Lead.create({
       name,
       email,
@@ -28,12 +29,65 @@ export const createLead = async (req, res) => {
       budget,
       message,
     });
+    console.log("Lead saved:", lead);
+
+    /* ================= EMAIL TO ADMIN ================= */
+    console.log("Sending admin email...");
+    await sendEmail({
+      to: process.env.ADMIN_EMAIL,
+      subject: `🚀 New Project Inquiry - ${service}`,
+      html: `
+        <h2>New Lead Received</h2>
+
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Service:</strong> ${service}</p>
+        <p><strong>Budget:</strong> ${budget || "Not Provided"}</p>
+
+        <h3>Project Details</h3>
+        <p>${message}</p>
+      `,
+    });
+    console.log("Admin email sent");
+
+    /* ================= AUTO REPLY TO CLIENT ================= */
+    console.log("Sending client email...");
+    await sendEmail({
+      to: email,
+      subject: "Thank you for contacting Triviksa Arc",
+      html: `
+        <h2>Thank You for Contacting Triviksa Arc</h2>
+
+        <p>Hi ${name},</p>
+
+        <p>
+          We have successfully received your project inquiry.
+        </p>
+
+        <p>
+          Our team will review your requirements and get back to you shortly.
+        </p>
+
+        <p>
+          Typical response time is within 24 hours.
+        </p>
+
+        <br/>
+
+        <p>Regards,</p>
+        <p><strong>Triviksa Arc Team</strong></p>
+        <p>https://triveksaarc.com</p>
+      `,
+    });
+    console.log("Client email sent");
 
     res.status(201).json({
       success: true,
       message: "Lead submitted successfully",
       lead,
     });
+
   } catch (error) {
     console.error("CREATE LEAD ERROR:", error);
 

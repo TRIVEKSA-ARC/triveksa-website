@@ -13,7 +13,7 @@ const sendEmail = async ({ to, subject, html }) => {
 
   try {
     const response = await resend.emails.send({
-      from: "Portfolio <onboarding@resend.dev>", // sandbox sender
+      from: "Triveksa Arc <hello@triveksaarc.com>",
       to: [to],
       subject,
       html, // ✅ MUST BE HTML
