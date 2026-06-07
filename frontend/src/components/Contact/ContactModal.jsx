@@ -1,12 +1,7 @@
-import { useRef } from "react";
 import { X } from "lucide-react";
-import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 function ContactModal({ isOpen, onClose }) {
-  const scrollRef = useRef(null);
-  const { scrollYProgress } = useScroll({ container: scrollRef });
-  const scaleY = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
-
   return (
     <AnimatePresence>
       {isOpen && (
@@ -21,26 +16,18 @@ function ContactModal({ isOpen, onClose }) {
             animate={{ y: 0, opacity: 1, scale: 1 }}
             exit={{ y: 30, opacity: 0 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="relative w-full max-w-lg rounded-3xl bg-white p-8 md:p-12 shadow-2xl border border-gray-100 overflow-hidden"
+            className="relative w-full max-w-2xl rounded-3xl bg-white p-10 md:p-16 shadow-2xl border border-gray-100"
           >
-            {/* PROGRESS INDICATOR */}
-            <div className="absolute right-0 top-0 bottom-0 w-1 bg-gray-50">
-              <motion.div
-                className="w-full bg-amber-500 origin-top"
-                style={{ scaleY }}
-              />
-            </div>
-
             {/* CLOSE BUTTON */}
             <button
               onClick={onClose}
-              className="absolute right-6 top-6 text-gray-400 hover:text-gray-900 transition-colors"
+              className="absolute right-8 top-8 text-gray-400 hover:text-gray-900 transition-colors"
             >
-              <X size={22} />
+              <X size={24} />
             </button>
 
             {/* CONTENT AREA */}
-            <div ref={scrollRef} className="h-full max-h-[70vh] overflow-y-auto pr-6 custom-scrollbar">
+            <div>
               <div className="mb-10">
                 <span className="text-[10px] uppercase tracking-[0.2em] text-amber-600 font-bold">
                   Start your journey
@@ -51,10 +38,13 @@ function ContactModal({ isOpen, onClose }) {
               </div>
 
               <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-                <Input placeholder="Full Name" />
-                <Input placeholder="Email Address" />
-                <Input placeholder="Phone Number" />
-                <Input placeholder="Project Budget" />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <Input placeholder="Full Name" />
+                  <Input placeholder="Email Address" />
+                  <Input placeholder="Phone Number" />
+                  <Input placeholder="Project Budget" />
+                </div>
+                
                 <textarea 
                   placeholder="Tell us about your project..." 
                   className="w-full bg-gray-50 rounded-xl p-4 text-gray-900 placeholder:text-gray-400 outline-none focus:ring-2 focus:ring-amber-500/20 transition-all border border-gray-100 h-32 resize-none"
