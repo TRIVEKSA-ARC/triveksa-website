@@ -223,7 +223,11 @@ const ProjectCard = ({ item, theme, offset, isActive, onDragEnd }) => {
         duration: 0.85, 
       }}
       // Fixed: Allowed card-level vertical page scrolling on mobile while cleanly capturing horizontal swipe gestures
-      drag="x"
+      drag={isActive ? "x" : false}
+      dragPropagation={false}
+      onPointerDown={(e) => {
+        if (e.target.closest("a")) return;
+      }}
       dragConstraints={{ left: 0, right: 0 }}
       dragElastic={0.5}
       onDragEnd={onDragEnd}
