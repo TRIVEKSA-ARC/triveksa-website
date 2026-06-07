@@ -39,7 +39,6 @@ const ProjectSection = ({ title, items = [], theme }) => {
 
   if (!items || items.length === 0) return null;
 
-  // Cinematic Fluid Carousel Timing Manager
   useEffect(() => {
     if (!isHovered && items.length > 1) {
       autoPlayRef.current = setInterval(() => {
@@ -59,7 +58,6 @@ const ProjectSection = ({ title, items = [], theme }) => {
     setActiveIndex((prev) => (prev - 1 + items.length) % items.length);
   };
 
-  // Drag Gesture End Handler for Mobile Touch Navigation
   const handleDragEnd = (event, info) => {
     const swipeThreshold = 50; 
     if (info.offset.x < -swipeThreshold) {
@@ -71,7 +69,6 @@ const ProjectSection = ({ title, items = [], theme }) => {
 
   return (
     <div className="mb-20 md:mb-32 w-full relative overflow-visible px-4 sm:px-6 md:px-12 lg:px-16">
-      {/* HEADER */}
       <div className="mx-auto mb-10 md:mb-14 max-w-7xl px-2">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -88,28 +85,22 @@ const ProjectSection = ({ title, items = [], theme }) => {
         </motion.div>
       </div>
 
-      {/* 3D CAROUSEL CANVAS CHAMBER */}
       <div 
         className="relative w-full h-[660px] sm:h-[600px] md:h-[580px] lg:h-[540px] flex flex-col items-center justify-center overflow-visible select-none mx-auto max-w-[1400px]"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        
-        {/* Cinematic Backdrop Radial Glow Mesh */}
         <div 
           className="absolute w-[280px] h-[280px] md:w-[550px] md:h-[550px] rounded-full blur-[100px] md:blur-[160px] opacity-40 pointer-events-none transition-all duration-1000 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
           style={{ backgroundColor: theme.glow }}
         />
 
-        {/* Perspective Deck */}
         <div 
           className="relative w-full h-full flex items-center justify-center touch-pan-y"
           style={{ perspective: "1800px", transformStyle: "preserve-3d" }}
         >
           {items.map((item, index) => {
             let offset = index - activeIndex;
-            
-            // Scaled Infinite Ring Calculation logic protecting low-count structures
             if (items.length > 2) {
               if (offset < -1) offset += items.length;
               if (offset > 1) offset -= items.length;
@@ -134,10 +125,8 @@ const ProjectSection = ({ title, items = [], theme }) => {
           })}
         </div>
 
-        {/* PREMIUM CONTROLS WITH REFINED DIRECTIONAL MOTION & EXPANDED GAPS */}
         {items.length > 1 && (
           <>
-            {/* DESKTOP CONTROLS - RESTRUCTURED FOR REVEAL ON CAROUSEL CHAMBER HOVER */}
             <motion.button
               onClick={handlePrev}
               initial={{ opacity: 0, x: -30, scale: 0.9 }}
@@ -172,7 +161,6 @@ const ProjectSection = ({ title, items = [], theme }) => {
               <ChevronRight size={26} />
             </motion.button>
 
-            {/* UNIFORM MOBILE CONTROLS FOOTER */}
             <div className="flex md:hidden items-center justify-center gap-6 mt-4 z-40 relative">
               <button
                 onClick={handlePrev}
@@ -197,7 +185,6 @@ const ProjectSection = ({ title, items = [], theme }) => {
   );
 };
 
-// --- PERSPECTIVE 3D INNER-RING CARD COMPONENT ---
 const ProjectCard = ({ item, theme, offset, isActive, onDragEnd }) => {
   const rotateY = -offset * 22; 
   const translateX = offset * 106; 
@@ -237,7 +224,6 @@ const ProjectCard = ({ item, theme, offset, isActive, onDragEnd }) => {
         boxShadow: isActive ? theme.shadow.boxShadow : "0 20px 50px rgba(0,0,0,0.7)",
       }}
     >
-      {/* Left Side: Premium Image Container */}
       <div className="w-full md:w-[48%] lg:w-1/2 aspect-[16/10] bg-[#12131A] rounded-[22px] md:rounded-[32px] border border-white/10 p-2 flex items-center justify-center overflow-hidden shrink-0 group relative shadow-2xl">
         <img
           src={item.img && item.img.startsWith("http") ? item.img : "/placeholder.png"}
@@ -247,7 +233,6 @@ const ProjectCard = ({ item, theme, offset, isActive, onDragEnd }) => {
         <div className={`absolute inset-0 bg-gradient-to-tr ${theme.color} opacity-0 group-hover:opacity-20 transition duration-500 pointer-events-none`} />
       </div>
 
-      {/* Right Side: Information Layout Matrix */}
       <div className="w-full md:w-[52%] lg:w-1/2 flex flex-col justify-between h-full py-1">
         <div>
           <div className="flex items-center gap-2 mb-3 md:mb-4">
@@ -269,7 +254,6 @@ const ProjectCard = ({ item, theme, offset, isActive, onDragEnd }) => {
             {item.desc}
           </p>
 
-          {/* Premium Meta Information Details Grid - High-contrast Text Updates */}
           <div className="grid grid-cols-3 gap-2 md:gap-4 border-t border-b border-white/10 py-3 md:py-4 lg:py-5 mb-4 md:mb-5 lg:mb-6 text-[10px] md:text-[11px] lg:text-[12px]">
             <div>
               <span className="text-[8px] md:text-[9px] uppercase tracking-[0.15em] text-white/50 block mb-1">Industry</span>
@@ -286,7 +270,6 @@ const ProjectCard = ({ item, theme, offset, isActive, onDragEnd }) => {
           </div>
         </div>
 
-        {/* Footer Interaction Elements */}
         <div className="flex items-center justify-between mt-auto pt-1">
           <a
             href={item.url}
@@ -350,7 +333,6 @@ function Projects() {
           </Reveal>
         </header>
 
-        {/* CAROUSEL INSTANCES CATEGORIZED ARRAY */}
         <ProjectSection title="WEB / APP Development" items={projects.web || []} theme={PROJECT_THEMES.web} />
         <ProjectSection title="UI / UX Design" items={projects.uiux || []} theme={PROJECT_THEMES.uiux} />
         <ProjectSection title="Motion & Editing" items={projects.editing || []} theme={PROJECT_THEMES.editing} />
