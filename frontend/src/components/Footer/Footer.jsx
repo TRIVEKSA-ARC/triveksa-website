@@ -1,10 +1,8 @@
 import * as LucideIcons from "lucide-react";
 import { Mail, Phone, Shield } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { useFooter } from "../../context/FooterContext";
 import Reveal from "../Reveal";
-import ContactModal from "../Contact/ContactModal";
 
 /* ================= ICON RESOLVER ================= */
 const getIcon = (iconName) => {
@@ -20,10 +18,9 @@ const getIcon = (iconName) => {
   return LucideIcons[formatted] || LucideIcons.Github;
 };
 
-function Footer() {
+function Footer({ onOpenModal }) {
   const navigate = useNavigate();
   const { footer } = useFooter();
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   /* ✅ SAFE FALLBACK WITH REFINED PREMIUM AGENCY DATA */
   const data = footer || {
@@ -48,22 +45,16 @@ function Footer() {
   return (
     <footer id="contact" className="relative w-full bg-[#030303] border-t border-white/5 overflow-hidden">
       
-      {/* MODAL IS PLACED HERE OUTSIDE REVEAL TO PREVENT Z-INDEX/CLIPPING ISSUES */}
-      <ContactModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
-
       {/* AMBIENT BACKGROUND GLOWS */}
       <div className="pointer-events-none absolute left-[-10%] bottom-[-20%] h-[350px] w-[350px] rounded-full bg-[#f5c96a]/5 blur-[130px]" />
       <div className="pointer-events-none absolute right-[-5%] top-[-10%] h-[300px] w-[300px] rounded-full bg-amber-500/5 blur-[120px]" />
 
       <Reveal>
         <div className="max-w-7xl mx-auto px-6 md:px-12">
-          {/* ================= MAIN CONTENT GRID (PADDING REDUCED) ================= */}
+          {/* ================= MAIN CONTENT GRID ================= */}
           <div className="py-12 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 text-white relative z-10 items-start">
 
-            {/* LEFT — CORE STUDIO IDENTITY WITH PREMIUM INLINE LOGO */}
+            {/* LEFT — CORE STUDIO IDENTITY */}
             <div className="flex flex-col items-start space-y-4">
               <div className="flex items-center gap-4">
                 <img
@@ -85,7 +76,7 @@ function Footer() {
               </p>
 
               <button
-                onClick={() => setIsModalOpen(true)}
+                onClick={onOpenModal}
                 className="mt-4 rounded-full bg-gradient-to-r from-[#f5c96a] to-[#d89b1d] px-6 py-3 text-[11px] font-bold uppercase tracking-[0.25em] text-black transition hover:scale-105"
               >
                 Start A Project
@@ -155,13 +146,12 @@ function Footer() {
             </div>
           </div>
 
-          {/* ================= CLOSING UTILITY BAR (PADDING REDUCED) ================= */}
+          {/* ================= CLOSING UTILITY BAR ================= */}
           <div className="border-t border-white/5 py-6 relative flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0 z-10">
             <span className="text-[12px] font-medium tracking-widest uppercase text-center text-white/40">
               {copyright}
             </span>
 
-            {/* ADMIN ICON IN RIGHT BOTTOM CORNER */}
             <div className="static md:absolute md:right-0 md:bottom-5">
               <button
                 className="p-2 rounded-full border border-white/10 bg-white/[0.02] text-white/40 hover:text-[#f5c96a] hover:bg-[#f5c96a]/10 hover:border-[#f5c96a]/20 transition-all duration-300"
