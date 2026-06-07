@@ -1,7 +1,20 @@
+import { useState, useRef, useEffect } from "react";
 import { X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 function ContactModal({ isOpen, onClose }) {
+  const scrollRef = useRef(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Calculate scroll progress for the top line
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
+      const progress = (scrollTop / (scrollHeight - clientHeight)) * 100;
+      setScrollProgress(progress);
+    }
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -9,86 +22,77 @@ function ContactModal({ isOpen, onClose }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[9999] isolate flex items-center justify-center bg-[#050505]/90 backdrop-blur-xl px-4"
+          className="fixed inset-0 z-[9999] isolate flex items-center justify-center bg-black/70 backdrop-blur-md px-4"
         >
           <motion.div
-            initial={{ y: 60, opacity: 0, scale: 0.95 }}
+            initial={{ y: 50, opacity: 0, scale: 0.98 }}
             animate={{ y: 0, opacity: 1, scale: 1 }}
-            exit={{ y: 60, opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className="relative w-full max-w-3xl rounded-3xl border border-amber-500/30 bg-[#0f0f0f] p-8 md:p-10 shadow-[0_0_100px_rgba(245,158,11,0.15)] max-h-[90vh] overflow-y-auto"
+            exit={{ y: 50, opacity: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="relative w-full max-w-2xl rounded-[2rem] border border-white/10 bg-[#0f0f0f] p-8 md:p-12 shadow-2xl max-h-[85vh] overflow-hidden"
           >
-            {/* CLOSE BUTTON */}
-            <button
-              onClick={onClose}
-              className="absolute right-6 top-6 text-white hover:text-amber-400 transition-colors"
-            >
-              <X size={28} />
-            </button>
-
-            {/* HEADER */}
-            <div className="mb-8">
-              <p className="text-[13px] uppercase tracking-[0.3em] text-amber-500 font-bold">
-                Triviksa Arc
-              </p>
-              <h2 className="mt-3 text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600">
-                Start a Project
-              </h2>
-              <p className="mt-4 text-gray-300 max-w-xl text-lg">
-                Let's craft something exceptional together. Fill in the details to begin your journey.
-              </p>
+            {/* PROGRESS LINE */}
+            <div className="absolute top-0 left-0 w-full h-[2px] bg-white/5">
+              <motion.div 
+                className="h-full bg-gradient-to-r from-amber-400 to-amber-600"
+                style={{ width: `${scrollProgress}%` }}
+              />
             </div>
 
-            {/* FORM */}
-            <form className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <input 
-                  type="text" 
-                  placeholder="Full Name" 
-                  className="w-full rounded-xl border-2 border-white/10 bg-[#1a1a1a] px-5 py-4 text-white placeholder:text-gray-500 outline-none focus:border-amber-500 transition-all" 
-                />
-                <input 
-                  type="email" 
-                  placeholder="Email Address" 
-                  className="w-full rounded-xl border-2 border-white/10 bg-[#1a1a1a] px-5 py-4 text-white placeholder:text-gray-500 outline-none focus:border-amber-500 transition-all" 
-                />
-              </div>
-              
-              <div className="grid md:grid-cols-2 gap-6">
-                <input 
-                  type="text" 
-                  placeholder="Phone Number" 
-                  className="w-full rounded-xl border-2 border-white/10 bg-[#1a1a1a] px-5 py-4 text-white placeholder:text-gray-500 outline-none focus:border-amber-500 transition-all" 
-                />
-                <select className="w-full rounded-xl border-2 border-white/10 bg-[#1a1a1a] px-5 py-4 text-white outline-none focus:border-amber-500 transition-all appearance-none cursor-pointer">
-                  <option className="text-gray-400">Select Service Needed</option>
-                  <option>Web Development</option>
-                  <option>UI/UX Design</option>
-                  <option>Video Editing</option>
-                  <option>Branding</option>
-                </select>
-              </div>
-
-              {/* BUDGET INPUT */}
-              <input 
-                type="text" 
-                placeholder="Project Budget (e.g., ₹50,000)" 
-                className="w-full rounded-xl border-2 border-white/10 bg-[#1a1a1a] px-5 py-4 text-white placeholder:text-gray-500 outline-none focus:border-amber-500 transition-all" 
-              />
-
-              <textarea 
-                rows="4" 
-                placeholder="Tell us about your project requirements..." 
-                className="w-full rounded-xl border-2 border-white/10 bg-[#1a1a1a] px-5 py-4 text-white placeholder:text-gray-500 outline-none focus:border-amber-500 transition-all" 
-              />
-
-              <button 
-                type="submit" 
-                className="w-full rounded-full bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 px-8 py-5 font-bold uppercase tracking-[0.2em] text-black hover:shadow-[0_0_30px_rgba(245,158,11,0.5)] transition-all transform hover:scale-[1.02]"
+            {/* SCROLLABLE AREA */}
+            <div 
+              ref={scrollRef}
+              onScroll={handleScroll}
+              className="h-full overflow-y-auto no-scrollbar pr-4 -mr-4"
+            >
+              {/* CLOSE BUTTON */}
+              <button
+                onClick={onClose}
+                className="absolute right-8 top-8 text-white/50 hover:text-amber-400 transition-colors duration-300"
               >
-                Launch Project
+                <X size={24} strokeWidth={2} />
               </button>
-            </form>
+
+              {/* HEADER */}
+              <div className="mb-10">
+                <span className="text-[11px] uppercase tracking-[0.4em] text-amber-500 font-semibold">
+                  Start your journey
+                </span>
+                <h2 className="mt-4 text-3xl md:text-5xl font-light text-white">
+                  Work with <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-amber-500">Triviksa</span>
+                </h2>
+              </div>
+
+              {/* FORM */}
+              <form className="space-y-8">
+                <div className="grid md:grid-cols-2 gap-8">
+                  <input type="text" placeholder="Full Name" className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 outline-none focus:border-amber-500 transition-all duration-500" />
+                  <input type="email" placeholder="Email Address" className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 outline-none focus:border-amber-500 transition-all duration-500" />
+                </div>
+                
+                <div className="grid md:grid-cols-2 gap-8">
+                  <input type="text" placeholder="Phone Number" className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 outline-none focus:border-amber-500 transition-all duration-500" />
+                  <select className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white outline-none focus:border-amber-500 transition-all duration-500 appearance-none cursor-pointer">
+                    <option className="bg-[#0f0f0f]">Service Needed</option>
+                    <option className="bg-[#0f0f0f]">Web Development</option>
+                    <option className="bg-[#0f0f0f]">UI/UX Design</option>
+                    <option className="bg-[#0f0f0f]">Video Editing</option>
+                    <option className="bg-[#0f0f0f]">Branding</option>
+                  </select>
+                </div>
+
+                <input type="text" placeholder="Project Budget" className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 outline-none focus:border-amber-500 transition-all duration-500" />
+
+                <textarea rows="3" placeholder="Tell us about your project..." className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 outline-none focus:border-amber-500 transition-all duration-500 resize-none" />
+
+                <button 
+                  type="submit" 
+                  className="group relative w-full rounded-full border border-amber-500/50 py-4 font-bold uppercase tracking-[0.2em] text-white transition-all duration-500 hover:bg-amber-500 hover:text-black overflow-hidden"
+                >
+                  <span className="relative z-10">Launch Project</span>
+                </button>
+              </form>
+            </div>
           </motion.div>
         </motion.div>
       )}

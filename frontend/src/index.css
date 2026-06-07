@@ -7,12 +7,14 @@ body {
   overflow-y: auto;
 }
 
-/* Hide scrollbar but keep scrolling for horizontal project rows */
-.scrollbar-none {
+/* Hide scrollbar but keep scrolling for horizontal project rows and modals */
+.scrollbar-none,
+.no-scrollbar {
   scrollbar-width: none;              /* Firefox / modern browsers */
 }
 
-.scrollbar-none::-webkit-scrollbar {
+.scrollbar-none::-webkit-scrollbar,
+.no-scrollbar::-webkit-scrollbar {
   display: none;                      /* Chrome / Edge / Safari */
 }
 
@@ -33,14 +35,12 @@ body {
 
 /* ================= CUSTOM CURSOR ================= */
 
-
-
 @media (max-width: 768px) {
   body {
     cursor: auto;
   }
 }
- 
+  
 /* ================= Smooth SCrolling ================= */
 
 html.lenis,
@@ -59,4 +59,3 @@ html.lenis body {
 .lenis.lenis-stopped {
   overflow: hidden;
 }
-
