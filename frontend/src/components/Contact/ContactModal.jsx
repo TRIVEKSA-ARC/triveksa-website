@@ -14,17 +14,17 @@ function ContactModal({ isOpen, onClose }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/30 backdrop-blur-md px-4"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40 backdrop-blur-sm px-4"
         >
           <motion.div
-            initial={{ y: 20, opacity: 0, scale: 0.99 }}
+            initial={{ y: 30, opacity: 0, scale: 0.95 }}
             animate={{ y: 0, opacity: 1, scale: 1 }}
-            exit={{ y: 20, opacity: 0 }}
+            exit={{ y: 30, opacity: 0 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="relative w-full max-w-xl rounded-[2.5rem] bg-white p-10 md:p-14 shadow-[0_30px_60px_-12px_rgba(0,0,0,0.1)] border border-gray-100 overflow-hidden"
+            className="relative w-full max-w-lg rounded-3xl bg-white p-8 md:p-12 shadow-2xl border border-gray-100 overflow-hidden"
           >
             {/* PROGRESS INDICATOR */}
-            <div className="absolute right-0 top-0 bottom-0 w-[2px] bg-gray-50">
+            <div className="absolute right-0 top-0 bottom-0 w-1 bg-gray-50">
               <motion.div
                 className="w-full bg-amber-500 origin-top"
                 style={{ scaleY }}
@@ -34,44 +34,38 @@ function ContactModal({ isOpen, onClose }) {
             {/* CLOSE BUTTON */}
             <button
               onClick={onClose}
-              className="absolute right-10 top-10 text-gray-400 hover:text-gray-900 transition-colors duration-300"
+              className="absolute right-6 top-6 text-gray-400 hover:text-gray-900 transition-colors"
             >
-              <X size={20} strokeWidth={1.5} />
+              <X size={22} />
             </button>
 
-            {/* SCROLLABLE AREA */}
-            <div ref={scrollRef} className="h-full max-h-[70vh] overflow-y-auto no-scrollbar pr-6">
-              <div className="mb-12">
-                <span className="block text-[10px] uppercase tracking-[0.3em] text-amber-600 font-bold mb-4">
-                  Let's create
+            {/* CONTENT AREA */}
+            <div ref={scrollRef} className="h-full max-h-[70vh] overflow-y-auto pr-6 custom-scrollbar">
+              <div className="mb-10">
+                <span className="text-[10px] uppercase tracking-[0.2em] text-amber-600 font-bold">
+                  Start your journey
                 </span>
-                <h2 className="text-4xl md:text-5xl font-medium text-gray-900 tracking-tight">
-                  Start a Project
+                <h2 className="text-4xl font-semibold text-gray-900 mt-2">
+                  Launch Project
                 </h2>
-                <p className="mt-4 text-gray-500 font-light text-lg">
-                  Share your vision with us.
-                </p>
               </div>
 
-              <form className="space-y-10" onSubmit={(e) => e.preventDefault()}>
-                <div className="space-y-10">
-                  <Input placeholder="Full Name" />
-                  <Input placeholder="Email Address" />
-                  <Input placeholder="Phone Number" />
-                  <Input placeholder="Project Budget" />
-                  <textarea 
-                    placeholder="Tell us about your project..." 
-                    className="w-full bg-transparent border-b border-gray-200 py-3 text-gray-900 placeholder:text-gray-300 outline-none focus:border-amber-500 transition-colors duration-300 resize-none h-24"
-                  />
-                </div>
+              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                <Input placeholder="Full Name" />
+                <Input placeholder="Email Address" />
+                <Input placeholder="Phone Number" />
+                <Input placeholder="Project Budget" />
+                <textarea 
+                  placeholder="Tell us about your project..." 
+                  className="w-full bg-gray-50 rounded-xl p-4 text-gray-900 placeholder:text-gray-400 outline-none focus:ring-2 focus:ring-amber-500/20 transition-all border border-gray-100 h-32 resize-none"
+                />
 
-                {/* HIGH VISIBILITY BUTTON */}
+                {/* PREMIUM BUTTON */}
                 <button 
                   type="submit" 
-                  className="group flex items-center justify-between w-full bg-amber-600 py-6 px-8 text-white transition-all duration-500 hover:bg-amber-700 hover:shadow-xl rounded-xl"
+                  className="w-full bg-gray-900 text-white py-4 rounded-xl font-bold uppercase tracking-[0.15em] text-sm hover:bg-amber-600 transition-all duration-300 shadow-lg hover:shadow-amber-500/20"
                 >
-                  <span className="font-bold uppercase tracking-[0.2em] text-sm">Launch Project</span>
-                  <span className="text-xl">→</span>
+                  Launch Project
                 </button>
               </form>
             </div>
@@ -85,13 +79,11 @@ function ContactModal({ isOpen, onClose }) {
 // Sub-component for clean inputs
 function Input({ placeholder }) {
   return (
-    <div className="relative group">
-      <input 
-        type="text" 
-        placeholder={placeholder} 
-        className="w-full bg-transparent border-b border-gray-200 py-3 text-gray-900 placeholder:text-gray-400 outline-none transition-all duration-300 group-hover:border-gray-400 focus:border-amber-500"
-      />
-    </div>
+    <input 
+      type="text" 
+      placeholder={placeholder} 
+      className="w-full bg-gray-50 rounded-xl p-4 text-gray-900 placeholder:text-gray-400 outline-none focus:ring-2 focus:ring-amber-500/20 transition-all border border-gray-100"
+    />
   );
 }
 
