@@ -94,12 +94,11 @@ function ContactModal({ isOpen, onClose }) {
                     onChange={handleChange}
                     className="w-full bg-gray-50 rounded-xl p-4 text-gray-900 outline-none focus:ring-2 focus:ring-amber-500/20 transition-all border border-gray-100 appearance-none cursor-pointer"
                   >
-                    <option value="" disabled>Service Needed</option>
-                    <option value="web">Web Development</option>
-                    <option value="uiux">UI/UX Design</option>
-                    <option value="video">Video Editing</option>
-                    <option value="branding">Branding</option>
-                    <option value="custom">Custom Project</option>
+                    <option value="Web Development">Web Development</option>
+                    <option value="UI/UX Design">UI/UX Design</option>
+                    <option value="Video Editing">Video Editing</option>
+                    <option value="Branding">Branding</option>
+                    <option value="Custom Project">Custom Project</option>
                   </select>
                 </div>
                 
