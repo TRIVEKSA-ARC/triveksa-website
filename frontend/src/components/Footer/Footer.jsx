@@ -1,8 +1,10 @@
 import * as LucideIcons from "lucide-react";
 import { Mail, Phone, Shield } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { useFooter } from "../../context/FooterContext";
 import Reveal from "../Reveal";
+import ContactModal from "../Contact/ContactModal";
 
 /* ================= ICON RESOLVER ================= */
 const getIcon = (iconName) => {
@@ -21,6 +23,7 @@ const getIcon = (iconName) => {
 function Footer() {
   const navigate = useNavigate();
   const { footer } = useFooter();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   /* ✅ SAFE FALLBACK WITH REFINED PREMIUM AGENCY DATA */
   const data = footer || {
@@ -44,6 +47,11 @@ function Footer() {
 
   return (
     <footer id="contact" className="relative w-full bg-[#030303] border-t border-white/5 overflow-hidden">
+      <ContactModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
+
       {/* AMBIENT BACKGROUND GLOWS */}
       <div className="pointer-events-none absolute left-[-10%] bottom-[-20%] h-[350px] w-[350px] rounded-full bg-[#f5c96a]/5 blur-[130px]" />
       <div className="pointer-events-none absolute right-[-5%] top-[-10%] h-[300px] w-[300px] rounded-full bg-amber-500/5 blur-[120px]" />
@@ -73,6 +81,13 @@ function Footer() {
               <p className="text-white/90 text-[14px] leading-relaxed max-w-sm font-medium">
                 {message}
               </p>
+
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="mt-4 rounded-full bg-gradient-to-r from-[#f5c96a] to-[#d89b1d] px-6 py-3 text-[11px] font-bold uppercase tracking-[0.25em] text-black transition hover:scale-105"
+              >
+                Start A Project
+              </button>
             </div>
 
             {/* CENTER — INTERACTIVE ENGAGEMENT CALLOUT */}
