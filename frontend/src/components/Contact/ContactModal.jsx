@@ -7,7 +7,9 @@ function ContactModal({ isOpen, onClose }) {
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-md px-4"
+        // Added 'isolate' to create a new stacking context, 
+        // which helps escape parent clipping/overflow issues.
+        className="fixed inset-0 z-[9999] isolate flex items-center justify-center bg-black/80 backdrop-blur-md px-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
