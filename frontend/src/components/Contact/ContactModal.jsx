@@ -50,6 +50,7 @@ function ContactModal({ isOpen, onClose }) {
                     <option value="uiux">UI/UX Design</option>
                     <option value="video">Video Editing</option>
                     <option value="branding">Branding</option>
+                    <option value="branding">Coustom Project</option>
                   </select>
                 </div>
                 
