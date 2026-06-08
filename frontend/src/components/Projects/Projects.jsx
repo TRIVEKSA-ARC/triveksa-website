@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Plus, ExternalLink } from "lucide-react";
 import { useProjects } from "../../context/ProjectContext";
 import Reveal from "../Reveal";
@@ -31,7 +31,6 @@ const PROJECT_THEMES = {
   },
 };
 
-// --- RING CAROUSEL ROW COMPONENT ---
 const ProjectSection = ({ title, items = [], theme }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
@@ -83,17 +82,15 @@ const ProjectSection = ({ title, items = [], theme }) => {
         </div>
 
         {items.length > 1 && (
-          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-[10000] flex items-center gap-4">
-            <button onClick={handlePrev} className="flex h-11 w-11 md:h-14 md:w-14 items-center justify-center rounded-full border border-white/10 bg-neutral-950/80 text-white/90 backdrop-blur-2xl transition-all duration-300 hover:bg-white hover:text-black hover:border-white shadow-[0_0_30px_rgba(0,0,0,0.8)]">
-              <ChevronLeft size={26} />
+          <div className="absolute bottom-6 md:bottom-8 z-50 flex items-center gap-2 bg-black/40 backdrop-blur-xl border border-white/10 p-1.5 rounded-full shadow-2xl">
+            <button onClick={handlePrev} className="h-10 w-10 flex items-center justify-center rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-all">
+              <ChevronLeft size={20} />
             </button>
-
-            <div className="px-4 py-2 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-white text-xs md:text-sm font-semibold">
-              {activeIndex + 1} / {items.length}
+            <div className="px-4 py-1 text-[11px] font-bold tracking-widest text-white/80 tabular-nums">
+              {String(activeIndex + 1).padStart(2, '0')} <span className="text-white/20">/</span> {String(items.length).padStart(2, '0')}
             </div>
-
-            <button onClick={handleNext} className="flex h-11 w-11 md:h-14 md:w-14 items-center justify-center rounded-full border border-white/10 bg-neutral-950/80 text-white/90 backdrop-blur-2xl transition-all duration-300 hover:bg-white hover:text-black hover:border-white shadow-[0_0_30px_rgba(0,0,0,0.8)]">
-              <ChevronRight size={26} />
+            <button onClick={handleNext} className="h-10 w-10 flex items-center justify-center rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-all">
+              <ChevronRight size={20} />
             </button>
           </div>
         )}
@@ -105,24 +102,27 @@ const ProjectSection = ({ title, items = [], theme }) => {
 const ProjectCard = ({ item, theme, offset, isActive }) => {
   return (
     <motion.div
+      initial={false}
       animate={{
         x: `${offset * 100}%`,
+        opacity: isActive ? 1 : 0.4,
+        scale: isActive ? 1 : 0.95,
       }}
       transition={{
         type: "spring",
-        stiffness: 120,
-        damping: 20,
+        stiffness: 200,
+        damping: 30,
+        mass: 1,
       }}
       style={{
-        zIndex: isActive ? 100 : 1,
+        zIndex: isActive ? 10 : 1,
         boxShadow: isActive ? theme.shadow.boxShadow : "0 20px 50px rgba(0,0,0,0.7)",
+        willChange: "transform",
       }}
-      className={`absolute w-[90%] md:w-[960px] lg:w-[1120px] shrink-0 rounded-[32px] md:rounded-[40px] border border-white/10 bg-[#0A0B10]/95 backdrop-blur-3xl p-5 sm:p-6 md:p-8 lg:p-10 ${theme.borderHover} transition-all duration-500 flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-10 items-center overflow-hidden ${isActive ? "opacity-100" : "opacity-40 pointer-events-none"}`}
+      className={`absolute w-[90%] md:w-[960px] lg:w-[1120px] shrink-0 rounded-[32px] md:rounded-[40px] border border-white/10 bg-[#0A0B10]/95 backdrop-blur-3xl p-5 sm:p-6 md:p-8 lg:p-10 ${theme.borderHover} flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-10 items-center overflow-hidden ${!isActive ? "pointer-events-none" : ""}`}
     >
       <div className="absolute inset-[8px] rounded-[24px] md:rounded-[32px] border border-white/[0.05] pointer-events-none" />
-      <div className="absolute inset-[16px] rounded-[18px] md:rounded-[24px] border border-white/[0.03] pointer-events-none" />
-      <div className="absolute inset-[24px] rounded-[14px] md:rounded-[20px] border border-white/[0.01] pointer-events-none" />
-
+      
       <div className="w-full md:w-[48%] lg:w-1/2 aspect-[16/10] bg-[#12131A] rounded-[22px] md:rounded-[32px] border border-white/10 p-2 flex items-center justify-center overflow-hidden shrink-0 group relative shadow-2xl">
         <img src={item.img && item.img.startsWith("http") ? item.img : "/placeholder.png"} alt={item.title} className="h-full w-full object-cover rounded-[16px] md:rounded-[24px] transition duration-700 group-hover:scale-[1.04]" />
         <div className={`absolute inset-0 bg-gradient-to-tr ${theme.color} opacity-0 group-hover:opacity-20 transition duration-500 pointer-events-none`} />
@@ -136,15 +136,10 @@ const ProjectCard = ({ item, theme, offset, isActive }) => {
           </div>
           <h4 className="text-[20px] sm:text-[24px] md:text-[30px] lg:text-[36px] font-bold tracking-tight text-white leading-tight mb-2 md:mb-3 lg:mb-4 line-clamp-1">{item.title}</h4>
           <p className="text-[12px] md:text-[14px] lg:text-[15px] leading-relaxed text-slate-200 font-normal mb-4 md:mb-5 lg:mb-6 line-clamp-2 md:line-clamp-3">{item.desc}</p>
-          <div className="grid grid-cols-3 gap-2 md:gap-4 border-t border-b border-white/10 py-3 md:py-4 lg:py-5 mb-4 md:mb-5 lg:mb-6 text-[10px] md:text-[11px] lg:text-[12px]">
-            <div><span className="text-[8px] md:text-[9px] uppercase tracking-[0.15em] text-white/50 block mb-1">Industry</span><span className="font-bold text-white truncate block">{item.industry || "Digital Solutions"}</span></div>
-            <div><span className="text-[8px] md:text-[9px] uppercase tracking-[0.15em] text-white/50 block mb-1">Core Focus</span><span className="font-bold text-white truncate block">{item.goal || "Premium Experience"}</span></div>
-            <div><span className={`text-[8px] md:text-[9px] uppercase tracking-[0.15em] bg-gradient-to-r ${theme.color} bg-clip-text text-transparent font-black block mb-1`}>Impact</span><span className="font-black text-white truncate block">{item.result || "Conversion Optimized"}</span></div>
-          </div>
         </div>
         <div className="flex items-center justify-between mt-auto pt-1 pointer-events-auto">
-          <a href={item.url || "#"} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className={`inline-flex items-center gap-2 rounded-full bg-gradient-to-r ${theme.color} px-4 py-2.5 md:px-5 md:py-3 lg:px-6 lg:py-3.5 text-[9px] md:text-[10px] font-black uppercase tracking-[0.15em] text-white shadow-xl transition-all duration-300 hover:scale-[1.03] hover:brightness-110 active:scale-97`}>Explore Experience <Plus size={12} /></a>
-          <a href={item.url || "#"} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className={`flex h-9 w-9 md:h-10 md:w-10 lg:h-11 lg:w-11 items-center justify-center rounded-full border border-white/20 bg-[#111218] text-white transition duration-300 hover:bg-white hover:text-black ${theme.borderHover}`}><ExternalLink size={14} /></a>
+          <a href={item.url || "#"} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 rounded-full bg-gradient-to-r ${theme.color} px-4 py-2.5 md:px-5 md:py-3 lg:px-6 lg:py-3.5 text-[9px] md:text-[10px] font-black uppercase tracking-[0.15em] text-white shadow-xl transition-all duration-300 hover:scale-[1.03]`}>Explore Experience <Plus size={12} /></a>
+          <a href={item.url || "#"} target="_blank" rel="noopener noreferrer" className={`flex h-9 w-9 md:h-10 md:w-10 lg:h-11 lg:w-11 items-center justify-center rounded-full border border-white/20 bg-[#111218] text-white transition duration-300 hover:bg-white hover:text-black ${theme.borderHover}`}><ExternalLink size={14} /></a>
         </div>
       </div>
     </motion.div>
@@ -162,7 +157,6 @@ function Projects() {
             <div className="mx-auto max-w-3xl">
               <div className="mb-5 flex items-center justify-center gap-3"><span className="h-px w-12 bg-gradient-to-r from-transparent via-amber-400 to-transparent" /><p className="text-[10px] md:text-[13px] uppercase tracking-[0.45em] text-white/80">Curated Projects</p><span className="h-px w-12 bg-gradient-to-r from-transparent via-amber-400 to-transparent" /></div>
               <h2 className="text-[36px] md:text-[72px] font-bold tracking-[-0.04em] leading-none text-white">SELECTED <span className="bg-gradient-to-r from-[#fff1c2] via-[#f5c96a] to-[#d89b1d] bg-clip-text text-transparent">WORK</span></h2>
-              <p className="mx-auto mt-5 max-w-2xl text-[11px] md:text-[14px] uppercase tracking-[0.25em] leading-relaxed text-white/60">A refined collection of development, design, and editing projects crafted with detail and purpose</p>
             </div>
           </Reveal>
         </header>
