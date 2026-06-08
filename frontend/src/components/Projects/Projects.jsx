@@ -119,7 +119,6 @@ const ProjectSection = ({ title, items = [], theme }) => {
                 theme={theme}
                 offset={offset}
                 isActive={offset === 0}
-                onDragEnd={handleDragEnd}
               />
             );
           })}
@@ -185,13 +184,13 @@ const ProjectSection = ({ title, items = [], theme }) => {
   );
 };
 
-const ProjectCard = ({ item, theme, offset, isActive, onDragEnd }) => {
+const ProjectCard = ({ item, theme, offset, isActive }) => {
   const rotateY = -offset * 22; 
   const translateX = offset * 106; 
   const translateZ = isActive ? -100 : -50; 
   
   const opacity = isActive ? 1 : 0.35;
-  const zIndex = isActive ? 30 : 10;
+  const zIndex = isActive ? 9999 : 1;
 
   return (
     <motion.div
@@ -209,15 +208,13 @@ const ProjectCard = ({ item, theme, offset, isActive, onDragEnd }) => {
         ease: [0.25, 1, 0.5, 1],
         duration: 0.85, 
       }}
-      drag={isActive ? "x" : false}
-      dragConstraints={{ left: 0, right: 0 }}
-      dragElastic={0.5}
-      onDragEnd={onDragEnd}
+      drag={false}
       className={`absolute w-full md:w-[960px] lg:w-[1120px] shrink-0 rounded-[32px] md:rounded-[40px] border border-white/10 bg-[#0A0B10]/95 backdrop-blur-3xl p-5 sm:p-6 md:p-8 lg:p-10 ${theme.borderHover} transition-colors duration-500 flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-10 items-center ${isActive ? "cursor-grab active:cursor-grabbing" : "pointer-events-none"}`}
       style={{
         zIndex: zIndex,
-        boxShadow: isActive ? theme.shadow.boxShadow : "0 20px 50px rgba(0,0,0,0.7)",
-        pointerEvents: isActive ? "auto" : "none",
+        boxShadow: isActive
+          ? theme.shadow.boxShadow
+          : "0 20px 50px rgba(0,0,0,0.7)",
       }}
     >
       <div className="w-full md:w-[48%] lg:w-1/2 aspect-[16/10] bg-[#12131A] rounded-[22px] md:rounded-[32px] border border-white/10 p-2 flex items-center justify-center overflow-hidden shrink-0 group relative shadow-2xl">
@@ -271,6 +268,8 @@ const ProjectCard = ({ item, theme, offset, isActive, onDragEnd }) => {
             href={item.url || "#"}
             target="_blank"
             rel="noopener noreferrer"
+            onPointerDown={(e) => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
             className={`inline-flex items-center gap-2 rounded-full bg-gradient-to-r ${theme.color} px-4 py-2.5 md:px-5 md:py-3 lg:px-6 lg:py-3.5 text-[9px] md:text-[10px] font-black uppercase tracking-[0.15em] text-white shadow-xl transition-all duration-300 hover:scale-[1.03] hover:brightness-110 active:scale-97`}
           >
             Explore Experience <Plus size={12} className="text-white" />
@@ -280,6 +279,8 @@ const ProjectCard = ({ item, theme, offset, isActive, onDragEnd }) => {
             href={item.url || "#"} 
             target="_blank" 
             rel="noopener noreferrer"
+            onPointerDown={(e) => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
             className={`flex h-9 w-9 md:h-10 md:w-10 lg:h-11 lg:w-11 items-center justify-center rounded-full border border-white/20 bg-[#111218] text-white transition duration-300 hover:bg-white hover:text-black ${theme.borderHover}`}
           >
             <ExternalLink size={14} />
