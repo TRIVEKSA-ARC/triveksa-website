@@ -54,7 +54,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
   const handlePrev = () => setActiveIndex((prev) => (prev - 1 + items.length) % items.length);
 
   const handleDragEnd = (event, info) => {
-    const swipeThreshold = 50;
+    const swipeThreshold = 120;
     if (info.offset.x < -swipeThreshold) {
       handleNext();
     } else if (info.offset.x > swipeThreshold) {
@@ -103,18 +103,25 @@ const ProjectSection = ({ title, items = [], theme }) => {
 };
 
 const ProjectCard = ({ item, theme, offset, isActive, onDragEnd }) => {
-  const translateX = offset * 100;
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
   return (
     <motion.div
-      drag={isMobile ? "x" : false}
+      drag={isMobile && isActive ? "x" : false}
+      dragDirectionLock
       dragConstraints={{ left: 0, right: 0 }}
-      dragElastic={0.2}
+      dragElastic={0.08}
       onDragEnd={onDragEnd}
+      animate={{
+        x: `${offset * 100}%`,
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 120,
+        damping: 20,
+      }}
       style={{
         zIndex: isActive ? 100 : 1,
-        transform: `translateX(${translateX}%)`,
         boxShadow: isActive ? theme.shadow.boxShadow : "0 20px 50px rgba(0,0,0,0.7)",
       }}
       className={`absolute w-[90%] md:w-[960px] lg:w-[1120px] shrink-0 rounded-[32px] md:rounded-[40px] border border-white/10 bg-[#0A0B10]/95 backdrop-blur-3xl p-5 sm:p-6 md:p-8 lg:p-10 ${theme.borderHover} transition-all duration-500 flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-10 items-center overflow-hidden ${isActive ? "opacity-100" : "opacity-40 pointer-events-none"}`}
