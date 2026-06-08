@@ -209,12 +209,7 @@ const ProjectCard = ({ item, theme, offset, isActive, onDragEnd }) => {
         ease: [0.25, 1, 0.5, 1],
         duration: 0.85, 
       }}
-      // Fixed: Allowed card-level vertical page scrolling on mobile while cleanly capturing horizontal swipe gestures
       drag={isActive ? "x" : false}
-      dragPropagation={false}
-      onPointerDown={(e) => {
-        if (e.target.closest("a")) return;
-      }}
       dragConstraints={{ left: 0, right: 0 }}
       dragElastic={0.5}
       onDragEnd={onDragEnd}
@@ -270,20 +265,22 @@ const ProjectCard = ({ item, theme, offset, isActive, onDragEnd }) => {
           </div>
         </div>
 
-        <div className="flex items-center justify-between mt-auto pt-1">
+        <div className="flex items-center justify-between mt-auto pt-1 pointer-events-auto">
           <a
-            href={item.url}
+            href={item.url || "#"}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
             className={`inline-flex items-center gap-2 rounded-full bg-gradient-to-r ${theme.color} px-4 py-2.5 md:px-5 md:py-3 lg:px-6 lg:py-3.5 text-[9px] md:text-[10px] font-black uppercase tracking-[0.15em] text-white shadow-xl transition-all duration-300 hover:scale-[1.03] hover:brightness-110 active:scale-97`}
           >
             Explore Experience <Plus size={12} className="text-white" />
           </a>
 
           <a 
-            href={item.url} 
+            href={item.url || "#"} 
             target="_blank" 
             rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
             className={`flex h-9 w-9 md:h-10 md:w-10 lg:h-11 lg:w-11 items-center justify-center rounded-full border border-white/20 bg-[#111218] text-white transition duration-300 hover:bg-white hover:text-black ${theme.borderHover}`}
           >
             <ExternalLink size={14} />
