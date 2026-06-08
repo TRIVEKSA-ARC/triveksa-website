@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Plus, ExternalLink } from "lucide-react";
 import { useProjects } from "../../context/ProjectContext";
 import Reveal from "../Reveal";
@@ -82,17 +82,28 @@ const ProjectSection = ({ title, items = [], theme }) => {
         </div>
 
         {items.length > 1 && (
-          <div className="absolute bottom-6 md:bottom-8 z-50 flex items-center gap-2 bg-black/40 backdrop-blur-xl border border-white/10 p-1.5 rounded-full shadow-2xl">
-            <button onClick={handlePrev} className="h-10 w-10 flex items-center justify-center rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-all">
-              <ChevronLeft size={20} />
+          <>
+            {/* Laptop/Desktop Side Arrows */}
+            <button onClick={handlePrev} className="hidden md:flex absolute left-0 lg:-left-12 z-50 h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-neutral-950/80 text-white/90 backdrop-blur-2xl transition-all duration-300 hover:bg-white hover:text-black hover:border-white shadow-[0_0_30px_rgba(0,0,0,0.8)]">
+              <ChevronLeft size={28} />
             </button>
-            <div className="px-4 py-1 text-[11px] font-bold tracking-widest text-white/80 tabular-nums">
-              {String(activeIndex + 1).padStart(2, '0')} <span className="text-white/20">/</span> {String(items.length).padStart(2, '0')}
+            <button onClick={handleNext} className="hidden md:flex absolute right-0 lg:-right-12 z-50 h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-neutral-950/80 text-white/90 backdrop-blur-2xl transition-all duration-300 hover:bg-white hover:text-black hover:border-white shadow-[0_0_30px_rgba(0,0,0,0.8)]">
+              <ChevronRight size={28} />
+            </button>
+
+            {/* Mobile Bottom Bar (Arrows + Counter) */}
+            <div className="md:hidden absolute bottom-6 z-50 flex items-center gap-2 bg-black/40 backdrop-blur-xl border border-white/10 p-1.5 rounded-full shadow-2xl">
+              <button onClick={handlePrev} className="h-10 w-10 flex items-center justify-center rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-all">
+                <ChevronLeft size={20} />
+              </button>
+              <div className="px-4 py-1 text-[11px] font-bold tracking-widest text-white/80 tabular-nums">
+                {String(activeIndex + 1).padStart(2, '0')} <span className="text-white/20">/</span> {String(items.length).padStart(2, '0')}
+              </div>
+              <button onClick={handleNext} className="h-10 w-10 flex items-center justify-center rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-all">
+                <ChevronRight size={20} />
+              </button>
             </div>
-            <button onClick={handleNext} className="h-10 w-10 flex items-center justify-center rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-all">
-              <ChevronRight size={20} />
-            </button>
-          </div>
+          </>
         )}
       </div>
     </div>
