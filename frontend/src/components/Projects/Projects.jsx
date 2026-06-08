@@ -58,15 +58,6 @@ const ProjectSection = ({ title, items = [], theme }) => {
     setActiveIndex((prev) => (prev - 1 + items.length) % items.length);
   };
 
-  const handleDragEnd = (event, info) => {
-    const swipeThreshold = 50; 
-    if (info.offset.x < -swipeThreshold) {
-      handleNext();
-    } else if (info.offset.x > swipeThreshold) {
-      handlePrev();
-    }
-  };
-
   return (
     <div className="mb-20 md:mb-32 w-full relative overflow-visible px-4 sm:px-6 md:px-12 lg:px-16">
       <div className="mx-auto mb-10 md:mb-14 max-w-7xl px-2">
@@ -97,7 +88,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
 
         <div 
           className="relative w-full h-full flex items-center justify-center touch-pan-y"
-          style={{ perspective: "1800px", transformStyle: "preserve-3d" }}
+          style={{}}
         >
           {items.map((item, index) => {
             let offset = index - activeIndex;
@@ -126,39 +117,19 @@ const ProjectSection = ({ title, items = [], theme }) => {
 
         {items.length > 1 && (
           <>
-            <motion.button
+            <button
               onClick={handlePrev}
-              initial={{ opacity: 0, x: -30, scale: 0.9 }}
-              animate={{ 
-                opacity: isHovered ? 1 : 0, 
-                x: isHovered ? -8 : -30,
-                scale: isHovered ? 1 : 0.9,
-                pointerEvents: isHovered ? "auto" : "none"
-              }}
-              whileHover={{ scale: 1.08, x: -14 }}
-              whileTap={{ scale: 0.96 }}
-              transition={{ type: "spring", stiffness: 350, damping: 28 }}
               className="hidden md:flex absolute md:left-2 lg:-left-6 z-40 h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-neutral-950/80 text-white/90 backdrop-blur-2xl transition-colors duration-300 hover:bg-white hover:text-black hover:border-white shadow-[0_0_30px_rgba(0,0,0,0.8)]"
             >
               <ChevronLeft size={26} />
-            </motion.button>
+            </button>
 
-            <motion.button
+            <button
               onClick={handleNext}
-              initial={{ opacity: 0, x: 30, scale: 0.9 }}
-              animate={{ 
-                opacity: isHovered ? 1 : 0, 
-                x: isHovered ? 8 : 30,
-                scale: isHovered ? 1 : 0.9,
-                pointerEvents: isHovered ? "auto" : "none"
-              }}
-              whileHover={{ scale: 1.08, x: 14 }}
-              whileTap={{ scale: 0.96 }}
-              transition={{ type: "spring", stiffness: 350, damping: 28 }}
               className="hidden md:flex absolute md:right-2 lg:-right-6 z-40 h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-neutral-950/80 text-white/90 backdrop-blur-2xl transition-colors duration-300 hover:bg-white hover:text-black hover:border-white shadow-[0_0_30px_rgba(0,0,0,0.8)]"
             >
               <ChevronRight size={26} />
-            </motion.button>
+            </button>
 
             <div className="flex md:hidden items-center justify-center gap-6 mt-4 z-40 relative">
               <button
@@ -185,30 +156,15 @@ const ProjectSection = ({ title, items = [], theme }) => {
 };
 
 const ProjectCard = ({ item, theme, offset, isActive }) => {
-  const rotateY = -offset * 22; 
-  const translateX = offset * 106; 
-  const translateZ = isActive ? -100 : -50; 
-  
-  const opacity = isActive ? 1 : 0.35;
+  const translateX = offset * 100; 
   const zIndex = isActive ? 9999 : 1;
 
   return (
-    <motion.div
-      style={{ transformStyle: "preserve-3d" }}
-      initial={false}
+    <div
+      style={{}}
       animate={{
         x: `${translateX}%`,
-        z: translateZ,
-        rotateY: rotateY,
-        opacity: opacity,
-        scale: isActive ? 1 : 0.80,
       }}
-      transition={{
-        type: "tween",
-        ease: [0.25, 1, 0.5, 1],
-        duration: 0.85, 
-      }}
-      drag={false}
       className={`absolute w-full md:w-[960px] lg:w-[1120px] shrink-0 rounded-[32px] md:rounded-[40px] border border-white/10 bg-[#0A0B10]/95 backdrop-blur-3xl p-5 sm:p-6 md:p-8 lg:p-10 ${theme.borderHover} transition-colors duration-500 flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-10 items-center ${isActive ? "cursor-grab active:cursor-grabbing" : "pointer-events-none"}`}
       style={{
         zIndex: zIndex,
@@ -287,7 +243,7 @@ const ProjectCard = ({ item, theme, offset, isActive }) => {
           </a>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
