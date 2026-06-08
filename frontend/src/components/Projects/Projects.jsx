@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { motion, useMotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Plus, ExternalLink } from "lucide-react";
 import { useProjects } from "../../context/ProjectContext";
 import Reveal from "../Reveal";
@@ -8,25 +8,19 @@ const PROJECT_THEMES = {
   web: {
     color: "from-cyan-400 via-indigo-400 to-blue-500",
     glow: "rgba(34,211,238,0.35)", 
-    shadow: {
-      boxShadow: "0 40px 80px -15px rgba(6,182,212,0.45), 0 0 50px -10px rgba(6,182,212,0.2)",
-    },
+    shadow: { boxShadow: "0 40px 80px -15px rgba(6,182,212,0.45), 0 0 50px -10px rgba(6,182,212,0.2)" },
     borderHover: "hover:border-cyan-400/60",
   },
   uiux: {
     color: "from-fuchsia-400 via-purple-400 to-pink-500",
     glow: "rgba(192,132,252,0.35)",
-    shadow: {
-      boxShadow: "0 40px 80px -15px rgba(168,85,247,0.45), 0 0 50px -10px rgba(168,85,247,0.2)",
-    },
+    shadow: { boxShadow: "0 40px 80px -15px rgba(168,85,247,0.45), 0 0 50px -10px rgba(168,85,247,0.2)" },
     borderHover: "hover:border-purple-400/60",
   },
   editing: {
     color: "from-amber-400 via-orange-400 to-rose-500",
     glow: "rgba(251,191,36,0.32)",
-    shadow: {
-      boxShadow: "0 40px 80px -15px rgba(245,158,11,0.45), 0 0 50px -10px rgba(245,158,11,0.2)",
-    },
+    shadow: { boxShadow: "0 40px 80px -15px rgba(245,158,11,0.45), 0 0 50px -10px rgba(245,158,11,0.2)" },
     borderHover: "hover:border-amber-400/60",
   },
 };
@@ -53,7 +47,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
   const handlePrev = () => setActiveIndex((prev) => (prev - 1 + items.length) % items.length);
 
   return (
-    <div className="mb-16 md:mb-32 w-full relative px-2 sm:px-6">
+    <div className="mb-16 md:mb-32 w-full relative px-2 sm:px-6 overflow-x-hidden">
       <div className="mx-auto mb-8 md:mb-14 max-w-7xl px-2">
         <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex items-center gap-4">
           <span className={`h-px w-10 md:w-16 bg-gradient-to-r ${theme.color}`} />
@@ -82,7 +76,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
         </div>
 
         {items.length > 1 && (
-          <div className="absolute inset-x-0 bottom-[-50px] md:bottom-auto flex justify-between px-4 z-[1000]">
+          <div className="absolute inset-x-0 bottom-[-20px] md:bottom-auto flex justify-between px-4 z-[1000]">
             <button onClick={handlePrev} className="h-10 w-10 md:h-14 md:w-14 flex items-center justify-center rounded-full border border-white/10 bg-neutral-950/80 text-white backdrop-blur-xl shadow-2xl hover:bg-white hover:text-black transition-all"><ChevronLeft size={20} /></button>
             <button onClick={handleNext} className="h-10 w-10 md:h-14 md:w-14 flex items-center justify-center rounded-full border border-white/10 bg-neutral-950/80 text-white backdrop-blur-xl shadow-2xl hover:bg-white hover:text-black transition-all"><ChevronRight size={20} /></button>
           </div>
@@ -102,12 +96,18 @@ const ProjectCard = ({ item, theme, offset, isActive, onSwipeLeft, onSwipeRight 
         if (dragOffset.x > 50) onSwipeRight();
         else if (dragOffset.x < -50) onSwipeLeft();
       }}
+      initial={false}
+      animate={{ 
+        x: offset * (typeof window !== 'undefined' ? (window.innerWidth > 768 ? 1000 : window.innerWidth * 0.95) : 800),
+        opacity: isActive ? 1 : 0.4,
+        scale: isActive ? 1 : 0.92
+      }}
+      transition={{ type: "spring", stiffness: 300, damping: 30 }}
       style={{
         zIndex: isActive ? 100 : 1,
-        x: offset * (typeof window !== 'undefined' ? window.innerWidth * 0.9 : 800),
         touchAction: "pan-y",
       }}
-      className={`absolute w-[92vw] md:w-[960px] lg:w-[1120px] shrink-0 rounded-[24px] md:rounded-[40px] border border-white/10 bg-[#0A0B10]/95 backdrop-blur-3xl p-5 md:p-10 ${theme.borderHover} transition-all duration-500 flex flex-col md:flex-row gap-6 items-center overflow-hidden ${isActive ? "opacity-100" : "opacity-40 pointer-events-none"}`}
+      className={`absolute w-[92vw] md:w-[960px] lg:w-[1120px] shrink-0 rounded-[24px] md:rounded-[40px] border border-white/10 bg-[#0A0B10]/95 backdrop-blur-3xl p-5 md:p-10 ${theme.borderHover} flex flex-col md:flex-row gap-6 items-center overflow-hidden ${isActive ? "pointer-events-auto" : "pointer-events-none"}`}
     >
       <div className="absolute inset-[6px] rounded-[20px] md:rounded-[32px] border border-white/[0.05] pointer-events-none" />
       
