@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Plus, ExternalLink } from "lucide-react";
 import { useProjects } from "../../context/ProjectContext";
 import Reveal from "../Reveal";
@@ -59,7 +59,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
   };
 
   return (
-    <div className="mb-20 md:mb-32 w-full relative overflow-visible px-4 sm:px-6 md:px-12 lg:px-16">
+    <div className="mb-20 md:mb-32 w-full relative px-4 sm:px-6 md:px-12 lg:px-16">
       <div className="mx-auto mb-10 md:mb-14 max-w-7xl px-2">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -76,6 +76,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
         </motion.div>
       </div>
 
+      {/* Main Container - Added overflow-visible explicitly for button positioning */}
       <div 
         className="relative w-full h-[660px] sm:h-[600px] md:h-[580px] lg:h-[540px] flex flex-col items-center justify-center overflow-visible select-none mx-auto max-w-[1400px]"
         onMouseEnter={() => setIsHovered(true)}
@@ -86,10 +87,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
           style={{ backgroundColor: theme.glow }}
         />
 
-        <div 
-          className="relative w-full h-full flex items-center justify-center touch-pan-y"
-          style={{}}
-        >
+        <div className="relative w-full h-full flex items-center justify-center">
           {items.map((item, index) => {
             let offset = index - activeIndex;
             if (items.length > 2) {
@@ -115,18 +113,19 @@ const ProjectSection = ({ title, items = [], theme }) => {
           })}
         </div>
 
+        {/* Buttons - Fixed Positioning */}
         {items.length > 1 && (
           <>
             <button
               onClick={handlePrev}
-              className="hidden md:flex absolute md:left-2 lg:-left-6 z-40 h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-neutral-950/80 text-white/90 backdrop-blur-2xl transition-colors duration-300 hover:bg-white hover:text-black hover:border-white shadow-[0_0_30px_rgba(0,0,0,0.8)]"
+              className="hidden md:flex absolute left-4 lg:-left-12 z-[10000] h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-neutral-950/80 text-white/90 backdrop-blur-2xl transition-all duration-300 hover:bg-white hover:text-black hover:border-white shadow-[0_0_30px_rgba(0,0,0,0.8)]"
             >
               <ChevronLeft size={26} />
             </button>
 
             <button
               onClick={handleNext}
-              className="hidden md:flex absolute md:right-2 lg:-right-6 z-40 h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-neutral-950/80 text-white/90 backdrop-blur-2xl transition-colors duration-300 hover:bg-white hover:text-black hover:border-white shadow-[0_0_30px_rgba(0,0,0,0.8)]"
+              className="hidden md:flex absolute right-4 lg:-right-12 z-[10000] h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-neutral-950/80 text-white/90 backdrop-blur-2xl transition-all duration-300 hover:bg-white hover:text-black hover:border-white shadow-[0_0_30px_rgba(0,0,0,0.8)]"
             >
               <ChevronRight size={26} />
             </button>
@@ -157,21 +156,16 @@ const ProjectSection = ({ title, items = [], theme }) => {
 
 const ProjectCard = ({ item, theme, offset, isActive }) => {
   const translateX = offset * 100; 
-  const zIndex = isActive ? 9999 : 1;
+  const zIndex = isActive ? 100 : 1;
 
   return (
     <div
-      style={{}}
-      animate={{
-        x: `${translateX}%`,
-      }}
-      className={`absolute w-full md:w-[960px] lg:w-[1120px] shrink-0 rounded-[32px] md:rounded-[40px] border border-white/10 bg-[#0A0B10]/95 backdrop-blur-3xl p-5 sm:p-6 md:p-8 lg:p-10 ${theme.borderHover} transition-colors duration-500 flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-10 items-center ${isActive ? "cursor-grab active:cursor-grabbing" : "pointer-events-none"}`}
       style={{
         zIndex: zIndex,
-        boxShadow: isActive
-          ? theme.shadow.boxShadow
-          : "0 20px 50px rgba(0,0,0,0.7)",
+        transform: `translateX(${translateX}%)`,
+        boxShadow: isActive ? theme.shadow.boxShadow : "0 20px 50px rgba(0,0,0,0.7)",
       }}
+      className={`absolute w-[90%] md:w-[960px] lg:w-[1120px] shrink-0 rounded-[32px] md:rounded-[40px] border border-white/10 bg-[#0A0B10]/95 backdrop-blur-3xl p-5 sm:p-6 md:p-8 lg:p-10 ${theme.borderHover} transition-all duration-500 flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-10 items-center ${isActive ? "opacity-100" : "opacity-40 pointer-events-none"}`}
     >
       <div className="w-full md:w-[48%] lg:w-1/2 aspect-[16/10] bg-[#12131A] rounded-[22px] md:rounded-[32px] border border-white/10 p-2 flex items-center justify-center overflow-hidden shrink-0 group relative shadow-2xl">
         <img
@@ -224,7 +218,6 @@ const ProjectCard = ({ item, theme, offset, isActive }) => {
             href={item.url || "#"}
             target="_blank"
             rel="noopener noreferrer"
-            onPointerDown={(e) => e.stopPropagation()}
             onClick={(e) => e.stopPropagation()}
             className={`inline-flex items-center gap-2 rounded-full bg-gradient-to-r ${theme.color} px-4 py-2.5 md:px-5 md:py-3 lg:px-6 lg:py-3.5 text-[9px] md:text-[10px] font-black uppercase tracking-[0.15em] text-white shadow-xl transition-all duration-300 hover:scale-[1.03] hover:brightness-110 active:scale-97`}
           >
@@ -235,7 +228,6 @@ const ProjectCard = ({ item, theme, offset, isActive }) => {
             href={item.url || "#"} 
             target="_blank" 
             rel="noopener noreferrer"
-            onPointerDown={(e) => e.stopPropagation()}
             onClick={(e) => e.stopPropagation()}
             className={`flex h-9 w-9 md:h-10 md:w-10 lg:h-11 lg:w-11 items-center justify-center rounded-full border border-white/20 bg-[#111218] text-white transition duration-300 hover:bg-white hover:text-black ${theme.borderHover}`}
           >
