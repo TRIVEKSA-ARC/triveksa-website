@@ -31,6 +31,7 @@ const PROJECT_THEMES = {
   },
 };
 
+// --- RING CAROUSEL ROW COMPONENT ---
 const ProjectSection = ({ title, items = [], theme }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
@@ -104,8 +105,9 @@ const ProjectCard = ({ item, theme, offset, isActive }) => {
       className={`absolute w-[90%] md:w-[960px] lg:w-[1120px] shrink-0 rounded-[32px] md:rounded-[40px] border border-white/10 bg-[#0A0B10]/95 backdrop-blur-3xl p-5 sm:p-6 md:p-8 lg:p-10 ${theme.borderHover} transition-all duration-500 flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-10 items-center overflow-hidden ${isActive ? "opacity-100" : "opacity-40 pointer-events-none"}`}
     >
       {/* Inner Ring Structure */}
-      <div className="absolute inset-[8px] rounded-[24px] md:rounded-[32px] border border-white/[0.03] pointer-events-none" />
-      <div className="absolute inset-[12px] rounded-[20px] md:rounded-[28px] border border-white/[0.02] pointer-events-none" />
+      <div className="absolute inset-[8px] rounded-[24px] md:rounded-[32px] border border-white/[0.05] pointer-events-none" />
+      <div className="absolute inset-[16px] rounded-[18px] md:rounded-[24px] border border-white/[0.03] pointer-events-none" />
+      <div className="absolute inset-[24px] rounded-[14px] md:rounded-[20px] border border-white/[0.01] pointer-events-none" />
 
       <div className="w-full md:w-[48%] lg:w-1/2 aspect-[16/10] bg-[#12131A] rounded-[22px] md:rounded-[32px] border border-white/10 p-2 flex items-center justify-center overflow-hidden shrink-0 group relative shadow-2xl">
         <img src={item.img && item.img.startsWith("http") ? item.img : "/placeholder.png"} alt={item.title} className="h-full w-full object-cover rounded-[16px] md:rounded-[24px] transition duration-700 group-hover:scale-[1.04]" />
