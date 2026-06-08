@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 import { ChevronLeft, ChevronRight, Plus, ExternalLink } from "lucide-react";
 import { useProjects } from "../../context/ProjectContext";
 import Reveal from "../Reveal";
@@ -31,7 +31,6 @@ const PROJECT_THEMES = {
   },
 };
 
-// --- RING CAROUSEL ROW COMPONENT ---
 const ProjectSection = ({ title, items = [], theme }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
@@ -54,18 +53,18 @@ const ProjectSection = ({ title, items = [], theme }) => {
   const handlePrev = () => setActiveIndex((prev) => (prev - 1 + items.length) % items.length);
 
   return (
-    <div className="mb-20 md:mb-32 w-full relative px-4 sm:px-6 md:px-12 lg:px-16">
-      <div className="mx-auto mb-10 md:mb-14 max-w-7xl px-2">
+    <div className="mb-16 md:mb-32 w-full relative px-2 sm:px-6">
+      <div className="mx-auto mb-8 md:mb-14 max-w-7xl px-2">
         <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex items-center gap-4">
-          <span className={`h-px w-16 bg-gradient-to-r ${theme.color}`} />
-          <motion.h3 className={`text-[11px] md:text-[13px] font-bold uppercase tracking-[0.45em] bg-gradient-to-r ${theme.color} bg-clip-text text-transparent`}>
+          <span className={`h-px w-10 md:w-16 bg-gradient-to-r ${theme.color}`} />
+          <motion.h3 className={`text-[10px] md:text-[13px] font-bold uppercase tracking-[0.3em] bg-gradient-to-r ${theme.color} bg-clip-text text-transparent`}>
             {title}
           </motion.h3>
         </motion.div>
       </div>
 
-      <div className="relative w-full h-[660px] sm:h-[600px] md:h-[580px] lg:h-[540px] flex flex-col items-center justify-center overflow-visible select-none mx-auto max-w-[1400px]" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-        <div className="absolute w-[280px] h-[280px] md:w-[550px] md:h-[550px] rounded-full blur-[100px] md:blur-[160px] opacity-40 pointer-events-none transition-all duration-1000 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style={{ backgroundColor: theme.glow }} />
+      <div className="relative w-full h-[520px] sm:h-[580px] md:h-[540px] flex items-center justify-center overflow-visible select-none" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+        <div className="absolute w-[200px] h-[200px] md:w-[550px] md:h-[550px] rounded-full blur-[80px] md:blur-[160px] opacity-30 pointer-events-none" style={{ backgroundColor: theme.glow }} />
 
         <div className="relative w-full h-full flex items-center justify-center">
           {items.map((item, index) => {
@@ -78,83 +77,74 @@ const ProjectSection = ({ title, items = [], theme }) => {
               if (offset > 0.5) offset -= 2;
             }
             if (Math.abs(offset) > 1) return null;
-            return <ProjectCard key={item._id || index} item={item} theme={theme} offset={offset} isActive={offset === 0} />;
+            return <ProjectCard key={item._id || index} item={item} theme={theme} offset={offset} isActive={offset === 0} onSwipeLeft={handleNext} onSwipeRight={handlePrev} />;
           })}
         </div>
 
         {items.length > 1 && (
-          <>
-            <button onClick={handlePrev} className="hidden md:flex absolute left-4 lg:-left-12 z-[10000] h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-neutral-950/80 text-white/90 backdrop-blur-2xl transition-all duration-300 hover:bg-white hover:text-black hover:border-white shadow-[0_0_30px_rgba(0,0,0,0.8)]"><ChevronLeft size={26} /></button>
-            <button onClick={handleNext} className="hidden md:flex absolute right-4 lg:-right-12 z-[10000] h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-neutral-950/80 text-white/90 backdrop-blur-2xl transition-all duration-300 hover:bg-white hover:text-black hover:border-white shadow-[0_0_30px_rgba(0,0,0,0.8)]"><ChevronRight size={26} /></button>
-          </>
+          <div className="absolute inset-x-0 bottom-[-50px] md:bottom-auto flex justify-between px-4 z-[1000]">
+            <button onClick={handlePrev} className="h-10 w-10 md:h-14 md:w-14 flex items-center justify-center rounded-full border border-white/10 bg-neutral-950/80 text-white backdrop-blur-xl shadow-2xl hover:bg-white hover:text-black transition-all"><ChevronLeft size={20} /></button>
+            <button onClick={handleNext} className="h-10 w-10 md:h-14 md:w-14 flex items-center justify-center rounded-full border border-white/10 bg-neutral-950/80 text-white backdrop-blur-xl shadow-2xl hover:bg-white hover:text-black transition-all"><ChevronRight size={20} /></button>
+          </div>
         )}
       </div>
     </div>
   );
 };
 
-const ProjectCard = ({ item, theme, offset, isActive }) => {
-  const translateX = offset * 100; 
+const ProjectCard = ({ item, theme, offset, isActive, onSwipeLeft, onSwipeRight }) => {
   return (
-    <div
+    <motion.div
+      drag={isActive ? "x" : false}
+      dragConstraints={{ left: 0, right: 0 }}
+      dragElastic={0.2}
+      onDragEnd={(e, { offset: dragOffset }) => {
+        if (dragOffset.x > 50) onSwipeRight();
+        else if (dragOffset.x < -50) onSwipeLeft();
+      }}
       style={{
         zIndex: isActive ? 100 : 1,
-        transform: `translateX(${translateX}%)`,
-        boxShadow: isActive ? theme.shadow.boxShadow : "0 20px 50px rgba(0,0,0,0.7)",
+        x: offset * (typeof window !== 'undefined' ? window.innerWidth * 0.9 : 800),
+        touchAction: "pan-y",
       }}
-      className={`absolute w-[90%] md:w-[960px] lg:w-[1120px] shrink-0 rounded-[32px] md:rounded-[40px] border border-white/10 bg-[#0A0B10]/95 backdrop-blur-3xl p-5 sm:p-6 md:p-8 lg:p-10 ${theme.borderHover} transition-all duration-500 flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-10 items-center overflow-hidden ${isActive ? "opacity-100" : "opacity-40 pointer-events-none"}`}
+      className={`absolute w-[92vw] md:w-[960px] lg:w-[1120px] shrink-0 rounded-[24px] md:rounded-[40px] border border-white/10 bg-[#0A0B10]/95 backdrop-blur-3xl p-5 md:p-10 ${theme.borderHover} transition-all duration-500 flex flex-col md:flex-row gap-6 items-center overflow-hidden ${isActive ? "opacity-100" : "opacity-40 pointer-events-none"}`}
     >
-      {/* Inner Ring Structure */}
-      <div className="absolute inset-[8px] rounded-[24px] md:rounded-[32px] border border-white/[0.05] pointer-events-none" />
-      <div className="absolute inset-[16px] rounded-[18px] md:rounded-[24px] border border-white/[0.03] pointer-events-none" />
-      <div className="absolute inset-[24px] rounded-[14px] md:rounded-[20px] border border-white/[0.01] pointer-events-none" />
-
-      <div className="w-full md:w-[48%] lg:w-1/2 aspect-[16/10] bg-[#12131A] rounded-[22px] md:rounded-[32px] border border-white/10 p-2 flex items-center justify-center overflow-hidden shrink-0 group relative shadow-2xl">
-        <img src={item.img && item.img.startsWith("http") ? item.img : "/placeholder.png"} alt={item.title} className="h-full w-full object-cover rounded-[16px] md:rounded-[24px] transition duration-700 group-hover:scale-[1.04]" />
-        <div className={`absolute inset-0 bg-gradient-to-tr ${theme.color} opacity-0 group-hover:opacity-20 transition duration-500 pointer-events-none`} />
+      <div className="absolute inset-[6px] rounded-[20px] md:rounded-[32px] border border-white/[0.05] pointer-events-none" />
+      
+      <div className="w-full md:w-[48%] aspect-[16/10] bg-[#12131A] rounded-[16px] md:rounded-[32px] border border-white/10 p-1 flex items-center justify-center overflow-hidden shrink-0 relative">
+        <img src={item.img && item.img.startsWith("http") ? item.img : "/placeholder.png"} alt={item.title} className="h-full w-full object-cover rounded-[14px] md:rounded-[24px]" />
       </div>
 
-      <div className="w-full md:w-[52%] lg:w-1/2 flex flex-col justify-between h-full py-1">
-        <div>
-          <div className="flex items-center gap-2 mb-3 md:mb-4">
-            <span className={`rounded-full bg-gradient-to-r ${theme.color} p-[1px]`}><span className="block rounded-full bg-[#0A0B10] px-3 py-0.5 text-[8px] md:text-[9px] font-black uppercase tracking-[0.25em] text-white">Featured Experience</span></span>
-            <span className="rounded-full border border-white/20 bg-white/10 px-3 py-0.5 text-[8px] md:text-[9px] font-bold uppercase tracking-[0.18em] text-white">{item.category || "Web"}</span>
-          </div>
-          <h4 className="text-[20px] sm:text-[24px] md:text-[30px] lg:text-[36px] font-bold tracking-tight text-white leading-tight mb-2 md:mb-3 lg:mb-4 line-clamp-1">{item.title}</h4>
-          <p className="text-[12px] md:text-[14px] lg:text-[15px] leading-relaxed text-slate-200 font-normal mb-4 md:mb-5 lg:mb-6 line-clamp-2 md:line-clamp-3">{item.desc}</p>
-          <div className="grid grid-cols-3 gap-2 md:gap-4 border-t border-b border-white/10 py-3 md:py-4 lg:py-5 mb-4 md:mb-5 lg:mb-6 text-[10px] md:text-[11px] lg:text-[12px]">
-            <div><span className="text-[8px] md:text-[9px] uppercase tracking-[0.15em] text-white/50 block mb-1">Industry</span><span className="font-bold text-white truncate block">{item.industry || "Digital Solutions"}</span></div>
-            <div><span className="text-[8px] md:text-[9px] uppercase tracking-[0.15em] text-white/50 block mb-1">Core Focus</span><span className="font-bold text-white truncate block">{item.goal || "Premium Experience"}</span></div>
-            <div><span className={`text-[8px] md:text-[9px] uppercase tracking-[0.15em] bg-gradient-to-r ${theme.color} bg-clip-text text-transparent font-black block mb-1`}>Impact</span><span className="font-black text-white truncate block">{item.result || "Conversion Optimized"}</span></div>
-          </div>
+      <div className="w-full md:w-[52%] flex flex-col h-full py-1">
+        <div className="flex items-center gap-2 mb-3">
+          <span className={`px-2 py-0.5 rounded-full border border-white/10 text-[8px] uppercase tracking-widest text-white/70`}>{item.category || "Web"}</span>
         </div>
-        <div className="flex items-center justify-between mt-auto pt-1 pointer-events-auto">
-          <a href={item.url || "#"} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className={`inline-flex items-center gap-2 rounded-full bg-gradient-to-r ${theme.color} px-4 py-2.5 md:px-5 md:py-3 lg:px-6 lg:py-3.5 text-[9px] md:text-[10px] font-black uppercase tracking-[0.15em] text-white shadow-xl transition-all duration-300 hover:scale-[1.03] hover:brightness-110 active:scale-97`}>Explore Experience <Plus size={12} /></a>
-          <a href={item.url || "#"} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className={`flex h-9 w-9 md:h-10 md:w-10 lg:h-11 lg:w-11 items-center justify-center rounded-full border border-white/20 bg-[#111218] text-white transition duration-300 hover:bg-white hover:text-black ${theme.borderHover}`}><ExternalLink size={14} /></a>
+        <h4 className="text-[20px] md:text-[36px] font-bold text-white leading-tight mb-2 line-clamp-1">{item.title}</h4>
+        <p className="text-[12px] md:text-[15px] text-white/60 mb-6 line-clamp-3">{item.desc}</p>
+        
+        <div className="mt-auto flex items-center gap-4">
+          <a href={item.url || "#"} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 rounded-full bg-gradient-to-r ${theme.color} px-5 py-2.5 text-[10px] font-black uppercase tracking-[0.1em] text-white`}>Explore <Plus size={12} /></a>
+          <a href={item.url || "#"} target="_blank" rel="noopener noreferrer" className={`p-3 rounded-full border border-white/10 bg-[#111218] text-white hover:bg-white hover:text-black transition-all`}><ExternalLink size={14} /></a>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
 function Projects() {
   const { projects, loading } = useProjects();
-  if (loading) return <section className="py-32 text-center text-white/40 tracking-widest text-xs uppercase">Loading Masterpieces...</section>;
+  if (loading) return <section className="py-20 text-center text-white/40 uppercase tracking-widest text-xs">Loading...</section>;
   return (
-    <section id="projects" className="relative overflow-hidden bg-transparent py-20 md:py-32 text-white">
+    <section id="projects" className="relative overflow-hidden bg-transparent py-16 md:py-32 text-white">
       <div className="mx-auto max-w-7xl">
-        <header className="mb-12 md:mb-16 lg:mb-20 px-4 text-center">
+        <header className="mb-12 px-4 text-center">
           <Reveal>
-            <div className="mx-auto max-w-3xl">
-              <div className="mb-5 flex items-center justify-center gap-3"><span className="h-px w-12 bg-gradient-to-r from-transparent via-amber-400 to-transparent" /><p className="text-[10px] md:text-[13px] uppercase tracking-[0.45em] text-white/80">Curated Projects</p><span className="h-px w-12 bg-gradient-to-r from-transparent via-amber-400 to-transparent" /></div>
-              <h2 className="text-[36px] md:text-[72px] font-bold tracking-[-0.04em] leading-none text-white">SELECTED <span className="bg-gradient-to-r from-[#fff1c2] via-[#f5c96a] to-[#d89b1d] bg-clip-text text-transparent">WORK</span></h2>
-              <p className="mx-auto mt-5 max-w-2xl text-[11px] md:text-[14px] uppercase tracking-[0.25em] leading-relaxed text-white/60">A refined collection of development, design, and editing projects crafted with detail and purpose</p>
-            </div>
+            <h2 className="text-[32px] md:text-[72px] font-bold tracking-[-0.02em]">SELECTED <span className="text-amber-400">WORK</span></h2>
           </Reveal>
         </header>
-        <ProjectSection title="WEB / APP Development" items={projects.web || []} theme={PROJECT_THEMES.web} />
-        <ProjectSection title="UI / UX Design" items={projects.uiux || []} theme={PROJECT_THEMES.uiux} />
-        <ProjectSection title="Motion & Editing" items={projects.editing || []} theme={PROJECT_THEMES.editing} />
+        <ProjectSection title="WEB / APP" items={projects.web || []} theme={PROJECT_THEMES.web} />
+        <ProjectSection title="UI / UX" items={projects.uiux || []} theme={PROJECT_THEMES.uiux} />
+        <ProjectSection title="MOTION" items={projects.editing || []} theme={PROJECT_THEMES.editing} />
       </div>
     </section>
   );
