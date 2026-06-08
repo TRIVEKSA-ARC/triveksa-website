@@ -53,15 +53,6 @@ const ProjectSection = ({ title, items = [], theme }) => {
   const handleNext = () => setActiveIndex((prev) => (prev + 1) % items.length);
   const handlePrev = () => setActiveIndex((prev) => (prev - 1 + items.length) % items.length);
 
-  const handleDragEnd = (event, info) => {
-    const swipeThreshold = 120;
-    if (info.offset.x < -swipeThreshold) {
-      handleNext();
-    } else if (info.offset.x > swipeThreshold) {
-      handlePrev();
-    }
-  };
-
   return (
     <div className="mb-20 md:mb-32 w-full relative px-4 sm:px-6 md:px-12 lg:px-16">
       <div className="mx-auto mb-10 md:mb-14 max-w-7xl px-2">
@@ -87,31 +78,33 @@ const ProjectSection = ({ title, items = [], theme }) => {
               if (offset > 0.5) offset -= 2;
             }
             if (Math.abs(offset) > 1) return null;
-            return <ProjectCard key={item._id || index} item={item} theme={theme} offset={offset} isActive={offset === 0} onDragEnd={handleDragEnd} />;
+            return <ProjectCard key={item._id || index} item={item} theme={theme} offset={offset} isActive={offset === 0} />;
           })}
         </div>
 
         {items.length > 1 && (
-          <>
-            <button onClick={handlePrev} className="hidden md:flex absolute left-4 lg:-left-12 z-[10000] h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-neutral-950/80 text-white/90 backdrop-blur-2xl transition-all duration-300 hover:bg-white hover:text-black hover:border-white shadow-[0_0_30px_rgba(0,0,0,0.8)]"><ChevronLeft size={26} /></button>
-            <button onClick={handleNext} className="hidden md:flex absolute right-4 lg:-right-12 z-[10000] h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-neutral-950/80 text-white/90 backdrop-blur-2xl transition-all duration-300 hover:bg-white hover:text-black hover:border-white shadow-[0_0_30px_rgba(0,0,0,0.8)]"><ChevronRight size={26} /></button>
-          </>
+          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-[10000] flex items-center gap-4">
+            <button onClick={handlePrev} className="flex h-11 w-11 md:h-14 md:w-14 items-center justify-center rounded-full border border-white/10 bg-neutral-950/80 text-white/90 backdrop-blur-2xl transition-all duration-300 hover:bg-white hover:text-black hover:border-white shadow-[0_0_30px_rgba(0,0,0,0.8)]">
+              <ChevronLeft size={26} />
+            </button>
+
+            <div className="px-4 py-2 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-white text-xs md:text-sm font-semibold">
+              {activeIndex + 1} / {items.length}
+            </div>
+
+            <button onClick={handleNext} className="flex h-11 w-11 md:h-14 md:w-14 items-center justify-center rounded-full border border-white/10 bg-neutral-950/80 text-white/90 backdrop-blur-2xl transition-all duration-300 hover:bg-white hover:text-black hover:border-white shadow-[0_0_30px_rgba(0,0,0,0.8)]">
+              <ChevronRight size={26} />
+            </button>
+          </div>
         )}
       </div>
     </div>
   );
 };
 
-const ProjectCard = ({ item, theme, offset, isActive, onDragEnd }) => {
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-
+const ProjectCard = ({ item, theme, offset, isActive }) => {
   return (
     <motion.div
-      drag={isMobile && isActive ? "x" : false}
-      dragDirectionLock
-      dragConstraints={{ left: 0, right: 0 }}
-      dragElastic={0.08}
-      onDragEnd={onDragEnd}
       animate={{
         x: `${offset * 100}%`,
       }}
