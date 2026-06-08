@@ -53,6 +53,15 @@ const ProjectSection = ({ title, items = [], theme }) => {
   const handleNext = () => setActiveIndex((prev) => (prev + 1) % items.length);
   const handlePrev = () => setActiveIndex((prev) => (prev - 1 + items.length) % items.length);
 
+  const handleDragEnd = (event, info) => {
+    const swipeThreshold = 50;
+    if (info.offset.x < -swipeThreshold) {
+      handleNext();
+    } else if (info.offset.x > swipeThreshold) {
+      handlePrev();
+    }
+  };
+
   return (
     <div className="mb-20 md:mb-32 w-full relative px-4 sm:px-6 md:px-12 lg:px-16">
       <div className="mx-auto mb-10 md:mb-14 max-w-7xl px-2">
@@ -78,7 +87,7 @@ const ProjectSection = ({ title, items = [], theme }) => {
               if (offset > 0.5) offset -= 2;
             }
             if (Math.abs(offset) > 1) return null;
-            return <ProjectCard key={item._id || index} item={item} theme={theme} offset={offset} isActive={offset === 0} />;
+            return <ProjectCard key={item._id || index} item={item} theme={theme} offset={offset} isActive={offset === 0} onDragEnd={handleDragEnd} />;
           })}
         </div>
 
@@ -93,10 +102,16 @@ const ProjectSection = ({ title, items = [], theme }) => {
   );
 };
 
-const ProjectCard = ({ item, theme, offset, isActive }) => {
-  const translateX = offset * 100; 
+const ProjectCard = ({ item, theme, offset, isActive, onDragEnd }) => {
+  const translateX = offset * 100;
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
   return (
-    <div
+    <motion.div
+      drag={isMobile ? "x" : false}
+      dragConstraints={{ left: 0, right: 0 }}
+      dragElastic={0.2}
+      onDragEnd={onDragEnd}
       style={{
         zIndex: isActive ? 100 : 1,
         transform: `translateX(${translateX}%)`,
@@ -104,7 +119,6 @@ const ProjectCard = ({ item, theme, offset, isActive }) => {
       }}
       className={`absolute w-[90%] md:w-[960px] lg:w-[1120px] shrink-0 rounded-[32px] md:rounded-[40px] border border-white/10 bg-[#0A0B10]/95 backdrop-blur-3xl p-5 sm:p-6 md:p-8 lg:p-10 ${theme.borderHover} transition-all duration-500 flex flex-col md:flex-row gap-6 md:gap-8 lg:gap-10 items-center overflow-hidden ${isActive ? "opacity-100" : "opacity-40 pointer-events-none"}`}
     >
-      {/* Inner Ring Structure */}
       <div className="absolute inset-[8px] rounded-[24px] md:rounded-[32px] border border-white/[0.05] pointer-events-none" />
       <div className="absolute inset-[16px] rounded-[18px] md:rounded-[24px] border border-white/[0.03] pointer-events-none" />
       <div className="absolute inset-[24px] rounded-[14px] md:rounded-[20px] border border-white/[0.01] pointer-events-none" />
@@ -133,7 +147,7 @@ const ProjectCard = ({ item, theme, offset, isActive }) => {
           <a href={item.url || "#"} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className={`flex h-9 w-9 md:h-10 md:w-10 lg:h-11 lg:w-11 items-center justify-center rounded-full border border-white/20 bg-[#111218] text-white transition duration-300 hover:bg-white hover:text-black ${theme.borderHover}`}><ExternalLink size={14} /></a>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
