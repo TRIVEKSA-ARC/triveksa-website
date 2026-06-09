@@ -35,6 +35,7 @@ export const createLead = async (req, res) => {
     console.log("Sending admin email...");
     await sendEmail({
       to: process.env.ADMIN_EMAIL,
+      replyTo: email,
       subject: `🚀 New Project Inquiry - ${service}`,
       html: `
         <h2>New Lead Received</h2>

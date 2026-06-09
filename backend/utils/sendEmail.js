@@ -5,7 +5,12 @@ const resend = process.env.RESEND_API_KEY
   : null;
 
 /* ================= SEND EMAIL ================= */
-const sendEmail = async ({ to, subject, html }) => {
+const sendEmail = async ({
+  to,
+  subject,
+  html,
+  replyTo = null,
+}) => {
   if (!resend) {
     console.warn("⚠️ RESEND_API_KEY missing. Email not sent.");
     return false;
@@ -13,10 +18,11 @@ const sendEmail = async ({ to, subject, html }) => {
 
   try {
     const response = await resend.emails.send({
-      from: "Triveksa Arc <hello@triveksaarc.com>",
+      from: "Triveksa Arc <noreply@triveksaarc.com>",
       to: [to],
       subject,
-      html, // ✅ MUST BE HTML
+      html,
+      ...(replyTo && { replyTo }),
     });
 
     console.log("📧 Email sent successfully:", response);
