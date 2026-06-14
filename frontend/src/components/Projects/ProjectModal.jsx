@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { createPortal } from "react-dom"; // Added to handle structural layout bugs
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 
@@ -30,17 +31,23 @@ function ProjectModal({ project, onClose }) {
       if (e.key === "Escape") onClose();
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+    if (project) {
+      window.addEventListener("keydown", handleKeyDown);
+      // Temporarily disable smooth scroll layout behaviors when modal opens
+      document.documentElement.classList.add("modal-open");
+    }
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
+      document.documentElement.classList.remove("modal-open");
     };
-  }, [onClose]);
+  }, [project, onClose]);
 
   // Dynamically resolve the safe video link based on the selected project object
   const videoSrc = project ? getYoutubeEmbedUrl(project.url) : "";
 
-  return (
+  // Render the modal into a Portal to break out of Lenis container restraints
+  return createPortal(
     <AnimatePresence>
       {project && (
         <motion.div
@@ -48,7 +55,8 @@ function ProjectModal({ project, onClose }) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-md p-4"
+          className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/85 backdrop-blur-md p-4 w-screen h-screen"
+          style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
         >
           <motion.div
             initial={{
@@ -81,12 +89,12 @@ function ProjectModal({ project, onClose }) {
             </button>
 
             {/* Video Container */}
-            <div className="relative w-full aspect-video bg-black">
+            <div className="relative w-full aspect-video bg-black clear-both block">
               {videoSrc ? (
                 <iframe
                   src={videoSrc}
                   title={project.title || "Project Video Player"}
-                  className="absolute inset-0 w-full h-full border-0"
+                  className="absolute inset-0 w-full h-full border-0 block"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />
@@ -121,15 +129,12 @@ function ProjectModal({ project, onClose }) {
                   <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white">
                     Video Editing
                   </span>
-
                   <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white">
                     Storytelling
                   </span>
-
                   <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white">
                     Motion Graphics
                   </span>
-
                   <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white">
                     Color Grading
                   </span>
@@ -152,7 +157,8 @@ function ProjectModal({ project, onClose }) {
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body // Appends the modal straight to the DOM body root
   );
 }
 
