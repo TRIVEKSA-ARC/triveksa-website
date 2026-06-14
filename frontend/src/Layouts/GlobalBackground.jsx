@@ -122,7 +122,7 @@ function GlobalBackground({ children }) {
   }, []);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-black">
+    <div className="relative min-h-screen bg-black">
 
       {/* 🌌 MAIN BACKGROUND */}
       <div
