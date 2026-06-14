@@ -188,7 +188,7 @@ function Projects() {
   if (loading) return <section className="py-32 text-center text-white/40 tracking-widest text-xs uppercase">Loading Masterpieces...</section>;
 
   return (
-    <section id="projects" className="relative overflow-hidden bg-transparent py-20 md:py-32 text-white">
+    <section id="projects" className="relative bg-transparent py-20 md:py-32 text-white">
       <div className="mx-auto max-w-7xl">
         <header className="mb-12 md:mb-16 lg:mb-20 px-4 text-center">
           <Reveal>
