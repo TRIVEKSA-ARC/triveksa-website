@@ -68,8 +68,14 @@ function ProjectModal({ project, onClose }) {
             </button>
 
             {/* Video */}
-            <div className="relative w-full aspect-video bg-red-500 flex items-center justify-center text-white text-4xl font-bold">
-  TEST VIDEO AREA
+            <div className="relative w-full aspect-video bg-black">
+  <iframe
+    src="https://www.youtube.com/embed/dfYHbRZcMMc"
+    title="test"
+    className="absolute inset-0 w-full h-full"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+  />
 </div>
 
             {/* Content */}
