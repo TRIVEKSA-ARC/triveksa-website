@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { createPortal } from "react-dom"; 
 import { AnimatePresence, motion } from "framer-motion";
-import { X } from "lucide-react";
+import { X, ExternalLink, Clock, Briefcase, Video, Settings } from "lucide-react";
 
 /**
  * Smart parser that converts standard YouTube links or direct embed strings
@@ -10,12 +10,10 @@ import { X } from "lucide-react";
 function getYoutubeEmbedUrl(url) {
   if (!url) return "";
 
-  // 1. If the admin panel already has a full embed link, use it but enforce privacy domain
   if (url.includes("youtube.com/embed/") || url.includes("youtube-nocookie.com/embed/")) {
     return url.replace("youtube.com", "youtube-nocookie.com");
   }
 
-  // 2. Otherwise, parse standard watch (v=) or share (youtu.be) links
   const regExp = /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/;
   const match = url.match(regExp);
 
@@ -76,7 +74,6 @@ function ProjectModal({ project, onClose }) {
               duration: 0.25,
             }}
             onClick={(e) => e.stopPropagation()}
-            
             className="relative w-full max-w-7xl overflow-hidden rounded-[40px] border border-white/10 bg-[#0A0B10]/95 backdrop-blur-3xl shadow-[0_0_80px_rgba(0,0,0,0.7)]"
           >
             {/* 5. Gradient Glow Background Layer */}
@@ -99,7 +96,7 @@ function ProjectModal({ project, onClose }) {
             {/* 2. Side-by-Side Responsive Grid System Layout */}
             <div className="grid lg:grid-cols-2 relative z-10 w-full h-full items-stretch">
               
-              {/* Left Side: Video Container (min-h-[500px] on desktop layouts) */}
+              {/* Left Side: Video Container */}
               <div className="relative min-h-[320px] sm:min-h-[400px] lg:min-h-[500px] bg-black">
                 {videoSrc ? (
                   <iframe
@@ -116,14 +113,14 @@ function ProjectModal({ project, onClose }) {
                 )}
               </div>
 
-              {/* 3. Right Side: Content Box Container (p-8 md:p-12 centered spacing overrides) */}
-              <div className="flex flex-col justify-center p-8 md:p-12 bg-transparent">
+              {/* 3. Right Side: Premium Specification Layout Content Box Container */}
+              <div className="flex flex-col justify-between p-8 md:p-12 bg-transparent max-h-[90vh] overflow-y-auto lg:max-h-none">
                 <div>
                   <span className="inline-flex rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-white/70">
-                    {project.category || "Project Details"}
+                    {project.category || "Project Case Study"}
                   </span>
 
-                  {/* 4. Extra Bold Premium Title Scaling Size (text-4xl md:text-6xl) */}
+                  {/* 4. Extra Bold Premium Title Scaling Size */}
                   <h2 className="mt-4 text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight">
                     {project.title}
                   </h2>
@@ -131,42 +128,69 @@ function ProjectModal({ project, onClose }) {
                   <p className="mt-6 text-sm md:text-base leading-relaxed text-slate-300 font-normal">
                     {project.desc}
                   </p>
-                </div>
 
-                {/* Skills Section */}
-                <div className="mt-8">
-                  <h3 className="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-white/80">
-                    Skills Demonstrated
-                  </h3>
+                  {/* Structured Client Metadata Spec Grid */}
+                  <div className="mt-8 border-t border-b border-white/5 py-6 space-y-4">
+                    {/* Client row */}
+                    <div className="flex items-start justify-between text-sm">
+                      <span className="text-slate-400 font-medium flex items-center gap-2">
+                        <Briefcase size={16} className="text-amber-500/80" /> Client Type
+                      </span>
+                      <span className="text-white font-semibold text-right max-w-[200px] truncate">
+                        {project.client || "Commercial / Brand"}
+                      </span>
+                    </div>
 
-                  <div className="flex flex-wrap gap-2">
-                    <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white">
-                      Video Editing
-                    </span>
-                    <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white">
-                      Storytelling
-                    </span>
-                    <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white">
-                      Motion Graphics
-                    </span>
-                    <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white">
-                      Color Grading
-                    </span>
+                    {/* Duration row */}
+                    <div className="flex items-start justify-between text-sm">
+                      <span className="text-slate-400 font-medium flex items-center gap-2">
+                        <Clock size={16} className="text-amber-500/80" /> Duration
+                      </span>
+                      <span className="text-white font-semibold">
+                        {project.duration || "01:30 Min"}
+                      </span>
+                    </div>
+
+                    {/* Tools Used row */}
+                    <div className="flex items-start justify-between text-sm">
+                      <span className="text-slate-400 font-medium flex items-center gap-2">
+                        <Settings size={16} className="text-amber-500/80" /> Tools Used
+                      </span>
+                      <div className="flex flex-wrap gap-1.5 justify-end max-w-[240px]">
+                        <span className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-xs text-white/90">
+                          DaVinci Resolve
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Skills Demonstrated row */}
+                    <div className="flex items-start justify-between text-sm">
+                      <span className="text-slate-400 font-medium flex items-center gap-2">
+                        <Video size={16} className="text-amber-500/80" /> Skills Demonstrated
+                      </span>
+                      <div className="flex flex-wrap gap-1.5 justify-end max-w-[260px]">
+                        <span className="rounded-md border border-white/5 bg-white/5 px-2 py-0.5 text-xs text-slate-300">Video Editing</span>
+                        <span className="rounded-md border border-white/5 bg-white/5 px-2 py-0.5 text-xs text-slate-300">Color Grading</span>
+                        <span className="rounded-md border border-white/5 bg-white/5 px-2 py-0.5 text-xs text-slate-300">Storytelling</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                {/* Tools Section */}
-                <div className="mt-6">
-                  <h3 className="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-white/80">
-                    Tools Used
-                  </h3>
-
-                  <div className="flex flex-wrap gap-2">
-                    <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white">
-                      DaVinci Resolve
-                    </span>
+                {/* Premium External Call to Action Segment */}
+                {project.url && (
+                  <div className="mt-8 lg:mt-12">
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-2xl bg-amber-500 px-6 py-3.5 text-sm font-semibold text-black hover:bg-amber-400 active:scale-95 transition-all duration-200 shadow-[0_4px_20px_rgba(245,158,11,0.25)] group"
+                    >
+                      View on YouTube
+                      <ExternalLink size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </a>
                   </div>
-                </div>
+                )}
               </div>
 
             </div>
