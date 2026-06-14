@@ -2,15 +2,15 @@ import React, { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 
+// Updated helper function to use the privacy-enhanced "youtube-nocookie.com" domain
 function getYoutubeEmbedUrl(url) {
   if (!url) return "";
 
-  const regExp =
-    /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/;
+  const regExp = /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube-nocookie\.com\/embed\/)([^&\n?#]+)/;
   const match = url.match(regExp);
 
   return match
-    ? `https://www.youtube.com/embed/${match[1]}`
+    ? `https://www.youtube-nocookie.com/embed/${match[1]}`
     : "";
 }
 
@@ -21,11 +21,13 @@ function ProjectModal({ project, onClose }) {
     };
 
     window.addEventListener("keydown", handleKeyDown);
-
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [onClose]);
+
+  // Generate the dynamic, privacy-safe URL for the specific project clicked
+  const videoSrc = project ? getYoutubeEmbedUrl(project.url) : "";
 
   return (
     <AnimatePresence>
@@ -38,24 +40,10 @@ function ProjectModal({ project, onClose }) {
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-md p-4"
         >
           <motion.div
-            initial={{
-              opacity: 0,
-              scale: 0.9,
-              y: 40,
-            }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-              y: 0,
-            }}
-            exit={{
-              opacity: 0,
-              scale: 0.9,
-              y: 40,
-            }}
-            transition={{
-              duration: 0.25,
-            }}
+            initial={{ opacity: 0, scale: 0.9, y: 40 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 40 }}
+            transition={{ duration: 0.25 }}
             onClick={(e) => e.stopPropagation()}
             className="relative w-full max-w-5xl overflow-hidden rounded-[32px] border border-white/10 bg-[#0A0B10]/95 backdrop-blur-3xl shadow-[0_0_80px_rgba(0,0,0,0.7)]"
           >
@@ -67,16 +55,22 @@ function ProjectModal({ project, onClose }) {
               <X size={18} />
             </button>
 
-            {/* Video */}
+            {/* Video Container */}
             <div className="relative w-full aspect-video bg-black">
-  <iframe
-    src="https://www.youtube.com/embed/dfYHbRZcMMc"
-    title="test"
-    className="absolute inset-0 w-full h-full"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowFullScreen
-  />
-</div>
+              {videoSrc ? (
+                <iframe
+                  src={videoSrc}
+                  title={project.title || "Project Video"}
+                  className="absolute inset-0 w-full h-full border-0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center text-white/40 text-sm">
+                  No video available for this project.
+                </div>
+              )}
+            </div>
 
             {/* Content */}
             <div className="p-6 md:p-8">
@@ -92,37 +86,32 @@ function ProjectModal({ project, onClose }) {
                 {project.desc}
               </p>
 
-              {/* Future Skills Section */}
+              {/* Skills Section */}
               <div className="mt-8">
                 <h3 className="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-white/80">
                   Skills Demonstrated
                 </h3>
-
                 <div className="flex flex-wrap gap-2">
                   <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white">
                     Video Editing
                   </span>
-
                   <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white">
                     Storytelling
                   </span>
-
                   <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white">
                     Motion Graphics
                   </span>
-
                   <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white">
                     Color Grading
                   </span>
                 </div>
               </div>
 
-              {/* Future Tools Section */}
+              {/* Tools Section */}
               <div className="mt-6">
                 <h3 className="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-white/80">
                   Tools Used
                 </h3>
-
                 <div className="flex flex-wrap gap-2">
                   <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white">
                     DaVinci Resolve
