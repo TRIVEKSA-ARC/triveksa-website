@@ -69,22 +69,14 @@ function ProjectModal({ project, onClose }) {
 
             {/* Video */}
             <div className="aspect-video w-full bg-black">
-  <div className="text-white p-2">
-    URL: {project?.url}
-  </div>
-
-  <div className="text-white p-2">
-    EMBED: {getYoutubeEmbedUrl(project?.url)}
-  </div>
-
-  <iframe
-    src={getYoutubeEmbedUrl(project.url)}
-    title={project.title}
-    className="h-full w-full"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowFullScreen
-  />
-</div>
+              <iframe
+  src="https://www.youtube.com/embed/dfYHbRZcMMc"
+  title="test"
+  width="100%"
+  height="100%"
+  allowFullScreen
+/>
+            </div>
 
             {/* Content */}
             <div className="p-6 md:p-8">
