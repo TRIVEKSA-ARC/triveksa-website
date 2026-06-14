@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Plus, ExternalLink } from "lucide-react";
 import { useProjects } from "../../context/ProjectContext";
 import Reveal from "../Reveal";
+import ProjectModal from "./ProjectModal"; // CHANGE #8: Import Modal
 
 const PROJECT_THEMES = {
   web: {
@@ -31,7 +32,8 @@ const PROJECT_THEMES = {
   },
 };
 
-const ProjectSection = ({ title, items = [], theme }) => {
+// CHANGE #3: Update props to include onProjectClick
+const ProjectSection = ({ title, items = [], theme, onProjectClick }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const autoPlayRef = useRef(null);
@@ -77,13 +79,22 @@ const ProjectSection = ({ title, items = [], theme }) => {
               if (offset > 0.5) offset -= 2;
             }
             if (Math.abs(offset) > 1) return null;
-            return <ProjectCard key={item._id || index} item={item} theme={theme} offset={offset} isActive={offset === 0} />;
+            // CHANGE #4: Pass onProjectClick to ProjectCard
+            return (
+              <ProjectCard 
+                key={item._id || index} 
+                item={item} 
+                theme={theme} 
+                offset={offset} 
+                isActive={offset === 0} 
+                onProjectClick={onProjectClick} 
+              />
+            );
           })}
         </div>
 
         {items.length > 1 && (
           <>
-            {/* Laptop/Desktop Side Arrows */}
             <button onClick={handlePrev} className="hidden md:flex absolute left-0 lg:-left-12 z-50 h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-neutral-950/80 text-white/90 backdrop-blur-2xl transition-all duration-300 hover:bg-white hover:text-black hover:border-white shadow-[0_0_30px_rgba(0,0,0,0.8)]">
               <ChevronLeft size={28} />
             </button>
@@ -91,7 +102,6 @@ const ProjectSection = ({ title, items = [], theme }) => {
               <ChevronRight size={28} />
             </button>
 
-            {/* Mobile Bottom Bar (Arrows + Counter) */}
             <div className="md:hidden absolute bottom-6 z-50 flex items-center gap-2 bg-black/40 backdrop-blur-xl border border-white/10 p-1.5 rounded-full shadow-2xl">
               <button onClick={handlePrev} className="h-10 w-10 flex items-center justify-center rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-all">
                 <ChevronLeft size={20} />
@@ -110,7 +120,8 @@ const ProjectSection = ({ title, items = [], theme }) => {
   );
 };
 
-const ProjectCard = ({ item, theme, offset, isActive }) => {
+// CHANGE #5: Update props to include onProjectClick
+const ProjectCard = ({ item, theme, offset, isActive, onProjectClick }) => {
   return (
     <motion.div
       initial={false}
@@ -119,12 +130,7 @@ const ProjectCard = ({ item, theme, offset, isActive }) => {
         opacity: isActive ? 1 : 0.4,
         scale: isActive ? 1 : 0.95,
       }}
-      transition={{
-        type: "spring",
-        stiffness: 200,
-        damping: 30,
-        mass: 1,
-      }}
+      transition={{ type: "spring", stiffness: 200, damping: 30, mass: 1 }}
       style={{
         zIndex: isActive ? 10 : 1,
         boxShadow: isActive ? theme.shadow.boxShadow : "0 20px 50px rgba(0,0,0,0.7)",
@@ -149,8 +155,24 @@ const ProjectCard = ({ item, theme, offset, isActive }) => {
           <p className="text-[12px] md:text-[14px] lg:text-[15px] leading-relaxed text-slate-200 font-normal mb-4 md:mb-5 lg:mb-6 line-clamp-2 md:line-clamp-3">{item.desc}</p>
         </div>
         <div className="flex items-center justify-between mt-auto pt-1 pointer-events-auto">
-          <a href={item.url || "#"} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 rounded-full bg-gradient-to-r ${theme.color} px-4 py-2.5 md:px-5 md:py-3 lg:px-6 lg:py-3.5 text-[9px] md:text-[10px] font-black uppercase tracking-[0.15em] text-white shadow-xl transition-all duration-300 hover:scale-[1.03]`}>Explore Experience <Plus size={12} /></a>
-          <a href={item.url || "#"} target="_blank" rel="noopener noreferrer" className={`flex h-9 w-9 md:h-10 md:w-10 lg:h-11 lg:w-11 items-center justify-center rounded-full border border-white/20 bg-[#111218] text-white transition duration-300 hover:bg-white hover:text-black ${theme.borderHover}`}><ExternalLink size={14} /></a>
+          
+          {/* CHANGE #6: Replace Link with Modal Opener Button */}
+          <button
+            onClick={() => onProjectClick(item)}
+            className={`inline-flex items-center gap-2 rounded-full bg-gradient-to-r ${theme.color} px-4 py-2.5 md:px-5 md:py-3 lg:px-6 lg:py-3.5 text-[9px] md:text-[10px] font-black uppercase tracking-[0.15em] text-white shadow-xl transition-all duration-300 hover:scale-[1.03]`}
+          >
+            View Project <Plus size={12} />
+          </button>
+
+          {/* CHANGE #7: Separate External YouTube Link */}
+          <a 
+            href={item.url || "#"} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className={`flex h-9 w-9 md:h-10 md:w-10 lg:h-11 lg:w-11 items-center justify-center rounded-full border border-white/20 bg-[#111218] text-white transition duration-300 hover:bg-white hover:text-black ${theme.borderHover}`}
+          >
+            <ExternalLink size={14} />
+          </a>
         </div>
       </div>
     </motion.div>
@@ -159,7 +181,12 @@ const ProjectCard = ({ item, theme, offset, isActive }) => {
 
 function Projects() {
   const { projects, loading } = useProjects();
+  
+  // CHANGE #1: Modal State
+  const [selectedProject, setSelectedProject] = useState(null);
+
   if (loading) return <section className="py-32 text-center text-white/40 tracking-widest text-xs uppercase">Loading Masterpieces...</section>;
+
   return (
     <section id="projects" className="relative overflow-hidden bg-transparent py-20 md:py-32 text-white">
       <div className="mx-auto max-w-7xl">
@@ -171,10 +198,33 @@ function Projects() {
             </div>
           </Reveal>
         </header>
-        <ProjectSection title="WEB / APP Development" items={projects.web || []} theme={PROJECT_THEMES.web} />
-        <ProjectSection title="UI / UX Design" items={projects.uiux || []} theme={PROJECT_THEMES.uiux} />
-        <ProjectSection title="Motion & Editing" items={projects.editing || []} theme={PROJECT_THEMES.editing} />
+
+        {/* CHANGE #2: Pass setSelectedProject as onProjectClick for all sections */}
+        <ProjectSection 
+          title="WEB / APP Development" 
+          items={projects.web || []} 
+          theme={PROJECT_THEMES.web} 
+          onProjectClick={setSelectedProject}
+        />
+        <ProjectSection 
+          title="UI / UX Design" 
+          items={projects.uiux || []} 
+          theme={PROJECT_THEMES.uiux} 
+          onProjectClick={setSelectedProject}
+        />
+        <ProjectSection 
+          title="Motion & Editing" 
+          items={projects.editing || []} 
+          theme={PROJECT_THEMES.editing} 
+          onProjectClick={setSelectedProject}
+        />
       </div>
+
+      {/* CHANGE #8: Render Modal before section end */}
+      <ProjectModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
     </section>
   );
 }
