@@ -32,8 +32,8 @@ const PROJECT_THEMES = {
   },
 };
 
-// CHANGE #3: Update props to include onProjectClick
-const ProjectSection = ({ title, items = [], theme, onProjectClick }) => {
+// UPDATE: Added projectType to props
+const ProjectSection = ({ title, items = [], theme, projectType, onProjectClick }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const autoPlayRef = useRef(null);
@@ -79,7 +79,8 @@ const ProjectSection = ({ title, items = [], theme, onProjectClick }) => {
               if (offset > 0.5) offset -= 2;
             }
             if (Math.abs(offset) > 1) return null;
-            // CHANGE #4: Pass onProjectClick to ProjectCard
+            
+            // UPDATE: Pass projectType down to ProjectCard
             return (
               <ProjectCard 
                 key={item._id || index} 
@@ -87,6 +88,7 @@ const ProjectSection = ({ title, items = [], theme, onProjectClick }) => {
                 theme={theme} 
                 offset={offset} 
                 isActive={offset === 0} 
+                projectType={projectType}
                 onProjectClick={onProjectClick} 
               />
             );
@@ -120,8 +122,16 @@ const ProjectSection = ({ title, items = [], theme, onProjectClick }) => {
   );
 };
 
-// CHANGE #5: Update props to include onProjectClick
-const ProjectCard = ({ item, theme, offset, isActive, onProjectClick }) => {
+// UPDATE: Added projectType to props to compute custom text and custom interaction handlers
+const ProjectCard = ({ item, theme, offset, isActive, projectType, onProjectClick }) => {
+  // Cleaner UX Dynamic text assignments
+  const buttonText =
+    projectType === "editing"
+      ? "Watch Project"
+      : projectType === "uiux"
+      ? "View Design"
+      : "Live Demo";
+
   return (
     <motion.div
       initial={false}
@@ -156,12 +166,18 @@ const ProjectCard = ({ item, theme, offset, isActive, onProjectClick }) => {
         </div>
         <div className="flex items-center justify-between mt-auto pt-1 pointer-events-auto">
           
-          {/* CHANGE #6: Replace Link with Modal Opener Button */}
+          {/* UPDATE: Conditional Action Handler and dynamic buttonText applied here */}
           <button
-            onClick={() => onProjectClick(item)}
+            onClick={() => {
+              if (projectType === "editing") {
+                onProjectClick(item);
+              } else {
+                window.open(item.url || "#", "_blank");
+              }
+            }}
             className={`inline-flex items-center gap-2 rounded-full bg-gradient-to-r ${theme.color} px-4 py-2.5 md:px-5 md:py-3 lg:px-6 lg:py-3.5 text-[9px] md:text-[10px] font-black uppercase tracking-[0.15em] text-white shadow-xl transition-all duration-300 hover:scale-[1.03]`}
           >
-            View Project <Plus size={12} />
+            {buttonText} <Plus size={12} />
           </button>
 
           {/* CHANGE #7: Separate External YouTube Link */}
@@ -199,23 +215,26 @@ function Projects() {
           </Reveal>
         </header>
 
-        {/* CHANGE #2: Pass setSelectedProject as onProjectClick for all sections */}
+        {/* UPDATE: Added projectType property configurations to sections */}
         <ProjectSection 
           title="WEB / APP Development" 
           items={projects.web || []} 
           theme={PROJECT_THEMES.web} 
+          projectType="web"
           onProjectClick={setSelectedProject}
         />
         <ProjectSection 
           title="UI / UX Design" 
           items={projects.uiux || []} 
           theme={PROJECT_THEMES.uiux} 
+          projectType="uiux"
           onProjectClick={setSelectedProject}
         />
         <ProjectSection 
           title="Motion & Editing" 
           items={projects.editing || []} 
           theme={PROJECT_THEMES.editing} 
+          projectType="editing"
           onProjectClick={setSelectedProject}
         />
       </div>
