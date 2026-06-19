@@ -103,10 +103,10 @@ function ProjectModal({ project, onClose }) {
               </div>
 
               {/* Right Column: High-End Spacious Content Container */}
-              <div className="lg:col-span-5 flex flex-col justify-start p-6 sm:p-10 md:p-12 lg:p-14 lg:max-h-[80vh] lg:overflow-y-auto scrollbar-none">
+              <div className="lg:col-span-5 flex flex-col justify-between p-6 sm:p-10 md:p-12 lg:p-14 lg:max-h-[80vh] lg:overflow-y-auto scrollbar-none">
                 
-                {/* Header Information Block */}
-                <div className="space-y-4">
+                {/* Header Container Block */}
+                <div className="space-y-5">
                   {/* Luxury Gold Label Accent */}
                   <div>
                     <span className="inline-flex rounded-full border border-amber-500/30 bg-amber-500/5 px-3.5 py-1 text-[9px] font-bold uppercase tracking-[0.25em] text-amber-400 shadow-[0_0_20px_rgba(245,158,11,0.08)]">
@@ -114,23 +114,22 @@ function ProjectModal({ project, onClose }) {
                     </span>
                   </div>
 
-                  {/* Clean Crisp White Premium Header - Fixed visual height range to anchor titles */}
-                  <div className="min-h-[40px] sm:min-h-[52px] flex items-center">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight leading-[1.2] pr-8 lg:pr-0 line-clamp-2">
-                      {project.title}
-                    </h2>
-                  </div>
+                  {/* Clean Crisp White Premium Header */}
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight leading-[1.2] pr-8 lg:pr-0">
+                    {project.title}
+                  </h2>
 
-                  {/* Description Box with Safe Minimum Dynamic Boundary Height to prevent metadata jumps */}
-                  <div className="min-h-[64px] sm:min-h-[80px] lg:min-h-[84px] flex items-start">
-                    <p className="text-xs sm:text-sm leading-relaxed text-slate-300/90 font-light line-clamp-3">
-                      {project.desc}
-                    </p>
-                  </div>
+                  {/* Description Box */}
+                  <p className="text-xs sm:text-sm leading-relaxed text-slate-300/90 font-light">
+                    {project.desc}
+                  </p>
                 </div>
 
-                {/* Separated Content Segment Block */}
-                <div className="border-t border-white/10 pt-6 mt-6 space-y-5">
+                {/* Flexible spacer that pushes the element below all the way down evenly on large displays */}
+                <div className="hidden lg:block flex-grow" />
+
+                {/* Separated Content Segment Block - Fastened cleanly to the bottom */}
+                <div className="border-t border-white/10 pt-6 mt-8 lg:mt-6 space-y-5">
                   
                   {/* Video Format Layout Row */}
                   <div className="flex items-center justify-between text-xs sm:text-sm gap-4 py-1">
