@@ -104,7 +104,9 @@ function ProjectModal({ project, onClose }) {
 
               {/* Right Column: High-End Spacious Content Container */}
               <div className="lg:col-span-5 flex flex-col justify-start p-6 sm:p-10 md:p-12 lg:p-14 lg:max-h-[80vh] lg:overflow-y-auto scrollbar-none">
-                <div className="space-y-6">
+                
+                {/* Header Information Block */}
+                <div className="space-y-4">
                   {/* Luxury Gold Label Accent */}
                   <div>
                     <span className="inline-flex rounded-full border border-amber-500/30 bg-amber-500/5 px-3.5 py-1 text-[9px] font-bold uppercase tracking-[0.25em] text-amber-400 shadow-[0_0_20px_rgba(245,158,11,0.08)]">
@@ -112,66 +114,70 @@ function ProjectModal({ project, onClose }) {
                     </span>
                   </div>
 
-                  {/* Clean Crisp White Premium Header */}
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight leading-[1.25] pr-8 lg:pr-0">
-                    {project.title}
-                  </h2>
-
-                  {/* Description Box */}
-                  <p className="text-xs sm:text-sm leading-relaxed text-slate-300/90 font-light">
-                    {project.desc}
-                  </p>
-
-                  {/* Highly Spaced & Organized Metadata Segment */}
-                  <div className="border-t border-white/10 pt-6 mt-8 space-y-5">
-                    
-                    {/* Video Format Layout Row */}
-                    <div className="flex items-center justify-between text-xs sm:text-sm gap-4 py-1">
-                      <span className="text-slate-400 font-medium flex items-center gap-2.5 shrink-0">
-                        <Briefcase size={15} className="text-amber-400" /> Video Format
-                      </span>
-                      <span className="text-white font-medium text-right max-w-[180px] sm:max-w-[240px] truncate">
-                        {project.type || "Commercial / Social Delivery"}
-                      </span>
-                    </div>
-
-                    {/* Frame Dimensions Layout Row */}
-                    <div className="flex items-center justify-between text-xs sm:text-sm gap-4 py-1">
-                      <span className="text-slate-400 font-medium flex items-center gap-2.5 shrink-0">
-                        <Maximize2 size={15} className="text-amber-400" /> Aspect Ratio
-                      </span>
-                      <span className="text-white font-medium text-right">
-                        {project.aspectRatio || "Dynamic Delivery (16:9 / 9:16)"}
-                      </span>
-                    </div>
-
-                    {/* Production Tech Chips Row */}
-                    <div className="flex items-start justify-between text-xs sm:text-sm gap-4 py-1">
-                      <span className="text-slate-400 font-medium flex items-center gap-2.5 mt-1 shrink-0">
-                        <Settings size={15} className="text-amber-400" /> Production Tech
-                      </span>
-                      <div className="flex flex-wrap gap-2 justify-end max-w-[220px] sm:max-w-[280px]">
-                        {toolsList.map((tool, index) => (
-                          <span key={index} className="rounded border border-white/15 bg-white/5 px-2.5 py-1 text-xs text-slate-200 font-normal whitespace-nowrap shadow-sm">
-                            {tool}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Post-Production Scope Selection Row */}
-                    <div className="flex items-start justify-between text-xs sm:text-sm gap-4 py-1">
-                      <span className="text-slate-400 font-medium flex items-center gap-2.5 mt-1 shrink-0">
-                        <Video size={15} className="text-amber-400" /> Post Scope
-                      </span>
-                      <div className="flex flex-wrap gap-2 justify-end max-w-[220px] sm:max-w-[300px]">
-                        <span className="rounded border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-slate-300 font-normal whitespace-nowrap shadow-sm">Creative Editing</span>
-                        <span className="rounded border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-slate-300 font-normal whitespace-nowrap shadow-sm">Color Grading</span>
-                        <span className="rounded border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-slate-300 font-normal whitespace-nowrap shadow-sm">Sound Design</span>
-                      </div>
-                    </div>
-
+                  {/* Clean Crisp White Premium Header - Fixed visual height range to anchor titles */}
+                  <div className="min-h-[40px] sm:min-h-[52px] flex items-center">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight leading-[1.2] pr-8 lg:pr-0 line-clamp-2">
+                      {project.title}
+                    </h2>
                   </div>
+
+                  {/* Description Box with Safe Minimum Dynamic Boundary Height to prevent metadata jumps */}
+                  <div className="min-h-[64px] sm:min-h-[80px] lg:min-h-[84px] flex items-start">
+                    <p className="text-xs sm:text-sm leading-relaxed text-slate-300/90 font-light line-clamp-3">
+                      {project.desc}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Separated Content Segment Block */}
+                <div className="border-t border-white/10 pt-6 mt-6 space-y-5">
+                  
+                  {/* Video Format Layout Row */}
+                  <div className="flex items-center justify-between text-xs sm:text-sm gap-4 py-1">
+                    <span className="text-slate-400 font-medium flex items-center gap-2.5 shrink-0">
+                      <Briefcase size={15} className="text-amber-400" /> Video Format
+                    </span>
+                    <span className="text-white font-medium text-right max-w-[180px] sm:max-w-[240px] truncate">
+                      {project.type || "Commercial / Social Delivery"}
+                    </span>
+                  </div>
+
+                  {/* Frame Dimensions Layout Row */}
+                  <div className="flex items-center justify-between text-xs sm:text-sm gap-4 py-1">
+                    <span className="text-slate-400 font-medium flex items-center gap-2.5 shrink-0">
+                      <Maximize2 size={15} className="text-amber-400" /> Aspect Ratio
+                    </span>
+                    <span className="text-white font-medium text-right">
+                      {project.aspectRatio || "Dynamic Delivery (16:9 / 9:16)"}
+                    </span>
+                  </div>
+
+                  {/* Production Tech Chips Row */}
+                  <div className="flex items-start justify-between text-xs sm:text-sm gap-4 py-1">
+                    <span className="text-slate-400 font-medium flex items-center gap-2.5 mt-1 shrink-0">
+                      <Settings size={15} className="text-amber-400" /> Production Tech
+                    </span>
+                    <div className="flex flex-wrap gap-2 justify-end max-w-[220px] sm:max-w-[280px]">
+                      {toolsList.map((tool, index) => (
+                        <span key={index} className="rounded border border-white/15 bg-white/5 px-2.5 py-1 text-xs text-slate-200 font-normal whitespace-nowrap shadow-sm">
+                          {tool}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Post-Production Scope Selection Row */}
+                  <div className="flex items-start justify-between text-xs sm:text-sm gap-4 py-1">
+                    <span className="text-slate-400 font-medium flex items-center gap-2.5 mt-1 shrink-0">
+                      <Video size={15} className="text-amber-400" /> Post Scope
+                    </span>
+                    <div className="flex flex-wrap gap-2 justify-end max-w-[220px] sm:max-w-[300px]">
+                      <span className="rounded border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-slate-300 font-normal whitespace-nowrap shadow-sm">Creative Editing</span>
+                      <span className="rounded border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-slate-300 font-normal whitespace-nowrap shadow-sm">Color Grading</span>
+                      <span className="rounded border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-slate-300 font-normal whitespace-nowrap shadow-sm">Sound Design</span>
+                    </div>
+                  </div>
+
                 </div>
               </div>
 
