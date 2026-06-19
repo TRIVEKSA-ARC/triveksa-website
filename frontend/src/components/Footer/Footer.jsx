@@ -140,7 +140,7 @@ function Footer({ onOpenModal }) {
                   className="flex items-center gap-4 group cursor-pointer py-1 w-full border-b border-white/[0.04] hover:border-[#f5c96a]/30 transition duration-300"
                   onClick={() =>
                     window.open(
-                      "YOUR_GOOGLE_MAP_LINK",
+                      "https://maps.app.goo.gl/dUobsAHuVsqPuQFr7",
                       "_blank"
                     )
                   }
