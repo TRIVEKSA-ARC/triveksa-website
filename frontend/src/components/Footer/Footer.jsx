@@ -155,7 +155,7 @@ function Footer({ onOpenModal }) {
               </div>
             </div>
 
-            {/* RIGHT — BRAND NETWORKS WITH SOLID SQUARED ICONS & REPOSITIONED WHATSAPP */}
+            {/* RIGHT — BRAND NETWORKS WITH IMPROVED GAP AND COHESIVE WHATSAPP BUTTON */}
             <div className="flex flex-col items-start md:items-end justify-start space-y-6 md:w-full">
               <div className="flex flex-col items-start md:items-end space-y-4 w-full">
                 <div className="flex items-center gap-3 md:flex-row-reverse">
@@ -165,8 +165,8 @@ function Footer({ onOpenModal }) {
                   </h3>
                 </div>
 
-                {/* SQUARED APP LOGOS CONTAINER (MATCHING WhatsApp Image 2026-06-20 at 2.16.15 AM.jpeg AND image_ea3b09.jpg) */}
-                <div className="flex flex-wrap gap-2.5 justify-start md:justify-end">
+                {/* SQUARED APP LOGOS WITH GOOD GAP (gap-4) */}
+                <div className="flex flex-wrap gap-4 justify-start md:justify-end">
                   {socials.map((item, index) => {
                     const SocialIcon = getIcon(item.icon);
                     const brandLogoClasses = getSocialBrandClass(item.icon);
@@ -187,13 +187,13 @@ function Footer({ onOpenModal }) {
                 </div>
               </div>
 
-              {/* WhatsApp Us Button with Gold/White Accent Repositioned perfectly downward */}
+              {/* WhatsApp Us Button matching exact style, colors, padding, and animations as Start a Project */}
               <div className="w-full flex justify-start md:justify-end pt-3">
                 <a
                   href="https://wa.me/919652155580"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full border border-[#f5c96a]/40 px-6 py-3 text-[11px] font-bold uppercase tracking-[0.25em] text-[#f5c96a] hover:bg-[#f5c96a]/10 transition duration-300 shadow-md hover:shadow-[#f5c96a]/10"
+                  className="inline-block rounded-full bg-gradient-to-r from-white via-[#f5c96a] to-[#d89b1d] px-6 py-3 text-[11px] font-bold uppercase tracking-[0.25em] text-black transition hover:scale-105 shadow-lg shadow-[#f5c96a]/15 text-center"
                 >
                   WhatsApp Us
                 </a>
