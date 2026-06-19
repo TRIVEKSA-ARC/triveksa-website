@@ -149,7 +149,7 @@ function Footer({ onOpenModal }) {
                     <MapPin size={15} />
                   </div>
                   <span className="text-[15px] tracking-wide text-white group-hover:text-[#f5c96a] transition duration-300 font-medium">
-                    Shadnagar, Hyderabad
+                           Hyderabad , India
                   </span>
                 </div>
               </div>
@@ -166,7 +166,7 @@ function Footer({ onOpenModal }) {
                 </div>
 
                 {/* SQUARED APP LOGOS WITH GOOD GAP (gap-4) */}
-                <div className="flex flex-wrap gap-4 justify-start md:justify-end">
+                <div className="flex flex-wrap gap-6 justify-start md:justify-end">
                   {socials.map((item, index) => {
                     const SocialIcon = getIcon(item.icon);
                     const brandLogoClasses = getSocialBrandClass(item.icon);
