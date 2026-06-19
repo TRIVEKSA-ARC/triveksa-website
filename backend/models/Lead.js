@@ -39,14 +39,20 @@ const leadSchema = new mongoose.Schema(
     },
 
     goal: {
-    type: String,
-    trim: true,
-    default: "",
+      type: String,
+      trim: true,
+      default: "",
     },
 
     message: {
       type: String,
       required: true,
+    },
+
+    source: {
+      type: String,
+      enum: ["Website", "WhatsApp"],
+      default: "Website",
     },
 
     status: {

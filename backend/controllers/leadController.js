@@ -11,6 +11,7 @@ export const createLead = async (req, res) => {
       budget,
       goal,
       message,
+      source,
     } = req.body;
 
     // Validation
@@ -30,6 +31,7 @@ export const createLead = async (req, res) => {
       budget,
       goal,
       message,
+      source,
     });
     console.log("Lead saved:", lead);
 
@@ -38,10 +40,11 @@ export const createLead = async (req, res) => {
     await sendEmail({
       to: process.env.ADMIN_EMAIL,
       replyTo: email,
-      subject: `🚀 New Project Inquiry - ${service}`,
+      subject: `🚀 New Project Inquiry [${source || "Website"}] - ${service}`,
       html: `
         <h2>New Lead Received</h2>
 
+        <p><strong>Source:</strong> ${source || "Website"}</p>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Phone:</strong> ${phone}</p>
