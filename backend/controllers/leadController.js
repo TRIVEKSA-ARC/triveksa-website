@@ -57,34 +57,68 @@ export const createLead = async (req, res) => {
 
     /* ================= AUTO REPLY TO CLIENT ================= */
     console.log("Sending client email...");
+
     await sendEmail({
       to: email,
       subject: "Thank you for contacting TRIVEKSA ARC",
       html: `
-        <h2>Thank You for Contacting TRIVEKSA ARC</h2>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto;">
 
-        <p>Hi ${name},</p>
+          <div style="text-align: center; padding: 20px 0;">
+            <img
+              src="https://triveksaarc.com/Logo.png"
+              alt="TRIVEKSA ARC"
+              width="120"
+              style="display: block; margin: 0 auto;"
+            />
+          </div>
 
-        <p>We have received your inquiry successfully.</p>
+          <h2 style="color: #0f172a;">
+            Thank You for Contacting TRIVEKSA ARC
+          </h2>
 
-        <p><strong>Selected Service:</strong> ${service}</p>
-        <p><strong>Business Goal:</strong> ${goal || "Not Provided"}</p>
+          <p>Hi ${name},</p>
 
-        <p>Our team will review your requirements and contact you shortly.</p>
+          <p>
+            Thank you for reaching out to TRIVEKSA ARC.
+            We have successfully received your project inquiry.
+          </p>
 
-        <p>
-          Typical response time is within 24 hours.
-        </p>
+          <p>
+            <strong>Selected Service:</strong> ${service}
+          </p>
 
-        <br/>
+          <p>
+            <strong>Business Goal:</strong> ${goal || "Not Provided"}
+          </p>
 
-        <p>Regards,</p>
-        <p><strong>Triviksa Arc Team</strong></p>
-        <p>https://triveksaarc.com</p>
+          <p>
+            <strong>Budget:</strong> ${budget || "Not Provided"}
+          </p>
+
+          <p>
+            Our team will review your requirements and contact you within 24 hours.
+          </p>
+
+          <hr />
+
+          <p>
+            Regards,<br />
+            <strong>TRIVEKSA ARC</strong><br />
+            Digital Solutions
+          </p>
+
+          <p>
+            🌐 https://triveksaarc.com
+          </p>
+
+        </div>
       `,
     });
+
     console.log("Client email sent");
 
+    // Send HTTP response back to the front-end client
     res.status(201).json({
       success: true,
       message: "Lead submitted successfully",
