@@ -38,6 +38,12 @@ const leadSchema = new mongoose.Schema(
       default: "",
     },
 
+    goal: {
+    type: String,
+    trim: true,
+    default: "",
+    },
+
     message: {
       type: String,
       required: true,

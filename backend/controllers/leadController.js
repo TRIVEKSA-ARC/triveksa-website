@@ -9,6 +9,7 @@ export const createLead = async (req, res) => {
       phone,
       service,
       budget,
+      goal,
       message,
     } = req.body;
 
@@ -27,6 +28,7 @@ export const createLead = async (req, res) => {
       phone,
       service,
       budget,
+      goal,
       message,
     });
     console.log("Lead saved:", lead);
@@ -45,6 +47,7 @@ export const createLead = async (req, res) => {
         <p><strong>Phone:</strong> ${phone}</p>
         <p><strong>Service:</strong> ${service}</p>
         <p><strong>Budget:</strong> ${budget || "Not Provided"}</p>
+        <p><strong>Business Goal:</strong> ${goal || "Not Provided"}</p>
 
         <h3>Project Details</h3>
         <p>${message}</p>
@@ -56,19 +59,18 @@ export const createLead = async (req, res) => {
     console.log("Sending client email...");
     await sendEmail({
       to: email,
-      subject: "Thank you for contacting Triviksa Arc",
+      subject: "Thank you for contacting TRIVEKSA ARC",
       html: `
-        <h2>Thank You for Contacting Triviksa Arc</h2>
+        <h2>Thank You for Contacting TRIVEKSA ARC</h2>
 
         <p>Hi ${name},</p>
 
-        <p>
-          We have successfully received your project inquiry.
-        </p>
+        <p>We have received your inquiry successfully.</p>
 
-        <p>
-          Our team will review your requirements and get back to you shortly.
-        </p>
+        <p><strong>Selected Service:</strong> ${service}</p>
+        <p><strong>Business Goal:</strong> ${goal || "Not Provided"}</p>
+
+        <p>Our team will review your requirements and contact you shortly.</p>
 
         <p>
           Typical response time is within 24 hours.
