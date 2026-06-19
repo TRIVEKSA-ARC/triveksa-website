@@ -12,6 +12,7 @@ function ContactModal({ isOpen, onClose }) {
     phone: "",
     service: "",
     budget: "",
+    goal: "",
     message: "",
   });
 
@@ -34,6 +35,7 @@ function ContactModal({ isOpen, onClose }) {
         phone: "",
         service: "",
         budget: "",
+        goal: "",
         message: "",
       });
       setTimeout(() => {
@@ -94,6 +96,7 @@ function ContactModal({ isOpen, onClose }) {
                     onChange={handleChange}
                     className="w-full bg-gray-50 rounded-xl p-4 text-gray-900 outline-none focus:ring-2 focus:ring-amber-500/20 transition-all border border-gray-100 appearance-none cursor-pointer"
                   >
+                    <option value="">Select Service</option>
                     <option value="Web Development">Web Development</option>
                     <option value="UI/UX Design">UI/UX Design</option>
                     <option value="Video Editing">Video Editing</option>
@@ -103,6 +106,13 @@ function ContactModal({ isOpen, onClose }) {
                 </div>
                 
                 <Input name="budget" value={formData.budget} onChange={handleChange} placeholder="Project Budget (e.g., ₹50,000)" />
+                
+                <Input
+                  name="goal"
+                  value={formData.goal || ""}
+                  onChange={handleChange}
+                  placeholder="What is your business goal?"
+                />
                 
                 <textarea 
                   name="message"

@@ -1,5 +1,5 @@
 import * as LucideIcons from "lucide-react";
-import { Mail, Phone, Shield } from "lucide-react";
+import { Mail, Phone, Shield, MapPin } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useFooter } from "../../context/FooterContext";
 import Reveal from "../Reveal";
@@ -81,6 +81,15 @@ function Footer({ onOpenModal }) {
               >
                 Start A Project
               </button>
+
+              <a
+                href="https://wa.me/919652155580"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-block rounded-full border border-[#f5c96a]/30 px-6 py-3 text-[11px] font-bold uppercase tracking-[0.25em] text-[#f5c96a] hover:bg-[#f5c96a]/10 transition"
+              >
+                WhatsApp Us
+              </a>
             </div>
 
             {/* CENTER — INTERACTIVE ENGAGEMENT CALLOUT */}
@@ -111,6 +120,23 @@ function Footer({ onOpenModal }) {
                   </div>
                   <span className="text-[15px] tracking-wide text-white group-hover:text-[#f5c96a] transition duration-300 font-medium">
                     {phone}
+                  </span>
+                </div>
+
+                <div
+                  className="flex items-center gap-4 group cursor-pointer py-1 w-full border-b border-white/[0.03] hover:border-[#f5c96a]/20 transition duration-300"
+                  onClick={() =>
+                    window.open(
+                      "YOUR_GOOGLE_MAP_LINK",
+                      "_blank"
+                    )
+                  }
+                >
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.02] text-[#f5c96a] transition duration-300 group-hover:bg-[#f5c96a]/10 group-hover:border-[#f5c96a]/20">
+                    <MapPin size={15} />
+                  </div>
+                  <span className="text-[15px] tracking-wide text-white group-hover:text-[#f5c96a] transition duration-300 font-medium">
+                    Shadnagar, Hyderabad
                   </span>
                 </div>
               </div>
