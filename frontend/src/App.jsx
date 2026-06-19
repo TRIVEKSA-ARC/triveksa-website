@@ -10,6 +10,7 @@ import About from "./components/About/About";
 import Projects from "./components/Projects/Projects";
 import Footer from "./components/Footer/Footer";
 import ContactModal from "./components/Contact/ContactModal";
+import WhatsAppModal from "./components/Contact/WhatsAppModal";
 import Admin from "./Admin/Admin";
 import GlobalBackground from "./Layouts/GlobalBackground";
 
@@ -26,6 +27,7 @@ import ResetPassword from "./Loginout/ResetPassword";
 /* ================= HOME ================= */
 function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isWhatsAppOpen, setIsWhatsAppOpen] = useState(false);
 
   return (
     <>
@@ -34,13 +36,21 @@ function Home() {
         <Hero />
         <About />
         <Projects />
-        <Footer onOpenModal={() => setIsModalOpen(true)} />
+        <Footer 
+          onOpenModal={() => setIsModalOpen(true)} 
+          onOpenWhatsApp={() => setIsWhatsAppOpen(true)} 
+        />
       </GlobalBackground>
 
-      {/* 2. ContactModal is outside GlobalBackground, preventing clipping */}
+      {/* 2. Modals are outside GlobalBackground, preventing clipping */}
       <ContactModal 
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
+      />
+
+      <WhatsAppModal 
+        isOpen={isWhatsAppOpen} 
+        onClose={() => setIsWhatsAppOpen(false)} 
       />
     </>
   );

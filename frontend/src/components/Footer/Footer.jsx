@@ -36,7 +36,7 @@ const getSocialBrandClass = (iconName) => {
   return "bg-white text-black hover:opacity-90";
 };
 
-function Footer({ onOpenModal }) {
+function Footer({ onOpenModal, onOpenWhatsApp }) {
   const navigate = useNavigate();
   const { footer } = useFooter();
 
@@ -149,7 +149,7 @@ function Footer({ onOpenModal }) {
                     <MapPin size={15} />
                   </div>
                   <span className="text-[15px] tracking-wide text-white group-hover:text-[#f5c96a] transition duration-300 font-medium">
-                           Hyderabad , India
+                    Hyderabad , India
                   </span>
                 </div>
               </div>
@@ -187,16 +187,14 @@ function Footer({ onOpenModal }) {
                 </div>
               </div>
 
-              {/* WhatsApp Us Button matching exact style, colors, padding, and animations as Start a Project */}
+              {/* WhatsApp Us Button now converted to a styled button calling onOpenWhatsApp modal handler */}
               <div className="w-full flex justify-start md:justify-end pt-3">
-                <a
-                  href="https://wa.me/919652155580"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  onClick={onOpenWhatsApp}
                   className="inline-block rounded-full bg-gradient-to-r from-white via-[#f5c96a] to-[#d89b1d] px-6 py-3 text-[11px] font-bold uppercase tracking-[0.25em] text-black transition hover:scale-105 shadow-lg shadow-[#f5c96a]/15 text-center"
                 >
                   WhatsApp Us
-                </a>
+                </button>
               </div>
             </div>
           </div>
