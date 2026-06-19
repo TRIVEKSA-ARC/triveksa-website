@@ -18,22 +18,22 @@ const getIcon = (iconName) => {
   return LucideIcons[formatted] || LucideIcons.Github;
 };
 
-/* Official Brand Colors Mapping for Logos */
+/* Full App-Like Branding background classes matching image_ea3b09.jpg style */
 const getSocialBrandClass = (iconName) => {
   const name = iconName?.toLowerCase() || "";
   if (name.includes("instagram")) {
-    return "hover:text-[#E1306C] hover:border-[#E1306C]/40 hover:bg-[#E1306C]/10 hover:shadow-[0_0_15px_rgba(225,48,108,0.15)]";
+    return "bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white shadow-[0_4px_14px_rgba(238,42,123,0.25)] hover:opacity-90";
   }
   if (name.includes("youtube")) {
-    return "hover:text-[#FF0000] hover:border-[#FF0000]/40 hover:bg-[#FF0000]/10 hover:shadow-[0_0_15px_rgba(255,0,0,0.15)]";
+    return "bg-[#FF0000] text-white shadow-[0_4px_14px_rgba(255,0,0,0.25)] hover:opacity-90";
   }
   if (name.includes("github")) {
-    return "hover:text-white hover:border-white/30 hover:bg-white/10 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)]";
+    return "bg-[#24292e] text-white shadow-[0_4px_14px_rgba(36,41,46,0.25)] hover:opacity-90";
   }
   if (name.includes("facebook")) {
-    return "hover:text-[#1877F2] hover:border-[#1877F2]/40 hover:bg-[#1877F2]/10 hover:shadow-[0_0_15px_rgba(24,119,242,0.15)]";
+    return "bg-[#1877F2] text-white shadow-[0_4px_14px_rgba(24,119,242,0.25)] hover:opacity-90";
   }
-  return "hover:text-[#0066ff] hover:bg-[#0066ff]/10 hover:border-[#0066ff]/40";
+  return "bg-white text-black hover:opacity-90";
 };
 
 function Footer({ onOpenModal }) {
@@ -63,8 +63,8 @@ function Footer({ onOpenModal }) {
   return (
     <footer id="contact" className="relative w-full bg-[#020611] border-t border-white/5 overflow-hidden">
       
-      {/* AMBIENT BACKGROUND GLOWS — Matching image_1cf743.jpg layout */}
-      <div className="pointer-events-none absolute left-[-5%] bottom-[-10%] h-[350px] w-[350px] rounded-full bg-[#0052cc]/10 blur-[130px]" />
+      {/* AMBIENT BACKGROUND GLOWS */}
+      <div className="pointer-events-none absolute left-[-5%] bottom-[-10%] h-[350px] w-[350px] rounded-full bg-white/5 blur-[130px]" />
       <div className="pointer-events-none absolute right-[15%] bottom-[-20%] h-[400px] w-[400px] rounded-full bg-[#f5c96a]/10 blur-[140px]" />
 
       <Reveal>
@@ -78,12 +78,12 @@ function Footer({ onOpenModal }) {
                 <img
                   src="/Logo.png"
                   alt="Trivixa Logo"
-                  className="h-11 w-11 object-contain opacity-90 drop-shadow-[0_0_18px_rgba(0,82,204,0.3)]"
+                  className="h-11 w-11 object-contain opacity-90 drop-shadow-[0_0_18px_rgba(245,201,106,0.2)]"
                 />
 
                 <div className="flex items-center gap-3">
-                  <span className="h-px w-8 bg-gradient-to-r from-[#0052cc] to-[#f5c96a]" />
-                  <h3 className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.45em] bg-gradient-to-r from-[#0066ff] via-[#f5c96a] to-[#d89b1d] bg-clip-text text-transparent">
+                  <span className="h-px w-8 bg-gradient-to-r from-white to-[#f5c96a]" />
+                  <h3 className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.45em] bg-gradient-to-r from-white via-[#f5c96a] to-[#d89b1d] bg-clip-text text-transparent">
                     Trivixa Studio
                   </h3>
                 </div>
@@ -93,9 +93,10 @@ function Footer({ onOpenModal }) {
                 {message}
               </p>
 
+              {/* Start a Project with Premium Gold Styling */}
               <button
                 onClick={onOpenModal}
-                className="mt-4 rounded-full bg-gradient-to-r from-[#0066ff] via-[#f5c96a] to-[#d89b1d] px-6 py-3 text-[11px] font-bold uppercase tracking-[0.25em] text-black transition hover:scale-105 shadow-lg shadow-[#0052cc]/25"
+                className="mt-4 rounded-full bg-gradient-to-r from-white via-[#f5c96a] to-[#d89b1d] px-6 py-3 text-[11px] font-bold uppercase tracking-[0.25em] text-black transition hover:scale-105 shadow-lg shadow-[#f5c96a]/15"
               >
                 Start A Project
               </button>
@@ -108,15 +109,15 @@ function Footer({ onOpenModal }) {
                   Ready to build something exceptional?
                 </span>
 
-                {/* EMAIL — Electric Blue Accent */}
+                {/* EMAIL — Luxury White Accent */}
                 <div
-                  className="flex items-center gap-4 group cursor-pointer py-1 w-full border-b border-white/[0.04] hover:border-[#0066ff]/30 transition duration-300"
+                  className="flex items-center gap-4 group cursor-pointer py-1 w-full border-b border-white/[0.04] hover:border-white/30 transition duration-300"
                   onClick={() => (window.location.href = `mailto:${email}`)}
                 >
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#0066ff]/30 bg-[#0066ff]/5 text-[#0066ff] transition duration-300 group-hover:bg-[#0066ff]/20 group-hover:border-[#0066ff]/50">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition duration-300 group-hover:bg-white/10 group-hover:border-white/40">
                     <Mail size={15} />
                   </div>
-                  <span className="text-[15px] tracking-wide text-white group-hover:text-[#0066ff] transition duration-300 break-all font-medium">
+                  <span className="text-[15px] tracking-wide text-white group-hover:text-white/80 transition duration-300 break-all font-medium">
                     {email}
                   </span>
                 </div>
@@ -134,9 +135,9 @@ function Footer({ onOpenModal }) {
                   </span>
                 </div>
 
-                {/* LOCATION — Dynamic Duo Color Mix Accent */}
+                {/* LOCATION — Clean Luxury Accent */}
                 <div
-                  className="flex items-center gap-4 group cursor-pointer py-1 w-full border-b border-white/[0.04] hover:border-[#0066ff]/30 transition duration-300"
+                  className="flex items-center gap-4 group cursor-pointer py-1 w-full border-b border-white/[0.04] hover:border-[#f5c96a]/30 transition duration-300"
                   onClick={() =>
                     window.open(
                       "YOUR_GOOGLE_MAP_LINK",
@@ -144,30 +145,31 @@ function Footer({ onOpenModal }) {
                     )
                   }
                 >
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#0066ff]/30 bg-[#0066ff]/5 text-[#0066ff] transition duration-300 group-hover:bg-[#0066ff]/20 group-hover:border-[#f5c96a]/40 group-hover:text-[#f5c96a]">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition duration-300 group-hover:bg-[#f5c96a]/10 group-hover:border-[#f5c96a]/40 group-hover:text-[#f5c96a]">
                     <MapPin size={15} />
                   </div>
-                  <span className="text-[15px] tracking-wide text-white group-hover:text-[#0066ff] transition duration-300 font-medium">
+                  <span className="text-[15px] tracking-wide text-white group-hover:text-[#f5c96a] transition duration-300 font-medium">
                     Shadnagar, Hyderabad
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* RIGHT — BRAND NETWORKS & UPDATED WHATSAPP POSITION */}
+            {/* RIGHT — BRAND NETWORKS WITH SOLID SQUARED ICONS & REPOSITIONED WHATSAPP */}
             <div className="flex flex-col items-start md:items-end justify-start space-y-6 md:w-full">
               <div className="flex flex-col items-start md:items-end space-y-4 w-full">
                 <div className="flex items-center gap-3 md:flex-row-reverse">
-                  <span className="h-px w-8 bg-gradient-to-r from-[#0052cc] to-[#f5c96a]" />
+                  <span className="h-px w-8 bg-gradient-to-r from-white to-[#f5c96a]" />
                   <h3 className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.45em] text-white/80">
                     Connect With Trivixa
                   </h3>
                 </div>
 
-                <div className="flex flex-wrap gap-3 justify-start md:justify-end">
+                {/* SQUARED APP LOGOS CONTAINER (MATCHING WhatsApp Image 2026-06-20 at 2.16.15 AM.jpeg AND image_ea3b09.jpg) */}
+                <div className="flex flex-wrap gap-2.5 justify-start md:justify-end">
                   {socials.map((item, index) => {
                     const SocialIcon = getIcon(item.icon);
-                    const brandHoverClasses = getSocialBrandClass(item.icon);
+                    const brandLogoClasses = getSocialBrandClass(item.icon);
 
                     return (
                       <a
@@ -176,22 +178,22 @@ function Footer({ onOpenModal }) {
                         target="_blank"
                         rel="noopener noreferrer"
                         title={item.label}
-                        className={`p-3 rounded-full border border-white/10 bg-white/[0.02] text-white/70 hover:scale-105 transition-all duration-300 backdrop-blur-md ${brandHoverClasses}`}
+                        className={`w-10 h-10 flex items-center justify-center rounded-xl hover:scale-105 transition-all duration-300 ${brandLogoClasses}`}
                       >
-                        <SocialIcon size={18} />
+                        <SocialIcon size={18} strokeWidth={2.5} />
                       </a>
                     );
                   })}
                 </div>
               </div>
 
-              {/* Repositioned WhatsApp Us Button (Underneath social grids as pointed in image_1cf743.jpg) */}
-              <div className="w-full flex justify-start md:justify-end pt-2">
+              {/* WhatsApp Us Button with Gold/White Accent Repositioned perfectly downward */}
+              <div className="w-full flex justify-start md:justify-end pt-3">
                 <a
                   href="https://wa.me/919652155580"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full border border-[#0066ff]/40 px-6 py-3 text-[11px] font-bold uppercase tracking-[0.25em] text-[#0066ff] hover:bg-[#0066ff]/10 transition duration-300 shadow-md hover:shadow-[#0066ff]/10"
+                  className="rounded-full border border-[#f5c96a]/40 px-6 py-3 text-[11px] font-bold uppercase tracking-[0.25em] text-[#f5c96a] hover:bg-[#f5c96a]/10 transition duration-300 shadow-md hover:shadow-[#f5c96a]/10"
                 >
                   WhatsApp Us
                 </a>
@@ -205,6 +207,7 @@ function Footer({ onOpenModal }) {
               {copyright}
             </span>
 
+            {/* Admin Shield Icon perfectly placed into the absolute extreme right bottom corner */}
             <div className="static md:absolute md:right-0 md:bottom-5">
               <button
                 className="p-2 rounded-full border border-white/10 bg-white/[0.02] text-white/40 hover:text-[#f5c96a] hover:bg-[#f5c96a]/10 hover:border-[#f5c96a]/20 transition-all duration-300"
