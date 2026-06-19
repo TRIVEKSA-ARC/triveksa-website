@@ -11,7 +11,6 @@ function WhatsAppModal({ isOpen, onClose }) {
     email: "",
     phone: "",
     service: "",
-    budget: "",
     goal: "",
     message: "",
   });
@@ -37,7 +36,6 @@ Name: ${formData.name}
 Email: ${formData.email}
 Phone: ${formData.phone}
 Service: ${formData.service}
-Budget: ${formData.budget || "Not Provided"}
 Business Goal: ${formData.goal || "Not Provided"}
 Project Details: ${formData.message}`;
       
@@ -55,7 +53,6 @@ Project Details: ${formData.message}`;
         email: "",
         phone: "",
         service: "",
-        budget: "",
         goal: "",
         message: "",
       });
@@ -154,13 +151,6 @@ Project Details: ${formData.message}`;
                   <option value="Custom Project">Custom Project</option>
                 </select>
               </div>
-
-              <Input
-                name="budget"
-                value={formData.budget}
-                onChange={handleChange}
-                placeholder="Project Budget"
-              />
 
               <Input
                 name="goal"
