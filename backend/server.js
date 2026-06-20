@@ -33,6 +33,7 @@ if (process.env.NODE_ENV !== "production") {
 connectDB();
 
 /* ================= BODY PARSERS ================= */
+app.use(
   express.json({
     limit: "2mb",
   })
