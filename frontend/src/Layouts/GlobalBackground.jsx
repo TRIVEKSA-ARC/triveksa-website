@@ -11,6 +11,49 @@ function GlobalBackground({ children }) {
   const bgRef = useRef(null);
 
   useEffect(() => {
+    /* ===============================
+       PREMIUM CINEMATIC BG MOTION
+    =============================== */
+    // This continuous background pulse remains active across skips
+    const bgAnimation = gsap.fromTo(
+      bgRef.current,
+      { scale: 1.05 },
+      {
+        scale: 1,
+        duration: 45,
+        ease: "power2.inOut",
+        repeat: -1,
+        yoyo: true,
+      }
+    );
+
+    /* ===============================
+       SESSION CHECK FLAG
+    =============================== */
+    const introPlayed = sessionStorage.getItem("introPlayed");
+
+    if (introPlayed) {
+      // Instantly reveal website content layout
+      gsap.set(contentRef.current, {
+        opacity: 1,
+        y: 0,
+      });
+
+      // Instantly hide intro graphics elements
+      gsap.set(shipRef.current, {
+        opacity: 0,
+      });
+
+      gsap.set(lightRef.current, {
+        opacity: 0,
+      });
+
+      // Cleanup continuous background animation on unmount
+      return () => {
+        bgAnimation.kill();
+      };
+    }
+
     const tl = gsap.timeline();
 
     /* ===============================
@@ -34,22 +77,6 @@ function GlobalBackground({ children }) {
       opacity: 0,
       y: 60,
     });
-
-    /* ===============================
-       PREMIUM CINEMATIC BG MOTION
-    =============================== */
-
-    gsap.fromTo(
-      bgRef.current,
-      { scale: 1.05 },
-      {
-        scale: 1,
-        duration: 45,
-        ease: "power2.inOut",
-        repeat: -1,
-        yoyo: true,
-      }
-    );
 
     /* ===============================
        SHIP ENTRY
@@ -116,9 +143,15 @@ function GlobalBackground({ children }) {
         ],
         curviness: 1.8,
       },
+      onComplete: () => {
+        sessionStorage.setItem("introPlayed", "true");
+      },
     });
 
-    return () => tl.kill();
+    return () => {
+      bgAnimation.kill();
+      tl.kill();
+    };
   }, []);
 
   return (
