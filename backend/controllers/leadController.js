@@ -1,3 +1,4 @@
+import validator from "validator";
 import Lead from "../models/Lead.js";
 import sendEmail from "../utils/sendEmail.js";
 
@@ -14,11 +15,59 @@ export const createLead = async (req, res) => {
       source,
     } = req.body;
 
-    // Validation
+    // 1. Basic Required Fields Check
     if (!name || !email || !phone || !service || !message) {
       return res.status(400).json({
         success: false,
         message: "Please fill all required fields",
+      });
+    }
+
+    // 2. Email Validation
+    if (!validator.isEmail(email)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid email address",
+      });
+    }
+
+    // 3. Phone Validation
+    if (!validator.isMobilePhone(phone, "any")) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid phone number",
+      });
+    }
+
+    // 4. Name Length Validation
+    if (name.trim().length < 2) {
+      return res.status(400).json({
+        success: false,
+        message: "Name too short",
+      });
+    }
+
+    // 5. Message Size Limit Validation (Stops spam/abuse)
+    if (message.length > 2000) {
+      return res.status(400).json({
+        success: false,
+        message: "Message too long (max 2000 characters)",
+      });
+    }
+
+    // 6. Budget Length Validation
+    if (budget && budget.length > 100) {
+      return res.status(400).json({
+        success: false,
+        message: "Budget field too long",
+      });
+    }
+
+    // 7. Goal Length Validation
+    if (goal && goal.length > 500) {
+      return res.status(400).json({
+        success: false,
+        message: "Business goal too long",
       });
     }
 

@@ -1,6 +1,10 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import helmet from "helmet";
+import morgan from "morgan";
+import mongoSanitize from "express-mongo-sanitize";
+import xss from "xss-clean";
 import connectDB from "./config/db.js";
 
 // Routes
@@ -14,12 +18,36 @@ dotenv.config();
 
 const app = express();
 
+/* ================= SECURITY & LOGGING MIDDLEWARE ================= */
+app.use(
+  helmet({
+    crossOriginEmbedderPolicy: false,
+  })
+);
+
+if (process.env.NODE_ENV !== "production") {
+  app.use(morgan("combined"));
+}
+
 /* ================= DATABASE ================= */
 connectDB();
 
 /* ================= BODY PARSERS ================= */
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+  express.json({
+    limit: "2mb",
+  })
+);
+
+app.use(
+  express.urlencoded({
+    extended: true,
+    limit: "2mb",
+  })
+);
+
+/* ================= DATA SANITIZATION ================= */
+app.use(mongoSanitize());
+app.use(xss());
 
 /* ================= CORS ================= */
 app.use(

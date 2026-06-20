@@ -5,16 +5,20 @@ import {
   resetPassword,
 } from "../controllers/auth.controller.js";
 import authMiddleware from "../middlewares/auth.middleware.js";
+import {
+  loginLimiter,
+  forgotPasswordLimiter,
+} from "../middlewares/rateLimit.middleware.js";
 
 const router = express.Router();
 
 /* ================= AUTH ================= */
 
 // Login
-router.post("/login", loginAdmin);
+router.post("/login", loginLimiter, loginAdmin);
 
 // Forgot password
-router.post("/forgot-password", forgotPassword);
+router.post("/forgot-password", forgotPasswordLimiter, forgotPassword);
 
 // Reset password
 router.post("/reset-password/:token", resetPassword);

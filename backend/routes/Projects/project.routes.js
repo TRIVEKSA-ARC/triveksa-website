@@ -1,5 +1,6 @@
 import express from "express";
 import upload from "../../middlewares/upload.js";
+import authMiddleware from "../../middlewares/auth.middleware.js";
 import {
   createProject,
   getProjects,
@@ -17,10 +18,10 @@ const safeUpload = (req, res, next) => {
   });
 };
 
-router.post("/", safeUpload, createProject);
+router.post("/", authMiddleware, safeUpload, createProject);
 router.get("/", getProjects);
 router.get("/category/:category", getProjectsByCategory);
-router.put("/:id", safeUpload, updateProject);
-router.delete("/:id", deleteProject);
+router.put("/:id", authMiddleware, safeUpload, updateProject);
+router.delete("/:id", authMiddleware, deleteProject);
 
 export default router;

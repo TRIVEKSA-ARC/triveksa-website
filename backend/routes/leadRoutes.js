@@ -1,5 +1,4 @@
 import express from "express";
-
 import {
   createLead,
   getLeads,
@@ -7,27 +6,26 @@ import {
   updateLeadStatus,
   deleteLead,
 } from "../controllers/leadController.js";
+import authMiddleware from "../middlewares/auth.middleware.js";
 
 const router = express.Router();
 
 /* ================= CREATE LEAD ================= */
-
+// Left public so potential clients can register inquiries
 router.post("/", createLead);
 
-/* ================= GET ALL LEADS ================= */
+/* ================= PROTECTED ADMIN MANIPULATION ROUTES ================= */
 
-router.get("/", getLeads);
+// Get all leads
+router.get("/", authMiddleware, getLeads);
 
-/* ================= GET SINGLE LEAD ================= */
+// Get single lead
+router.get("/:id", authMiddleware, getLeadById);
 
-router.get("/:id", getLeadById);
+// Update lead status
+router.put("/:id", authMiddleware, updateLeadStatus);
 
-/* ================= UPDATE LEAD STATUS ================= */
-
-router.put("/:id", updateLeadStatus);
-
-/* ================= DELETE LEAD ================= */
-
-router.delete("/:id", deleteLead);
+// Delete lead
+router.delete("/:id", authMiddleware, deleteLead);
 
 export default router;
