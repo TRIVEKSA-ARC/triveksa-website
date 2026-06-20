@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Loginout/AuthContext";
-
-
 
 import AboutAdmin from "./About/Admin.About.jsx";
 import ProjectsAdmin from "./Projects/Admin.Projects.jsx";
@@ -9,10 +8,40 @@ import AdminFooter from "./Footer/Admin.Footer.jsx";
 
 function Admin() {
   const { logout } = useAuth();
+  const navigate = useNavigate();
   const [active, setActive] = useState("about");
+  const [checkingAuth, setCheckingAuth] = useState(true);
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
 
-  
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+
+    fetch(`${import.meta.env.VITE_API_URL}/api/auth/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          localStorage.removeItem("token");
+          navigate("/login");
+        } else {
+          setCheckingAuth(false);
+        }
+      })
+      .catch(() => {
+        localStorage.removeItem("token");
+        navigate("/login");
+      });
+  }, [navigate]);
+
+  if (checkingAuth) {
+    return null;
+  }
 
   return (
     <div className="w-full min-h-screen flex bg-[#0b0f19] text-white font-plusjakarta">
@@ -50,7 +79,10 @@ function Admin() {
 
         {/* 🔓 LOGOUT */}
         <button
-          onClick={logout}
+          onClick={() => {
+            localStorage.removeItem("token");
+            logout();
+          }}
           className="mt-auto px-4 py-3 rounded-xl bg-red-500/20 text-red-400 hover:bg-red-500/40 transition font-semibold"
         >
           Logout
