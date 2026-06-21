@@ -17,6 +17,11 @@ function Hero() {
       {/* ================= AGENCY HERO ================= */}
       <section className="relative min-h-screen w-full overflow-hidden bg-transparent text-white flex items-center font-sans py-20 lg:py-0">
         
+        {/* VISUALLY HIDDEN SEO H1 FOR SEARCH ENGINES */}
+        <h1 className="sr-only">
+          TRIVEKSA ARC - Web Development, UI/UX Design and Branding Agency
+        </h1>
+
         {/* SUBTLE GRID OVERLAY */}
         <div
           className="absolute inset-0 z-0 opacity-[0.08] pointer-events-none"
@@ -43,21 +48,21 @@ function Hero() {
                 <div className="flex items-center gap-4">
                   <span className="h-px w-12 bg-gradient-to-r from-amber-400 to-transparent" />
                   <p className="text-[11px] sm:text-[12px] uppercase tracking-[0.45em] text-amber-400 font-semibold drop-shadow-md">
-                    Creative Technology Agency
+                    Founder of TRIVEKSA ARC
                   </p>
                 </div>
               </Reveal>
 
               {/* NAME */}
               <Reveal>
-                <h1 className="leading-[0.95] md:leading-[0.9] uppercase">
+                <div className="leading-[0.95] md:leading-[0.9] uppercase">
                   <span className="block text-[48px] sm:text-[88px] md:text-[110px] xl:text-[138px] font-black tracking-[-0.05em] text-white drop-shadow-sm">
-                    TRIVEKSA
+                    Vinod
                   </span>
                   <span className="block text-[48px] sm:text-[88px] md:text-[110px] xl:text-[138px] font-black tracking-[-0.05em] bg-gradient-to-r from-[#fff4d6] via-[#f7d774] to-[#d89b1d] bg-clip-text text-transparent filter drop-shadow-sm">
-                    ARC
+                    Kumar
                   </span>
-                </h1>
+                </div>
               </Reveal>
             </div>
 
