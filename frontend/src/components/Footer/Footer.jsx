@@ -18,7 +18,7 @@ const getIcon = (iconName) => {
   return LucideIcons[formatted] || LucideIcons.Github;
 };
 
-/* Full App-Like Branding background classes matching image_ea3b09.jpg style */
+/* Full App-Like Branding background classes matching premium digital styling */
 const getSocialBrandClass = (iconName) => {
   const name = iconName?.toLowerCase() || "";
   if (name.includes("instagram")) {
@@ -33,6 +33,9 @@ const getSocialBrandClass = (iconName) => {
   if (name.includes("facebook")) {
     return "bg-[#1877F2] text-white shadow-[0_4px_14px_rgba(24,119,242,0.25)] hover:opacity-90";
   }
+  if (name.includes("linkedin")) {
+    return "bg-[#0077B5] text-white shadow-[0_4px_14px_rgba(0,119,181,0.25)] hover:opacity-90";
+  }
   return "bg-white text-black hover:opacity-90";
 };
 
@@ -40,7 +43,7 @@ function Footer({ onOpenModal, onOpenWhatsApp }) {
   const navigate = useNavigate();
   const { footer } = useFooter();
 
-  /* ✅ SAFE FALLBACK WITH REFINED PREMIUM AGENCY DATA */
+  /* ✅ SAFE FALLBACK WITH REFINED PREMIUM AGENCY DATA WITH LINKEDIN ADDED */
   const data = footer || {
     message:
       "Building modern digital experiences through development, design, branding, and creative technology — crafted for startups, creators, and next-generation businesses.",
@@ -52,6 +55,7 @@ function Footer({ onOpenModal, onOpenWhatsApp }) {
       { label: "Youtube", link: "https://youtube.com", icon: "youtube" },
       { label: "Github", link: "https://github.com", icon: "github" },
       { label: "Facebook", link: "https://facebook.com", icon: "facebook" },
+      { label: "LinkedIn", link: "https://www.linkedin.com/in/vinod-kumar-kattoju-a90659418/", icon: "linkedin" },
     ],
   };
 
@@ -165,7 +169,7 @@ function Footer({ onOpenModal, onOpenWhatsApp }) {
                   </h3>
                 </div>
 
-                {/* SQUARED APP LOGOS WITH GOOD GAP (gap-4) */}
+                {/* SQUARED APP LOGOS WITH GOOD GAP (gap-6) */}
                 <div className="flex flex-wrap gap-6 justify-start md:justify-end">
                   {socials.map((item, index) => {
                     const SocialIcon = getIcon(item.icon);
@@ -187,7 +191,7 @@ function Footer({ onOpenModal, onOpenWhatsApp }) {
                 </div>
               </div>
 
-              {/* WhatsApp Us Button now converted to a styled button calling onOpenWhatsApp modal handler */}
+              {/* WhatsApp Us Button */}
               <div className="w-full flex justify-start md:justify-end pt-3">
                 <button
                   onClick={onOpenWhatsApp}
