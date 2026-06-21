@@ -17,11 +17,6 @@ function Hero() {
       {/* ================= AGENCY HERO ================= */}
       <section className="relative min-h-screen w-full overflow-hidden bg-transparent text-white flex items-center font-sans py-20 lg:py-0">
         
-        {/* VISUALLY HIDDEN SEO H1 FOR SEARCH ENGINES */}
-        <h1 className="sr-only">
-          TRIVEKSA ARC - Web Development, UI/UX Design and Branding Agency
-        </h1>
-
         {/* SUBTLE GRID OVERLAY */}
         <div
           className="absolute inset-0 z-0 opacity-[0.08] pointer-events-none"
@@ -42,6 +37,11 @@ function Hero() {
           {/* LEFT SIDE — CONTENT ARCHITECTURE */}
           <div className="lg:col-span-7 flex flex-col justify-center space-y-6 md:space-y-7">
             
+            {/* VISUALLY HIDDEN SEO H1 FOR SEARCH ENGINES */}
+            <h1 className="sr-only">
+              TRIVEKSA ARC - Web Development, UI/UX Design and Branding Agency
+            </h1>
+
             <div className="flex flex-col space-y-3 md:space-y-4">
               {/* TOP LABEL */}
               <Reveal>
