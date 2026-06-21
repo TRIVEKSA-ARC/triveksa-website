@@ -36,26 +36,30 @@ function Hero() {
           
           {/* LEFT SIDE — CONTENT ARCHITECTURE */}
           <div className="lg:col-span-7 flex flex-col justify-center space-y-6 md:space-y-7">
-            
-            {/* VISUALLY HIDDEN SEO H1 FOR SEARCH ENGINES */}
-            <h1 className="sr-only">
-              TRIVEKSA ARC - Web Development, UI/UX Design and Branding Agency
-            </h1>
 
             <div className="flex flex-col space-y-3 md:space-y-4">
-              {/* TOP LABEL (UPDATED FOR HEADING HIERARCHY) */}
+              {/* TOP LABEL — SEO VISIBLE BRAND H1 */}
               <Reveal>
                 <div className="flex items-center gap-4">
                   <span className="h-px w-12 bg-gradient-to-r from-amber-400 to-transparent" />
-                  <h2 className="text-[11px] sm:text-[12px] uppercase tracking-[0.45em] text-amber-400 font-semibold drop-shadow-md">
+                  <h1 className="text-[11px] sm:text-[12px] uppercase tracking-[0.45em] text-amber-400 font-semibold drop-shadow-md">
+                    TRIVEKSA ARC
+                  </h1>
+                </div>
+              </Reveal>
+
+              {/* FOUNDER SUB-LABEL */}
+              <Reveal>
+                <div className="flex items-center gap-4 -mt-1">
+                  <p className="text-[11px] sm:text-[12px] uppercase tracking-[0.45em] text-amber-400 font-semibold drop-shadow-md">
                     Founder of TRIVEKSA ARC
-                  </h2>
+                  </p>
                 </div>
               </Reveal>
 
               {/* NAME */}
               <Reveal>
-                <div className="leading-[0.95] md:leading-[0.9] uppercase">
+                <div className="leading-[0.95] md:leading-[0.9] uppercase pt-2">
                   <span className="block text-[48px] sm:text-[88px] md:text-[110px] xl:text-[138px] font-black tracking-[-0.05em] text-white drop-shadow-sm">
                     Vinod
                   </span>
