@@ -52,8 +52,8 @@ function Footer({ onOpenModal, onOpenWhatsApp }) {
   const navigate = useNavigate();
   const { footer } = useFooter();
 
-  /* ✅ SAFE FALLBACK WITH REFINED PREMIUM AGENCY DATA WITH LINKEDIN ADDED */
-  const data = footer || {
+  /* ✅ SAFE FALLBACK WITH REFINED PREMIUM AGENCY DATA */
+  const fallbackData = {
     message:
       "Building modern digital experiences through development, design, branding, and creative technology — crafted for startups, creators, and next-generation businesses.",
     email: "hello@triveksaarc.com",
@@ -64,11 +64,25 @@ function Footer({ onOpenModal, onOpenWhatsApp }) {
       { label: "Youtube", link: "https://youtube.com", icon: "youtube" },
       { label: "Github", link: "https://github.com", icon: "github" },
       { label: "Facebook", link: "https://facebook.com", icon: "facebook" },
-      { label: "LinkedIn", link: "https://www.linkedin.com/in/vinod-kumar-kattoju-a90659418/", icon: "linkedin" },
     ],
   };
 
-  const { message, email, phone, socials } = data;
+  // Merge context data or fallback data
+  const finalData = footer || fallbackData;
+  const { message, email, phone, socials = [] } = finalData;
+
+  // 🔥 FORCE ADD LINKEDIN IF IT IS NOT PRESENT IN THE DATABASE/CONTEXT YET
+  const hasLinkedIn = socials.some(item => item.icon?.toLowerCase() === "linkedin");
+  const displaySocials = hasLinkedIn 
+    ? socials 
+    : [
+        ...socials, 
+        { 
+          label: "LinkedIn", 
+          link: "https://www.linkedin.com/in/vinod-kumar-kattoju-a90659418/", 
+          icon: "linkedin" 
+        }
+      ];
 
   const copyright =
     `© ${new Date().getFullYear()} Vinod Kumar. All rights reserved.`;
@@ -168,7 +182,7 @@ function Footer({ onOpenModal, onOpenWhatsApp }) {
               </div>
             </div>
 
-            {/* RIGHT — BRAND NETWORKS WITH IMPROVED GAP AND COHESIVE WHATSAPP BUTTON */}
+            {/* RIGHT — BRAND NETWORKS */}
             <div className="flex flex-col items-start md:items-end justify-start space-y-6 md:w-full">
               <div className="flex flex-col items-start md:items-end space-y-4 w-full">
                 <div className="flex items-center gap-3 md:flex-row-reverse">
@@ -180,7 +194,7 @@ function Footer({ onOpenModal, onOpenWhatsApp }) {
 
                 {/* SQUARED APP LOGOS WITH GOOD GAP (gap-6) */}
                 <div className="flex flex-wrap gap-6 justify-start md:justify-end">
-                  {socials.map((item, index) => {
+                  {displaySocials.map((item, index) => {
                     const SocialIcon = getIcon(item.icon);
                     const brandLogoClasses = getSocialBrandClass(item.icon);
 
