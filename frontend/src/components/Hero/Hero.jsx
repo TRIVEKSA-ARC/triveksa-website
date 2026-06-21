@@ -43,7 +43,7 @@ function Hero() {
                 <div className="flex items-center gap-4">
                   <span className="h-px w-12 bg-gradient-to-r from-amber-400 to-transparent" />
                   <p className="text-[11px] sm:text-[12px] uppercase tracking-[0.45em] text-amber-400 font-semibold drop-shadow-md">
-                    Founder of TRIVIXA ARC
+                    Creative Technology Agency
                   </p>
                 </div>
               </Reveal>
@@ -52,10 +52,10 @@ function Hero() {
               <Reveal>
                 <h1 className="leading-[0.95] md:leading-[0.9] uppercase">
                   <span className="block text-[48px] sm:text-[88px] md:text-[110px] xl:text-[138px] font-black tracking-[-0.05em] text-white drop-shadow-sm">
-                    Vinod
+                    TRIVEKSA
                   </span>
                   <span className="block text-[48px] sm:text-[88px] md:text-[110px] xl:text-[138px] font-black tracking-[-0.05em] bg-gradient-to-r from-[#fff4d6] via-[#f7d774] to-[#d89b1d] bg-clip-text text-transparent filter drop-shadow-sm">
-                    Kumar
+                    ARC
                   </span>
                 </h1>
               </Reveal>
@@ -65,10 +65,10 @@ function Hero() {
             <Reveal delay={0.15}>
               <div className="flex flex-col space-y-1.5 border-l-2 border-amber-400/40 pl-4 py-0.5">
                 <span className="text-[12px] sm:text-[14px] uppercase tracking-[0.25em] text-white font-bold">
-                  Creative Developer • Digital Systems Designer
+                  Web Development • UI/UX Design • Branding
                 </span>
                 <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-white/60 font-medium">
-                  Architecting Experiences at Trivixa Arc
+                  Building Modern Digital Experiences
                 </span>
               </div>
             </Reveal>
