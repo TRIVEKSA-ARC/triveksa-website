@@ -43,13 +43,13 @@ function Hero() {
             </h1>
 
             <div className="flex flex-col space-y-3 md:space-y-4">
-              {/* TOP LABEL */}
+              {/* TOP LABEL (UPDATED FOR HEADING HIERARCHY) */}
               <Reveal>
                 <div className="flex items-center gap-4">
                   <span className="h-px w-12 bg-gradient-to-r from-amber-400 to-transparent" />
-                  <p className="text-[11px] sm:text-[12px] uppercase tracking-[0.45em] text-amber-400 font-semibold drop-shadow-md">
+                  <h2 className="text-[11px] sm:text-[12px] uppercase tracking-[0.45em] text-amber-400 font-semibold drop-shadow-md">
                     Founder of TRIVEKSA ARC
-                  </p>
+                  </h2>
                 </div>
               </Reveal>
 
