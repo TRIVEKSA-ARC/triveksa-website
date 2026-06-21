@@ -8,6 +8,15 @@ import Reveal from "../Reveal";
 const getIcon = (iconName) => {
   if (!iconName) return LucideIcons.Github;
 
+  const nameLower = iconName.toLowerCase();
+  
+  // Direct explicit maps for tricky naming conventions in Lucide
+  if (nameLower === "linkedin") return LucideIcons.Linkedin;
+  if (nameLower === "youtube") return LucideIcons.Youtube;
+  if (nameLower === "github") return LucideIcons.Github;
+  if (nameLower === "facebook") return LucideIcons.Facebook;
+  if (nameLower === "instagram") return LucideIcons.Instagram;
+
   const formatted =
     iconName
       .replace("fa-", "")
