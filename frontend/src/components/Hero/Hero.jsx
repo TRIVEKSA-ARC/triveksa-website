@@ -38,19 +38,11 @@ function Hero() {
           <div className="lg:col-span-7 flex flex-col justify-center space-y-6 md:space-y-7">
 
             <div className="flex flex-col space-y-3 md:space-y-4">
-              {/* TOP LABEL — SEO VISIBLE BRAND H1 */}
+              
+              {/* CLEANED SINGLE-LABEL ARCHITECTURE (OPTION 1) */}
               <Reveal>
                 <div className="flex items-center gap-4">
                   <span className="h-px w-12 bg-gradient-to-r from-amber-400 to-transparent" />
-                  <h1 className="text-[11px] sm:text-[12px] uppercase tracking-[0.45em] text-amber-400 font-semibold drop-shadow-md">
-                    TRIVEKSA ARC
-                  </h1>
-                </div>
-              </Reveal>
-
-              {/* FOUNDER SUB-LABEL */}
-              <Reveal>
-                <div className="flex items-center gap-4 -mt-1">
                   <p className="text-[11px] sm:text-[12px] uppercase tracking-[0.45em] text-amber-400 font-semibold drop-shadow-md">
                     Founder of TRIVEKSA ARC
                   </p>
