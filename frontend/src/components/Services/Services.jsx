@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   FaLaptopCode,
@@ -8,76 +9,51 @@ import {
 } from "react-icons/fa";
 
 import ServiceCard from "./ServiceCard";
+import { fetchServices } from "../../services/service.api";
 
-const services = [
-  {
-    id: 1,
-    icon: <FaLaptopCode />,
-    title: "Website Development",
-    description:
-      "Modern, fast, responsive websites built with the latest technologies to help your business grow online.",
-    features: [
-      "Responsive Design",
-      "SEO Optimized",
-      "Admin Dashboard",
-      "Fast Performance",
-    ],
-  },
-  {
-    id: 2,
-    icon: <FaPalette />,
-    title: "UI / UX Design",
-    description:
-      "Clean, premium user interfaces designed to improve customer experience and conversions.",
-    features: [
-      "Wireframes",
-      "Figma Design",
-      "Modern UI",
-      "User Experience",
-    ],
-  },
-  {
-    id: 3,
-    icon: <FaVideo />,
-    title: "Video Editing",
-    description:
-      "Professional commercial advertisements, social media reels, motion graphics and cinematic edits.",
-    features: [
-      "Commercial Ads",
-      "Instagram Reels",
-      "Motion Graphics",
-      "Color Grading",
-    ],
-  },
-  {
-    id: 4,
-    icon: <FaBullhorn />,
-    title: "Branding",
-    description:
-      "Build a memorable brand identity with premium designs that increase trust and recognition.",
-    features: [
-      "Logo Design",
-      "Brand Identity",
-      "Business Cards",
-      "Social Media",
-    ],
-  },
-  {
-    id: 5,
-    icon: <FaSearch />,
-    title: "SEO Optimization",
-    description:
-      "Improve your Google ranking and increase organic traffic with technical and on-page SEO.",
-    features: [
-      "Technical SEO",
-      "On Page SEO",
-      "Speed Optimization",
-      "Google Indexing",
-    ],
-  },
-];
+const icons = {
+  FaLaptopCode: <FaLaptopCode />,
+  FaPalette: <FaPalette />,
+  FaVideo: <FaVideo />,
+  FaBullhorn: <FaBullhorn />,
+  FaSearch: <FaSearch />,
+};
 
 export default function Services() {
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadServices = async () => {
+      try {
+        const data = await fetchServices();
+        setServices(data);
+      } catch (err) {
+        console.error("Failed to load services", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadServices();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="py-32 text-center text-zinc-400">
+        Loading services...
+      </section>
+    );
+  }
+
+  if (!loading && services.length === 0) {
+    return (
+      <section className="py-32 text-center text-zinc-400">
+        No services found.
+      </section>
+    );
+  }
+
   return (
     <section className="relative overflow-hidden bg-transparent py-16 sm:py-24 md:py-32">
 
@@ -165,8 +141,11 @@ export default function Services() {
         <div className="grid gap-6 sm:grid-gap-8 md:grid-cols-2 xl:grid-cols-3">
           {services.map((service) => (
             <ServiceCard
-              key={service.id}
-              service={service}
+              key={service._id}
+              service={{
+                ...service,
+                icon: icons[service.icon] || <FaLaptopCode />,
+              }}
             />
           ))}
         </div>
