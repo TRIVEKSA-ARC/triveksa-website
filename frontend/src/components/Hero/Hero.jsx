@@ -39,7 +39,7 @@ function Hero() {
     <>
       {/* ================= PREMIUM AGENCY HERO ================= */}
       {/* Fix 3: Updated padding from py-16 md:py-24 to pt-16 pb-36 md:pt-24 md:pb-40 */}
-      <section className="relative min-h-screen w-full overflow-hidden bg-[#07090F] text-[#F5F5F2] flex items-center font-sans pt-16 pb-36 md:pt-24 md:pb-40 tracking-[-0.01em]">
+      <section className="relative min-h-screen w-full overflow-hidden bg-[#07090F] text-[#F5F5F2] flex items-center font-sans pt-10 pb-36 md:pt-24 md:pb-40 tracking-[-0.01em]">
         
         {/* DESIGNER BACKGROUND SUITE (ANIMATED ATMOSPHERE) */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
