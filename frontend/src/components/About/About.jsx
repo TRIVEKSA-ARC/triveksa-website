@@ -17,7 +17,7 @@ const renderStyledText = (text, gradient = false) => {
         className={
           gradient
             ? "bg-gradient-to-r from-[#fff1c2] via-[#f5c96a] to-[#d89b1d] bg-clip-text text-transparent font-bold"
-            : "text-white font-semibold"
+            : "text-[#F5C96A] font-semibold"
         }
       >
         {part}
@@ -59,9 +59,8 @@ function About() {
   return (
     <section
       id="about"
-      className="relative overflow-hidden bg-transparent px-5 py-16 text-white md:px-8 lg:px-10 md:py-24"
+      className="relative overflow-hidden bg-transparent px-5 py-16 text-white md:px-8 lg:px-10 md:py-24 tracking-[-0.01em]"
     >
-     
 
       {/* RESTRAINED LUXURY AMBIENT BACKGROUND LIGHTS */}
       <div className="pointer-events-none absolute right-[-10%] top-10 h-[500px] w-[500px] rounded-full bg-amber-500/[0.06] blur-[140px] z-0" />
@@ -71,13 +70,9 @@ function About() {
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16 xl:gap-20 items-center relative z-10">
         
         {/* RIGHT — PROFILE CARD GRID WITH DETACHED BLUR IMAGE DESIGN */}
-        {/* FIX ✅ 8️⃣: APPLIED lg:mt-10 FOR LOWER BALANCE ALIGNMENT */}
         <div className="relative order-1 lg:order-2 lg:col-span-5 flex flex-col sm:flex-row items-center w-full justify-center lg:justify-end gap-6 lg:mt-10">
           
-          {/* PROFILE IMAGE CONTAINER REMOVED FROM THIS BLOCK */}
-
           {/* RIGHT CHUNK: CORE EXPERTISE CAPABILITIES CARD */}
-          {/* FIX ✅ 4️⃣: UPDATED MAX WIDTH FROM max-w-[380px] TO max-w-[430px] FOR BETTER PROPORTIONS */}
           <Reveal delay={0.3} className={`w-full ${data.image ? "max-w-[430px] sm:w-[55%]" : "max-w-[450px] lg:max-w-none"}`}>
             <motion.div 
               whileHover={{ y: -4 }}
@@ -158,13 +153,12 @@ function About() {
 
         {/* LEFT — CONTENT */}
         <div className="relative order-2 lg:order-1 lg:col-span-7">
-          {/* FIX ✅ 1️⃣: REMOVED THE absolute INNER BACKDROP BOX COMPLETELY TO RESTORE DEPTH */}
           
           {/* SUBTITLE */}
           <Reveal>
             <div className="mb-6 flex items-center gap-4">
-              <span className="h-px w-12 bg-gradient-to-r from-amber-400 to-transparent" />
-              <span className="text-[11px] md:text-[12px] font-semibold uppercase tracking-[0.42em] text-amber-300/90">
+              <span className="h-px w-12 bg-gradient-to-r from-[#D4AF37] to-transparent" />
+              <span className="text-[12px] font-semibold uppercase tracking-[0.42em] text-[#D4AF37]">
                 {data.subtitle || "About Me"}
               </span>
             </div>
@@ -176,12 +170,10 @@ function About() {
           </span>
 
           {/* MAIN TEXT BLOCK */}
-          {/* FIX ✅ 5️⃣: OPTIMIZED SPACING DOWN TO space-y-4 md:space-y-5 */}
           <div className="relative z-10 space-y-4 md:space-y-5">
             {/* MAIN HEADLINE */}
-            {/* FIX ✅ 2️⃣: ADJUSTED FROM md:text-[52px] TO TAILORED BALANCED SIZES md:text-[44px] xl:text-[48px] */}
             <Reveal delay={0.05}>
-              <h2 className="max-w-2xl text-[30px] sm:text-[38px] md:text-[44px] xl:text-[48px] leading-[1.05] tracking-[-0.05em] font-bold text-white">
+              <h2 className="max-w-2xl text-[38px] sm:text-[52px] md:text-[64px] xl:text-[72px] leading-[1.05] tracking-[-0.05em] font-extrabold text-[#FFFFFF]">
                 Premium Digital Experiences Engineered For Modern Brands
               </h2>
             </Reveal>
@@ -192,8 +184,8 @@ function About() {
               .map((text, i) => (
                 <Reveal key={i} delay={0.12 + i * 0.1}>
                   <p
-                    className={`max-w-2xl text-[14px] md:text-[17px] leading-relaxed md:leading-8 font-light ${
-                      i === 0 ? "text-white/72" : "text-white/65"
+                    className={`max-w-2xl text-[17px] md:text-[20px] leading-[2rem] font-normal ${
+                      i === 0 ? "text-[#F5F5F2]" : "text-[#D6D9E0] text-[16px] md:text-[18px]"
                     }`}
                   >
                     {renderStyledText(text)}
@@ -212,12 +204,9 @@ function About() {
                 </p>
               </div>
             </Reveal>
-
-            {/* FIX ✅ 3️⃣: REPETITIVE HIGHLIGHT BLOCK REMOVED FOR CLEANER LUXURY LOOK */}
           </div>
 
           {/* HIGH CONTRAST SERVICES CHIPS */}
-          {/* FIX ✅ 5️⃣: ADJUSTED TOP MARGIN SPACING FROM mt-10 TO mt-7 */}
           <Reveal delay={0.5}>
             <div className="mt-7 flex flex-wrap gap-2.5 md:gap-3">
               {data.services.map((service) => (

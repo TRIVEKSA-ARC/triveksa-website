@@ -93,7 +93,7 @@ export default function Services() {
               tracking-[0.25em]
               sm:tracking-[0.35em]
               text-[#D4AF37]
-              backdrop-blur-xl
+              
             "
           >
             Our Services
