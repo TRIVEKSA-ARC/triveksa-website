@@ -11,6 +11,7 @@ import connectDB from "./config/db.js";
 import authRoutes from "./routes/auth.routes.js";
 import aboutRoutes from "./routes/about.routes.js";
 import projectRoutes from "./routes/Projects/project.routes.js";
+import serviceRoutes from "./routes/Services/service.routes.js";
 import footerRoutes from "./routes/footer.routes.js";
 import leadRoutes from "./routes/leadRoutes.js";
 
@@ -78,6 +79,7 @@ app.get("/api/health", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/about", aboutRoutes);
 app.use("/api/projects", projectRoutes);
+app.use("/api/services", serviceRoutes);
 app.use("/api/footer", footerRoutes);
 app.use("/api/leads", leadRoutes);
 
