@@ -8,11 +8,9 @@ import SmoothScroll from "./components/SmoothScroll";
 // Home Components
 import Hero from "./components/Hero/Hero";
 import About from "./components/About/About";
+import Services from "./components/Services/Services";
 import Projects from "./components/Projects/Projects";
 import Footer from "./components/Footer/Footer";
-
-// Services
-import Services from "./components/Services/Services";
 
 // Contact
 import ContactModal from "./components/Contact/ContactModal";
@@ -46,8 +44,14 @@ function Home() {
     <>
       <GlobalBackground>
         <Hero />
+
         <About />
+
+        {/* ✅ Services Section */}
+        <Services />
+
         <Projects />
+
         <Footer
           onOpenModal={() => setIsModalOpen(true)}
           onOpenWhatsApp={() => setIsWhatsAppOpen(true)}
@@ -70,10 +74,30 @@ function Home() {
 /* ================= SERVICES PAGE ================= */
 
 function ServicesPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isWhatsAppOpen, setIsWhatsAppOpen] = useState(false);
+
   return (
-    <GlobalBackground>
-      <Services />
-    </GlobalBackground>
+    <>
+      <GlobalBackground>
+        <Services />
+
+        <Footer
+          onOpenModal={() => setIsModalOpen(true)}
+          onOpenWhatsApp={() => setIsWhatsAppOpen(true)}
+        />
+      </GlobalBackground>
+
+      <ContactModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
+
+      <WhatsAppModal
+        isOpen={isWhatsAppOpen}
+        onClose={() => setIsWhatsAppOpen(false)}
+      />
+    </>
   );
 }
 
@@ -89,16 +113,15 @@ function App() {
         }}
       />
 
-      <AnimatedCursor />
+      <Router>
+        <SmoothScroll>
+          <AnimatedCursor />
 
-      <SmoothScroll>
-        <Router>
           <AuthProvider>
             <FooterProvider>
               <ProjectProvider>
                 <AboutProvider>
                   <Routes>
-
                     {/* Public Pages */}
                     <Route path="/" element={<Home />} />
                     <Route path="/services" element={<ServicesPage />} />
@@ -123,14 +146,13 @@ function App() {
                         </ProtectedRoute>
                       }
                     />
-
                   </Routes>
                 </AboutProvider>
               </ProjectProvider>
             </FooterProvider>
           </AuthProvider>
-        </Router>
-      </SmoothScroll>
+        </SmoothScroll>
+      </Router>
     </>
   );
 }
