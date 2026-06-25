@@ -79,36 +79,87 @@ const services = [
 
 export default function Services() {
   return (
-    <section className="relative overflow-hidden py-24 bg-transparent">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="relative overflow-hidden bg-transparent py-32">
+
+      {/* Background Glow */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute left-1/2 top-32 h-96 w-96 -translate-x-1/2 rounded-full bg-[#D4AF37]/10 blur-[140px]" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
 
         {/* Heading */}
+
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.7 }}
+          className="mb-20 text-center"
         >
-          <span className="inline-block rounded-full border border-cyan-500/30 bg-cyan-500/10 px-5 py-2 text-sm font-medium tracking-widest uppercase text-cyan-400">
+
+          {/* Badge */}
+
+          <span
+            className="
+              inline-flex
+              items-center
+              rounded-full
+              border
+              border-[#D4AF37]/40
+              bg-[#D4AF37]/10
+              px-6
+              py-2
+              text-xs
+              font-semibold
+              uppercase
+              tracking-[0.35em]
+              text-[#D4AF37]
+              backdrop-blur-xl
+            "
+          >
             Our Services
           </span>
 
-          <h2 className="mt-6 text-5xl font-bold text-white">
+          {/* Heading */}
+
+          <h2 className="mt-8 text-5xl font-bold leading-tight text-white md:text-6xl">
             Premium Digital Solutions
-            <span className="block text-cyan-400 mt-2">
-              For Growing Businesses
-            </span>
           </h2>
 
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-400">
-            From modern websites and UI/UX design to branding, SEO, and
-            professional video editing, we help businesses build a strong
-            digital presence that converts visitors into customers.
+          <h3
+            className="
+              mt-2
+              text-5xl
+              font-bold
+              md:text-6xl
+              bg-gradient-to-r
+              from-[#D4AF37]
+              via-[#F5E6A1]
+              to-[#C89B3C]
+              bg-clip-text
+              text-transparent
+            "
+          >
+            For Growing Businesses
+          </h3>
+
+          {/* Divider */}
+
+          <div className="mx-auto mt-8 h-px w-28 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
+
+          {/* Description */}
+
+          <p className="mx-auto mt-8 max-w-3xl text-lg leading-9 text-zinc-400">
+            We craft premium digital experiences that elevate brands through
+            modern web development, elegant UI/UX, cinematic video production,
+            strategic branding, and high-performance SEO solutions.
           </p>
+
         </motion.div>
 
-        {/* Services Grid */}
+        {/* Services */}
+
         <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
           {services.map((service) => (
             <ServiceCard
