@@ -38,7 +38,8 @@ function Hero() {
   return (
     <>
       {/* ================= PREMIUM AGENCY HERO ================= */}
-      <section className="relative min-h-screen w-full overflow-hidden bg-[#07090F] text-[#F5F5F2] flex items-center font-sans py-16 md:py-24 tracking-[-0.01em]">
+      {/* Fix 3: Updated padding from py-16 md:py-24 to pt-16 pb-36 md:pt-24 md:pb-40 */}
+      <section className="relative min-h-screen w-full overflow-hidden bg-[#07090F] text-[#F5F5F2] flex items-center font-sans pt-16 pb-36 md:pt-24 md:pb-40 tracking-[-0.01em]">
         
         {/* DESIGNER BACKGROUND SUITE (ANIMATED ATMOSPHERE) */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -87,7 +88,8 @@ function Hero() {
           }}
         />
 
-        <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-5 sm:px-8 md:px-10 lg:grid-cols-12 lg:gap-8 lg:px-12 items-center">
+        {/* Fix 7: Changed lg:gap-8 to lg:gap-16 */}
+        <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-5 sm:px-8 md:px-10 lg:grid-cols-12 lg:gap-16 lg:px-12 items-center">
           
           {/* LEFT SIDE & MAIN HEADER ARCHITECTURE */}
           <div className="lg:col-span-7 flex flex-col justify-center order-1 w-full">
@@ -207,7 +209,7 @@ function Hero() {
               </Reveal>
             </div>
 
-            {/* CTA BUTTON BLOCK (PORTFOLIO BUTTON REMOVED & RESTRUCTURED) */}
+            {/* CTA BUTTON BLOCK */}
             <div className="mb-[40px] w-full">
               <Reveal>
                 <div className="flex flex-wrap gap-3.5 items-center">
@@ -276,7 +278,8 @@ function Hero() {
             </div>
 
             {/* PREMIUM SOCIAL MATRIX */}
-            <div>
+            {/* Fix 4: Added mt-8 to add spacing above social icons */}
+            <div className="mt-8">
               <Reveal>
                 <div className="flex items-center justify-center sm:justify-start gap-4">
                   {[
@@ -302,10 +305,11 @@ function Hero() {
 
           </div>
 
-          {/* DESKTOP EXCLUSIVE RIGHT SIDE PROFILE CARD (ALIGNMENT CORRECTION PERFECTED) */}
-          <div className="hidden lg:col-span-5 lg:flex justify-end items-start lg:pt-1 w-full order-2 pl-4">
+          {/* DESKTOP EXCLUSIVE RIGHT SIDE PROFILE CARD */}
+          {/* Fix 1 & 6: Removed lg:pt-1, changed pl-4 to pl-6, max-w-[420px] to max-w-[400px], and added negative top margins -mt-16 xl:-mt-20 */}
+          <div className="hidden lg:col-span-5 lg:flex justify-end items-start w-full order-2 pl-6">
             <Reveal className="w-full flex justify-end">
-              <div className="group relative w-full max-w-[420px]">
+              <div className="group relative w-full max-w-[400px] -mt-16 xl:-mt-20">
                 <div className="absolute -inset-px -z-10 bg-gradient-to-tr from-[#CDA349]/20 to-white/5 rounded-3xl opacity-40 blur-xl transition duration-700 group-hover:opacity-60" />
                 <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-[#2B2F38] bg-[#12151C] p-2.5 backdrop-blur-3xl transition-all duration-700 group-hover:border-[#CDA349] group-hover:shadow-[0_30px_80px_rgba(205,163,73,0.1)]">
                   
@@ -372,36 +376,38 @@ function Hero() {
           </div>
         </div>
 
-        {/* ================= INFINITE TICKER MARQUEE BANNER ================= */}
-        <div className="absolute bottom-16 left-0 w-full overflow-hidden bg-gradient-to-r from-transparent via-[#12151C]/80 to-transparent border-y border-white/[0.04] py-3 backdrop-blur-sm z-10">
-          <div className="flex w-max items-center">
-            <motion.div 
-              className="flex whitespace-nowrap gap-16 text-[11px] font-black uppercase tracking-[0.3em] text-[#F5F5F2]/40 px-8"
-              animate={{ x: [0, "-33.33%"] }}
-              transition={{ ease: "linear", duration: 25, repeat: Infinity }}
-            >
-              {/* Loop 3 times to ensure perfect infinite visual scrolling */}
-              {[...Array(3)].map((_, mainIdx) => (
-                <div key={mainIdx} className="flex gap-16">
-                  {technologies.map((tech, techIdx) => (
-                    <span key={techIdx} className="hover:text-[#CDA349] transition-colors duration-300 select-none">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-
+        {/* Fix 5: Raised the scroll indicator from bottom-4 to bottom-6 */}
         {/* ANIMATED SCROLL TO EXPLORE FOOTER */}
-        <div className="absolute bottom-4 sm:bottom-5 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-1 opacity-40 pointer-events-none z-10">
+        <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-1 opacity-40 pointer-events-none z-10">
           <p className="text-[8px] sm:text-[9px] uppercase tracking-[0.35em] font-bold text-[#F5F5F2]">Scroll to Explore</p>
           <motion.div animate={{ y: [0, 5, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}>
             <ArrowDown size={12} className="text-[#CDA349]" />
           </motion.div>
         </div>
 
+      </section>
+
+      {/* Fix 2 (Option A): Moved the infinite marquee banner entirely outside the Hero <section> component */}
+      {/* ================= INFINITE TICKER MARQUEE BANNER ================= */}
+      <section className="relative w-full overflow-hidden bg-gradient-to-r from-transparent via-[#12151C]/80 to-transparent border-y border-white/[0.04] py-3 backdrop-blur-sm z-10 -mt-20">
+        <div className="flex w-max items-center">
+          <motion.div 
+            className="flex whitespace-nowrap gap-16 text-[11px] font-black uppercase tracking-[0.3em] text-[#F5F5F2]/40 px-8"
+            animate={{ x: [0, "-33.33%"] }}
+            transition={{ ease: "linear", duration: 25, repeat: Infinity }}
+          >
+            {/* Loop 3 times to ensure perfect infinite visual scrolling */}
+            {[...Array(3)].map((_, mainIdx) => (
+              <div key={mainIdx} className="flex gap-16">
+                {technologies.map((tech, techIdx) => (
+                  <span key={techIdx} className="hover:text-[#CDA349] transition-colors duration-300 select-none">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            ))}
+          </motion.div>
+        </div>
       </section>
     </>
   );
