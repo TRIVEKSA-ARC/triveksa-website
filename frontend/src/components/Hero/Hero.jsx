@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { 
   Rocket, 
   FolderGit2, 
-  Download, 
   Wrench, 
   CheckCircle2, 
   Github, 
@@ -31,10 +30,15 @@ function Hero() {
     { value: "Fast", label: "Delivery" }
   ];
 
+  // Technologies list for the infinite marquee banner
+  const technologies = [
+    "Framer Motion", "GSAP", "React", "Node.js", "Express", "MongoDB", "Figma"
+  ];
+
   return (
     <>
       {/* ================= PREMIUM AGENCY HERO ================= */}
-      <section className="relative min-h-screen w-full overflow-hidden bg-[#07090F] text-[#F5F5F2] flex items-center font-sans py-12 md:py-16 tracking-[-0.01em]">
+      <section className="relative min-h-screen w-full overflow-hidden bg-[#07090F] text-[#F5F5F2] flex items-center font-sans py-16 md:py-24 tracking-[-0.01em]">
         
         {/* DESIGNER BACKGROUND SUITE (ANIMATED ATMOSPHERE) */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -42,16 +46,16 @@ function Hero() {
           <motion.div 
             animate={{ rotate: 360 }}
             transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
-            className="absolute -top-[10%] -right-[20%] sm:-top-[20%] sm:-right-[10%] h-[400px] sm:h-[700px] w-[400px] sm:w-[700px] rounded-full bg-[#CDA349]/[0.04] blur-[100px] sm:blur-[150px]"
+            className="absolute -top-[10%] -right-[20%] sm:-top-[20%] sm:-right-[10%] h-[400px] sm:h-[700px] w-[400px] sm:w-[700px] rounded-full bg-[#CDA349]/[0.05] blur-[100px] sm:blur-[150px]"
           />
           <motion.div 
             animate={{ rotate: -360 }}
             transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-            className="absolute -bottom-[10%] -left-[20%] sm:-left-[10%] h-[400px] sm:h-[600px] w-[400px] sm:w-[600px] rounded-full bg-blue-500/[0.02] blur-[90px] sm:blur-[130px]"
+            className="absolute -bottom-[10%] -left-[20%] sm:-left-[10%] h-[400px] sm:h-[600px] w-[400px] sm:w-[600px] rounded-full bg-blue-500/[0.03] blur-[90px] sm:blur-[130px]"
           />
           
           {/* Subtle Particles / Slow Floating Stars */}
-          {[...Array(6)].map((_, i) => (
+          {[...Array(8)].map((_, i) => (
             <motion.div
               key={i}
               className="absolute w-1 h-1 bg-white rounded-full opacity-30"
@@ -203,64 +207,48 @@ function Hero() {
               </Reveal>
             </div>
 
-            {/* CTA BUTTON BLOCK */}
-            <div className="mb-[32px] w-full">
+            {/* CTA BUTTON BLOCK (PORTFOLIO BUTTON REMOVED & RESTRUCTURED) */}
+            <div className="mb-[40px] w-full">
               <Reveal>
-                <div className="flex flex-col space-y-3 w-full">
-                  {/* Row 1 */}
-                  <div className="flex flex-col sm:flex-row gap-3">
-                    {/* ONLY ONE GOLD BUTTON */}
-                    <MagneticButton
-                      href="#contact"
-                      className="inline-flex items-center justify-center gap-2.5 rounded-full border border-transparent bg-gradient-to-r from-[#E8C66A] to-[#B88728] px-6 py-3.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.28em] text-black shadow-xl w-full sm:w-auto transition-transform hover:scale-[1.02]"
-                    >
-                      <Rocket size={13} />
-                      Book Discovery Call
-                    </MagneticButton>
+                <div className="flex flex-wrap gap-3.5 items-center">
+                  {/* GOLD ACTION BUTTON */}
+                  <MagneticButton
+                    href="#contact"
+                    className="inline-flex items-center justify-center gap-2.5 rounded-full border border-transparent bg-gradient-to-r from-[#E8C66A] to-[#B88728] px-7 py-4 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.28em] text-black shadow-xl w-full sm:w-auto transition-transform hover:scale-[1.02]"
+                  >
+                    <Rocket size={13} />
+                    Book Discovery Call
+                  </MagneticButton>
 
-                    {/* PREMIUM GLASS BUTTON */}
-                    <MagneticButton
-                      href="#projects"
-                      className="inline-flex items-center justify-center gap-2.5 rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(20,20,20,0.55)] px-6 py-3.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.28em] text-[#F5F5F2] w-full sm:w-auto transition-all duration-300 hover:bg-[rgba(205,163,73,0.08)] hover:border-[#CDA349]"
-                    >
-                      <FolderGit2 size={13} className="text-[#CDA349]" />
-                      View Projects
-                    </MagneticButton>
-                  </div>
+                  {/* PREMIUM GLASS BUTTON 1 */}
+                  <MagneticButton
+                    href="#projects"
+                    className="inline-flex items-center justify-center gap-2.5 rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(20,20,20,0.55)] px-7 py-4 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.28em] text-[#F5F5F2] w-full sm:w-auto transition-all duration-300 hover:bg-[rgba(205,163,73,0.08)] hover:border-[#CDA349]"
+                  >
+                    <FolderGit2 size={13} className="text-[#CDA349]" />
+                    View Projects
+                  </MagneticButton>
 
-                  {/* Row 2 */}
-                  <div className="flex flex-col sm:flex-row gap-3">
-                    {/* PREMIUM GLASS BUTTON */}
-                    <MagneticButton
-                      href="/portfolio.pdf"
-                      download
-                      className="inline-flex items-center justify-center gap-2.5 rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(20,20,20,0.55)] px-6 py-3.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.28em] text-[#F5F5F2] w-full sm:w-auto transition-all duration-300 hover:bg-[rgba(205,163,73,0.08)] hover:border-[#CDA349]"
-                    >
-                      <Download size={13} className="text-[#CDA349]" />
-                      Download Portfolio
-                    </MagneticButton>
-
-                    {/* PREMIUM GLASS BUTTON */}
-                    <MagneticButton
-                      href="#services"
-                      className="inline-flex items-center justify-center gap-2.5 rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(20,20,20,0.55)] px-6 py-3.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.28em] text-[#F5F5F2] w-full sm:w-auto transition-all duration-300 hover:bg-[rgba(205,163,73,0.08)] hover:border-[#CDA349]"
-                    >
-                      <Wrench size={13} className="text-[#CDA349]" />
-                      View Services
-                    </MagneticButton>
-                  </div>
+                  {/* PREMIUM GLASS BUTTON 2 */}
+                  <MagneticButton
+                    href="#services"
+                    className="inline-flex items-center justify-center gap-2.5 rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(20,20,20,0.55)] px-7 py-4 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.28em] text-[#F5F5F2] w-full sm:w-auto transition-all duration-300 hover:bg-[rgba(205,163,73,0.08)] hover:border-[#CDA349]"
+                  >
+                    <Wrench size={13} className="text-[#CDA349]" />
+                    View Services
+                  </MagneticButton>
                 </div>
               </Reveal>
             </div>
 
-            {/* STATISTICS BAR (MOVED BELOW BUTTONS) */}
-            <div className="mb-[28px] w-full">
+            {/* STATISTICS BAR */}
+            <div className="mb-[32px] w-full">
               <Reveal>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-xl w-full">
                   {stats.map((stat, idx) => (
                     <div 
                       key={idx} 
-                      className="bg-[#171717] border border-[#2A2A2A] rounded-xl p-3 sm:p-4 text-center group transition-all duration-300 hover:bg-[#CDA34920] hover:border-[#CDA349]"
+                      className="bg-[#12141A]/90 border border-[#222631] rounded-xl p-3 sm:p-4 text-center group transition-all duration-300 hover:bg-[#CDA34920] hover:border-[#CDA349]"
                     >
                       <div className="text-2xl sm:text-3xl font-black text-[#F5F5F2]">{stat.value}</div>
                       <div className="text-[8px] sm:text-[10px] uppercase tracking-[0.2em] text-[#909090] mt-0.5 font-bold">{stat.label}</div>
@@ -270,14 +258,14 @@ function Hero() {
               </Reveal>
             </div>
 
-            {/* TRUST CHIPS (MOVED BELOW STATISTICS) */}
-            <div className="mb-[28px]">
+            {/* TRUST CHIPS */}
+            <div className="mb-[32px]">
               <Reveal>
                 <div className="flex flex-wrap gap-2">
                   {["MERN Stack", "Responsive Design", "UI/UX Systems", "Video Editing", "Branding"].map((chip) => (
                     <span 
                       key={chip}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-[#3A3A3A] bg-[#1B1E25] px-3 py-1.5 text-[9px] sm:text-[11px] uppercase tracking-[0.15em] sm:tracking-[0.2em] text-[#DADADA] font-semibold transition-all duration-300 hover:bg-[#272B34] hover:border-[#CDA349]"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-[#2B2F38] bg-[#12151C] px-3.5 py-1.5 text-[9px] sm:text-[11px] uppercase tracking-[0.15em] sm:tracking-[0.2em] text-[#DADADA] font-semibold transition-all duration-300 hover:bg-[#1B1E25] hover:border-[#CDA349]"
                     >
                       <CheckCircle2 size={12} className="text-[#CDA349] shrink-0" />
                       {chip}
@@ -287,7 +275,7 @@ function Hero() {
               </Reveal>
             </div>
 
-            {/* PREMIUM SOCIAL MATRIX (MOVED BELOW CHIPS) */}
+            {/* PREMIUM SOCIAL MATRIX */}
             <div>
               <Reveal>
                 <div className="flex items-center justify-center sm:justify-start gap-4">
@@ -314,8 +302,8 @@ function Hero() {
 
           </div>
 
-          {/* DESKTOP EXCLUSIVE RIGHT SIDE PROFILE CARD (ALIGNMENT CORRECTION) */}
-          <div className="hidden lg:col-span-5 lg:flex justify-end items-start lg:pt-10 w-full order-2 pl-4">
+          {/* DESKTOP EXCLUSIVE RIGHT SIDE PROFILE CARD (ALIGNMENT CORRECTION PERFECTED) */}
+          <div className="hidden lg:col-span-5 lg:flex justify-end items-start lg:pt-4 w-full order-2 pl-4">
             <Reveal className="w-full flex justify-end">
               <div className="group relative w-full max-w-[420px]">
                 <div className="absolute -inset-px -z-10 bg-gradient-to-tr from-[#CDA349]/20 to-white/5 rounded-3xl opacity-40 blur-xl transition duration-700 group-hover:opacity-60" />
@@ -384,8 +372,30 @@ function Hero() {
           </div>
         </div>
 
+        {/* ================= INFINITE TICKER MARQUEE BANNER ================= */}
+        <div className="absolute bottom-16 left-0 w-full overflow-hidden bg-gradient-to-r from-transparent via-[#12151C]/80 to-transparent border-y border-white/[0.04] py-3 backdrop-blur-sm z-10">
+          <div className="flex w-max items-center">
+            <motion.div 
+              className="flex whitespace-nowrap gap-16 text-[11px] font-black uppercase tracking-[0.3em] text-[#F5F5F2]/40 px-8"
+              animate={{ x: [0, "-33.33%"] }}
+              transition={{ ease: "linear", duration: 25, repeat: Infinity }}
+            >
+              {/* Loop 3 times to ensure perfect infinite visual scrolling */}
+              {[...Array(3)].map((_, mainIdx) => (
+                <div key={mainIdx} className="flex gap-16">
+                  {technologies.map((tech, techIdx) => (
+                    <span key={techIdx} className="hover:text-[#CDA349] transition-colors duration-300 select-none">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+
         {/* ANIMATED SCROLL TO EXPLORE FOOTER */}
-        <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-1 opacity-40 pointer-events-none z-10">
+        <div className="absolute bottom-4 sm:bottom-5 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-1 opacity-40 pointer-events-none z-10">
           <p className="text-[8px] sm:text-[9px] uppercase tracking-[0.35em] font-bold text-[#F5F5F2]">Scroll to Explore</p>
           <motion.div animate={{ y: [0, 5, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}>
             <ArrowDown size={12} className="text-[#CDA349]" />
