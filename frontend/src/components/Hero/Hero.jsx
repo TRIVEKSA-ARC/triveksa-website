@@ -307,7 +307,7 @@ function Hero() {
 
           {/* DESKTOP EXCLUSIVE RIGHT SIDE PROFILE CARD */}
           {/* Fix 1 & 6: Removed lg:pt-1, changed pl-4 to pl-6, max-w-[420px] to max-w-[400px], and added negative top margins -mt-16 xl:-mt-20 */}
-          <div className="hidden lg:col-span-5 lg:flex justify-end items-start w-full order-2 pl-6 pb-100">
+          <div className="hidden lg:col-span-5 lg:flex justify-end items-start w-full order-2 pl-6 pb-60">
             <Reveal className="w-full flex justify-end">
               <div className="group relative w-full max-w-[400px] -mt-16 xl:-mt-20">
                 <div className="absolute -inset-px -z-10 bg-gradient-to-tr from-[#CDA349]/20 to-white/5 rounded-3xl opacity-40 blur-xl transition duration-700 group-hover:opacity-60" />
