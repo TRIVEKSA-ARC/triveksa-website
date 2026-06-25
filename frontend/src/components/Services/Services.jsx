@@ -79,7 +79,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section className="relative overflow-hidden py-24 bg-[#050505]">
+    <section className="relative overflow-hidden py-24 bg-transparent">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Heading */}
