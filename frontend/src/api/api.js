@@ -8,7 +8,7 @@ const api = axios.create({
 /* ================= 🔐 ATTACH TOKEN ================= */
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("adminToken");
+    const token = sessionStorage.getItem("adminToken");
 
     const publicRoutes = [
       "/auth/login",
@@ -39,7 +39,7 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error?.response?.status === 401) {
-      localStorage.removeItem("adminToken");
+      sessionStorage.removeItem("adminToken");
       window.location.replace("/login");
     }
     return Promise.reject(error);
