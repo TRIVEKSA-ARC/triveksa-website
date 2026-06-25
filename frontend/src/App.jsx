@@ -1,23 +1,35 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { useState } from "react";
+
 import AnimatedCursor from "./components/AnimatedCursor";
 import SmoothScroll from "./components/SmoothScroll";
 
-// Components
+// Home Components
 import Hero from "./components/Hero/Hero";
 import About from "./components/About/About";
 import Projects from "./components/Projects/Projects";
 import Footer from "./components/Footer/Footer";
+
+// Services
+import Services from "./components/Services/Services";
+
+// Contact
 import ContactModal from "./components/Contact/ContactModal";
 import WhatsAppModal from "./components/Contact/WhatsAppModal";
-import Admin from "./Admin/Admin";
+
+// Layout
 import GlobalBackground from "./Layouts/GlobalBackground";
 
-// Context & Auth
+// Admin
+import Admin from "./Admin/Admin";
+
+// Context
 import { ProjectProvider } from "./context/ProjectContext";
 import { AboutProvider } from "./context/AboutContext";
 import { FooterProvider } from "./context/FooterContext";
+
+// Auth
 import { AuthProvider } from "./Loginout/AuthContext";
 import ProtectedRoute from "./Loginout/ProtectedRoute";
 import AdminLogin from "./Loginout/AdminLogin";
@@ -25,38 +37,48 @@ import ForgotPassword from "./Loginout/ForgotPassword";
 import ResetPassword from "./Loginout/ResetPassword";
 
 /* ================= HOME ================= */
+
 function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isWhatsAppOpen, setIsWhatsAppOpen] = useState(false);
 
   return (
     <>
-      {/* 1. GlobalBackground only wraps your page content */}
       <GlobalBackground>
         <Hero />
         <About />
         <Projects />
-        <Footer 
-          onOpenModal={() => setIsModalOpen(true)} 
-          onOpenWhatsApp={() => setIsWhatsAppOpen(true)} 
+        <Footer
+          onOpenModal={() => setIsModalOpen(true)}
+          onOpenWhatsApp={() => setIsWhatsAppOpen(true)}
         />
       </GlobalBackground>
 
-      {/* 2. Modals are outside GlobalBackground, preventing clipping */}
-      <ContactModal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
+      <ContactModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
       />
 
-      <WhatsAppModal 
-        isOpen={isWhatsAppOpen} 
-        onClose={() => setIsWhatsAppOpen(false)} 
+      <WhatsAppModal
+        isOpen={isWhatsAppOpen}
+        onClose={() => setIsWhatsAppOpen(false)}
       />
     </>
   );
 }
 
+/* ================= SERVICES PAGE ================= */
+
+function ServicesPage() {
+  return (
+    <GlobalBackground>
+      <Services />
+    </GlobalBackground>
+  );
+}
+
 /* ================= APP ================= */
+
 function App() {
   return (
     <>
@@ -76,11 +98,23 @@ function App() {
               <ProjectProvider>
                 <AboutProvider>
                   <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/login" element={<AdminLogin />} />
-                    <Route path="/forgot-password" element={<ForgotPassword />} />
-                    <Route path="/reset-password/:token" element={<ResetPassword />} />
 
+                    {/* Public Pages */}
+                    <Route path="/" element={<Home />} />
+                    <Route path="/services" element={<ServicesPage />} />
+
+                    {/* Authentication */}
+                    <Route path="/login" element={<AdminLogin />} />
+                    <Route
+                      path="/forgot-password"
+                      element={<ForgotPassword />}
+                    />
+                    <Route
+                      path="/reset-password/:token"
+                      element={<ResetPassword />}
+                    />
+
+                    {/* Admin */}
                     <Route
                       path="/admin/*"
                       element={
@@ -89,6 +123,7 @@ function App() {
                         </ProtectedRoute>
                       }
                     />
+
                   </Routes>
                 </AboutProvider>
               </ProjectProvider>
