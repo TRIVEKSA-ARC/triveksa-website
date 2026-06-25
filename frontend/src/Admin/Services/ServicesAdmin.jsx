@@ -1,48 +1,76 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaPlus, FaSave } from "react-icons/fa";
 import ServiceEditor from "./ServiceEditor";
-
-const createService = () => ({
-  id: Date.now(),
-  title: "",
-  description: "",
-  icon: "FaLaptopCode",
-  features: [""],
-});
+import {
+  fetchAdminServices,
+  createServiceAPI,
+  updateServiceAPI,
+  deleteServiceAPI,
+} from "../../services/service.api";
+import toast from "react-hot-toast";
 
 export default function ServicesAdmin() {
-  const [services, setServices] = useState([
-    {
-      id: 1,
-      title: "Website Development",
-      description:
-        "Modern responsive websites for businesses.",
-      icon: "FaLaptopCode",
-      features: [
-        "Responsive Design",
-        "SEO Optimized",
-        "Admin Dashboard",
-      ],
-    },
-  ]);
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadServices();
+  }, []);
+
+  const loadServices = async () => {
+    try {
+      const data = await fetchAdminServices();
+      setServices(data);
+    } catch (err) {
+      toast.error("Failed to load services");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // Add Service
   const addService = () => {
-    setServices((prev) => [...prev, createService()]);
+    setServices((prev) => [
+      ...prev,
+      {
+        _id: Date.now().toString(),
+        title: "",
+        description: "",
+        icon: "FaLaptopCode",
+        features: [""],
+        order: prev.length,
+        isActive: true,
+      },
+    ]);
   };
 
   // Delete Service
-  const deleteService = (id) => {
-    setServices((prev) =>
-      prev.filter((service) => service.id !== id)
-    );
+  const deleteService = async (id) => {
+    try {
+      if (!id.toString().length || id.toString().length < 20) {
+        setServices((prev) =>
+          prev.filter((service) => service._id !== id)
+        );
+        return;
+      }
+
+      await deleteServiceAPI(id);
+
+      setServices((prev) =>
+        prev.filter((service) => service._id !== id)
+      );
+
+      toast.success("Service deleted");
+    } catch {
+      toast.error("Delete failed");
+    }
   };
 
   // Update Service Field
   const updateService = (id, field, value) => {
     setServices((prev) =>
       prev.map((service) =>
-        service.id === id
+        service._id === id
           ? { ...service, [field]: value }
           : service
       )
@@ -57,7 +85,7 @@ export default function ServicesAdmin() {
   ) => {
     setServices((prev) =>
       prev.map((service) => {
-        if (service.id !== serviceId) return service;
+        if (service._id !== serviceId) return service;
 
         const features = [...service.features];
         features[featureIndex] = value;
@@ -74,7 +102,7 @@ export default function ServicesAdmin() {
   const addFeature = (serviceId) => {
     setServices((prev) =>
       prev.map((service) =>
-        service.id === serviceId
+        service._id === serviceId
           ? {
               ...service,
               features: [...service.features, ""],
@@ -91,7 +119,7 @@ export default function ServicesAdmin() {
   ) => {
     setServices((prev) =>
       prev.map((service) => {
-        if (service.id !== serviceId) return service;
+        if (service._id !== serviceId) return service;
 
         return {
           ...service,
@@ -104,26 +132,43 @@ export default function ServicesAdmin() {
   };
 
   // Save
-  const handleSave = () => {
-    console.log("Services", services);
+  const handleSave = async () => {
+    try {
+      for (const service of services) {
+        if (
+          !service._id ||
+          service._id.toString().length < 20
+        ) {
+          await createServiceAPI(service);
+        } else {
+          await updateServiceAPI(service._id, service);
+        }
+      }
 
-    // axios.post("/api/services", services);
-
-    alert("Services saved successfully!");
+      toast.success("Services saved successfully");
+      loadServices();
+    } catch (err) {
+      toast.error("Save failed");
+    }
   };
+
+  if (loading) {
+    return (
+      <div className="text-white p-10">
+        Loading Services...
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white p-8">
 
       {/* Header */}
-
       <div className="flex items-center justify-between mb-10">
-
         <div>
           <h1 className="text-4xl font-bold">
             Services CMS
           </h1>
-
           <p className="text-gray-400 mt-2">
             Manage your agency services.
           </p>
@@ -136,54 +181,46 @@ export default function ServicesAdmin() {
           <FaPlus />
           Add Service
         </button>
-
       </div>
 
       {/* Editors */}
-
       <div className="space-y-8">
-
         {services.map((service) => (
-
           <ServiceEditor
-            key={service.id}
+            key={service._id}
             service={service}
             onDelete={() =>
-              deleteService(service.id)
+              deleteService(service._id)
             }
             onUpdate={(field, value) =>
               updateService(
-                service.id,
+                service._id,
                 field,
                 value
               )
             }
             onFeatureChange={(index, value) =>
               updateFeature(
-                service.id,
+                service._id,
                 index,
                 value
               )
             }
             onAddFeature={() =>
-              addFeature(service.id)
+              addFeature(service._id)
             }
             onDeleteFeature={(index) =>
               deleteFeature(
-                service.id,
+                service._id,
                 index
               )
             }
           />
-
         ))}
-
       </div>
 
       {/* Save */}
-
       <div className="mt-10 flex justify-end">
-
         <button
           onClick={handleSave}
           className="flex items-center gap-3 rounded-xl bg-green-600 px-6 py-3 font-semibold hover:bg-green-700 transition"
@@ -191,7 +228,6 @@ export default function ServicesAdmin() {
           <FaSave />
           Save Changes
         </button>
-
       </div>
 
     </div>
