@@ -15,7 +15,8 @@ function Admin() {
   const [checkingAuth, setCheckingAuth] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    // ✅ Read token from sessionStorage (same as AuthContext)
+    const token = sessionStorage.getItem("adminToken");
 
     if (!token) {
       navigate("/login");
@@ -29,20 +30,24 @@ function Admin() {
     })
       .then((res) => {
         if (!res.ok) {
-          localStorage.removeItem("token");
+          sessionStorage.removeItem("adminToken");
           navigate("/login");
         } else {
           setCheckingAuth(false);
         }
       })
       .catch(() => {
-        localStorage.removeItem("token");
+        sessionStorage.removeItem("adminToken");
         navigate("/login");
       });
   }, [navigate]);
 
   if (checkingAuth) {
-    return null;
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#0b0f19] text-white">
+        Checking authentication...
+      </div>
+    );
   }
 
   const menuItems = [
@@ -68,7 +73,6 @@ function Admin() {
     <div className="flex min-h-screen w-full bg-[#0b0f19] text-white font-plusjakarta">
 
       {/* Sidebar */}
-
       <aside className="w-72 border-r border-white/10 p-8 flex flex-col">
 
         <div>
@@ -104,13 +108,12 @@ function Admin() {
         </div>
 
         {/* Logout */}
-
         <button
           onClick={() => {
-            localStorage.removeItem("token");
+            sessionStorage.removeItem("adminToken");
             logout();
           }}
-          className="mt-auto rounded-xl bg-red-500/20 px-4 py-3 font-semibold text-red-400 transition hover:bg-red-500/40"
+          className="mt-auto rounded-xl bg-red-500/20 px-4 py-3 font-semibold text-red-400 hover:bg-red-500/40 transition"
         >
           Logout
         </button>
@@ -118,7 +121,6 @@ function Admin() {
       </aside>
 
       {/* Content */}
-
       <main className="flex-1 overflow-y-auto p-14">
 
         {active === "about" && <AboutAdmin />}
