@@ -35,7 +35,7 @@ function Hero() {
   return (
     <>
       {/* ================= PREMIUM AGENCY HERO ================= */}
-      <section className="relative min-h-screen w-full overflow-hidden bg-transparent text-[#F5F5F2] flex items-center font-sans pt-4 pb-36 md:pt-24 md:pb-40 tracking-[-0.01em]">
+      <section className="relative min-h-screen w-full overflow-hidden bg-transparent text-[#F5F5F2] flex items-center font-sans pt-4 pb-36 md:pt-14 md:pb-40 tracking-[-0.01em]">
         
         {/* DESIGNER BACKGROUND SUITE (ANIMATED ATMOSPHERE) */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -269,7 +269,7 @@ function Hero() {
           </div>
 
           {/* DESKTOP EXCLUSIVE RIGHT SIDE PROFILE CARD */}
-          <div className="hidden lg:col-span-5 lg:flex justify-end items-center w-full order-2 pl-6 pb-50 ">
+          <div className="hidden lg:col-span-5 lg:flex justify-end items-center w-full order-2 pl-6 pb-40 ">
             <Reveal className="w-full flex justify-end">
               <div className="group relative w-full max-w-[400px]">
                 <div className="absolute -inset-px -z-10 bg-gradient-to-tr from-[#CDA349]/20 to-white/5 rounded-3xl opacity-40 blur-xl transition duration-700 group-hover:opacity-60" />
