@@ -186,7 +186,7 @@ function GlobalBackground({ children }) {
   return (
     <div 
       ref={parallaxContainerRef} 
-      className="relative min-h-screen bg-[#0A0A0A] overflow-x-hidden antialiased selection:bg-[#CDA349]/20"
+      className="relative min-h-screen bg-[#0A0A0A] overflow-x-hidden antialiased selection:bg-[#CDA349]/8"
     >
       {/* 🌌 MAIN BACKGROUND */}
       <div
