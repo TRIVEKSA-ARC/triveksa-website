@@ -250,20 +250,7 @@ function Hero() {
                 </div>
               </Reveal>
 
-              {/* STATS CONTAINERS SHIFTED AND RIGHT ALIGNED */}
-              <Reveal>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 w-full md:w-auto">
-                  {stats.map((stat, idx) => (
-                    <div 
-                      key={idx} 
-                      className="bg-gradient-to-b from-[#161922] to-[#0D1017] border border-[#232836] rounded-xl p-3 text-center min-w-[85px] sm:min-w-[100px] group transition-all duration-300 hover:from-[#1D1A15] hover:to-[#12151C] hover:border-[#E8C66A] shadow-md"
-                    >
-                      <div className="text-xl sm:text-2xl font-black bg-gradient-to-r from-[#FFF] to-[#E8C66A] bg-clip-text text-transparent">{stat.value}</div>
-                      <div className="text-[7px] sm:text-[8px] uppercase tracking-[0.15em] text-[#9C9C9C] mt-0.5 font-bold group-hover:text-white transition-colors">{stat.label}</div>
-                    </div>
-                  ))}
-                </div>
-              </Reveal>
+             
             </div>
 
           </div>
@@ -325,6 +312,21 @@ function Hero() {
                       </p>
                     </div>
                   </div>
+
+                  {/* STATS CONTAINERS SHIFTED AND RIGHT ALIGNED */}
+              <Reveal>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 w-full md:w-auto">
+                  {stats.map((stat, idx) => (
+                    <div 
+                      key={idx} 
+                      className="bg-gradient-to-b from-[#161922] to-[#0D1017] border border-[#232836] rounded-xl p-3 text-center min-w-[85px] sm:min-w-[100px] group transition-all duration-300 hover:from-[#1D1A15] hover:to-[#12151C] hover:border-[#E8C66A] shadow-md"
+                    >
+                      <div className="text-xl sm:text-2xl font-black bg-gradient-to-r from-[#FFF] to-[#E8C66A] bg-clip-text text-transparent">{stat.value}</div>
+                      <div className="text-[7px] sm:text-[8px] uppercase tracking-[0.15em] text-[#9C9C9C] mt-0.5 font-bold group-hover:text-white transition-colors">{stat.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </Reveal>
 
                 </div>
               </div>
