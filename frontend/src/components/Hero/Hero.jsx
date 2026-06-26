@@ -18,7 +18,7 @@ function Hero() {
     location: "INDIA",
   };
 
-  // Upgraded Premium Statistics Config
+  // Premium Statistics Config
   const stats = [
     { value: "99%", label: "Satisfaction" },
     { value: "100%", label: "Responsive" },
@@ -26,7 +26,6 @@ function Hero() {
     { value: "Fast", label: "Delivery" }
   ];
 
-  // Updated to premium agency marketing hooks instead of software tool lists
   const agencyHooks = [
     "Premium Digital Branding", "High-Converting UX", "Scalable Business Growth", 
     "Custom Web Architecture", "Data-Driven Strategy", "Elite Product Design"
@@ -35,7 +34,7 @@ function Hero() {
   return (
     <>
       {/* ================= PREMIUM AGENCY HERO ================= */}
-      <section className="relative min-h-screen w-full overflow-hidden bg-transparent text-[#F5F5F2] flex items-center font-sans pt-12 pb-24 md:pt-28 md:pb-32 tracking-[-0.01em]">
+      <section className="relative min-h-screen w-full overflow-hidden bg-transparent text-[#F5F5F2] flex items-center font-sans pt-4 pb-36 md:pt-14 md:pb-40 tracking-[-0.01em]">
         
         {/* DESIGNER BACKGROUND SUITE (ANIMATED ATMOSPHERE) */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -84,17 +83,17 @@ function Hero() {
           }}
         />
 
-        <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 gap-12 px-5 sm:px-8 md:px-10 lg:grid-cols-12 lg:gap-12 xl:gap-16 lg:px-12 items-center">
+        <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-5 sm:px-8 md:px-10 lg:grid-cols-12 lg:gap-16 lg:px-12 items-center">
           
           {/* LEFT SIDE & MAIN HEADER ARCHITECTURE */}
           <div className="lg:col-span-7 flex flex-col justify-center order-1 w-full">
 
             {/* SMALL LABEL */}
-            <div className="mb-6">
+            <div className="mb-[28px]">
               <Reveal>
                 <div className="flex items-center gap-3 sm:gap-4">
                   <span className="h-px w-8 sm:w-12 bg-gradient-to-r from-[#E8C66A] to-transparent" />
-                  <p className="text-[10px] sm:text-[12px] uppercase tracking-[0.35em] sm:tracking-[0.45em] text-[#A3A3A3] font-bold drop-shadow-md leading-relaxed">
+                  <p className="text-[10px] sm:text-[13px] uppercase tracking-[0.3em] sm:tracking-[0.42em] text-[#9C9C9C] font-bold drop-shadow-md leading-relaxed">
                     Founder • Creative Technologist
                   </p>
                 </div>
@@ -102,25 +101,25 @@ function Hero() {
             </div>
 
             {/* LUXURY NAME MATRIX */}
-            <div className="mb-6">
+            <div className="mb-[24px]">
               <Reveal>
-                <div className="leading-[0.85] uppercase tracking-[-0.05em] font-sans">
-                  <span className="block text-[52px] sm:text-[85px] md:text-[105px] xl:text-[120px] font-black text-[#F5F5F2] drop-shadow-sm">
+                <div className="leading-[0.82] uppercase tracking-[-0.06em]">
+                  <span className="block text-[48px] sm:text-[88px] md:text-[110px] xl:text-[132px] font-black text-[#F5F5F2] drop-shadow-sm">
                     Vinod
                   </span>
-                  <span className="block text-[52px] sm:text-[85px] md:text-[105px] xl:text-[120px] font-black bg-gradient-to-r from-[#FFF7E2] via-[#E8C66A] to-[#B88728] bg-clip-text text-transparent filter drop-shadow-sm">
+                  <span className="block text-[48px] sm:text-[88px] md:text-[110px] xl:text-[132px] font-black bg-gradient-to-r from-[#FFF7E2] via-[#E8C66A] to-[#B88728] bg-clip-text text-transparent filter drop-shadow-sm">
                     Kumar
                   </span>
                 </div>
               </Reveal>
             </div>
 
-            {/* INTERACTIVE PROFILE CARD — MOBILE VIEW ONLY */}
-            <div className="block lg:hidden my-8 w-full max-w-[350px] mx-auto">
+            {/* INTERACTIVE PROFILE CARD — MOBILE VIEW */}
+            <div className="block lg:hidden my-6 w-full max-w-[360px] mx-auto">
               <Reveal delay={0.1}>
                 <div className="group relative w-full">
                   <div className="absolute -inset-px -z-10 bg-gradient-to-tr from-[#CDA349]/20 to-white/5 rounded-3xl opacity-40 blur-lg" />
-                  <div className="relative aspect-[4/4.8] w-full overflow-hidden rounded-3xl border border-[#2B2F38] bg-[#12151C]/60 p-2.5 backdrop-blur-2xl">
+                  <div className="relative aspect-[4/4.8] w-full overflow-hidden rounded-3xl border border-[#2B2F38] bg-[#12151C]/60 p-2 backdrop-blur-2xl">
                     <div className="relative h-full w-full overflow-hidden rounded-[1.15rem] bg-[#07090F] border border-white/5 flex flex-row">
                       <motion.div 
                         className="flex h-full w-[400%] flex-nowrap flex-shrink-0"
@@ -150,7 +149,7 @@ function Hero() {
                       </motion.div>
                     </div>
 
-                    <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full border border-white/15 bg-[#07090F]/80 px-3 py-1 backdrop-blur-xl z-20">
+                    <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full border border-white/15 bg-[#07090F]/80 px-2.5 py-1 backdrop-blur-xl z-20">
                       <span className="relative flex h-1.5 w-1.5">
                         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#CDA349] opacity-75"></span>
                         <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#CDA349]"></span>
@@ -158,13 +157,14 @@ function Hero() {
                       <span className="text-[8px] font-bold uppercase tracking-[0.2em] text-white/90">Founder Profile</span>
                     </div>
 
-                    <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between bg-[#12151C]/95 p-3 rounded-lg border border-[#2B2F38] shadow-xl backdrop-blur-xl z-20 text-[9px]">
+                    {/* MOUNT BANNER */}
+                    <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between bg-[#12151C]/95 p-3.5 rounded-lg border border-[#2B2F38] shadow-xl backdrop-blur-xl z-20 text-[9px]">
                       <div>
-                        <p className="font-bold text-zinc-500 uppercase tracking-wider text-[7px]">Location</p>
+                        <p className="font-bold text-zinc-500 uppercase tracking-wider">Location</p>
                         <p className="font-bold text-[#F5F5F2] mt-0.5">{data.location || "INDIA"}</p>
                       </div>
                       <div className="text-right">
-                        <p className="font-bold text-zinc-500 uppercase tracking-wider text-[7px]">Status</p>
+                        <p className="font-bold text-zinc-500 uppercase tracking-wider">Status</p>
                         <p className="font-extrabold text-emerald-400 flex items-center gap-1 mt-0.5 justify-end">
                           <span className="h-1 w-1 rounded-full bg-emerald-400 animate-pulse" /> Available
                         </p>
@@ -176,13 +176,13 @@ function Hero() {
             </div>
 
             {/* ROLE STRIP */}
-            <div className="mb-8">
+            <div className="mb-[40px]">
               <Reveal>
-                <div className="flex flex-col space-y-2 border-l-2 border-[#CDA349] pl-4 py-0.5">
-                  <span className="text-[13px] sm:text-[15px] xl:text-[17px] uppercase tracking-[0.18em] sm:tracking-[0.22em] text-[#F5F5F2] font-extrabold leading-snug">
+                <div className="flex flex-col space-y-1.5 border-l-2 border-[#CDA349] pl-3 sm:pl-4 py-0.5">
+                  <span className="text-[12px] sm:text-[16px] uppercase tracking-[0.15em] sm:tracking-[0.22em] text-[#F5F5F2] font-extrabold leading-snug">
                     Full Stack Developer • UI/UX Designer
                   </span>
-                  <span className="text-[10px] sm:text-[12px] uppercase tracking-[0.2em] sm:tracking-[0.25em] text-[#E8C66A] font-medium">
+                  <span className="text-[10px] sm:text-[13px] uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[#E8C66A] font-medium">
                     Helping Brands Build Modern Digital Products
                   </span>
                 </div>
@@ -190,55 +190,58 @@ function Hero() {
             </div>
 
             {/* DESCRIPTION */}
-            <div className="mb-8">
+            <div className="mb-[36px]">
               <Reveal>
-                <p className="max-w-xl text-[14px] sm:text-[16px] xl:text-[17px] leading-relaxed md:leading-7 text-[#C4C6CC] font-normal font-sans">
+                <p className="max-w-2xl text-[14px] sm:text-[18px] leading-relaxed md:leading-8 text-[#D8DADF] font-normal drop-shadow-sm">
                   I help businesses and startups build premium websites, intuitive user experiences, and powerful digital brands that create lasting impressions and drive business growth.
                 </p>
               </Reveal>
             </div>
 
-            {/* CTA BUTTON BLOCK — REDESIGNED INTO 1 SOLID ROW */}
-            <div className="mb-10 w-full">
+            {/* CTA BUTTON BLOCK - FIXED TO POSITION VIEW SERVICES ACCORDING TO MARKER */}
+            <div className="mb-[40px] w-full">
               <Reveal>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-xl items-center">
+                <div className="flex flex-wrap gap-3 w-full max-w-2xl items-center">
+                  {/* GOLD ACTION BUTTON */}
                   <MagneticButton
                     href="#contact"
-                    className="inline-flex items-center justify-center gap-2 rounded-full border border-transparent bg-gradient-to-r from-[#E8C66A] via-[#F3DA93] to-[#B88728] px-4 py-3 text-[10px] font-bold uppercase tracking-[0.15em] text-black shadow-[0_0_20px_rgba(232,198,106,0.25)] w-full transition-all duration-300 hover:scale-[1.02]"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-transparent bg-gradient-to-r from-[#E8C66A] via-[#F3DA93] to-[#B88728] px-6 py-3.5 text-[10px] font-bold uppercase tracking-[0.15em] text-black shadow-[0_0_20px_rgba(232,198,106,0.35)] min-w-[170px] transition-all duration-300 hover:scale-[1.03] animate-[pulse_2.5s_infinite_ease-in-out]"
                   >
-                    <Rocket size={12} className="animate-pulse" />
+                    <Rocket size={13} className="animate-bounce" />
                     Discovery Call
                   </MagneticButton>
 
+                  {/* PREMIUM GLASS BUTTON 1 */}
                   <MagneticButton
                     href="#projects"
-                    className="inline-flex items-center justify-center gap-2 rounded-full border border-[rgba(205,163,73,0.3)] bg-[rgba(18,21,28,0.6)] px-4 py-3 text-[10px] font-bold uppercase tracking-[0.15em] text-[#F5F5F2] w-full transition-all duration-300 hover:bg-[rgba(205,163,73,0.12)] hover:border-[#E8C66A]"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-[rgba(205,163,73,0.4)] bg-[rgba(18,21,28,0.7)] px-6 py-3.5 text-[10px] font-bold uppercase tracking-[0.15em] text-[#F5F5F2] min-w-[150px] transition-all duration-300 hover:bg-[rgba(205,163,73,0.15)] hover:border-[#E8C66A] hover:shadow-[0_0_15px_rgba(232,198,106,0.15)]"
                   >
-                    <FolderGit2 size={12} className="text-[#E8C66A]" />
+                    <FolderGit2 size={13} className="text-[#E8C66A]" />
                     View Projects
                   </MagneticButton>
 
+                  {/* PREMIUM GLASS BUTTON 2 - PLACED AND POSITIONED STABLE LINEAR */}
                   <MagneticButton
                     href="#services"
-                    className="inline-flex items-center justify-center gap-2 rounded-full border border-[rgba(205,163,73,0.3)] bg-[rgba(18,21,28,0.6)] px-4 py-3 text-[10px] font-bold uppercase tracking-[0.15em] text-[#F5F5F2] w-full transition-all duration-300 hover:bg-[rgba(205,163,73,0.12)] hover:border-[#E8C66A]"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-[rgba(205,163,73,0.4)] bg-[rgba(18,21,28,0.7)] px-6 py-3.5 text-[10px] font-bold uppercase tracking-[0.15em] text-[#F5F5F2] min-w-[150px] transition-all duration-300 hover:bg-[rgba(205,163,73,0.15)] hover:border-[#E8C66A] hover:shadow-[0_0_15px_rgba(232,198,106,0.15)]"
                   >
-                    <Wrench size={12} className="text-[#E8C66A]" />
+                    <Wrench size={13} className="text-[#E8C66A]" />
                     View Services
                   </MagneticButton>
                 </div>
               </Reveal>
             </div>
 
-            {/* TRUST CHIP BAR */}
-            <div className="w-full max-w-xl">
+            {/* TRUST CHIPS BAR (LEFT ALIGNED SEPARATELY) */}
+            <div className="mb-[32px] w-full max-w-2xl">
               <Reveal>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 max-w-xl">
                   {["MERN Stack", "UI/UX Designs", "Video Editing", "Branding"].map((chip) => (
                     <span 
                       key={chip}
-                      className="inline-flex items-center gap-2 rounded-full border border-[#232730] bg-[#0F1117] px-4 py-2 text-[10px] uppercase tracking-[0.15em] text-[#D1D1D1] font-semibold transition-all duration-300 hover:border-[#CDA349]/60 hover:text-white"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-[#2B2F38] bg-[#12151C] px-3.5 py-1.5 text-[9px] sm:text-[11px] uppercase tracking-[0.15em] sm:tracking-[0.2em] text-[#DADADA] font-semibold transition-all duration-300 hover:bg-[#1B1E25] hover:border-[#CDA349]"
                     >
-                      <CheckCircle2 size={11} className="text-[#CDA349] shrink-0" />
+                      <CheckCircle2 size={12} className="text-[#CDA349] shrink-0" />
                       {chip}
                     </span>
                   ))}
@@ -248,118 +251,108 @@ function Hero() {
 
           </div>
 
-          {/* DESKTOP EXCLUSIVE RIGHT SIDE PROFILE & STATISTICS BLOCK */}
-          <div className="hidden lg:col-span-5 lg:flex flex-col items-center xl:items-end justify-center w-full order-2 pl-4">
-            <div className="w-full max-w-[380px] xl:max-w-[400px] flex flex-col gap-5">
-              
-              {/* CLEAN LOGO & IMAGE VISUAL CARD */}
-              <Reveal className="w-full">
-                <div className="group relative w-full">
-                  <div className="absolute -inset-px -z-10 bg-gradient-to-tr from-[#CDA349]/15 to-white/5 rounded-3xl opacity-40 blur-xl transition duration-700 group-hover:opacity-50" />
-                  <div className="relative aspect-[4/4.6] w-full overflow-hidden rounded-3xl border border-[#252932] bg-[#11141A] p-2 backdrop-blur-3xl transition-all duration-700 group-hover:border-[#CDA349]/70 shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
-                    
-                    <div className="relative h-full w-full overflow-hidden rounded-[1.15rem] bg-[#05070A] border border-white/5 flex flex-row">
-                      <motion.div 
-                        className="flex h-full w-[400%] flex-nowrap flex-shrink-0"
-                        animate={{ x: ["0%", "0%", "-25%", "-25%", "-50%"] }}
-                        transition={{ times: [0, 0.35, 0.45, 0.85, 1], ease: "easeInOut", duration: 20, repeat: Infinity }}
-                      >
-                        <div className="h-full w-1/4 flex-shrink-0 bg-[#05070A] relative">
-                          <img src="/Logo.png" alt="Trivixa Arc Logo" className="h-full w-full object-cover filter drop-shadow-md select-none" />
-                        </div>
-                        <div className="h-full w-1/4 flex-shrink-0 relative">
-                          {data.image?.url ? (
-                            <img src={data.image.url} alt="Vinod Kumar Profile" className="h-full w-full object-cover select-none" />
-                          ) : (
-                            <div className="h-full w-full bg-gradient-to-b from-neutral-800 to-neutral-950 flex items-center justify-center text-white/10 text-[10px] tracking-widest uppercase font-sans">Profile Image</div>
-                          )}
-                        </div>
-                        <div className="h-full w-1/4 flex-shrink-0 bg-[#05070A] relative">
-                          <img src="/Logo.png" alt="Trivixa Arc Logo" className="h-full w-full object-cover filter drop-shadow-md select-none" />
-                        </div>
-                        <div className="h-full w-1/4 flex-shrink-0 relative">
-                          {data.image?.url ? (
-                            <img src={data.image.url} alt="Vinod Kumar Profile" className="h-full w-full object-cover select-none" />
-                          ) : (
-                            <div className="h-full w-full bg-gradient-to-b from-neutral-800 to-neutral-950 flex items-center justify-center text-white/10 text-[10px] tracking-widest uppercase font-sans">Profile Image</div>
-                          )}
-                        </div>
-                      </motion.div>
-                    </div>
-
-                    {/* BADGE FLAG */}
-                    <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full border border-white/10 bg-[#05070A]/80 px-3 py-1 backdrop-blur-xl shadow-md z-20">
-                      <span className="relative flex h-1.5 w-1.5">
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#CDA349] opacity-75"></span>
-                        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#CDA349]"></span>
-                      </span>
-                      <span className="text-[8px] font-bold uppercase tracking-[0.2em] text-white/90">Founder Profile</span>
-                    </div>
-
-                    {/* METADATA BAR (CLEAN & SQUASHED CONTROLS) */}
-                    <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between bg-[#0E1117]/95 p-3 rounded-xl border border-[#232730] shadow-xl backdrop-blur-xl z-20">
-                      <div>
-                        <p className="text-[7px] font-bold uppercase tracking-[0.25em] text-[#808080]">Location</p>
-                        <p className="text-[11px] font-bold text-[#F5F5F2] tracking-wide mt-0.5">{data.location || "INDIA"}</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-[7px] font-bold uppercase tracking-[0.25em] text-[#808080]">Status</p>
-                        <p className="text-[11px] font-extrabold text-emerald-400 flex items-center gap-1.5 mt-0.5 justify-end">
-                          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" /> Available
-                        </p>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </Reveal>
-
-              {/* STATS CONTAINERS EXPANDED WITH RICH AIRY PADDING */}
-              <Reveal className="w-full">
-                <div className="grid grid-cols-2 gap-3 w-full">
-                  {stats.map((stat, idx) => (
-                    <div 
-                      key={idx} 
-                      className="bg-gradient-to-b from-[#12151C] to-[#0A0D12] border border-[#232730] rounded-2xl p-4 text-center group transition-all duration-300 hover:border-[#E8C66A]/60 hover:shadow-[0_10px_25px_rgba(232,198,106,0.05)] shadow-md"
+          {/* DESKTOP EXCLUSIVE RIGHT SIDE PROFILE CARD + ALIGNED STATS BLOCKS DIRECTLY UNDERNEATH */}
+          <div className="hidden lg:col-span-5 lg:flex flex-col items-end justify-center w-full order-2 pl-6 pb-30 space-y-6">
+            <Reveal className="w-full flex justify-end">
+              <div className="group relative w-full max-w-[400px]">
+                <div className="absolute -inset-px -z-10 bg-gradient-to-tr from-[#CDA349]/20 to-white/5 rounded-3xl opacity-40 blur-xl transition duration-700 group-hover:opacity-60" />
+                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-[#2B2F38] bg-[#12151C] p-2.5 backdrop-blur-3xl transition-all duration-700 group-hover:border-[#CDA349] group-hover:shadow-[0_30px_80px_rgba(205,163,73,0.1)]">
+                  
+                  <div className="relative h-full w-full overflow-hidden rounded-[1.25rem] bg-[#07090F] border border-white/5 flex flex-row">
+                    <motion.div 
+                      className="flex h-full w-[400%] flex-nowrap flex-shrink-0"
+                      animate={{ x: ["0%", "0%", "-25%", "-25%", "-50%"] }}
+                      transition={{ times: [0, 0.35, 0.45, 0.85, 1], ease: "easeInOut", duration: 20, repeat: Infinity }}
                     >
-                      <div className="text-2xl font-black bg-gradient-to-r from-[#FFFFFF] to-[#E8C66A] bg-clip-text text-transparent font-sans tracking-tight">
-                        {stat.value}
+                      <div className="h-full w-1/4 flex-shrink-0 bg-[#07090F] relative">
+                        <img src="/Logo.png" alt="Trivixa Arc Logo" className="h-full w-full object-cover filter drop-shadow-md select-none" />
                       </div>
-                      <div className="text-[8px] uppercase tracking-[0.2em] text-[#91949A] mt-1 font-bold group-hover:text-white transition-colors">
-                        {stat.label}
+                      <div className="h-full w-1/4 flex-shrink-0 relative">
+                        {data.image?.url ? (
+                          <img src={data.image.url} alt="Vinod Kumar Profile" className="h-full w-full object-cover opacity-100 select-none" />
+                        ) : (
+                          <div className="h-full w-full bg-gradient-to-b from-neutral-800 to-neutral-950 flex items-center justify-center text-white/20 text-xs tracking-widest uppercase">Profile Visual</div>
+                        )}
                       </div>
+                      <div className="h-full w-1/4 flex-shrink-0 bg-[#07090F] relative">
+                        <img src="/Logo.png" alt="Trivixa Arc Logo" className="h-full w-full object-cover filter drop-shadow-md select-none" />
+                      </div>
+                      <div className="h-full w-1/4 flex-shrink-0 relative">
+                        {data.image?.url ? (
+                          <img src={data.image.url} alt="Vinod Kumar Profile" className="h-full w-full object-cover opacity-100 select-none" />
+                        ) : (
+                          <div className="h-full w-full bg-gradient-to-b from-neutral-800 to-neutral-950 flex items-center justify-center text-white/20 text-xs tracking-widest uppercase">Profile Visual</div>
+                        )}
+                      </div>
+                    </motion.div>
+                  </div>
+
+                  <div className="absolute left-5 top-5 flex items-center gap-2 rounded-full border border-white/15 bg-[#07090F]/80 px-3.5 py-1.5 backdrop-blur-xl shadow-lg z-20">
+                    <span className="relative flex h-2 w-2">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#CDA349] opacity-75"></span>
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-[#CDA349]"></span>
+                    </span>
+                    <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-white/90">Founder Profile</span>
+                  </div>
+
+                  {/* BOTTOM META ONLY - CLEAN LOGIC */}
+                  <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between bg-[#12151C]/95 p-4 rounded-xl border border-[#2B2F38] shadow-2xl backdrop-blur-2xl z-20">
+                    <div>
+                      <p className="text-[8px] font-bold uppercase tracking-[0.3em] text-[#909090]">Location</p>
+                      <p className="text-[11px] font-bold text-[#F5F5F2] tracking-wide mt-0.5">{data.location || "INDIA"}</p>
                     </div>
-                  ))}
+                    <div className="text-right">
+                      <p className="text-[8px] font-bold uppercase tracking-[0.3em] text-[#909090]">Status</p>
+                      <p className="text-[11px] font-extrabold text-emerald-400 flex items-center gap-1.5 mt-0.5">
+                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" /> Available for New Projects
+                      </p>
+                    </div>
+                  </div>
+
                 </div>
-              </Reveal>
+              </div>
+            </Reveal>
 
-            </div>
+            {/* STATS CONTAINERS ALIGNED AND DOCKED DIRECTLY UNDER THE PROFILE CARD VIEW */}
+            <Reveal className="w-full flex justify-end">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 w-full max-w-[400px]">
+                {stats.map((stat, idx) => (
+                  <div 
+                    key={idx} 
+                    className="bg-gradient-to-b from-[#161922] to-[#0D1017] border border-[#232836] rounded-xl p-3 text-center min-w-[85px] sm:min-w-[95px] group transition-all duration-300 hover:from-[#1D1A15] hover:to-[#12151C] hover:border-[#E8C66A] shadow-md"
+                  >
+                    <div className="text-xl sm:text-2xl font-black bg-gradient-to-r from-[#FFF] to-[#E8C66A] bg-clip-text text-transparent">{stat.value}</div>
+                    <div className="text-[7px] sm:text-[8px] uppercase tracking-[0.15em] text-[#9C9C9C] mt-0.5 font-bold group-hover:text-white transition-colors">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
           </div>
-
+          
         </div>
 
         {/* ANIMATED SCROLL TO EXPLORE FOOTER */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-1 opacity-30 pointer-events-none z-10">
-          <p className="text-[8px] uppercase tracking-[0.35em] font-bold text-[#F5F5F2]">Scroll to Explore</p>
-          <motion.div animate={{ y: [0, 4, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}>
-            <ArrowDown size={11} className="text-[#CDA349]" />
+        <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-1 opacity-40 pointer-events-none z-10">
+          <p className="text-[8px] sm:text-[9px] uppercase tracking-[0.35em] font-bold text-[#F5F5F2]">Scroll to Explore</p>
+          <motion.div animate={{ y: [0, 5, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}>
+            <ArrowDown size={12} className="text-[#CDA349]" />
           </motion.div>
         </div>
 
       </section>
 
       {/* ================= INFINITE TICKER MARQUEE BANNER ================= */}
-      <section className="relative w-full overflow-hidden bg-gradient-to-r from-transparent via-[#12151C]/80 to-transparent border-y border-white/[0.03] py-4.5 backdrop-blur-sm z-10">
+      <section className="relative w-full overflow-hidden bg-gradient-to-r from-transparent via-[#12151C]/80 to-transparent border-y border-white/[0.04] py-3 backdrop-blur-sm z-10 -mt-20">
         <div className="flex w-max items-center">
           <motion.div 
-            className="flex whitespace-nowrap gap-16 text-[11px] font-black uppercase tracking-[0.3em] text-[#F5F5F2]/35 px-8"
+            className="flex whitespace-nowrap gap-16 text-[11px] font-black uppercase tracking-[0.3em] text-[#F5F5F2]/40 px-8"
             animate={{ x: [0, "-33.33%"] }}
-            transition={{ ease: "linear", duration: 28, repeat: Infinity }}
+            transition={{ ease: "linear", duration: 25, repeat: Infinity }}
           >
             {[...Array(3)].map((_, mainIdx) => (
               <div key={mainIdx} className="flex gap-16">
                 {agencyHooks.map((hook, hookIdx) => (
-                  <span key={hookIdx} className="hover:text-[#CDA349] transition-colors duration-300 select-none cursor-default font-sans">
+                  <span key={hookIdx} className="hover:text-[#CDA349] transition-colors duration-300 select-none">
                     {hook}
                   </span>
                 ))}
