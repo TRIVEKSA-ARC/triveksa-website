@@ -38,7 +38,6 @@ function Hero() {
   return (
     <>
       {/* ================= PREMIUM AGENCY HERO ================= */}
-      {/* Fix 3: Updated padding from py-16 md:py-24 to pt-16 pb-36 md:pt-24 md:pb-40 */}
       <section className="relative min-h-screen w-full overflow-hidden bg-[#07090F] text-[#F5F5F2] flex items-center font-sans pt-10 pb-36 md:pt-24 md:pb-40 tracking-[-0.01em]">
         
         {/* DESIGNER BACKGROUND SUITE (ANIMATED ATMOSPHERE) */}
@@ -88,7 +87,6 @@ function Hero() {
           }}
         />
 
-        {/* Fix 7: Changed lg:gap-8 to lg:gap-16 */}
         <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-5 sm:px-8 md:px-10 lg:grid-cols-12 lg:gap-16 lg:px-12 items-center">
           
           {/* LEFT SIDE & MAIN HEADER ARCHITECTURE */}
@@ -212,11 +210,11 @@ function Hero() {
             {/* CTA BUTTON BLOCK */}
             <div className="mb-[40px] w-full">
               <Reveal>
-                <div className="flex flex-wrap gap-3.5 items-center">
+                <div className="flex flex-wrap gap-2.5 sm:gap-3.5 items-center">
                   {/* GOLD ACTION BUTTON */}
                   <MagneticButton
                     href="#contact"
-                    className="inline-flex items-center justify-center gap-2.5 rounded-full border border-transparent bg-gradient-to-r from-[#E8C66A] to-[#B88728] px-7 py-4 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.28em] text-black shadow-xl w-full sm:w-auto transition-transform hover:scale-[1.02]"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-transparent bg-gradient-to-r from-[#E8C66A] to-[#B88728] px-5 sm:px-7 py-3.5 sm:py-4 text-[9px] sm:text-[11px] font-bold uppercase tracking-[0.15em] sm:tracking-[0.28em] text-black shadow-xl w-full sm:w-auto transition-transform hover:scale-[1.02]"
                   >
                     <Rocket size={13} />
                     Book Discovery Call
@@ -225,16 +223,16 @@ function Hero() {
                   {/* PREMIUM GLASS BUTTON 1 */}
                   <MagneticButton
                     href="#projects"
-                    className="inline-flex items-center justify-center gap-2.5 rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(20,20,20,0.55)] px-7 py-4 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.28em] text-[#F5F5F2] w-full sm:w-auto transition-all duration-300 hover:bg-[rgba(205,163,73,0.08)] hover:border-[#CDA349]"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(20,20,20,0.55)] px-5 sm:px-7 py-3.5 sm:py-4 text-[9px] sm:text-[11px] font-bold uppercase tracking-[0.15em] sm:tracking-[0.28em] text-[#F5F5F2] w-full sm:w-auto transition-all duration-300 hover:bg-[rgba(205,163,73,0.08)] hover:border-[#CDA349]"
                   >
                     <FolderGit2 size={13} className="text-[#CDA349]" />
                     View Projects
                   </MagneticButton>
 
-                  {/* PREMIUM GLASS BUTTON 2 - PLACED DIRECTLY INLINE */}
+                  {/* PREMIUM GLASS BUTTON 2 - FIXED LINK CLICKABILITY AND SCALING */}
                   <MagneticButton
                     href="#services"
-                    className="inline-flex items-center justify-center gap-2.5 rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(20,20,20,0.55)] px-7 py-4 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.28em] text-[#F5F5F2] w-full sm:w-auto transition-all duration-300 hover:bg-[rgba(205,163,73,0.08)] hover:border-[#CDA349]"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(20,20,20,0.55)] px-5 sm:px-7 py-3.5 sm:py-4 text-[9px] sm:text-[11px] font-bold uppercase tracking-[0.15em] sm:tracking-[0.28em] text-[#F5F5F2] w-full sm:w-auto transition-all duration-300 hover:bg-[rgba(205,163,73,0.08)] hover:border-[#CDA349]"
                   >
                     <Wrench size={13} className="text-[#CDA349]" />
                     View Services
