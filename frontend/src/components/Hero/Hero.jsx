@@ -207,32 +207,32 @@ function Hero() {
               </Reveal>
             </div>
 
-            {/* CTA BUTTON BLOCK */}
+            {/* CTA BUTTON BLOCK - FIXED WRAPPING AND CONTENT FLOW */}
             <div className="mb-[40px] w-full">
               <Reveal>
-                <div className="flex flex-wrap gap-2.5 sm:gap-3.5 items-center">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-2xl items-center">
                   {/* GOLD ACTION BUTTON */}
                   <MagneticButton
                     href="#contact"
-                    className="inline-flex items-center justify-center gap-2 rounded-full border border-transparent bg-gradient-to-r from-[#E8C66A] to-[#B88728] px-5 sm:px-7 py-3.5 sm:py-4 text-[9px] sm:text-[11px] font-bold uppercase tracking-[0.15em] sm:tracking-[0.28em] text-black shadow-xl w-full sm:w-auto transition-transform hover:scale-[1.02]"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-transparent bg-gradient-to-r from-[#E8C66A] to-[#B88728] px-4 py-3.5 text-[10px] font-bold uppercase tracking-[0.15em] text-black shadow-xl w-full transition-transform hover:scale-[1.02]"
                   >
                     <Rocket size={13} />
-                    Book Discovery Call
+                    Discovery Call
                   </MagneticButton>
 
                   {/* PREMIUM GLASS BUTTON 1 */}
                   <MagneticButton
                     href="#projects"
-                    className="inline-flex items-center justify-center gap-2 rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(20,20,20,0.55)] px-5 sm:px-7 py-3.5 sm:py-4 text-[9px] sm:text-[11px] font-bold uppercase tracking-[0.15em] sm:tracking-[0.28em] text-[#F5F5F2] w-full sm:w-auto transition-all duration-300 hover:bg-[rgba(205,163,73,0.08)] hover:border-[#CDA349]"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(20,20,20,0.55)] px-4 py-3.5 text-[10px] font-bold uppercase tracking-[0.15em] text-[#F5F5F2] w-full transition-all duration-300 hover:bg-[rgba(205,163,73,0.08)] hover:border-[#CDA349]"
                   >
                     <FolderGit2 size={13} className="text-[#CDA349]" />
                     View Projects
                   </MagneticButton>
 
-                  {/* PREMIUM GLASS BUTTON 2 - FIXED LINK CLICKABILITY AND SCALING */}
+                  {/* PREMIUM GLASS BUTTON 2 - FIXED POSITION AND REDIRECT */}
                   <MagneticButton
                     href="#services"
-                    className="inline-flex items-center justify-center gap-2 rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(20,20,20,0.55)] px-5 sm:px-7 py-3.5 sm:py-4 text-[9px] sm:text-[11px] font-bold uppercase tracking-[0.15em] sm:tracking-[0.28em] text-[#F5F5F2] w-full sm:w-auto transition-all duration-300 hover:bg-[rgba(205,163,73,0.08)] hover:border-[#CDA349]"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(20,20,20,0.55)] px-4 py-3.5 text-[10px] font-bold uppercase tracking-[0.15em] text-[#F5F5F2] w-full transition-all duration-300 hover:bg-[rgba(205,163,73,0.08)] hover:border-[#CDA349]"
                   >
                     <Wrench size={13} className="text-[#CDA349]" />
                     View Services
@@ -303,9 +303,9 @@ function Hero() {
           </div>
 
           {/* DESKTOP EXCLUSIVE RIGHT SIDE PROFILE CARD */}
-          <div className="hidden lg:col-span-5 lg:flex justify-end items-start w-full order-2 pl-6 pb-60">
+          <div className="hidden lg:col-span-5 lg:flex justify-end items-center w-full order-2 pl-6">
             <Reveal className="w-full flex justify-end">
-              <div className="group relative w-full max-w-[400px] -mt-16 xl:-mt-20">
+              <div className="group relative w-full max-w-[400px]">
                 <div className="absolute -inset-px -z-10 bg-gradient-to-tr from-[#CDA349]/20 to-white/5 rounded-3xl opacity-40 blur-xl transition duration-700 group-hover:opacity-60" />
                 <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-[#2B2F38] bg-[#12151C] p-2.5 backdrop-blur-3xl transition-all duration-700 group-hover:border-[#CDA349] group-hover:shadow-[0_30px_80px_rgba(205,163,73,0.1)]">
                   
