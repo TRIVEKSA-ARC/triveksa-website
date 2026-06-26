@@ -262,7 +262,7 @@ function Hero() {
             <div className="mb-[32px]">
               <Reveal>
                 <div className="flex flex-wrap gap-2">
-                  {["MERN Stack", "Responsive Design", "UI/UX Systems", "Video Editing", "Branding"].map((chip) => (
+                  {["MERN Stack",  "UI/UX Designs", "Video Editing", "Branding"].map((chip) => (
                     <span 
                       key={chip}
                       className="inline-flex items-center gap-1.5 rounded-full border border-[#2B2F38] bg-[#12151C] px-3.5 py-1.5 text-[9px] sm:text-[11px] uppercase tracking-[0.15em] sm:tracking-[0.2em] text-[#DADADA] font-semibold transition-all duration-300 hover:bg-[#1B1E25] hover:border-[#CDA349]"
@@ -294,7 +294,13 @@ function Hero() {
                       <div className="h-full w-1/4 flex-shrink-0 bg-[#07090F] relative">
                         <img src="/Logo.png" alt="Trivixa Arc Logo" className="h-full w-full object-cover filter drop-shadow-md select-none" />
                       </div>
-                      
+                      <div className="h-full w-1/4 flex-shrink-0 relative">
+                        {data.image?.url ? (
+                          <img src={data.image.url} alt="Vinod Kumar Profile" className="h-full w-full object-cover opacity-100 select-none" />
+                        ) : (
+                          <div className="h-full w-full bg-gradient-to-b from-neutral-800 to-neutral-950 flex items-center justify-center text-white/20 text-xs tracking-widest uppercase">Profile Visual</div>
+                        )}
+                      </div>
                       <div className="h-full w-1/4 flex-shrink-0 bg-[#07090F] relative">
                         <img src="/Logo.png" alt="Trivixa Arc Logo" className="h-full w-full object-cover filter drop-shadow-md select-none" />
                       </div>
