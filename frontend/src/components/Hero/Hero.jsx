@@ -50,7 +50,7 @@ function Hero() {
   return (
     <>
       {/* ================= PREMIUM AGENCY HERO ================= */}
-      <section className="relative min-h-screen w-full overflow-hidden bg-transparent text-[#F5F5F2] flex items-center font-sans pt-4 pb-36 md:pt-14 md:pb-40 tracking-[-0.01em]">
+      <section className="relative min-h-screen w-full overflow-hidden bg-transparent text-[#F5F5F2] flex items-center font-sans pt-8 pb-32 md:pt-20 md:pb-36 tracking-[-0.01em]">
         
         {/* DESIGNER BACKGROUND SUITE (ANIMATED ATMOSPHERE) */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -99,13 +99,14 @@ function Hero() {
           }}
         />
 
-        <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-5 sm:px-8 md:px-10 lg:grid-cols-12 lg:gap-16 lg:px-12 items-center">
+        {/* EXPANDED DESKTOP CONTAINMENT MATRIX */}
+        <div className="relative z-10 mx-auto grid w-full max-w-[1400px] grid-cols-1 gap-12 px-6 sm:px-10 md:px-12 lg:grid-cols-12 lg:gap-8 items-center">
           
           {/* LEFT SIDE & MAIN HEADER ARCHITECTURE */}
-          <div className="lg:col-span-7 flex flex-col justify-center order-1 w-full">
+          <div className="lg:col-span-7 flex flex-col justify-center order-1 w-full lg:pr-4">
 
             {/* SMALL LABEL */}
-            <div className="mb-[28px]">
+            <div className="mb-[24px]">
               <Reveal>
                 <div className="flex items-center gap-3 sm:gap-4">
                   <span className="h-px w-8 sm:w-12 bg-gradient-to-r from-[#E8C66A] to-transparent" />
@@ -120,10 +121,10 @@ function Hero() {
             <div className="mb-[24px]">
               <Reveal>
                 <div className="leading-[0.82] uppercase tracking-[-0.06em]">
-                  <span className="block text-[48px] sm:text-[88px] md:text-[110px] xl:text-[132px] font-black text-[#F5F5F2] drop-shadow-sm">
+                  <span className="block text-[48px] sm:text-[88px] md:text-[105px] xl:text-[125px] font-black text-[#F5F5F2] drop-shadow-sm">
                     Vinod
                   </span>
-                  <span className="block text-[48px] sm:text-[88px] md:text-[110px] xl:text-[132px] font-black bg-gradient-to-r from-[#FFF7E2] via-[#E8C66A] to-[#B88728] bg-clip-text text-transparent filter drop-shadow-sm">
+                  <span className="block text-[48px] sm:text-[88px] md:text-[105px] xl:text-[125px] font-black bg-gradient-to-r from-[#FFF7E2] via-[#E8C66A] to-[#B88728] bg-clip-text text-transparent filter drop-shadow-sm">
                     Kumar
                   </span>
                 </div>
@@ -131,12 +132,14 @@ function Hero() {
             </div>
 
             {/* INTERACTIVE PROFILE CARD — MOBILE VIEW */}
-            <div className="block lg:hidden my-6 w-full max-w-[360px] mx-auto">
+            <div className="block lg:hidden my-6 w-full max-w-[350px] mx-auto">
               <Reveal delay={0.1}>
                 <div className="group relative w-full">
                   <div className="absolute -inset-px -z-10 bg-gradient-to-tr from-[#CDA349]/20 to-white/5 rounded-3xl opacity-40 blur-lg" />
-                  <div className="relative aspect-[4/4.8] w-full overflow-hidden rounded-3xl border border-[#2B2F38] bg-[#12151C]/60 p-2 backdrop-blur-2xl">
-                    <div className="relative h-full w-full overflow-hidden rounded-[1.15rem] bg-[#07090F] border border-white/5 flex flex-row">
+                  <div className="relative w-full overflow-hidden rounded-3xl border border-[#2B2F38] bg-[#12151C]/60 p-2 backdrop-blur-2xl flex flex-col">
+                    
+                    {/* Sliding Frame Box */}
+                    <div className="relative aspect-[4/4.5] w-full overflow-hidden rounded-[1.15rem] bg-[#07090F] border border-white/5 flex flex-row">
                       <motion.div 
                         className="flex h-full w-[400%] flex-nowrap flex-shrink-0"
                         animate={{ x: ["0%", "0%", "-25%", "-25%", "-50%"] }}
@@ -163,29 +166,30 @@ function Hero() {
                           )}
                         </div>
                       </motion.div>
+
+                      <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full border border-white/15 bg-[#07090F]/80 px-2.5 py-1 backdrop-blur-xl z-20">
+                        <span className="relative flex h-1.5 w-1.5">
+                          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#CDA349] opacity-75"></span>
+                          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#CDA349]"></span>
+                        </span>
+                        <span className="text-[8px] font-bold uppercase tracking-[0.2em] text-white/90">Founder Profile</span>
+                      </div>
                     </div>
 
-                    <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full border border-white/15 bg-[#07090F]/80 px-2.5 py-1 backdrop-blur-xl z-20">
-                      <span className="relative flex h-1.5 w-1.5">
-                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#CDA349] opacity-75"></span>
-                        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#CDA349]"></span>
-                      </span>
-                      <span className="text-[8px] font-bold uppercase tracking-[0.2em] text-white/90">Founder Profile</span>
-                    </div>
-
-                    {/* MOBILE BOTTOM CARD META BANNER */}
-                    <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between bg-[#12151C]/95 p-3.5 rounded-lg border border-[#2B2F38] shadow-xl backdrop-blur-xl z-20 text-[9px]">
+                    {/* MOVED OUT OF ABSOLUTE OVERLAY INTO SEPARATE ROW BLOCK */}
+                    <div className="w-full flex items-center justify-between bg-[#0B0D12] p-3.5 mt-2 rounded-xl border border-[#2B2F38]/60 shadow-xl text-[10px]">
                       <div>
-                        <p className="font-bold text-zinc-500 uppercase tracking-wider">Location</p>
+                        <p className="font-bold text-zinc-500 uppercase tracking-wider text-[8px]">Location</p>
                         <p className="font-bold text-[#F5F5F2] mt-0.5">{data.location || "INDIA"}</p>
                       </div>
                       <div className="text-right">
-                        <p className="font-bold text-zinc-500 uppercase tracking-wider">Status</p>
+                        <p className="font-bold text-zinc-500 uppercase tracking-wider text-[8px]">Status</p>
                         <p className="font-extrabold text-emerald-400 flex items-center gap-1 mt-0.5 justify-end">
                           <span className="h-1 w-1 rounded-full bg-emerald-400 animate-pulse" /> Available
                         </p>
                       </div>
                     </div>
+
                   </div>
                 </div>
               </Reveal>
@@ -228,14 +232,14 @@ function Hero() {
             {/* DESCRIPTION */}
             <div className="mb-[32px]">
               <Reveal>
-                <p className="max-w-2xl text-[14px] sm:text-[18px] leading-relaxed md:leading-8 text-[#D8DADF] font-normal drop-shadow-sm">
+                <p className="max-w-2xl text-[14px] sm:text-[17px] leading-relaxed md:leading-8 text-[#D8DADF] font-normal drop-shadow-sm">
                   I help businesses and startups build premium websites, intuitive user experiences, and powerful digital brands that create lasting impressions and drive business growth.
                 </p>
               </Reveal>
             </div>
 
              {/* CTA BUTTON BLOCK - DYNAMIC LIVE PULSING */}
-            <div className="w-full">
+            <div className="w-full mb-[36px]">
               <Reveal>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-2xl items-center">
                   {/* GOLD ACTION BUTTON with Active Pulse-Glow */}
@@ -247,7 +251,7 @@ function Hero() {
                     Discovery Call
                   </MagneticButton>
 
-                  {/* PREMIUM GLASS BUTTON 1 with Micro-Glow border */}
+                  {/* PREMIUM GLASS BUTTON 1 */}
                   <MagneticButton
                     href="#projects"
                     className="inline-flex items-center justify-center gap-2 rounded-full border border-[rgba(205,163,73,0.4)] bg-[rgba(18,21,28,0.7)] px-4 py-3.5 text-[10px] font-bold uppercase tracking-[0.15em] text-[#F5F5F2] w-full transition-all duration-300 hover:bg-[rgba(205,163,73,0.15)] hover:border-[#E8C66A] hover:shadow-[0_0_15px_rgba(232,198,106,0.15)]"
@@ -256,7 +260,7 @@ function Hero() {
                     View Projects
                   </MagneticButton>
 
-                  {/* PREMIUM GLASS BUTTON 2 with Micro-Glow border */}
+                  {/* PREMIUM GLASS BUTTON 2 */}
                   <MagneticButton
                     href="#services"
                     className="inline-flex items-center justify-center gap-2 rounded-full border border-[rgba(205,163,73,0.4)] bg-[rgba(18,21,28,0.7)] px-4 py-3.5 text-[10px] font-bold uppercase tracking-[0.15em] text-[#F5F5F2] w-full transition-all duration-300 hover:bg-[rgba(205,163,73,0.15)] hover:border-[#E8C66A] hover:shadow-[0_0_15px_rgba(232,198,106,0.15)]"
@@ -268,11 +272,10 @@ function Hero() {
               </Reveal>
             </div>
 
-
-            {/* HIGH END FLAT OVERVIEW METRICS (FIXED TO A SINGLE ROW) */}
-            <div className="mb-[40px] w-full max-w-2xl">
+            {/* HIGH END FLAT OVERVIEW METRICS */}
+            <div className="w-full max-w-2xl">
               <Reveal>
-                <div className="flex flex-nowrap items-center justify-between gap-x-2 sm:gap-x-12 border-t border-b border-white/[0.06] py-5 sm:py-6 overflow-x-auto no-scrollbar">
+                <div className="flex flex-nowrap items-center justify-between gap-x-4 sm:gap-x-12 border-t border-b border-white/[0.06] py-5 sm:py-6 overflow-x-auto no-scrollbar">
                   {stats.map((stat, idx) => {
                     const StatIcon = stat.icon;
                     return (
@@ -295,17 +298,17 @@ function Hero() {
               </Reveal>
             </div>
 
-           
           </div>
 
           {/* DESKTOP EXCLUSIVE RIGHT SIDE PROFILE CARD */}
-          <div className="hidden lg:col-span-5 lg:flex justify-end items-center w-full order-2 pl-6 pb-30 ">
+          <div className="hidden lg:col-span-5 lg:flex justify-end items-center w-full order-2 pl-4">
             <Reveal className="w-full flex justify-end">
-              <div className="group relative w-full max-w-[400px]">
+              <div className="group relative w-full max-w-[420px]">
                 <div className="absolute -inset-px -z-10 bg-gradient-to-tr from-[#CDA349]/20 to-white/5 rounded-3xl opacity-40 blur-xl transition duration-700 group-hover:opacity-60" />
-                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-[#2B2F38] bg-[#12151C] p-2.5 backdrop-blur-3xl transition-all duration-700 group-hover:border-[#CDA349] group-hover:shadow-[0_30px_80px_rgba(205,163,73,0.1)]">
+                <div className="relative w-full overflow-hidden rounded-3xl border border-[#2B2F38] bg-[#12151C] p-2.5 backdrop-blur-3xl transition-all duration-700 group-hover:border-[#CDA349] group-hover:shadow-[0_30px_80px_rgba(205,163,73,0.1)] flex flex-col">
                   
-                  <div className="relative h-full w-full overflow-hidden rounded-[1.25rem] bg-[#07090F] border border-white/5 flex flex-row">
+                  {/* Sliding Core Visual Box */}
+                  <div className="relative aspect-[4/4.6] w-full overflow-hidden rounded-[1.25rem] bg-[#07090F] border border-white/5 flex flex-row">
                     <motion.div 
                       className="flex h-full w-[400%] flex-nowrap flex-shrink-0"
                       animate={{ x: ["0%", "0%", "-25%", "-25%", "-50%"] }}
@@ -332,17 +335,18 @@ function Hero() {
                         )}
                       </div>
                     </motion.div>
+
+                    <div className="absolute left-5 top-5 flex items-center gap-2 rounded-full border border-white/15 bg-[#07090F]/80 px-3.5 py-1.5 backdrop-blur-xl shadow-lg z-20">
+                      <span className="relative flex h-2 w-2">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#CDA349] opacity-75"></span>
+                        <span className="relative inline-flex h-2 w-2 rounded-full bg-[#CDA349]"></span>
+                      </span>
+                      <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-white/90">Founder Profile</span>
+                    </div>
                   </div>
 
-                  <div className="absolute left-5 top-5 flex items-center gap-2 rounded-full border border-white/15 bg-[#07090F]/80 px-3.5 py-1.5 backdrop-blur-xl shadow-lg z-20">
-                    <span className="relative flex h-2 w-2">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#CDA349] opacity-75"></span>
-                      <span className="relative inline-flex h-2 w-2 rounded-full bg-[#CDA349]"></span>
-                    </span>
-                    <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-white/90">Founder Profile</span>
-                  </div>
-
-                  <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between bg-[#12151C]/95 p-4 rounded-xl border border-[#2B2F38] shadow-2xl backdrop-blur-2xl z-20">
+                  {/* SEPARATE FLOW BLOCK ROW FOR SUB-TEXT METADATA */}
+                  <div className="w-full flex items-center justify-between bg-[#0B0D12] p-4 mt-2.5 rounded-xl border border-[#2B2F38]/60 shadow-2xl">
                     <div>
                       <p className="text-[8px] font-bold uppercase tracking-[0.3em] text-[#909090]">Location</p>
                       <p className="text-[11px] font-bold text-[#F5F5F2] tracking-wide mt-0.5">{data.location || "INDIA"}</p>
@@ -350,7 +354,7 @@ function Hero() {
                     <div className="text-right">
                       <p className="text-[8px] font-bold uppercase tracking-[0.3em] text-[#909090]">Status</p>
                       <p className="text-[11px] font-extrabold text-emerald-400 flex items-center gap-1.5 mt-0.5">
-                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" /> Available for New Projects
+                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" /> Available for Projects
                       </p>
                     </div>
                   </div>

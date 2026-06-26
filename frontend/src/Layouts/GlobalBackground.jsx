@@ -74,7 +74,7 @@ function GlobalBackground({ children }) {
       xPercent: -50,
       yPercent: -50,
       scale: isMobile ? 0.12 : 0.22,
-      opacity: isMobile ? 0 : 1, // Cleaner fade-in logic for mobile layouts
+      opacity: isMobile ? 0 : 1,
     });
 
     gsap.set(lightRef.current, {
@@ -92,7 +92,6 @@ function GlobalBackground({ children }) {
        RESPONSIVE INTRO TIMELINE
     =============================== */
     if (isMobile) {
-      // Sleek, high-end clean reveal for mobile to maximize frame-rates
       tl.to(shipRef.current, {
         duration: 2,
         opacity: 1,
@@ -102,7 +101,6 @@ function GlobalBackground({ children }) {
         ease: "power3.out",
       }).add("shipAtTop");
     } else {
-      // Full cinematic sweeping arc curve for desktop
       tl.to(shipRef.current, {
         duration: 3.2,
         scale: 0.42,
@@ -190,7 +188,7 @@ function GlobalBackground({ children }) {
       ref={parallaxContainerRef} 
       className="relative min-h-screen bg-[#0A0A0A] overflow-x-hidden antialiased selection:bg-[#CDA349]/20"
     >
-      {/* 🌌 MAIN BACKGROUND (Slightly oversized for secure parallax margins) */}
+      {/* 🌌 MAIN BACKGROUND */}
       <div
         ref={bgRef}
         className="fixed -inset-[4%] bg-cover bg-center will-change-transform z-0 transform"
@@ -200,47 +198,47 @@ function GlobalBackground({ children }) {
         }}
       />
 
-      {/* 🌑 PREMIUM CINEMATIC VIGNETTE */}
+      {/* 🌑 PREMIUM CINEMATIC VIGNETTE (Ultra-Transparent Crystal Center) */}
       <div
         className="fixed inset-0 z-[1] pointer-events-none"
         style={{
           background: `
             radial-gradient(
               ellipse at center,
-              rgba(10,10,10,0) 20%,
-              rgba(10,10,10,0.15) 45%,
-              rgba(10,10,10,0.45) 65%,
-              rgba(10,10,10,0.82) 82%,
+              rgba(10,10,10,0) 35%,
+              rgba(10,10,10,0.08) 55%,
+              rgba(10,10,10,0.35) 72%,
+              rgba(10,10,10,0.80) 88%,
               rgba(10,10,10,1) 100%
             )
           `,
         }}
       />
 
-      {/* 🌫 PREMIUM GRAY ATMOSPHERE DEPTH */}
+      {/* 🌫 PREMIUM GRAY ATMOSPHERE DEPTH (Perfect Clear Hub) */}
       <div
         className="fixed inset-0 z-[2] pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle at center, rgba(26,26,26,0.02) 0%, rgba(26,26,26,0.3) 100%)",
+            "radial-gradient(circle at center, rgba(26,26,26,0) 0%, rgba(26,26,26,0.28) 100%)",
         }}
       />
 
-      {/* ✨ LUXURY GOLD GLOW (Smooth Top-Right Corner Ambience) */}
+      {/* ✨ LUXURY GOLD GLOW (Soft Right Shoulder Accent) */}
       <div
         className="fixed inset-0 z-[3] pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle at 85% 15%, rgba(205,163,73,0.08) 0%, transparent 55%)",
+            "radial-gradient(circle at 85% 15%, rgba(205,163,73,0.07) 0%, transparent 50%)",
         }}
       />
 
       {/* 🌑 PREMIUM BOTTOM GRADIENT MASK */}
       <div
-        className="fixed inset-0 z-[3] pointer-events-none bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-transparent"
+        className="fixed inset-0 z-[3] pointer-events-none bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/30 to-transparent"
       />
 
-      {/* 🛸 SPACESHIP - Clean, Crisp Hardware Accelerated Rendering */}
+      {/* 🛸 SPACESHIP */}
       <img
         ref={shipRef}
         src="/SpaceShip.png"
@@ -261,9 +259,9 @@ function GlobalBackground({ children }) {
       {/* 🔦 CINEMATIC LUXURY LIGHT BEAM */}
       <div ref={lightRef} className="fixed top-[15vh] md:top-[12vh] left-1/2 -translate-x-1/2 w-[240px] md:w-[460px] h-[75vh] pointer-events-none z-[4] will-change-transform">
         {/* Core hot-spot glow */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#CDA349]/20 via-[#CDA349]/5 to-transparent blur-xl origin-top" />
-        {/* Soft, ultra-wide anamorphic dispersion field */}
-        <div className="absolute inset-0 bg-gradient-to-b from-yellow-100/10 via-transparent to-transparent blur-3xl scale-x-150 origin-top" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#CDA349]/15 via-[#CDA349]/3 to-transparent blur-xl origin-top" />
+        {/* Soft, wide anamorphic dispersion field */}
+        <div className="absolute inset-0 bg-gradient-to-b from-yellow-100/8 via-transparent to-transparent blur-3xl scale-x-150 origin-top" />
       </div>
 
       {/* 📦 WEBSITE CONTENT LAYERING */}
