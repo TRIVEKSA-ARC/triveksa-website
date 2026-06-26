@@ -81,7 +81,7 @@ export default function Services() {
               rounded-full
               border
               border-[#D4AF37]/40
-              bg-black
+              bg-[#12151C]
               px-4
               py-1.5
               sm:px-6

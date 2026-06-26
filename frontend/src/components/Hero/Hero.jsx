@@ -4,10 +4,6 @@ import {
   FolderGit2, 
   Wrench, 
   CheckCircle2, 
-  Github, 
-  Linkedin, 
-  Instagram, 
-  Youtube, 
   ArrowDown 
 } from "lucide-react";
 import Reveal from "../Reveal";
@@ -30,9 +26,10 @@ function Hero() {
     { value: "Fast", label: "Delivery" }
   ];
 
-  // Technologies list for the infinite marquee banner
-  const technologies = [
-    "Framer Motion", "GSAP", "React", "Node.js", "Express", "MongoDB", "Figma"
+  // Updated to premium agency marketing hooks instead of software tool lists
+  const agencyHooks = [
+    "Premium Digital Branding", "High-Converting UX", "Scalable Business Growth", 
+    "Custom Web Architecture", "Data-Driven Strategy", "Elite Product Design"
   ];
 
   return (
@@ -161,22 +158,17 @@ function Hero() {
                       <span className="text-[8px] font-bold uppercase tracking-[0.2em] text-white/90">Founder Profile</span>
                     </div>
 
-                    <div className="absolute bottom-4 left-4 right-4 flex flex-col bg-[#12151C]/95 p-3 rounded-lg border border-[#2B2F38] shadow-xl backdrop-blur-xl z-20 space-y-2">
+                    {/* CLEANED BOTTOM CARD META BANNER */}
+                    <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between bg-[#12151C]/95 p-3.5 rounded-lg border border-[#2B2F38] shadow-xl backdrop-blur-xl z-20 text-[9px]">
                       <div>
-                        <h4 className="text-xs font-bold text-[#F5F5F2] tracking-wide">Vinod Kumar</h4>
-                        <p className="text-[9px] uppercase tracking-[0.1em] text-[#CDA349] mt-0.5 font-medium">Full Stack Dev • Designer</p>
+                        <p className="font-bold text-zinc-500 uppercase tracking-wider">Location</p>
+                        <p className="font-bold text-[#F5F5F2] mt-0.5">{data.location || "INDIA"}</p>
                       </div>
-                      <div className="flex items-center justify-between border-t border-white/5 pt-2 text-[9px]">
-                        <div>
-                          <p className="font-bold text-zinc-500 uppercase tracking-wider">Location</p>
-                          <p className="font-bold text-[#F5F5F2] mt-0.5">{data.location || "INDIA"}</p>
-                        </div>
-                        <div className="text-right">
-                          <p className="font-bold text-zinc-500 uppercase tracking-wider">Status</p>
-                          <p className="font-extrabold text-emerald-400 flex items-center gap-1 mt-0.5 justify-end">
-                            <span className="h-1 w-1 rounded-full bg-emerald-400 animate-pulse" /> Available
-                          </p>
-                        </div>
+                      <div className="text-right">
+                        <p className="font-bold text-zinc-500 uppercase tracking-wider">Status</p>
+                        <p className="font-extrabold text-emerald-400 flex items-center gap-1 mt-0.5 justify-end">
+                          <span className="h-1 w-1 rounded-full bg-emerald-400 animate-pulse" /> Available
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -207,32 +199,32 @@ function Hero() {
               </Reveal>
             </div>
 
-            {/* CTA BUTTON BLOCK - FIXED WRAPPING AND CONTENT FLOW */}
+            {/* CTA BUTTON BLOCK - DYNAMIC LIVE PULSING ADDED */}
             <div className="mb-[40px] w-full">
               <Reveal>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-2xl items-center">
-                  {/* GOLD ACTION BUTTON */}
+                  {/* GOLD ACTION BUTTON with Active Pulse-Glow */}
                   <MagneticButton
                     href="#contact"
-                    className="inline-flex items-center justify-center gap-2 rounded-full border border-transparent bg-gradient-to-r from-[#E8C66A] to-[#B88728] px-4 py-3.5 text-[10px] font-bold uppercase tracking-[0.15em] text-black shadow-xl w-full transition-transform hover:scale-[1.02]"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-transparent bg-gradient-to-r from-[#E8C66A] via-[#F3DA93] to-[#B88728] px-4 py-3.5 text-[10px] font-bold uppercase tracking-[0.15em] text-black shadow-[0_0_15px_rgba(232,198,106,0.3)] w-full transition-all duration-300 hover:scale-[1.03] animate-[pulse_2.5s_infinite_ease-in-out]"
                   >
-                    <Rocket size={13} />
+                    <Rocket size={13} className="animate-bounce" />
                     Discovery Call
                   </MagneticButton>
 
-                  {/* PREMIUM GLASS BUTTON 1 */}
+                  {/* PREMIUM GLASS BUTTON 1 with Micro-Glow border */}
                   <MagneticButton
                     href="#projects"
-                    className="inline-flex items-center justify-center gap-2 rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(20,20,20,0.55)] px-4 py-3.5 text-[10px] font-bold uppercase tracking-[0.15em] text-[#F5F5F2] w-full transition-all duration-300 hover:bg-[rgba(205,163,73,0.08)] hover:border-[#CDA349]"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-[rgba(205,163,73,0.3)] bg-[rgba(20,20,20,0.65)] px-4 py-3.5 text-[10px] font-bold uppercase tracking-[0.15em] text-[#F5F5F2] w-full transition-all duration-300 hover:bg-[rgba(205,163,73,0.12)] hover:border-[#CDA349] shadow-[0_0_10px_rgba(255,255,255,0.02)]"
                   >
                     <FolderGit2 size={13} className="text-[#CDA349]" />
                     View Projects
                   </MagneticButton>
 
-                  {/* PREMIUM GLASS BUTTON 2 - FIXED POSITION AND REDIRECT */}
+                  {/* PREMIUM GLASS BUTTON 2 with Micro-Glow border */}
                   <MagneticButton
                     href="#services"
-                    className="inline-flex items-center justify-center gap-2 rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(20,20,20,0.55)] px-4 py-3.5 text-[10px] font-bold uppercase tracking-[0.15em] text-[#F5F5F2] w-full transition-all duration-300 hover:bg-[rgba(205,163,73,0.08)] hover:border-[#CDA349]"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-[rgba(205,163,73,0.3)] bg-[rgba(20,20,20,0.65)] px-4 py-3.5 text-[10px] font-bold uppercase tracking-[0.15em] text-[#F5F5F2] w-full transition-all duration-300 hover:bg-[rgba(205,163,73,0.12)] hover:border-[#CDA349] shadow-[0_0_10px_rgba(255,255,255,0.02)]"
                   >
                     <Wrench size={13} className="text-[#CDA349]" />
                     View Services
@@ -275,11 +267,10 @@ function Hero() {
               </Reveal>
             </div>
 
-
           </div>
 
           {/* DESKTOP EXCLUSIVE RIGHT SIDE PROFILE CARD */}
-          <div className="hidden lg:col-span-5 lg:flex justify-end items-center w-full order-2 pl-6 pb-64">
+          <div className="hidden lg:col-span-5 lg:flex justify-end items-center w-full order-2 pl-6 pb-60 ">
             <Reveal className="w-full flex justify-end">
               <div className="group relative w-full max-w-[400px]">
                 <div className="absolute -inset-px -z-10 bg-gradient-to-tr from-[#CDA349]/20 to-white/5 rounded-3xl opacity-40 blur-xl transition duration-700 group-hover:opacity-60" />
@@ -322,23 +313,17 @@ function Hero() {
                     <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-white/90">Founder Profile</span>
                   </div>
 
-                  <div className="absolute bottom-5 left-5 right-5 flex flex-col bg-[#12151C]/95 p-4 rounded-xl border border-[#2B2F38] shadow-2xl backdrop-blur-2xl z-20 space-y-3">
+                  {/* REMOVED TEXT BLOCKS HERE FOR PURE LOOK — ONLY KEEPING LOCATION & STATUS */}
+                  <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between bg-[#12151C]/95 p-4 rounded-xl border border-[#2B2F38] shadow-2xl backdrop-blur-2xl z-20">
                     <div>
-                      <h4 className="text-sm font-bold text-[#F5F5F2] tracking-wide">Vinod Kumar</h4>
-                      <p className="text-[10px] uppercase tracking-[0.15em] text-[#CDA349] mt-0.5 font-semibold">Full Stack Developer • Creative Designer</p>
-                      <p className="text-[9px] text-zinc-400 tracking-wider font-medium">UI/UX Specialist</p>
+                      <p className="text-[8px] font-bold uppercase tracking-[0.3em] text-[#909090]">Location</p>
+                      <p className="text-[11px] font-bold text-[#F5F5F2] tracking-wide mt-0.5">{data.location || "INDIA"}</p>
                     </div>
-                    <div className="flex items-center justify-between border-t border-white/10 pt-2.5">
-                      <div>
-                        <p className="text-[8px] font-bold uppercase tracking-[0.3em] text-[#909090]">Location</p>
-                        <p className="text-[11px] font-bold text-[#F5F5F2] tracking-wide mt-0.5">{data.location || "INDIA"}</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-[8px] font-bold uppercase tracking-[0.3em] text-[#909090]">Status</p>
-                        <p className="text-[11px] font-extrabold text-emerald-400 flex items-center gap-1.5 mt-0.5">
-                          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" /> Available for New Projects
-                        </p>
-                      </div>
+                    <div className="text-right">
+                      <p className="text-[8px] font-bold uppercase tracking-[0.3em] text-[#909090]">Status</p>
+                      <p className="text-[11px] font-extrabold text-emerald-400 flex items-center gap-1.5 mt-0.5">
+                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" /> Available for New Projects
+                      </p>
                     </div>
                   </div>
 
@@ -368,9 +353,9 @@ function Hero() {
           >
             {[...Array(3)].map((_, mainIdx) => (
               <div key={mainIdx} className="flex gap-16">
-                {technologies.map((tech, techIdx) => (
-                  <span key={techIdx} className="hover:text-[#CDA349] transition-colors duration-300 select-none">
-                    {tech}
+                {agencyHooks.map((hook, hookIdx) => (
+                  <span key={hookIdx} className="hover:text-[#CDA349] transition-colors duration-300 select-none">
+                    {hook}
                   </span>
                 ))}
               </div>
