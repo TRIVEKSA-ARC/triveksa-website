@@ -110,7 +110,7 @@ function Hero() {
               <Reveal>
                 <div className="flex items-center gap-3 sm:gap-4">
                   <span className="h-px w-8 sm:w-12 bg-gradient-to-r from-[#E8C66A] to-transparent" />
-                  <p className="text-[10px] sm:text-[13px] uppercase tracking-[0.3em] sm:tracking-[0.42em] text-[#9C9C9C] font-bold drop-shadow-md leading-relaxed">
+                  <p className="text-[10px] sm:text-[13px] uppercase tracking-[0.3em] sm:tracking-[0.42em] text-[#ffffff] font-bold drop-shadow-md leading-relaxed">
                     Founder • Creative Technologist
                   </p>
                 </div>
