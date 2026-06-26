@@ -9,21 +9,41 @@ function GlobalBackground({ children }) {
   const lightRef = useRef(null);
   const contentRef = useRef(null);
   const bgRef = useRef(null);
+  const parallaxContainerRef = useRef(null);
 
   useEffect(() => {
-    // Detect mobile layout for fine-tuning initial scale adjustments
     const isMobile = window.innerWidth < 768;
+
+    /* ===============================
+       PREMIUM COGNITIVE PARALLAX (Desktop)
+    =============================== */
+    let handleMouseMove;
+    if (!isMobile && parallaxContainerRef.current) {
+      handleMouseMove = (e) => {
+        const { clientX, clientY } = e;
+        const moveX = (clientX - window.innerWidth / 2) * 0.015;
+        const moveY = (clientY - window.innerHeight / 2) * 0.015;
+        
+        gsap.to(bgRef.current, {
+          x: moveX,
+          y: moveY,
+          duration: 1.5,
+          ease: "power2.out",
+        });
+      };
+      window.addEventListener("mousemove", handleMouseMove);
+    }
 
     /* ===============================
        PREMIUM CINEMATIC BG MOTION
     =============================== */
     const bgAnimation = gsap.fromTo(
       bgRef.current,
-      { scale: 1.05 },
+      { scale: 1.06 },
       {
-        scale: 1,
-        duration: 45,
-        ease: "power2.inOut",
+        scale: 1.01,
+        duration: 50,
+        ease: "sine.inOut",
         repeat: -1,
         yoyo: true,
       }
@@ -41,6 +61,7 @@ function GlobalBackground({ children }) {
 
       return () => {
         bgAnimation.kill();
+        if (handleMouseMove) window.removeEventListener("mousemove", handleMouseMove);
       };
     }
 
@@ -52,8 +73,8 @@ function GlobalBackground({ children }) {
     gsap.set(shipRef.current, {
       xPercent: -50,
       yPercent: -50,
-      scale: isMobile ? 0.15 : 0.25, // Sleeker initial entry scale on mobile
-      opacity: 1,
+      scale: isMobile ? 0.12 : 0.22,
+      opacity: isMobile ? 0 : 1, // Cleaner fade-in logic for mobile layouts
     });
 
     gsap.set(lightRef.current, {
@@ -64,38 +85,51 @@ function GlobalBackground({ children }) {
 
     gsap.set(contentRef.current, {
       opacity: 0,
-      y: isMobile ? 40 : 60, // Shorter transition distance on mobile
+      y: isMobile ? 30 : 50,
     });
 
     /* ===============================
-       SHIP ENTRY
+       RESPONSIVE INTRO TIMELINE
     =============================== */
-    tl.to(shipRef.current, {
-      duration: 3,
-      scale: isMobile ? 0.35 : 0.45, // Responsive climax scale
-      ease: "power2.inOut",
-      motionPath: {
-        path: [
-          { x: "110vw", y: "30vh" },
-          { x: "70vw", y: "18vh" },
-          { x: "50vw", y: isMobile ? "14vh" : "10vh" }, // Adjusted apex height for mobile viewports
-        ],
-        curviness: 1.6,
-      },
-    }).add("shipAtTop");
+    if (isMobile) {
+      // Sleek, high-end clean reveal for mobile to maximize frame-rates
+      tl.to(shipRef.current, {
+        duration: 2,
+        opacity: 1,
+        scale: 0.3,
+        x: "50vw",
+        y: "14vh",
+        ease: "power3.out",
+      }).add("shipAtTop");
+    } else {
+      // Full cinematic sweeping arc curve for desktop
+      tl.to(shipRef.current, {
+        duration: 3.2,
+        scale: 0.42,
+        ease: "power2.inOut",
+        motionPath: {
+          path: [
+            { x: "110vw", y: "35vh" },
+            { x: "75vw", y: "20vh" },
+            { x: "50vw", y: "11vh" },
+          ],
+          curviness: 1.5,
+        },
+      }).add("shipAtTop");
+    }
 
     /* ===============================
-       LIGHT REVEAL
+       LIGHT REVEAL (Anamorphic Gold Flare)
     =============================== */
     tl.to(
       lightRef.current,
       {
         opacity: 1,
         scaleY: 1,
-        duration: 1.2,
-        ease: "power2.out",
+        duration: 1.4,
+        ease: "power3.out",
       },
-      "shipAtTop+=0.2"
+      "shipAtTop+=0.1"
     );
 
     /* ===============================
@@ -106,46 +140,60 @@ function GlobalBackground({ children }) {
       {
         opacity: 1,
         y: 0,
-        duration: 1.5,
-        ease: "power3.out",
+        duration: 1.8,
+        ease: "power4.out",
       },
-      "shipAtTop+=0.4"
+      "shipAtTop+=0.3"
     );
 
     /* ===============================
        SHIP EXIT
     =============================== */
-    tl.to(shipRef.current, {
-      duration: 5,
-      scale: isMobile ? 0.1 : 0.15,
-      opacity: 0,
-      ease: "power2.inOut",
-      motionPath: {
-        path: [
-          { x: "50vw", y: isMobile ? "14vh" : "10vh" },
-          { x: "70vw", y: "5vh" },
-          { x: "130vw", y: "-20vh" }, // Extended exit vector to avoid cropping on wide viewports
-        ],
-        curviness: 1.8,
-      },
-      onComplete: () => {
-        sessionStorage.setItem("introPlayed", "true");
-      },
-    });
+    if (isMobile) {
+      tl.to(shipRef.current, {
+        duration: 3.5,
+        scale: 0.1,
+        opacity: 0,
+        y: "-10vh",
+        ease: "power2.inIn",
+        onComplete: () => sessionStorage.setItem("introPlayed", "true"),
+      });
+    } else {
+      tl.to(shipRef.current, {
+        duration: 4.8,
+        scale: 0.12,
+        opacity: 0,
+        ease: "power2.inOut",
+        motionPath: {
+          path: [
+            { x: "50vw", y: "11vh" },
+            { x: "65vw", y: "6vh" },
+            { x: "125vw", y: "-15vh" },
+          ],
+          curviness: 1.7,
+        },
+        onComplete: () => {
+          sessionStorage.setItem("introPlayed", "true");
+        },
+      });
+    }
 
     return () => {
       bgAnimation.kill();
       tl.kill();
+      if (handleMouseMove) window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#0A0A0A] overflow-x-hidden">
-
-      {/* 🌌 MAIN BACKGROUND */}
+    <div 
+      ref={parallaxContainerRef} 
+      className="relative min-h-screen bg-[#0A0A0A] overflow-x-hidden antialiased selection:bg-[#CDA349]/20"
+    >
+      {/* 🌌 MAIN BACKGROUND (Slightly oversized for secure parallax margins) */}
       <div
         ref={bgRef}
-        className="fixed inset-0 bg-cover bg-center will-change-transform z-0"
+        className="fixed -inset-[4%] bg-cover bg-center will-change-transform z-0 transform"
         style={{
           backgroundImage:
             'url("/create_a_Space_with_planets_from_long_view_with_clarity_beautifull__20251222114721_01.png")',
@@ -159,40 +207,40 @@ function GlobalBackground({ children }) {
           background: `
             radial-gradient(
               ellipse at center,
-              rgba(10,10,10,0) 18%,
-              rgba(10,10,10,0.12) 38%,
-              rgba(10,10,10,0.35) 58%,
-              rgba(10,10,10,0.72) 78%,
-              rgba(10,10,10,0.96) 100%
+              rgba(10,10,10,0) 20%,
+              rgba(10,10,10,0.15) 45%,
+              rgba(10,10,10,0.45) 65%,
+              rgba(10,10,10,0.82) 82%,
+              rgba(10,10,10,1) 100%
             )
           `,
         }}
       />
 
-      {/* 🌫 PREMIUM GRAY DEPTH */}
+      {/* 🌫 PREMIUM GRAY ATMOSPHERE DEPTH */}
       <div
         className="fixed inset-0 z-[2] pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle at center, rgba(26,26,26,0.05) 0%, rgba(26,26,26,0.22) 100%)",
+            "radial-gradient(circle at center, rgba(26,26,26,0.02) 0%, rgba(26,26,26,0.3) 100%)",
         }}
       />
 
-      {/* ✨ LUXURY GOLD GLOW */}
+      {/* ✨ LUXURY GOLD GLOW (Smooth Top-Right Corner Ambience) */}
       <div
         className="fixed inset-0 z-[3] pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle at top right, rgba(205,163,73,0.10) 0%, transparent 45%)",
+            "radial-gradient(circle at 85% 15%, rgba(205,163,73,0.08) 0%, transparent 55%)",
         }}
       />
 
-      {/* 🌑 PREMIUM BOTTOM DEPTH */}
+      {/* 🌑 PREMIUM BOTTOM GRADIENT MASK */}
       <div
-        className="fixed inset-0 z-[3] pointer-events-none bg-gradient-to-t from-[#0A0A0A]/90 via-[#0A0A0A]/40 to-transparent"
+        className="fixed inset-0 z-[3] pointer-events-none bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-transparent"
       />
 
-      {/* 🛸 SPACESHIP - Fluid Width Adjustments */}
+      {/* 🛸 SPACESHIP - Clean, Crisp Hardware Accelerated Rendering */}
       <img
         ref={shipRef}
         src="/SpaceShip.png"
@@ -201,40 +249,25 @@ function GlobalBackground({ children }) {
           fixed
           top-0
           left-0
-          w-[320px]
+          w-[280px]
           md:w-[700px]
           pointer-events-none
           select-none
+          will-change-transform
           z-[5]
         "
       />
 
-      {/* 🔦 LIGHT BEAM - Matches layout fluid scale perfectly */}
-      <div
-        ref={lightRef}
-        className="
-          fixed
-          top-[16vh]
-          md:top-[12vh]
-          left-1/2
-          -translate-x-1/2
-          w-[200px]
-          md:w-[420px]
-          h-[70vh]
-          md:h-[75vh]
-          bg-gradient-to-b
-          from-yellow-200/16
-          via-sky-200/8
-          to-transparent
-          blur-2xl
-          md:blur-3xl
-          origin-top
-          z-[4]
-        "
-      />
+      {/* 🔦 CINEMATIC LUXURY LIGHT BEAM */}
+      <div ref={lightRef} className="fixed top-[15vh] md:top-[12vh] left-1/2 -translate-x-1/2 w-[240px] md:w-[460px] h-[75vh] pointer-events-none z-[4] will-change-transform">
+        {/* Core hot-spot glow */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#CDA349]/20 via-[#CDA349]/5 to-transparent blur-xl origin-top" />
+        {/* Soft, ultra-wide anamorphic dispersion field */}
+        <div className="absolute inset-0 bg-gradient-to-b from-yellow-100/10 via-transparent to-transparent blur-3xl scale-x-150 origin-top" />
+      </div>
 
-      {/* 📦 WEBSITE CONTENT */}
-      <div ref={contentRef} className="relative z-10 px-4 md:px-0">
+      {/* 📦 WEBSITE CONTENT LAYERING */}
+      <div ref={contentRef} className="relative z-10 px-4 md:px-8 max-w-7xl mx-auto will-change-transform">
         {children}
       </div>
     </div>

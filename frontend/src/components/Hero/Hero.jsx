@@ -234,33 +234,7 @@ function Hero() {
               </Reveal>
             </div>
 
-            {/* HIGH END FLAT OVERVIEW METRICS (FIXED TO A SINGLE ROW) */}
-            <div className="mb-[40px] w-full max-w-2xl">
-              <Reveal>
-                <div className="flex flex-nowrap items-center justify-between gap-x-2 sm:gap-x-12 border-t border-b border-white/[0.06] py-5 sm:py-6 overflow-x-auto no-scrollbar">
-                  {stats.map((stat, idx) => {
-                    const StatIcon = stat.icon;
-                    return (
-                      <div key={idx} className="flex items-center gap-2 sm:gap-3.5 group shrink-0">
-                        <div className="flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-[#12151C] border border-[#2B2F38] text-[#CDA349] transition-all duration-300 group-hover:border-[#E8C66A] group-hover:bg-[#1D1A15] shadow-sm">
-                          <StatIcon size={16} className="transition-transform duration-300 group-hover:scale-110 sm:scale-100" />
-                        </div>
-                        <div className="flex flex-col">
-                          <span className="text-lg sm:text-2xl font-black bg-gradient-to-r from-white via-[#F5F5F2] to-[#E8C66A] bg-clip-text text-transparent tracking-tight">
-                            {stat.value}
-                          </span>
-                          <span className="text-[8px] sm:text-[10px] uppercase tracking-[0.15em] sm:tracking-[0.2em] text-[#9C9C9C] font-bold mt-0.5 group-hover:text-white transition-colors">
-                            {stat.label}
-                          </span>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </Reveal>
-            </div>
-
-            {/* CTA BUTTON BLOCK - DYNAMIC LIVE PULSING */}
+             {/* CTA BUTTON BLOCK - DYNAMIC LIVE PULSING */}
             <div className="w-full">
               <Reveal>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-2xl items-center">
@@ -294,6 +268,34 @@ function Hero() {
               </Reveal>
             </div>
 
+
+            {/* HIGH END FLAT OVERVIEW METRICS (FIXED TO A SINGLE ROW) */}
+            <div className="mb-[40px] w-full max-w-2xl">
+              <Reveal>
+                <div className="flex flex-nowrap items-center justify-between gap-x-2 sm:gap-x-12 border-t border-b border-white/[0.06] py-5 sm:py-6 overflow-x-auto no-scrollbar">
+                  {stats.map((stat, idx) => {
+                    const StatIcon = stat.icon;
+                    return (
+                      <div key={idx} className="flex items-center gap-2 sm:gap-3.5 group shrink-0">
+                        <div className="flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-[#12151C] border border-[#2B2F38] text-[#CDA349] transition-all duration-300 group-hover:border-[#E8C66A] group-hover:bg-[#1D1A15] shadow-sm">
+                          <StatIcon size={16} className="transition-transform duration-300 group-hover:scale-110 sm:scale-100" />
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-lg sm:text-2xl font-black bg-gradient-to-r from-white via-[#F5F5F2] to-[#E8C66A] bg-clip-text text-transparent tracking-tight">
+                            {stat.value}
+                          </span>
+                          <span className="text-[8px] sm:text-[10px] uppercase tracking-[0.15em] sm:tracking-[0.2em] text-[#9C9C9C] font-bold mt-0.5 group-hover:text-white transition-colors">
+                            {stat.label}
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </Reveal>
+            </div>
+
+           
           </div>
 
           {/* DESKTOP EXCLUSIVE RIGHT SIDE PROFILE CARD */}
