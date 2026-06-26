@@ -231,7 +231,7 @@ function Hero() {
                     View Projects
                   </MagneticButton>
 
-                  {/* PREMIUM GLASS BUTTON 2 */}
+                  {/* PREMIUM GLASS BUTTON 2 - PLACED DIRECTLY INLINE */}
                   <MagneticButton
                     href="#services"
                     className="inline-flex items-center justify-center gap-2.5 rounded-full border border-[rgba(255,255,255,0.12)] bg-[rgba(20,20,20,0.55)] px-7 py-4 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.28em] text-[#F5F5F2] w-full sm:w-auto transition-all duration-300 hover:bg-[rgba(205,163,73,0.08)] hover:border-[#CDA349]"
@@ -278,7 +278,6 @@ function Hero() {
             </div>
 
             {/* PREMIUM SOCIAL MATRIX */}
-            {/* Fix 4: Added mt-8 to add spacing above social icons */}
             <div className="mt-8">
               <Reveal>
                 <div className="flex items-center justify-center sm:justify-start gap-4">
@@ -306,7 +305,6 @@ function Hero() {
           </div>
 
           {/* DESKTOP EXCLUSIVE RIGHT SIDE PROFILE CARD */}
-          {/* Fix 1 & 6: Removed lg:pt-1, changed pl-4 to pl-6, max-w-[420px] to max-w-[400px], and added negative top margins -mt-16 xl:-mt-20 */}
           <div className="hidden lg:col-span-5 lg:flex justify-end items-start w-full order-2 pl-6 pb-60">
             <Reveal className="w-full flex justify-end">
               <div className="group relative w-full max-w-[400px] -mt-16 xl:-mt-20">
@@ -376,7 +374,6 @@ function Hero() {
           </div>
         </div>
 
-        {/* Fix 5: Raised the scroll indicator from bottom-4 to bottom-6 */}
         {/* ANIMATED SCROLL TO EXPLORE FOOTER */}
         <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-1 opacity-40 pointer-events-none z-10">
           <p className="text-[8px] sm:text-[9px] uppercase tracking-[0.35em] font-bold text-[#F5F5F2]">Scroll to Explore</p>
@@ -387,7 +384,6 @@ function Hero() {
 
       </section>
 
-      {/* Fix 2 (Option A): Moved the infinite marquee banner entirely outside the Hero <section> component */}
       {/* ================= INFINITE TICKER MARQUEE BANNER ================= */}
       <section className="relative w-full overflow-hidden bg-gradient-to-r from-transparent via-[#12151C]/80 to-transparent border-y border-white/[0.04] py-3 backdrop-blur-sm z-10 -mt-20">
         <div className="flex w-max items-center">
@@ -396,7 +392,6 @@ function Hero() {
             animate={{ x: [0, "-33.33%"] }}
             transition={{ ease: "linear", duration: 25, repeat: Infinity }}
           >
-            {/* Loop 3 times to ensure perfect infinite visual scrolling */}
             {[...Array(3)].map((_, mainIdx) => (
               <div key={mainIdx} className="flex gap-16">
                 {technologies.map((tech, techIdx) => (
