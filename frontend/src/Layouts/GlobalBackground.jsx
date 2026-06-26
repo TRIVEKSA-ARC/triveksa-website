@@ -235,7 +235,7 @@ function GlobalBackground({ children }) {
 
       {/* 🌑 PREMIUM BOTTOM GRADIENT MASK */}
       <div
-        className="fixed inset-0 z-[3] pointer-events-none bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/30 to-transparent"
+        className="fixed inset-0 z-[3] pointer-events-none bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/20 to-transparent"
       />
 
       {/* 🛸 SPACESHIP */}
