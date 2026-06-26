@@ -35,7 +35,7 @@ function Hero() {
   return (
     <>
       {/* ================= PREMIUM AGENCY HERO ================= */}
-      <section className="relative min-h-screen w-full overflow-hidden bg-Transparent text-[#F5F5F2] flex items-center font-sans pt-8 pb-36 md:pt-24 md:pb-40 tracking-[-0.01em]">
+      <section className="relative min-h-screen w-full overflow-hidden bg-transparent text-[#F5F5F2] flex items-center font-sans pt-8 pb-36 md:pt-24 md:pb-40 tracking-[-0.01em]">
         
         {/* DESIGNER BACKGROUND SUITE (ANIMATED ATMOSPHERE) */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -199,14 +199,14 @@ function Hero() {
               </Reveal>
             </div>
 
-            {/* CTA BUTTON BLOCK - DYNAMIC LIVE PULSING ADDED */}
+            {/* CTA BUTTON BLOCK - DYNAMIC LIVE PULSING */}
             <div className="mb-[40px] w-full">
               <Reveal>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-2xl items-center">
                   {/* GOLD ACTION BUTTON with Active Pulse-Glow */}
                   <MagneticButton
                     href="#contact"
-                    className="inline-flex items-center justify-center gap-2 rounded-full border border-transparent bg-gradient-to-r from-[#E8C66A] via-[#F3DA93] to-[#B88728] px-4 py-3.5 text-[10px] font-bold uppercase tracking-[0.15em] text-black shadow-[0_0_15px_rgba(232,198,106,0.3)] w-full transition-all duration-300 hover:scale-[1.03] animate-[pulse_2.5s_infinite_ease-in-out]"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-transparent bg-gradient-to-r from-[#E8C66A] via-[#F3DA93] to-[#B88728] px-4 py-3.5 text-[10px] font-bold uppercase tracking-[0.15em] text-black shadow-[0_0_20px_rgba(232,198,106,0.35)] w-full transition-all duration-300 hover:scale-[1.03] animate-[pulse_2.5s_infinite_ease-in-out]"
                   >
                     <Rocket size={13} className="animate-bounce" />
                     Discovery Call
@@ -215,46 +215,30 @@ function Hero() {
                   {/* PREMIUM GLASS BUTTON 1 with Micro-Glow border */}
                   <MagneticButton
                     href="#projects"
-                    className="inline-flex items-center justify-center gap-2 rounded-full border border-[rgba(205,163,73,0.3)] bg-[rgba(20,20,20,0.65)] px-4 py-3.5 text-[10px] font-bold uppercase tracking-[0.15em] text-[#F5F5F2] w-full transition-all duration-300 hover:bg-[rgba(205,163,73,0.12)] hover:border-[#CDA349] shadow-[0_0_10px_rgba(255,255,255,0.02)]"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-[rgba(205,163,73,0.4)] bg-[rgba(18,21,28,0.7)] px-4 py-3.5 text-[10px] font-bold uppercase tracking-[0.15em] text-[#F5F5F2] w-full transition-all duration-300 hover:bg-[rgba(205,163,73,0.15)] hover:border-[#E8C66A] hover:shadow-[0_0_15px_rgba(232,198,106,0.15)]"
                   >
-                    <FolderGit2 size={13} className="text-[#CDA349]" />
+                    <FolderGit2 size={13} className="text-[#E8C66A]" />
                     View Projects
                   </MagneticButton>
 
                   {/* PREMIUM GLASS BUTTON 2 with Micro-Glow border */}
                   <MagneticButton
                     href="#services"
-                    className="inline-flex items-center justify-center gap-2 rounded-full border border-[rgba(205,163,73,0.3)] bg-[rgba(20,20,20,0.65)] px-4 py-3.5 text-[10px] font-bold uppercase tracking-[0.15em] text-[#F5F5F2] w-full transition-all duration-300 hover:bg-[rgba(205,163,73,0.12)] hover:border-[#CDA349] shadow-[0_0_10px_rgba(255,255,255,0.02)]"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-[rgba(205,163,73,0.4)] bg-[rgba(18,21,28,0.7)] px-4 py-3.5 text-[10px] font-bold uppercase tracking-[0.15em] text-[#F5F5F2] w-full transition-all duration-300 hover:bg-[rgba(205,163,73,0.15)] hover:border-[#E8C66A] hover:shadow-[0_0_15px_rgba(232,198,106,0.15)]"
                   >
-                    <Wrench size={13} className="text-[#CDA349]" />
+                    <Wrench size={13} className="text-[#E8C66A]" />
                     View Services
                   </MagneticButton>
                 </div>
               </Reveal>
             </div>
 
-            {/* STATISTICS BAR */}
-            <div className="mb-[32px] w-full">
+            {/* COMBINED STATISTICS AND TRUST CHIP BAR TO THE RIGHT SIDE */}
+            <div className="mb-[32px] w-full max-w-2xl flex flex-col md:flex-row gap-6 items-start md:items-center justify-between">
+              {/* TRUST CHIPS (LEFT ALIGNED IN FLEX CONTAINER) */}
               <Reveal>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-xl w-full">
-                  {stats.map((stat, idx) => (
-                    <div 
-                      key={idx} 
-                      className="bg-[#12141A]/90 border border-[#222631] rounded-xl p-3 sm:p-4 text-center group transition-all duration-300 hover:bg-[#CDA34920] hover:border-[#CDA349]"
-                    >
-                      <div className="text-2xl sm:text-3xl font-black text-[#F5F5F2]">{stat.value}</div>
-                      <div className="text-[8px] sm:text-[10px] uppercase tracking-[0.2em] text-[#909090] mt-0.5 font-bold">{stat.label}</div>
-                    </div>
-                  ))}
-                </div>
-              </Reveal>
-            </div>
-
-            {/* TRUST CHIPS */}
-            <div className="mb-[32px]">
-              <Reveal>
-                <div className="flex flex-wrap gap-2">
-                  {["MERN Stack",  "UI/UX Designs", "Video Editing", "Branding"].map((chip) => (
+                <div className="flex flex-wrap gap-2 max-w-xs sm:max-w-md">
+                  {["MERN Stack", "UI/UX Designs", "Video Editing", "Branding"].map((chip) => (
                     <span 
                       key={chip}
                       className="inline-flex items-center gap-1.5 rounded-full border border-[#2B2F38] bg-[#12151C] px-3.5 py-1.5 text-[9px] sm:text-[11px] uppercase tracking-[0.15em] sm:tracking-[0.2em] text-[#DADADA] font-semibold transition-all duration-300 hover:bg-[#1B1E25] hover:border-[#CDA349]"
@@ -265,12 +249,27 @@ function Hero() {
                   ))}
                 </div>
               </Reveal>
+
+              {/* STATS CONTAINERS SHIFTED AND RIGHT ALIGNED */}
+              <Reveal>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 w-full md:w-auto">
+                  {stats.map((stat, idx) => (
+                    <div 
+                      key={idx} 
+                      className="bg-gradient-to-b from-[#161922] to-[#0D1017] border border-[#232836] rounded-xl p-3 text-center min-w-[85px] sm:min-w-[100px] group transition-all duration-300 hover:from-[#1D1A15] hover:to-[#12151C] hover:border-[#E8C66A] shadow-md"
+                    >
+                      <div className="text-xl sm:text-2xl font-black bg-gradient-to-r from-[#FFF] to-[#E8C66A] bg-clip-text text-transparent">{stat.value}</div>
+                      <div className="text-[7px] sm:text-[8px] uppercase tracking-[0.15em] text-[#9C9C9C] mt-0.5 font-bold group-hover:text-white transition-colors">{stat.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </Reveal>
             </div>
 
           </div>
 
           {/* DESKTOP EXCLUSIVE RIGHT SIDE PROFILE CARD */}
-          <div className="hidden lg:col-span-5 lg:flex justify-end items-center w-full order-2 pl-6 pb-50 ">
+          <div className="hidden lg:col-span-5 lg:flex justify-end items-center w-full order-2 pl-6 pb-60 ">
             <Reveal className="w-full flex justify-end">
               <div className="group relative w-full max-w-[400px]">
                 <div className="absolute -inset-px -z-10 bg-gradient-to-tr from-[#CDA349]/20 to-white/5 rounded-3xl opacity-40 blur-xl transition duration-700 group-hover:opacity-60" />
