@@ -158,7 +158,7 @@ function Hero() {
                       <span className="text-[8px] font-bold uppercase tracking-[0.2em] text-white/90">Founder Profile</span>
                     </div>
 
-                    {/* CLEANED BOTTOM CARD META BANNER */}
+                    {/* MOBILE CARD BANNER */}
                     <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between bg-[#12151C]/95 p-3.5 rounded-lg border border-[#2B2F38] shadow-xl backdrop-blur-xl z-20 text-[9px]">
                       <div>
                         <p className="font-bold text-zinc-500 uppercase tracking-wider">Location</p>
@@ -199,11 +199,10 @@ function Hero() {
               </Reveal>
             </div>
 
-            {/* CTA BUTTON BLOCK - DYNAMIC LIVE PULSING */}
+            {/* CTA BUTTON BLOCK */}
             <div className="mb-[40px] w-full">
               <Reveal>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-2xl items-center">
-                  {/* GOLD ACTION BUTTON with Active Pulse-Glow */}
                   <MagneticButton
                     href="#contact"
                     className="inline-flex items-center justify-center gap-2 rounded-full border border-transparent bg-gradient-to-r from-[#E8C66A] via-[#F3DA93] to-[#B88728] px-4 py-3.5 text-[10px] font-bold uppercase tracking-[0.15em] text-black shadow-[0_0_20px_rgba(232,198,106,0.35)] w-full transition-all duration-300 hover:scale-[1.03] animate-[pulse_2.5s_infinite_ease-in-out]"
@@ -212,7 +211,6 @@ function Hero() {
                     Discovery Call
                   </MagneticButton>
 
-                  {/* PREMIUM GLASS BUTTON 1 with Micro-Glow border */}
                   <MagneticButton
                     href="#projects"
                     className="inline-flex items-center justify-center gap-2 rounded-full border border-[rgba(205,163,73,0.4)] bg-[rgba(18,21,28,0.7)] px-4 py-3.5 text-[10px] font-bold uppercase tracking-[0.15em] text-[#F5F5F2] w-full transition-all duration-300 hover:bg-[rgba(205,163,73,0.15)] hover:border-[#E8C66A] hover:shadow-[0_0_15px_rgba(232,198,106,0.15)]"
@@ -221,7 +219,6 @@ function Hero() {
                     View Projects
                   </MagneticButton>
 
-                  {/* PREMIUM GLASS BUTTON 2 with Micro-Glow border */}
                   <MagneticButton
                     href="#services"
                     className="inline-flex items-center justify-center gap-2 rounded-full border border-[rgba(205,163,73,0.4)] bg-[rgba(18,21,28,0.7)] px-4 py-3.5 text-[10px] font-bold uppercase tracking-[0.15em] text-[#F5F5F2] w-full transition-all duration-300 hover:bg-[rgba(205,163,73,0.15)] hover:border-[#E8C66A] hover:shadow-[0_0_15px_rgba(232,198,106,0.15)]"
@@ -233,9 +230,8 @@ function Hero() {
               </Reveal>
             </div>
 
-            {/* COMBINED STATISTICS AND TRUST CHIP BAR TO THE RIGHT SIDE */}
+            {/* COMBINED TRUST CHIP BAR */}
             <div className="mb-[32px] w-full max-w-2xl flex flex-col md:flex-row gap-6 items-start md:items-center justify-between">
-              {/* TRUST CHIPS (LEFT ALIGNED IN FLEX CONTAINER) */}
               <Reveal>
                 <div className="flex flex-wrap gap-2 max-w-xs sm:max-w-md">
                   {["MERN Stack", "UI/UX Designs", "Video Editing", "Branding"].map((chip) => (
@@ -249,15 +245,15 @@ function Hero() {
                   ))}
                 </div>
               </Reveal>
-
-             
             </div>
 
           </div>
 
-          {/* DESKTOP EXCLUSIVE RIGHT SIDE PROFILE CARD */}
-          <div className="hidden lg:col-span-5 lg:flex justify-end items-center w-full order-2 pl-6 pb-60 ">
-            <Reveal className="w-full flex justify-end">
+          {/* DESKTOP EXCLUSIVE RIGHT SIDE PROFILE CARD CONTAINER */}
+          <div className="hidden lg:col-span-5 lg:flex flex-col justify-center items-end w-full order-2 pl-6">
+            <Reveal className="w-full flex flex-col items-end gap-6">
+              
+              {/* PROFILE IMAGE CARD */}
               <div className="group relative w-full max-w-[400px]">
                 <div className="absolute -inset-px -z-10 bg-gradient-to-tr from-[#CDA349]/20 to-white/5 rounded-3xl opacity-40 blur-xl transition duration-700 group-hover:opacity-60" />
                 <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-[#2B2F38] bg-[#12151C] p-2.5 backdrop-blur-3xl transition-all duration-700 group-hover:border-[#CDA349] group-hover:shadow-[0_30px_80px_rgba(205,163,73,0.1)]">
@@ -299,7 +295,6 @@ function Hero() {
                     <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-white/90">Founder Profile</span>
                   </div>
 
-                  {/* REMOVED TEXT BLOCKS HERE FOR PURE LOOK — ONLY KEEPING LOCATION & STATUS */}
                   <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between bg-[#12151C]/95 p-4 rounded-xl border border-[#2B2F38] shadow-2xl backdrop-blur-2xl z-20">
                     <div>
                       <p className="text-[8px] font-bold uppercase tracking-[0.3em] text-[#909090]">Location</p>
@@ -308,28 +303,30 @@ function Hero() {
                     <div className="text-right">
                       <p className="text-[8px] font-bold uppercase tracking-[0.3em] text-[#909090]">Status</p>
                       <p className="text-[11px] font-extrabold text-emerald-400 flex items-center gap-1.5 mt-0.5">
-                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" /> Available for New Projects
+                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" /> Available
                       </p>
                     </div>
                   </div>
-
-                  {/* STATS CONTAINERS SHIFTED AND RIGHT ALIGNED */}
-              <Reveal>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 w-full md:w-auto">
-                  {stats.map((stat, idx) => (
-                    <div 
-                      key={idx} 
-                      className="bg-gradient-to-b from-[#161922] to-[#0D1017] border border-[#232836] rounded-xl p-3 text-center min-w-[85px] sm:min-w-[100px] group transition-all duration-300 hover:from-[#1D1A15] hover:to-[#12151C] hover:border-[#E8C66A] shadow-md"
-                    >
-                      <div className="text-xl sm:text-2xl font-black bg-gradient-to-r from-[#FFF] to-[#E8C66A] bg-clip-text text-transparent">{stat.value}</div>
-                      <div className="text-[7px] sm:text-[8px] uppercase tracking-[0.15em] text-[#9C9C9C] mt-0.5 font-bold group-hover:text-white transition-colors">{stat.label}</div>
-                    </div>
-                  ))}
-                </div>
-              </Reveal>
-
                 </div>
               </div>
+
+              {/* STATS CONTAINERS — PERFECTLY ALIGNED UNDER THE CARD */}
+              <div className="grid grid-cols-2 gap-2.5 w-full max-w-[400px]">
+                {stats.map((stat, idx) => (
+                  <div 
+                    key={idx} 
+                    className="bg-gradient-to-b from-[#161922] to-[#0D1017] border border-[#232836] rounded-xl p-4 text-center group transition-all duration-300 hover:from-[#1D1A15] hover:to-[#12151C] hover:border-[#E8C66A] shadow-md"
+                  >
+                    <div className="text-2xl font-black bg-gradient-to-r from-[#FFF] to-[#E8C66A] bg-clip-text text-transparent">
+                      {stat.value}
+                    </div>
+                    <div className="text-[9px] uppercase tracking-[0.15em] text-[#9C9C9C] mt-1 font-bold group-hover:text-white transition-colors">
+                      {stat.label}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
             </Reveal>
           </div>
         </div>
