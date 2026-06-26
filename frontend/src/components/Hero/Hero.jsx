@@ -275,30 +275,6 @@ function Hero() {
               </Reveal>
             </div>
 
-            {/* PREMIUM SOCIAL MATRIX */}
-            <div className="mt-8">
-              <Reveal>
-                <div className="flex items-center justify-center sm:justify-start gap-4">
-                  {[
-                    { icon: <Github size={16} />, url: "https://github.com" },
-                    { icon: <Linkedin size={16} />, url: "https://linkedin.com" },
-                    { icon: <Instagram size={16} />, url: "https://instagram.com" },
-                    { icon: <Youtube size={16} />, url: "https://youtube.com" }
-                  ].map((social, idx) => (
-                    <motion.a
-                      key={idx}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ y: -3, scale: 1.05 }}
-                      className="h-10 w-10 flex items-center justify-center rounded-full border border-[#2D2D2D] bg-[#181818] text-[#B8B8B8] hover:bg-[#CDA349] hover:text-[#111111] hover:border-transparent shadow-md transition-all duration-300"
-                    >
-                      {social.icon}
-                    </motion.a>
-                  ))}
-                </div>
-              </Reveal>
-            </div>
 
           </div>
 
@@ -318,13 +294,7 @@ function Hero() {
                       <div className="h-full w-1/4 flex-shrink-0 bg-[#07090F] relative">
                         <img src="/Logo.png" alt="Trivixa Arc Logo" className="h-full w-full object-cover filter drop-shadow-md select-none" />
                       </div>
-                      <div className="h-full w-1/4 flex-shrink-0 relative">
-                        {data.image?.url ? (
-                          <img src={data.image.url} alt="Vinod Kumar Profile" className="h-full w-full object-cover opacity-100 select-none" />
-                        ) : (
-                          <div className="h-full w-full bg-gradient-to-b from-neutral-800 to-neutral-950 flex items-center justify-center text-white/20 text-xs tracking-widest uppercase">Profile Visual</div>
-                        )}
-                      </div>
+                      
                       <div className="h-full w-1/4 flex-shrink-0 bg-[#07090F] relative">
                         <img src="/Logo.png" alt="Trivixa Arc Logo" className="h-full w-full object-cover filter drop-shadow-md select-none" />
                       </div>
