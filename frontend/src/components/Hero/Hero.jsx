@@ -300,7 +300,7 @@ function Hero() {
           </div>
 
           {/* DESKTOP EXCLUSIVE RIGHT SIDE PROFILE CARD */}
-          <div className="hidden lg:col-span-5 lg:flex justify-end items-center w-full order-2 pl-4">
+          <div className="hidden lg:col-span-5 lg:flex justify-end items-center w-full order-2 pl-4 pb-10">
             <Reveal className="w-full flex justify-end">
               <div className="group relative w-full max-w-[420px]">
                 <div className="absolute -inset-px -z-10 bg-gradient-to-tr from-[#CDA349]/20 to-white/5 rounded-3xl opacity-40 blur-xl transition duration-700 group-hover:opacity-60" />
