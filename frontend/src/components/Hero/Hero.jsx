@@ -29,8 +29,7 @@ function Hero() {
   const stats = [
     { value: "99%", label: "Satisfaction", icon: Smile },
     { value: "100%", label: "Responsive", icon: Zap },
-    { value: "24/7", label: "Support", icon: ShieldCheck },
-    { value: "Fast", label: "Delivery", icon: Truck }
+    { value: "24/7", label: "Support", icon: ShieldCheck }
   ];
 
   // Configured specific icons for each skillset chip
