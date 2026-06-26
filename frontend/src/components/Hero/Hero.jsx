@@ -378,7 +378,7 @@ function Hero() {
       <section className="relative w-full overflow-hidden bg-gradient-to-r from-transparent via-[#12151C]/80 to-transparent border-y border-white/[0.04] py-3 backdrop-blur-sm z-10 -mt-20">
         <div className="flex w-max items-center">
           <motion.div 
-            className="flex whitespace-nowrap gap-16 text-[11px] font-black uppercase tracking-[0.3em] text-[#F5F5F2]/40 px-8"
+            className="flex whitespace-nowrap gap-16 text-[11px] font-black uppercase tracking-[0.3em] text-[#F5F5F2] px-8"
             animate={{ x: [0, "-33.33%"] }}
             transition={{ ease: "linear", duration: 25, repeat: Infinity }}
           >
