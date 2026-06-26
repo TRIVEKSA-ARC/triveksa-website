@@ -11,10 +11,12 @@ function GlobalBackground({ children }) {
   const bgRef = useRef(null);
 
   useEffect(() => {
+    // Detect mobile layout for fine-tuning initial scale adjustments
+    const isMobile = window.innerWidth < 768;
+
     /* ===============================
        PREMIUM CINEMATIC BG MOTION
     =============================== */
-    // This continuous background pulse remains active across skips
     const bgAnimation = gsap.fromTo(
       bgRef.current,
       { scale: 1.05 },
@@ -33,22 +35,10 @@ function GlobalBackground({ children }) {
     const introPlayed = sessionStorage.getItem("introPlayed");
 
     if (introPlayed) {
-      // Instantly reveal website content layout
-      gsap.set(contentRef.current, {
-        opacity: 1,
-        y: 0,
-      });
+      gsap.set(contentRef.current, { opacity: 1, y: 0 });
+      gsap.set(shipRef.current, { opacity: 0 });
+      gsap.set(lightRef.current, { opacity: 0 });
 
-      // Instantly hide intro graphics elements
-      gsap.set(shipRef.current, {
-        opacity: 0,
-      });
-
-      gsap.set(lightRef.current, {
-        opacity: 0,
-      });
-
-      // Cleanup continuous background animation on unmount
       return () => {
         bgAnimation.kill();
       };
@@ -59,11 +49,10 @@ function GlobalBackground({ children }) {
     /* ===============================
        INITIAL STATES
     =============================== */
-
     gsap.set(shipRef.current, {
       xPercent: -50,
       yPercent: -50,
-      scale: 0.25,
+      scale: isMobile ? 0.15 : 0.25, // Sleeker initial entry scale on mobile
       opacity: 1,
     });
 
@@ -75,22 +64,21 @@ function GlobalBackground({ children }) {
 
     gsap.set(contentRef.current, {
       opacity: 0,
-      y: 60,
+      y: isMobile ? 40 : 60, // Shorter transition distance on mobile
     });
 
     /* ===============================
        SHIP ENTRY
     =============================== */
-
     tl.to(shipRef.current, {
       duration: 3,
-      scale: 0.45,
+      scale: isMobile ? 0.35 : 0.45, // Responsive climax scale
       ease: "power2.inOut",
       motionPath: {
         path: [
           { x: "110vw", y: "30vh" },
           { x: "70vw", y: "18vh" },
-          { x: "50vw", y: "10vh" },
+          { x: "50vw", y: isMobile ? "14vh" : "10vh" }, // Adjusted apex height for mobile viewports
         ],
         curviness: 1.6,
       },
@@ -99,7 +87,6 @@ function GlobalBackground({ children }) {
     /* ===============================
        LIGHT REVEAL
     =============================== */
-
     tl.to(
       lightRef.current,
       {
@@ -114,7 +101,6 @@ function GlobalBackground({ children }) {
     /* ===============================
        CONTENT REVEAL
     =============================== */
-
     tl.to(
       contentRef.current,
       {
@@ -129,17 +115,16 @@ function GlobalBackground({ children }) {
     /* ===============================
        SHIP EXIT
     =============================== */
-
     tl.to(shipRef.current, {
       duration: 5,
-      scale: 0.15,
+      scale: isMobile ? 0.1 : 0.15,
       opacity: 0,
       ease: "power2.inOut",
       motionPath: {
         path: [
-          { x: "50vw", y: "10vh" },
+          { x: "50vw", y: isMobile ? "14vh" : "10vh" },
           { x: "70vw", y: "5vh" },
-          { x: "120vw", y: "-20vh" },
+          { x: "130vw", y: "-20vh" }, // Extended exit vector to avoid cropping on wide viewports
         ],
         curviness: 1.8,
       },
@@ -155,7 +140,7 @@ function GlobalBackground({ children }) {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-black">
+    <div className="relative min-h-screen bg-[#0A0A0A] overflow-x-hidden">
 
       {/* 🌌 MAIN BACKGROUND */}
       <div
@@ -167,50 +152,47 @@ function GlobalBackground({ children }) {
         }}
       />
 
-      {/* ✨ PREMIUM CENTER LIGHT */}
+      {/* 🌑 PREMIUM CINEMATIC VIGNETTE */}
       <div
-        className="
-          fixed inset-0
-          z-[1]
-          pointer-events-none
-          bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.10)_0%,rgba(0,0,0,0.15)_75%)]
-        "
+        className="fixed inset-0 z-[1] pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(
+              ellipse at center,
+              rgba(10,10,10,0) 18%,
+              rgba(10,10,10,0.12) 38%,
+              rgba(10,10,10,0.35) 58%,
+              rgba(10,10,10,0.72) 78%,
+              rgba(10,10,10,0.96) 100%
+            )
+          `,
+        }}
       />
 
-      {/* 🔵 SOFT BLUE ATMOSPHERE */}
+      {/* 🌫 PREMIUM GRAY DEPTH */}
       <div
-        className="
-          fixed inset-0
-          z-[2]
-          pointer-events-none
-          bg-[radial-gradient(circle_at_top_left,rgba(59,130,246,0.10),transparent_45%)]
-        "
+        className="fixed inset-0 z-[2] pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle at center, rgba(26,26,26,0.05) 0%, rgba(26,26,26,0.22) 100%)",
+        }}
       />
 
-      {/* 🌟 GOLD ATMOSPHERIC LIGHT */}
+      {/* ✨ LUXURY GOLD GLOW */}
       <div
-        className="
-          fixed inset-0
-          z-[2]
-          pointer-events-none
-          bg-[radial-gradient(circle_at_top_right,rgba(251,191,36,0.06),transparent_40%)]
-        "
+        className="fixed inset-0 z-[3] pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle at top right, rgba(205,163,73,0.10) 0%, transparent 45%)",
+        }}
       />
 
-      {/* 🌫️ SOFT BOTTOM DEPTH */}
+      {/* 🌑 PREMIUM BOTTOM DEPTH */}
       <div
-        className="
-          fixed inset-0
-          z-[2]
-          pointer-events-none
-          bg-gradient-to-t
-          from-black/30
-          via-transparent
-          to-transparent
-        "
+        className="fixed inset-0 z-[3] pointer-events-none bg-gradient-to-t from-[#0A0A0A]/90 via-[#0A0A0A]/40 to-transparent"
       />
 
-      {/* 🛸 SPACESHIP */}
+      {/* 🛸 SPACESHIP - Fluid Width Adjustments */}
       <img
         ref={shipRef}
         src="/SpaceShip.png"
@@ -219,35 +201,40 @@ function GlobalBackground({ children }) {
           fixed
           top-0
           left-0
-          w-[700px]
+          w-[320px]
+          md:w-[700px]
           pointer-events-none
           select-none
           z-[5]
         "
       />
 
-      {/* 🔦 LIGHT BEAM */}
+      {/* 🔦 LIGHT BEAM - Matches layout fluid scale perfectly */}
       <div
         ref={lightRef}
         className="
           fixed
-          top-[12vh]
+          top-[16vh]
+          md:top-[12vh]
           left-1/2
           -translate-x-1/2
-          w-[420px]
-          h-[75vh]
+          w-[200px]
+          md:w-[420px]
+          h-[70vh]
+          md:h-[75vh]
           bg-gradient-to-b
-          from-yellow-200/18
-          via-sky-200/12
+          from-yellow-200/16
+          via-sky-200/8
           to-transparent
-          blur-3xl
+          blur-2xl
+          md:blur-3xl
           origin-top
           z-[4]
         "
       />
 
       {/* 📦 WEBSITE CONTENT */}
-      <div ref={contentRef} className="relative z-10">
+      <div ref={contentRef} className="relative z-10 px-4 md:px-0">
         {children}
       </div>
     </div>
