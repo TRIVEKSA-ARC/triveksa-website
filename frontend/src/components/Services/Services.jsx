@@ -81,7 +81,7 @@ export default function Services() {
               rounded-full
               border
               border-[#D4AF37]/40
-              bg-[#D4AF37]/15
+              bg-black
               px-4
               py-1.5
               sm:px-6
@@ -93,7 +93,7 @@ export default function Services() {
               tracking-[0.25em]
               sm:tracking-[0.35em]
               text-[#D4AF37]
-              
+              blur-xl
             "
           >
             Our Services
