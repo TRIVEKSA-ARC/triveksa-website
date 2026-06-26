@@ -7,7 +7,11 @@ import {
   Layers,       // Icon for MERN Stack
   Palette,      // Icon for UI/UX Designs
   Video,        // Icon for Video Editing
-  Award         // Icon for Branding
+  Award,        // Icon for Branding
+  Smile,        // Premium Icon for Satisfaction
+  Zap,          // Premium Icon for Responsive
+  ShieldCheck,  // Premium Icon for Support
+  Truck         // Premium Icon for Fast Delivery
 } from "lucide-react";
 import Reveal from "../Reveal";
 import MagneticButton from "../MagneticButton";
@@ -21,12 +25,12 @@ function Hero() {
     location: "INDIA",
   };
 
-  // Upgraded Premium Statistics Config
+  // Upgraded Premium Statistics Config with matching premium icons
   const stats = [
-    { value: "99%", label: "Satisfaction" },
-    { value: "100%", label: "Responsive" },
-    { value: "24/7", label: "Support" },
-    { value: "Fast", label: "Delivery" }
+    { value: "99%", label: "Satisfaction", icon: Smile },
+    { value: "100%", label: "Responsive", icon: Zap },
+    { value: "24/7", label: "Support", icon: ShieldCheck },
+    { value: "Fast", label: "Delivery", icon: Truck }
   ];
 
   // Configured specific icons for each skillset chip
@@ -201,7 +205,7 @@ function Hero() {
               </Reveal>
             </div>
 
-            {/* NEW LOCATION: SKILLSET / TRUST CHIPS */}
+            {/* LOCATION: SKILLSET / TRUST CHIPS */}
             <div className="mb-[24px] w-full">
               <Reveal>
                 <div className="flex flex-wrap gap-2 max-w-xl">
@@ -222,7 +226,7 @@ function Hero() {
             </div>
 
             {/* DESCRIPTION */}
-            <div className="mb-[36px]">
+            <div className="mb-[32px]">
               <Reveal>
                 <p className="max-w-2xl text-[14px] sm:text-[18px] leading-relaxed md:leading-8 text-[#D8DADF] font-normal drop-shadow-sm">
                   I help businesses and startups build premium websites, intuitive user experiences, and powerful digital brands that create lasting impressions and drive business growth.
@@ -230,8 +234,34 @@ function Hero() {
               </Reveal>
             </div>
 
+            {/* HIGH END FLAT OVERVIEW METRICS (Moved right beneath description details) */}
+            <div className="mb-[40px] w-full max-w-2xl">
+              <Reveal>
+                <div className="flex flex-wrap items-center gap-x-12 gap-y-6 sm:gap-x-16 border-t border-b border-white/[0.06] py-5 sm:py-6">
+                  {stats.map((stat, idx) => {
+                    const StatIcon = stat.icon;
+                    return (
+                      <div key={idx} className="flex items-center gap-3.5 group">
+                        <div className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-[#12151C] border border-[#2B2F38] text-[#CDA349] transition-all duration-300 group-hover:border-[#E8C66A] group-hover:bg-[#1D1A15] shadow-sm">
+                          <StatIcon size={18} className="transition-transform duration-300 group-hover:scale-110" />
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-xl sm:text-2xl font-black bg-gradient-to-r from-white via-[#F5F5F2] to-[#E8C66A] bg-clip-text text-transparent tracking-tight">
+                            {stat.value}
+                          </span>
+                          <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-[#9C9C9C] font-bold mt-0.5 group-hover:text-white transition-colors">
+                            {stat.label}
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </Reveal>
+            </div>
+
             {/* CTA BUTTON BLOCK - DYNAMIC LIVE PULSING */}
-            <div className="mb-[40px] w-full">
+            <div className="w-full">
               <Reveal>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-2xl items-center">
                   {/* GOLD ACTION BUTTON with Active Pulse-Glow */}
@@ -260,23 +290,6 @@ function Hero() {
                     <Wrench size={13} className="text-[#E8C66A]" />
                     View Services
                   </MagneticButton>
-                </div>
-              </Reveal>
-            </div>
-
-            {/* STATISTICS CONTAINER (RIGHT ALIGNED) */}
-            <div className="mb-[32px] w-full max-w-2xl flex justify-start md:justify-end">
-              <Reveal>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 w-full md:w-auto">
-                  {stats.map((stat, idx) => (
-                    <div 
-                      key={idx} 
-                      className="bg-gradient-to-b from-[#161922] to-[#0D1017] border border-[#232836] rounded-xl p-3 text-center min-w-[85px] sm:min-w-[100px] group transition-all duration-300 hover:from-[#1D1A15] hover:to-[#12151C] hover:border-[#E8C66A] shadow-md"
-                    >
-                      <div className="text-xl sm:text-2xl font-black bg-gradient-to-r from-[#FFF] to-[#E8C66A] bg-clip-text text-transparent">{stat.value}</div>
-                      <div className="text-[7px] sm:text-[8px] uppercase tracking-[0.15em] text-[#9C9C9C] mt-0.5 font-bold group-hover:text-white transition-colors">{stat.label}</div>
-                    </div>
-                  ))}
                 </div>
               </Reveal>
             </div>
