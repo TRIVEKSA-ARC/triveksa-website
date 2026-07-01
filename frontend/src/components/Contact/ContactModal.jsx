@@ -26,7 +26,7 @@ function ContactModal({ isOpen, onClose }) {
     e.preventDefault();
     try {
       setLoading(true);
-      await createLead({ ...formData, source: "Website Modal" });
+      await createLead({ ...formData, source: "Website" });
       toast.success("Project inquiry submitted!");
       setFormData({
         name: "",
