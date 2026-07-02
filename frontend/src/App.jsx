@@ -59,11 +59,13 @@ function Home() {
       </GlobalBackground>
 
       <ContactModal
+        title="Start Your Website Project"
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
       />
 
       <WhatsAppModal
+        title="Book a Free Consultation"
         isOpen={isWhatsAppOpen}
         onClose={() => setIsWhatsAppOpen(false)}
       />
@@ -89,11 +91,13 @@ function ServicesPage() {
       </GlobalBackground>
 
       <ContactModal
+        title="Start Your Website Project"
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
       />
 
       <WhatsAppModal
+        title="Book a Free Consultation"
         isOpen={isWhatsAppOpen}
         onClose={() => setIsWhatsAppOpen(false)}
       />
