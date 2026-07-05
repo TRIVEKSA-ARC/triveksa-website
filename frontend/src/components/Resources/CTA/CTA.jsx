@@ -2,8 +2,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, MessageCircle, Rocket, Phone } from "lucide-react";
 
-import ContactModal from "../../Home/ContactModal";
-import WhatsAppModal from "../../Home/WhatsAppModal";
+import ContactModal from "../../Contact/ContactModal";
+import WhatsAppModal from "../../Contact/WhatsAppModal";
 
 export default function CTA() {
   const [showContactModal, setShowContactModal] = useState(false);
