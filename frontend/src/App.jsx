@@ -53,6 +53,8 @@ function Home() {
 
         <Projects />
 
+        <ResourcesPage />
+
         <Footer
           onOpenModal={() => setIsModalOpen(true)}
           onOpenWhatsApp={() => setIsWhatsAppOpen(true)}
