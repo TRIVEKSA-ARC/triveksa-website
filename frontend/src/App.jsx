@@ -10,6 +10,7 @@ import Hero from "./components/Hero/Hero";
 import About from "./components/About/About";
 import Services from "./components/Services/Services";
 import Projects from "./components/Projects/Projects";
+import ResourcesPage from "./components/Resources/ResourcesPage";
 import Footer from "./components/Footer/Footer";
 
 // Contact
@@ -129,6 +130,7 @@ function App() {
                     {/* Public Pages */}
                     <Route path="/" element={<Home />} />
                     <Route path="/services" element={<ServicesPage />} />
+                    <Route path="/resources" element={<ResourcesPage />} />
 
                     {/* Authentication */}
                     <Route path="/login" element={<AdminLogin />} />
