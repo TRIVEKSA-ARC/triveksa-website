@@ -40,7 +40,7 @@ const categories = [
 
 export default function Categories() {
   return (
-    <section className="bg-zinc-950 py-24">
+    <section className="bg-from-black/10 via-zinc-950/10 to-zinc-900/10 py-24">
       <div className="mx-auto max-w-7xl px-6">
 
         {/* Heading */}

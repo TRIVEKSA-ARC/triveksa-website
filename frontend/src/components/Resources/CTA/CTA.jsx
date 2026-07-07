@@ -10,7 +10,7 @@ export default function CTA() {
   const [showWhatsAppModal, setShowWhatsAppModal] = useState(false);
 
   return (
-    <section className="relative overflow-hidden bg-black py-28">
+    <section className="relative overflow-hidden bg-from-black/10 via-zinc-950/10 to-zinc-900/10 py-28">
 
       {/* Background Glow */}
       <div className="absolute inset-0">
