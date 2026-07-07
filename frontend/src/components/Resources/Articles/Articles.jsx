@@ -34,7 +34,7 @@ const articles = [
 
 export default function Articles() {
   return (
-    <section className="bg-from-black/10 via-zinc-950/10 to-zinc-900/10 py-24">
+    <section className="bg-from-black/10 via-zinc-950/30 to-zinc-900/10 py-24">
       <div className="mx-auto max-w-7xl px-6">
 
         {/* Heading */}

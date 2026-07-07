@@ -19,7 +19,7 @@ const resources = [
 
 export default function ResourceHub() {
   return (
-    <section className="relative overflow-hidden bg-zinc-950 py-24">
+    <section className="relative overflow-hidden bg-from-black/10 via-zinc-950/30 to-zinc-900/10 py-24">
 
       {/* Background Glow */}
       <div className="absolute inset-0">

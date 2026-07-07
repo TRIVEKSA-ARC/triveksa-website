@@ -3,7 +3,7 @@ import { ArrowRight, BookOpen, Download } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-black/10 via-zinc-950/10 to-zinc-900/10">
+    <section className="relative overflow-hidden bg-gradient-to-br from-black/10 via-zinc-950/30 to-zinc-900/10">
 
       {/* Background Glow */}
       <div className="absolute inset-0 overflow-hidden">

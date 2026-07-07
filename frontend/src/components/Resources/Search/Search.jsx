@@ -16,7 +16,7 @@ const popularSearches = [
 
 export default function SearchSection() {
   return (
-    <section className="relative bg-from-black/10 via-zinc-950/10 to-zinc-900/10 py-24">
+    <section className="relative bg-from-black/10 via-zinc-950/30 to-zinc-900/10 py-24">
       <div className="mx-auto max-w-7xl px-6">
 
         {/* Heading */}
