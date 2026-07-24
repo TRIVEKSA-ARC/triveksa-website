@@ -114,7 +114,7 @@ function Footer({ onOpenModal, onOpenWhatsApp }) {
                 <div className="flex items-center gap-3">
                   <span className="h-px w-8 bg-gradient-to-r from-white to-[#f5c96a]" />
                   <h3 className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.45em] bg-gradient-to-r from-white via-[#f5c96a] to-[#d89b1d] bg-clip-text text-transparent">
-                    Triveksa-Arc Studio
+                    Triveksa-Arc
                   </h3>
                 </div>
               </div>
